@@ -251,7 +251,13 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+<<<<<<< HEAD
   x86_64-darwin-20
+=======
+  ruby
+  x86-mingw32
+  x86_64-darwin-19
+>>>>>>> 65c85d4ecdfe3d7e453f43b2cc37bdd6eed0d74e
   x86_64-linux
 
 DEPENDENCIES
