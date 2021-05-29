@@ -1,0 +1,34 @@
+.user-profile-cont{
+}
+.profile-box{
+  position: relative;
+  width: 350px;
+  border-radius: 20px;
+  align-items: center;
+  h1{
+    margin: 0;
+    font-size: 50px;
+    position: absolute;
+    bottom: 45%;
+    align-self: center;
+    font-weight: 900;
+    font-size: 80px;
+    line-height: 97px;
+    letter-spacing: 0.2px;
+    color: $bright-yellow;
+  }
+  .card-img-top{
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  h3{
+    display:inline-block;
+  }
+
+  .card-body{
+    align-items: center;
+    flex-direction: column;
+  }
+
+}
