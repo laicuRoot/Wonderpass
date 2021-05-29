@@ -1,0 +1,8 @@
+<h2><%= stamp.location.location_name %></h2>
+<p class ="yellow-button">
+	<%if stamp.stamp_status %>
+		Collected
+	<% else %>
+    <%= link_to "collect your stamp", edit_stampbook_stamp_path(stamp.stampbook, stamp) %>
+	<% end %>
+</p>

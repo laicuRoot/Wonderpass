@@ -1,12 +1,12 @@
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+<div id="user-map"
+    class = "map"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 <div class="container user-profile-cont">
   <div class="card profile-box">
     <% if @user.photo.attached? %>
-      <%= cl_image_tag @user.photo.key , width: 350, height: 250, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
+      <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
     <% else %>
       <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
     <% end %>
@@ -21,5 +21,17 @@
       <%= link_to "See stampbook", user_stampbooks_path(@user), class: "yellow-button" %>
     </div>
   </div>
-  <div class ="menu-button"><i class="fas fa-bars"></i></div>
+  <div class="user-menu">
+    <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
+    <div class = "user-menu-popup">
+       <div id = "user-menu-exit" class ="menu-button">X</i></div>
+       <h2>Actions</h2>
+       <ul>
+         <li>Collect your stamps</li>
+         <li>Create itinerary</li>
+         <li>See saved itineraries</li>
+         <li><%= link_to "Sign-out", destroy_user_session_path(current_user) %></li>
+       </ul>
+    </div>
+  </div>
 </div>
