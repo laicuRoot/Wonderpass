@@ -3,17 +3,19 @@ class UsersController < ApplicationController
   def show
     @stamps = @user.stamps
     @stamp_count = @stamps.where(stamp_status: true).count
-    @markers = @stamps.locations.geocoded.map do |location|
+    @locations = Location.all
+    @markers = @locations.geocoded.map do |location|
       {
         lat: location.latitude,
-        lng: location.longitude
+        lng: location.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { stamp: @stamps.where(location: location) })
       }
     end
   end
 
-  private 
+  private
 
-  def find_user 
+  def find_user
     @user = User.find(params[:id])
   end
 end
