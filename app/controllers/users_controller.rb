@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:show]
   def show
-    @user = User.find(params[:id])
     @stamps = @user.stamps
     @stamp_count = @stamps.where(stamp_status: true).count
     @markers = @stamps.locations.geocoded.map do |location|
@@ -9,5 +9,11 @@ class UsersController < ApplicationController
         lng: location.longitude
       }
     end
+  end
+
+  private 
+
+  def find_user 
+    @user = User.find(params[:id])
   end
 end
