@@ -1,2 +1,15 @@
-<h1>Stamps#show</h1>
-<p>Find me in app/views/stamps/show.html.erb</p>
+<div class="stamp-div d-flex  justify-content-start pt-5 m-0">
+  <div class="row col-6 p-0 m-0">
+    <h1><%= @stamp.location.location_name %></h1>
+    <p><%= @stamp.location.location_description %></p>
+    <% if @stamp.stamp_status %>
+      <%= cl_image_tag(@stamp.location.stamp_photos.first.key, width: 400, height: 300, crop: :fill)%>
+    <% else %>
+      <h3>Stamp Not Collected</h3>
+    <% end %>
+  </div>
+
+  <div class="row col-6 p-0 m-0">
+    <%= cl_image_tag(@stamp.location.location_photos.first.key, class: "location-pic", crop: :fill, width: 700, height: 400)%>
+  </div>
+</div>
