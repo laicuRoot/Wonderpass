@@ -25,6 +25,8 @@ gem 'redis', '~> 4.0'
 # Cloudinary
 gem 'cloudinary', '~> 1.16.0'
 
+# mapbox
+gem 'geocoder'
 # dotenv
 gem 'dotenv-rails'
 
