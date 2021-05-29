@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :stamps
+  has_many :stamps, dependent: :destroy
   geocoded_by :location_name
   validates :location_name, :location_description, :category, presence: true
   validates :location_name, uniqueness: { scope: [:latitude, :longitude] }
