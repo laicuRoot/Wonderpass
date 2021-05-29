@@ -8,5 +8,5 @@ class Location < ApplicationRecord
   validates :category, inclusion: { in: %w(Natural Historical Cultural Culinary Sports) }
   after_validation :geocode, if: :will_save_change_to_location_name?
   has_many_attached :location_photos
-  has_many_attaced :stamp_photos
+  has_many_attached :stamp_photos
 end
