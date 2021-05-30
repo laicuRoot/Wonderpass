@@ -1,2 +1,14 @@
-<h1>Stamps#edit</h1>
-<p>Find me in app/views/stamps/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1> Drop your picture to get your stamp here </h1>
+    </div>
+    <div class="col-sm-12">
+      <h1>Get Your Stamp</h1>
+      <%= simple_form_for([@stampbook, @stamp]) do |f|%>
+        <%= f.input :stamp_status %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
