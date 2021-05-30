@@ -1,4 +1,8 @@
 class StampsController < ApplicationController
+  def index
+    @stampbook = Stampbook.find(params[:stampbook_id])
+  end
+
   def show
   end
 

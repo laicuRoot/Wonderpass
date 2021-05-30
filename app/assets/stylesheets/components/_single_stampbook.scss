@@ -1,0 +1,18 @@
+.stamps-collection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stamp-background {
+  background-color: grey;
+  border-radius: 5%;
+  border-color: #CBCBCB;
+  margin: 10px;
+  padding: 10px;
+  height: 200px;
+  width:200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

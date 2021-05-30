@@ -1,0 +1,11 @@
+<h1><%=@stampbook.stampbook_name%></h1>
+<h2>You collected <%= @stampbook.stamps.where(stamp.stamp_status==true).count %>/<%= @stampbook.stamps.count %></h2>
+
+<div class="stamps-collection">
+  <% @stampbook.stamps.each do |stamp| %>
+    <div class="stamp-background">
+      <h3><span class="hashtag-height">#</span> <%= stamp.id %></h3>
+      <h4><%= stamp.location.location_name %></h4>
+    </div>
+  <% end %>
+</div>
