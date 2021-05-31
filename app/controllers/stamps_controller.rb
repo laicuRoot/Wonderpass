@@ -15,7 +15,7 @@ class StampsController < ApplicationController
   private
 
   def stamp_params
-    params.require(:stamp).permit(:stamp_status)
+    params.require(:stamp).permit(:stamp_status, :stamp)
   end
 
   def find_stamp
