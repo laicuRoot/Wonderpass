@@ -8,14 +8,21 @@ class StampsController < ApplicationController
   def edit; end
 
   def update
-    @stamp.update(stamp_params)
-    redirect_to stampbook_stamp_path(@stamp)
+    respond_to do |format|
+      if @stamp.update(stamp_params)
+        format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Stamp was successfully added to your Stampbook.' }
+        format.json { render :show, status: :ok, location: @stamp }
+      else
+        format.html { render :edit }
+        format.json { render json: @stamp.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
 
   def stamp_params
-    params.require(:stamp).permit(:stamp_status, :stamp)
+    params.require(:stamp).permit(:stamp_status, :user_stamp_photo)
   end
 
   def find_stamp
