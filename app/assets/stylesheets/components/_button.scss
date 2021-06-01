@@ -1,15 +1,51 @@
 .yellow-button{
-  margin-top: 30px;
+  margin-bottom: 10px;
   padding: 8px 50px;
   background-color: $bright-yellow;
   color: $white;
   border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: $black;
+  }
+}
+
+.log-out{
+  position:absolute;
+  top: -15px;
+  right: -25px;
+  padding: 8px 16px;
+}
+
+.user-menu{
+  position: relative;
+  z-index: 1;
 }
 
 .menu-button{
-  margin-top: -10px;
+  position:absolute;
+  top: 0;
+  right: 0;
   padding: 8px 12px;
   border-radius: 50%;
   background-color: $bright-yellow;
   color: $white;
+  text-shadow: 0 0 16px rgba($black, 0.6);
+  &:hover{
+    color: $black;
+  }
+  cursor: pointer;
+}
+
+.round-yellow-button{
+  position: absolute;
+  padding: 8px 16px;
+  border-radius: 50%;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: $black;
+  }
 }
