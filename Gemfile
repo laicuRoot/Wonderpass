@@ -28,7 +28,7 @@ gem 'cloudinary', '~> 1.16.0'
 # mapbox
 gem 'geocoder'
 # dotenv
-gem 'dotenv-rails'
+gem 'dotenv-rails', groups: [:development, :test]
 
 # dropzone-rails
 gem 'dropzonejs-rails', '~> 0.8.5'
