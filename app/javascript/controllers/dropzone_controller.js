@@ -13,6 +13,8 @@ export default class extends Controller {
   static targets = ["input"];
 
   connect() {
+    let submitBtn = document.querySelector('.btn')
+    submitBtn.disabled = true
     this.dropZone = createDropZone(this);
     this.hideFileInput();
     this.bindEvents();
@@ -29,6 +31,8 @@ export default class extends Controller {
     this.dropZone.on("addedfile", file => {
       setTimeout(() => {
         file.accepted && createDirectUploadController(this, file).start();
+        let submitBtn = document.querySelector('.btn')
+        submitBtn.disabled = false
       }, 500);
     });
 
