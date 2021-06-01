@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show]
+
   def show
     @stamps = @user.stamps
     @stamp_count = @stamps.where(stamp_status: true).count

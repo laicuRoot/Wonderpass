@@ -5,10 +5,13 @@
   </div>
 
   <div class="stamps-collection">
-    <% @stampbook.stamps.each do |stamp| %>
+    <% @stampbook.stamps.each_with_index do |stamp, index| %>
       <div class="stamp-background">
-        <h3><span class="hashtag-height">#</span> <%= stamp.id %></h3>
+        <h3><span class="hashtag-height">#</span> <%= index + 1 %></h3>
         <h4><%= stamp.location.location_name %></h4>
+        <% if stamp.stamp_status %>
+          <%= render "collected_stamp_modal", stamp: stamp %>
+        <% end %>
       </div>
     <% end %>
   </div>

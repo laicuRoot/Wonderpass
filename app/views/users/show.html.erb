@@ -16,11 +16,11 @@
       <h3><%= @stamp_count %></h3> 
       <p class="card-text">Number of km travelled</p>
       <h3>5</h3>
-      <p>Travellor since</p>
+      <p>Traveller since</p>
        <h3><%= @user.created_at.strftime("%d %B %Y") %></h3>
       <%= link_to "See stampbook", user_stampbooks_path(@user), class: "yellow-button" %>
     </div>
-    <%= link_to "Sign-out", destroy_user_session_path(current_user), class: "yellow-button log-out" %>
+    <%= link_to "Sign-out", destroy_user_session_path, method: :delete, class: "yellow-button log-out" %>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
   <div class="user-menu">
@@ -32,7 +32,7 @@
          <li>Collect your stamps</li>
          <li>Create itinerary</li>
          <li>See saved itineraries</li>
-         <li><%= link_to "Sign-out", destroy_user_session_path(current_user) %></li>
+         <li><%= link_to "Sign-out", destroy_user_session_path, method: :delete %></li>
        </ul>
     </div>
   </div>
