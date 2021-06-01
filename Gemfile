@@ -33,6 +33,9 @@ gem 'dotenv-rails'
 # dropzone-rails
 gem 'dropzonejs-rails', '~> 0.8.5'
 
+# Exifr - Get img data
+gem 'exifr', '~> 1.3', '>= 1.3.9'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

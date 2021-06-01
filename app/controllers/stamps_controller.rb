@@ -10,7 +10,8 @@ class StampsController < ApplicationController
   def update
     respond_to do |format|
       if @stamp.update(stamp_params)
-        format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Stamp was successfully added to your Stampbook.' }
+        params[:stamp_status] = true
+        format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Congratulations!' }
         format.json { render :show, status: :ok, location: @stamp }
       else
         format.html { render :edit }
