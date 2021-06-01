@@ -4,21 +4,23 @@
   justify-content:space-between;
   align-items: flex-start;
   max-width: 100vw;
-  padding: 80px 120px;
+  padding: 80px 200px;
 }
 .profile-box{
   position: relative;
   width: 350px;
-  height: 600px;
+  height: 700px;
   border-radius: 20px;
   align-items: center;
+  text-align: center;
   border: none;
+  transition: 2s;
 
   h1{
     margin: 0;
     font-size: 50px;
     position: absolute;
-    bottom: 45%;
+    bottom: 55%;
     align-self: center;
     font-weight: 900;
     font-size: 80px;
@@ -33,7 +35,11 @@
 
   h3{
     margin-bottom: 20px;
+    &:last-of-type{
+      margin-bottom: 40px;
+    }
   }
+
 
   .card-body{
     align-items: center;

@@ -6,10 +6,28 @@
 } 
 
 .mapboxgl-popup {
-  max-width: 200px;
+  text-align:center;
+  max-width: 300px;
+  border-radius: 20px;
 }
-  
+
 .mapboxgl-popup-content {
+  border-radius: 20px;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+}
+
+.stamp-window-body{
+  display:flex;
+  margin-bottom: 10px;
+}
+
+.right-box{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.rounded-borders{
+  border-radius:10px;
 }
