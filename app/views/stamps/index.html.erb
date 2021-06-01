@@ -1,15 +1,43 @@
 <div class="stamps-box">
   <div class="stamps-header">
     <h1 class="stampbook-name"><%=@stampbook.stampbook_name%></h1>
-    <h2>You collected <%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %>/<%= @stampbook.stamps.count %></h2>
+    <h2><span class="number-stamps-collected-sml">You collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size)%></span></h2>
+    <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
   </div>
 
   <div class="stamps-collection">
-    <% @stampbook.stamps.each do |stamp| %>
+    <% @stampbook.stamps.order(:id).each_with_index do |stamp, index| %>
       <div class="stamp-background">
-        <h3><span class="hashtag-height">#</span> <%= stamp.id %></h3>
-        <h4><%= stamp.location.location_name %></h4>
+        <% if stamp.stamp_status==true %>
+          <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 200, width: 200, crop: :fill  %>
+        <% else %>
+          <h3>#<span class="stamp-number-height"><%= index + 1 %></span></h3>
+          <h4><%= stamp.location.location_name %></h4>
+        <% end %>
       </div>
     <% end %>
   </div>
+
+<div id="book">
+    <div class="my-page" data-density="hard">
+        Page Cover
+    </div>
+    <div class="my-page">
+        Page one
+    </div>
+    <div class="my-page">
+        Page two
+    </div>
+    <div class="my-page">
+        Page three
+    </div>
+    <div class="my-page">
+        Page four
+    </div>
+    <div class="my-page" data-density="hard">
+        Last page
+    </div>
 </div>
+
+</div>
+

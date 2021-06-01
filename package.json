@@ -8,8 +8,10 @@
     "@rails/webpacker": "4.3.0",
     "bootstrap": "4.6",
     "jquery": "^3.6.0",
+    "page-flip": "^2.0.7",
     "popper.js": "^1.16.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "turn.js": "^1.0.5"
   },
   "version": "0.1.0",
   "devDependencies": {

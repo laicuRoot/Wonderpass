@@ -9,10 +9,21 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin: 30px;
 }
 
 .stampbook-name {
   color: #FFDE55;
+}
+
+.number-stamps-collected-sml {
+  font-size: 25px;
+  color: rgba(0,0,0, 0.5);
+}
+
+.number-stamps-collected-big {
+  font-size: 40px;
+  color: rgba(0,0,0, 0.5);;
 }
 
 .stamps-collection {
@@ -21,6 +32,22 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+}
+
+.stamp-number-height {
+  font-size: 40px;
+}
+
+.collect-stamp-link {
+  :link {
+    text-decoration: none!important;
+    color: inherit;
+  }
+  padding: 5px 25px;
+  margin: 10px;
+  color: white;
+  background-color: #FFDE55;
+  border-radius: 20px;
 }
 
 .stamp-background {
@@ -37,4 +64,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+#flipbook {
+  width: 800px;
+  height: 400px;
+  .turn-page {
+    background-color: #ccc;
+  }
 }
