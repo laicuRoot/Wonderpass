@@ -1,0 +1,40 @@
+.stamps-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.stamps-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.stampbook-name {
+  color: #FFDE55;
+}
+
+.stamps-collection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.stamp-background {
+  color: #CBCBCB;
+  background-color: rgba(203,203,203, 0.1);
+  border: 3px solid;
+  border-radius: 12px;
+  border-color: #CBCBCB;
+  margin: 10px;
+  padding: 10px;
+  height: 200px;
+  width:200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
