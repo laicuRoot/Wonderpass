@@ -1,2 +1,8 @@
-<h1>ItineraryItems#new</h1>
-<p>Find me in app/views/itinerary_items/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @stamps.each do |stamp| %>
+      <div class="col-sm">
+        <%= render '', stamp: stamp %>
+      </div>
+    <% end %>
+  </div>

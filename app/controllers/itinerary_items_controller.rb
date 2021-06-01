@@ -1,5 +1,6 @@
 class ItineraryItemsController < ApplicationController
   def new
+    @stamps = Stamp.near(@location, @distance)
   end
 
   def create
