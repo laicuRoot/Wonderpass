@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :stampbooks do
-    resources :stamps, only: [:show, :edit, :update]
+    resources :stamps, only: [:index, :show, :edit, :update]
   end
 
   resources :itineraries do

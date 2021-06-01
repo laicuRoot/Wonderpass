@@ -1,6 +1,10 @@
 class StampsController < ApplicationController
-  before_action :set_stamp, only: [:show]
-
+before_action :set_stamp, only: [:show]
+  
+  def index
+    @stampbook = Stampbook.find(params[:stampbook_id])
+  end
+  
   def show
   end
 
