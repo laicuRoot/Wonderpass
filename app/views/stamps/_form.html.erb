@@ -1,0 +1,46 @@
+<div class="col-sm-12 col-md-6">
+  <%= form_with(model: [@stampbook, @stamp], local: true, multipart: true) do |form| %>
+    <% if @stamp.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@stamp.errors.count, "error") %> prohibited this stamp from being saved:</h2>
+
+        <ul>
+          <% @stamp.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-6">
+      <%= form.label :user_stamp_photo, class: "d-none" %>
+      <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
+        <%= form.file_field :user_stamp_photo, direct_upload: true, data: { dropzone_target: 'input' }, class:'pic_target' %>
+        <%= form.check_box :stamp_status, checked: true, class:'checkbox' %>
+        <div class="dropzone-msg dz-message needsclick text-gray-600">
+          <h3 class="dropzone-msg-title">Drop your picture here to get your stamp</h3>
+        </div>
+      </div>
+      <div class='d-flex justify-content-center align-items-center-items-center mt-2'>
+        <%= form.submit  value:"Check stamp" ,class: "btn btn-info text-white px-5" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div class='col-sm-12 col-md-6 text-center d-flex justify-content-center align-items-center'>
+  <div>
+    <div>
+      <h1 class='title'>Collect your stamp!</h1>
+    </div>
+    <div class="card custom_card">
+      <%= cl_image_tag(@stamp.location.location_photos.first.key, class: "card-img-top location-pic", crop: :fill)%>
+      <div class="card-body">
+        <h5 class="card-title"><%= @stamp.location.location_name %></h5>
+        <p class="card-text text-left"><%= @stamp.location.location_description %></p>
+        <%= link_to "See stamp", stampbook_stamp_path(@stamp), class:'btn btn-info text-white px-5'  %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,6 +33,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 # dropzone-rails
 gem 'dropzonejs-rails', '~> 0.8.5'
 
+# exifr
+gem 'exifr', '~> 1.3', '>= 1.3.9'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

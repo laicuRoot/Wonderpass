@@ -1,25 +1,23 @@
 class StampsController < ApplicationController
-  
   before_action :find_stamp, only: [:show, :edit, :update]
   before_action :find_stampbook, only: [:edit, :update]
-  
+
   def index
     @stampbook = Stampbook.find(params[:stampbook_id])
   end
-  
 
-  def show
-  end
+  def show; end
 
   def edit; end
 
   def update
     respond_to do |format|
       if @stamp.update(stamp_params)
-        format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Stamp was successfully added to your Stampbook.' }
+        @stamp.stamp_status = true
+        format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Stamp was successfully collected!' }
         format.json { render :show, status: :ok, location: @stamp }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'Your stamp cannot be collected. Try again.' }
         format.json { render json: @stamp.errors, status: :unprocessable_entity }
       end
     end
