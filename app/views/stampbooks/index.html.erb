@@ -14,7 +14,7 @@
       <% @user_stampbooks.each do |stampbook| %>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"><%= stampbook.stampbook_name %></h5>
+              <h5 class="card-title"> <%= link_to stampbook.stampbook_name, stampbook_stamps_path(stampbook) %>  <%=  %></h5>
               <p class="card-text"><%= stampbook.stampbook_description %></p>
             </div>
           </div>

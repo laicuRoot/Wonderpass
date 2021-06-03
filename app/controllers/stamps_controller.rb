@@ -1,4 +1,5 @@
-class StampsController < ApplicationController  
+
+class StampsController < ApplicationController
   before_action :find_stamp, only: [:show, :edit, :update]
   before_action :find_stampbook, only: [:edit, :update]
   
