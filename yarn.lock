@@ -1004,6 +1004,30 @@
     webpack-cli "^3.3.10"
     webpack-sources "^1.4.3"
 
+"@stimulus/core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/core/-/core-2.0.0.tgz#140c85318d6a8a8210c0faf182223b8459348877"
+  integrity sha512-ff70GafKtzc8zQ1/cG+UvL06GcifPWovf2wBEdjLMh9xO2GOYURO3y2RYgzIGYUIBefQwyfX2CLfJdZFJrEPTw==
+  dependencies:
+    "@stimulus/mutation-observers" "^2.0.0"
+
+"@stimulus/multimap@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/multimap/-/multimap-2.0.0.tgz#420cfa096ed6538df4a91dbd2b2842c1779952b2"
+  integrity sha512-pMBCewkZCFVB3e5mEMoyO9+9aKzHDITmf3OnPun51YWxlcPdHcwbjqm1ylK63fsoduIE+RowBpFwFqd3poEz4w==
+
+"@stimulus/mutation-observers@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/mutation-observers/-/mutation-observers-2.0.0.tgz#3dbe37453bda47a6c795a90204ee8d77a799fb87"
+  integrity sha512-kx4VAJdPhIGBQKGIoUDC2tupEKorG3A+ckc2b1UiwInKTMAC1axOHU8ebcwhaJIxRqIrs8//4SJo9YAAOx6FEg==
+  dependencies:
+    "@stimulus/multimap" "^2.0.0"
+
+"@stimulus/webpack-helpers@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@stimulus/webpack-helpers/-/webpack-helpers-2.0.0.tgz#54296d2a2dffd4f962d2e802d99a3fdd84b8845f"
+  integrity sha512-D6tJWsAC024MwGEIKlUVYU8Ln87mlrmiwHvYAjipg+s8H4eLxUMQ3PZkWyPevfipH+oR3leuHsjYsK1gN5ViQA==
+
 "@types/glob@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.3.tgz#e6ba80f36b7daad2c685acd9266382e68985c183"
@@ -2742,6 +2766,11 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
+dropzone@^5.9.2:
+  version "5.9.2"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.9.2.tgz#0a90ce3f6b011c3932484f368f4bf06223729450"
+  integrity sha512-5t2z51DzIsWDbTpwcJIvUlwxBbvcwdCApz0yb9ecKJwG155Xm92KMEZmHW1B0MzoXOKvFwdd0nPu5cpeVcvPHQ==
+
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.7.1.tgz#2a4df5317f6ccfd91f86d6fd25d8d8a103b88309"
@@ -4182,6 +4211,11 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jquery@1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.12.0.tgz#44653be4e3e4628b106bf2141dfd10fbca6021ef"
+  integrity sha1-RGU75OPkYosQa/IUHf0Q+8pgIe8=
+
 jquery@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
@@ -5174,6 +5208,11 @@ p-try@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
+
+page-flip@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/page-flip/-/page-flip-2.0.7.tgz#b6eaf9dac78fd1dceeb7cb4d0e2eeb203591ea1e"
+  integrity sha512-96lQFUUz7r/LZzEUZJ3yBIMEKU9+m8HMFDzTvTdD6P7Ag/wXINjp9n0W7b4wanwnDbQETo4uNUoL3zMqpFxwGA==
 
 pako@~1.0.5:
   version "1.0.11"
@@ -6980,6 +7019,14 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
+stimulus@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-2.0.0.tgz#713c8b91a72ef90914b90955f0e705f004403047"
+  integrity sha512-xipy7BS5TVpg4fX6S8LhrYZp7cmHGjmk09WSAiVx1gF5S5g43IWsuetfUhIk8HfHUG+4MQ9nY0FQz4dRFLs/8w==
+  dependencies:
+    "@stimulus/core" "^2.0.0"
+    "@stimulus/webpack-helpers" "^2.0.0"
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -7365,6 +7412,13 @@ turbolinks@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/turbolinks/-/turbolinks-5.2.0.tgz#e6877a55ea5c1cb3bb225f0a4ae303d6d32ff77c"
   integrity sha512-pMiez3tyBo6uRHFNNZoYMmrES/IaGgMhQQM+VFF36keryjb5ms0XkVpmKHkfW/4Vy96qiGW3K9bz0tF5sK9bBw==
+
+turn.js@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/turn.js/-/turn.js-1.0.5.tgz#47fa2245cac5fd44b0b64316a26aedef6ff221a4"
+  integrity sha1-R/oiRcrF/USwtkMWomrt72/yIaQ=
+  dependencies:
+    jquery "1.12.0"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

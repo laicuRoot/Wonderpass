@@ -1,17 +1,56 @@
 <div class="stamps-box">
-  <div class="stamps-header">
-    <h1 class="stampbook-name"><%=@stampbook.stampbook_name%></h1>
-    <h2>You collected <%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %>/<%= @stampbook.stamps.count %></h2>
+  <div class="stampbook-owner">
+    <%= cl_image_tag @stampbook.user.photo.key, height: 50, width: 50, crop: :fill, :class => "user-photo"  %>
+    <% if @stampbook.user == current_user %>
+      <h4 class="stampbook-owner-text">You are viewing <strong>your</strong> stampbook</h4>
+    <% else %>
+      <h4 class="stampbook-owner-text">You are viewing <br> <strong><%= @stampbook.user.first_name %></strong>'s stampbook</h4>
+    <% end %>
   </div>
 
-  <div class="stamps-collection">
-    <% @stampbook.stamps.each_with_index do |stamp, index| %>
-      <div class="stamp-background">
-        <h3><span class="hashtag-height">#</span> <%= index + 1 %></h3>
-        <h4><%= stamp.location.location_name %></h4>
-        <% if stamp.stamp_status %>
-          <%= render "collected_stamp_modal", stamp: stamp %>
+  <div class="stamps-header">
+    <h1 class="stampbook-name"><%=@stampbook.stampbook_name%></h1>
+    <% if @stampbook.user == current_user %>
+      <h2><span class="number-stamps-collected-sml">You collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size)%></span></h2>
+      <p><%= @stampbook.stampbook_description %></p>
+      <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
+    <% else %>
+      <h2><span class="number-stamps-collected-sml"><%= @stampbook.user.first_name %> collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size)%></span></h2>
+      <p><%= @stampbook.stampbook_description %></p>
+      <% if current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name) %>
+        <div class="grey-button"><i class='fas fa-copy'></i> Can't fork. You already have this stampbook</div>
+      <% else %>
+        <div class="collect-stamp-link"><%= link_to "<i class='fas fa-copy'></i> Fork the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="book">
+    <% (1..((@stampbook.stamps.count/6).ceil)+1).each do |index| %>
+      <div class="my-page">
+        <div class="stamps-collection">
+          <% @stampbook.stamps.order(:id).offset(@indexing).limit(@limit).each_with_index do |stamp, index| %>
+            <div class="stamp-background">
+              <% if stamp.stamp_status %>
+                <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 100, width: 200, crop: :fill  %>
+                <%= render "collected_stamp_modal", stamp: stamp %>
+              <% else %>
+                <h3>#<span class="stamp-number-height"><%= index + 1 + @indexing %></span></h3>
+                <h4><%= stamp.location.location_name %></h4>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <% if (@stampbook.stamps.count - @indexing) < 6 %>
+          <% @indexing += (@stampbook.stamps.count - @indexing) %>
+          <% @limit = (@stampbook.stamps.count - @indexing) %>
+        <% else %>
+          <% @indexing += 6 %>
+          <% @limit = 6 %>
         <% end %>
+        <div class="page-number">
+          <p>Page <strong> <%= index %> </strong> / <%= ((@stampbook.stamps.count/6.to_f).ceil) %></p>
+        </div>
       </div>
     <% end %>
   </div>
