@@ -1,2 +1,29 @@
-<h1>Stampbooks#index</h1>
-<p>Find me in app/views/stampbooks/index.html.erb</p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-12 text-center">
+      <h1 class='text-info bolder'> Your Stampbooks </h1>
+      <h2> You have <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
+      <div class='d-flex justify-content-center'>
+        <%= link_to("Create a stampbook", new_stampbook_path , class:'btn btn-info mr-1 rounded') %>
+        <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'btn btn-info ml-1') %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-12">
+      <% @user_stampbooks.each do |stampbook| %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= stampbook.stampbook_name %></h5>
+              <p class="card-text"><%= stampbook.stampbook_description %></p>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row text-center mt-5">
+    <div class="col-sm-12">
+      <%= link_to("Go back to your profile", user_path(current_user) , class:'btn btn-info') %>
+    </div>
+  </div>
+</div>
