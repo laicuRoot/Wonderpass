@@ -27,11 +27,14 @@ import "bootstrap";
 import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
+import { addSelectedClass } from '../plugins/add_selected';
+import 'controllers'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  addSelectedClass();
   initMapbox();
   toggleMenu();
   hideProfile();
