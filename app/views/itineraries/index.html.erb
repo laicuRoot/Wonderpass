@@ -1,9 +1,15 @@
 <div class="container">
   <div class="row">
-    <% @itineraries.each do |itinerary| %>
     <div class="col-sm-12 col-md-6">
-      <%= render 'itinerary_card', itinerary: itinerary %>
+      <% @itineraries.each do |itinerary| %>
+        <%= render 'itinerary_card', itinerary: itinerary %>
+      <% end %>
     </div>
-    <% end %>
+    <div class="col-sm-12 col-md-6">
+      <div id="itinerary-map"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
   </div>
 </div>
