@@ -26,7 +26,7 @@
   </div>
 
   <div id="book">
-    <% (1..((@stampbook.stamps.count/6).ceil)+1).each do |index| %>
+    <% (1..((@stampbook.stamps.count/6).ceil)+@ensure_even_pages).each do |index| %>
       <div class="my-page">
         <div class="stamps-collection">
           <% @stampbook.stamps.order(:id).offset(@indexing).limit(@limit).each_with_index do |stamp, index| %>
