@@ -13,8 +13,8 @@
     "mapbox-gl": "^2.3.0",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
-    "turn.js": "^1.0.5"
-    "stimulus": "^2.0.0",
+    "turn.js": "^1.0.5",
+    "stimulus": "^2.0.0"
   },
   "version": "0.1.0",
   "devDependencies": {

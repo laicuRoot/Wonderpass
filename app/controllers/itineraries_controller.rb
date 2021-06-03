@@ -5,7 +5,7 @@ class ItinerariesController < ApplicationController
     @itineraries = Itinerary.where(user: @user)
   end
 
-  def show 
+  def show
     @itinerary = Itinerary.find(params[:id])
   end
 
