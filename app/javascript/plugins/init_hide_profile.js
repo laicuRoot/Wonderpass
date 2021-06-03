@@ -1,7 +1,8 @@
 const hideProfile = () => {
    const button = document.getElementById("hide-profile");
    const profile = document.querySelector(".profile-box");
-   button.addEventListener("click", event =>{
+  if(button){
+    button.addEventListener("click", event =>{
      if (button.classList.contains("view-profile")){
        button.classList.remove("view-profile");
        button.innerHTML = '<i class="fas fa-arrow-right"></i>';
@@ -14,5 +15,6 @@ const hideProfile = () => {
        profile.classList.remove("hidden");
      }
    })
+  }
 }
 export { hideProfile };
