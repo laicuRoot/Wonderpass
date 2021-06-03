@@ -41,5 +41,3 @@ document.addEventListener('turbolinks:load', () => {
   toggleMenu();
   hideProfile();
 });
-
-import "controllers"

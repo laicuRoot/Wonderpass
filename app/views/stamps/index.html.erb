@@ -37,6 +37,7 @@
               <% else %>
                 <h3>#<span class="stamp-number-height"><%= index + 1 + @indexing %></span></h3>
                 <h4><%= stamp.location.location_name %></h4>
+                <%= render "uncollected_stamp_modal", stamp: stamp %>
               <% end %>
             </div>
           <% end %>
