@@ -15,7 +15,7 @@
     <div class="mb-6">
       <%= form.label :user_stamp_photo, class: "d-none" %>
       <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
-        <%= form.file_field :user_stamp_photo, direct_upload: true, data: { dropzone_target: 'input' }, class:'pic_target' %>
+        <%= form.file_field :user_stamp_photo, direct_upload: true, data: { dropzone_target: 'input' }, class:'pic_target', options: { image_metadata: true } %>
         <%= form.check_box :stamp_status, checked: true, class:'checkbox' %>
         <div class="dropzone-msg dz-message needsclick text-gray-600">
           <h3 class="dropzone-msg-title">Drop your picture here to get your stamp</h3>
