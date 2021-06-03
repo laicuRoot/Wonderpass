@@ -1,0 +1,3 @@
+<% @itineraries.each do |itinerary| %>
+  <%= link_to itinerary.itinerary_name, itinerary_path(itinerary) %>
+<% end %>

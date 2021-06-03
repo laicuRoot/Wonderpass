@@ -49,3 +49,16 @@
     color: $black;
   }
 }
+.no-button{
+  padding: 0;
+  margin: 0 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  
+  .col-sm{
+    padding:0;
+  }
+  .itinerary-item-body{
+    margin:0;
+  }
+}

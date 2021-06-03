@@ -43,7 +43,7 @@ gem 'faker'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-
+gem 'turbolinks_render'
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
