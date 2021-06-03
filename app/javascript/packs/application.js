@@ -39,11 +39,10 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // addSelectedClass();
   // initSelect2();
-  pageFlip();
   initMapbox();
   toggleMenu();
   hideProfile();
-  // initPageFlip();
+  initPageFlip();
 });
 
 import "controllers"
