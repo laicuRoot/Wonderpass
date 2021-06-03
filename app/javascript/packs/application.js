@@ -25,20 +25,21 @@ require("page-flip")
 
 // External imports
 import "bootstrap";
+
+import 'controllers'
+// Internal imports, e.g:
+// import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages'
 
-import 'controllers'
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
-
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // addSelectedClass();
   // initSelect2();
+  pageFlip();
   initMapbox();
   toggleMenu();
   hideProfile();
