@@ -85,3 +85,24 @@
     color: $black;
   }
 }
+.itinerary-item-body{
+  position:relative;
+  width: 200px;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+  justify-content:center;
+
+  .overlay-name{
+    position:absolute;
+    bottom: 0;
+    width: 80%;
+    word-wrap: break-word;
+    text-align:center;
+    color: $bright-yellow;
+    background-color:rgba($black, 0.3)
+  }
+}
+
+.selected{
+  box-shadow: 0 0 10px $red;
+}

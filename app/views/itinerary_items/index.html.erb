@@ -1,0 +1,26 @@
+<div class="container" data-itinerary-items-update-target = "itinerary" data-itinerary_items_update-id = "#{<%= @itinerary.id %>}">
+  <h2>Select your stamps</h2> 
+  <div class = "card-deck" data-controller = "itinerary-items-update">
+		<% @locations.each do |location| %>
+			<% if  @stamps.find_by(location: location.id) %>
+			  <% stamp = @stamps.find_by(location: location.id) %>
+        <div class="itinerary-button">
+				  <% if @itinerary.itinerary_items.find_by(stamp_id: stamp.id) %>
+						<%= link_to itinerary_item_path(@itinerary.itinerary_items.find_by(stamp_id: stamp.id)), method: :delete, remote: true do %>
+							<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
+    				<% end %>
+					<% else %>
+					  <%= simple_form_for([@itinerary, @itinerary_item], remote: true) do |f| %>
+							<%= f.hidden_field :stamp_id, value: stamp.id %>
+							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+							<%= button_tag(type: "submit", class: "no-button") do %>
+									<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
+							<% end %>
+						<% end %>
+					<% end %>
+        </div>
+			<% end %>  
+		<% end %>
+  </div>
+  <%= link_to "View your itinerary", itinerary_path(@itinerary), class: "yellow-button" %>
+</div>

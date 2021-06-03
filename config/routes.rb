@@ -5,13 +5,16 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :stamps, only: [:index]
     resources :stampbooks, only: [:index, :show]
+    resources :itineraries, only: [:new, :create, :index]
   end
 
   resources :stampbooks do
     resources :stamps, only: [:index, :show, :edit, :update]
   end
 
-  resources :itineraries do
-    resources :itinerary_items, only: [:new, :create, :destroy]
+  resources :itineraries, only: [:show] do
+    resources :itinerary_items, only: [:index, :new, :create]
   end
+
+  resources :itinerary_items, only: [:show, :destroy]
 end

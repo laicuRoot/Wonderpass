@@ -1,9 +1,17 @@
+
 class StampsController < ApplicationController
   before_action :find_stamp, only: [:show, :edit, :update]
   before_action :find_stampbook, only: [:edit, :update]
 
   def index
     @stampbook = Stampbook.find(params[:stampbook_id])
+    @indexing = 0
+    @limit = 6
+    if (@stampbook.stamps.count / 6).ceil.even?
+      @ensure_even_pages = 0
+    else
+      @ensure_even_pages = 1
+    end
   end
 
   def show; end
