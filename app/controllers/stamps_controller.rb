@@ -1,12 +1,12 @@
-class StampsController < ApplicationController
-  
+class StampsController < ApplicationController  
   before_action :find_stamp, only: [:show, :edit, :update]
   before_action :find_stampbook, only: [:edit, :update]
   
   def index
     @stampbook = Stampbook.find(params[:stampbook_id])
+    @indexing = 0
+    @limit = 6
   end
-  
 
   def show
   end
