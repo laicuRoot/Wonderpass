@@ -11,16 +11,17 @@
   <div class="stamps-header">
     <h1 class="stampbook-name"><%=@stampbook.stampbook_name%></h1>
     <% if @stampbook.user == current_user %>
-      <h2><span class="number-stamps-collected-sml">You collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size)%></span></h2>
+      <h2><span class="number-stamps-collected-sml">You collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status }.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size)%></span></h2>
       <p><%= @stampbook.stampbook_description %></p>
       <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
     <% else %>
-      <h2><span class="number-stamps-collected-sml"><%= @stampbook.user.first_name %> collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size)%></span></h2>
+      <h2><span class="number-stamps-collected-sml"><%= @stampbook.user.first_name %> collected </span><span class="number-stamps-collected-big"><%= @stampbook.stamps.select { |stamp| stamp.stamp_status==true}.size %></span><span class="number-stamps-collected-sml">/<%= @stampbook.stamps.count%> <%="stamp".pluralize(@stampbook.stamps.select { |stamp| stamp.stamp_status}.size)%></span></h2>
+      <div id="container"></div>
       <p><%= @stampbook.stampbook_description %></p>
       <% if current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name) %>
-        <div class="grey-button"><i class='fas fa-copy'></i> Can't fork. You already have this stampbook</div>
+        <div class="grey-button"><i class='fas fa-copy'></i> Can't clone. You already have this stampbook</div>
       <% else %>
-        <div class="collect-stamp-link"><%= link_to "<i class='fas fa-copy'></i> Fork the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
+        <div class="collect-stamp-link"><%= link_to "<i class='fas fa-copy'></i> Clone the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
       <% end %>
     <% end %>
   </div>

@@ -33,15 +33,15 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
-import { initPageFlip } from '../plugins/init_turning-pages'
+import { initPageFlip } from '../plugins/init_turning-pages';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // addSelectedClass();
   // initSelect2();
-  if(document.querySelectorAll('.my-page')){
-    flipPages();
-  };
+  // if(document.querySelectorAll('.my-page')){
+  //   initPageFlip();
+  // };
   initMapbox();
   toggleMenu();
   hideProfile();

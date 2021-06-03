@@ -2,38 +2,49 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: absolute;
+  left: 20px;
+  top: 20px;
 }
 
 .user-photo {
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
 }
 
 .stampbook-owner-text {
   margin-left: 10px;
   margin-bottom: 0px;
-  font-size: 15px;
+  font-size:18px;
   color: rgba(0,0,0, 0.5);
 }
 
 .stamps-box {
   display: flex;
+  height: 100vh;
+  padding: 10px;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  // background-image:url('stampbook_background.png');
+  background-size: cover;
+  position: relative;
 }
 
 .stamps-header {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 30px;
+  margin-bottom: 10px;
   p {
-    margin: 20px;
+    margin: 8px;
   }
 }
 
 .stampbook-name {
-  color: #FFDE55;
+  color: $bright-yellow;
+  text-shadow:0 0 6px rgba(0,0,0,0.4);
+  font-weight: bold;
 }
 
 .number-stamps-collected-sml {
@@ -52,6 +63,7 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  padding: 30px;
 }
 
 .stamp-number-height {
@@ -91,7 +103,7 @@
   border-color: #CBCBCB;
   margin: 10px;
   padding: 10px;
-  height: 100px;
+  height: 150px;
   width:200px;
   display: flex;
   align-items: center;
@@ -102,6 +114,7 @@
   }
   h3 {
     font-size: 20px;
+    white-space: nowrap;
   }
 }
 
@@ -110,7 +123,9 @@
 }
 
 .my-page {
-  background-color: rgb(203,203,203);
+  background-color: $white;
+  border: solid 1px #c5b298;
+  box-shadow: inset -7px 0 30px -7px rgba(0,0,0,0.4);
 }
 
 .page-number {
