@@ -34,8 +34,11 @@ import 'controllers'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  addSelectedClass();
+  // addSelectedClass();
+  // initSelect2();
   initMapbox();
   toggleMenu();
   hideProfile();
 });
+
+import "controllers"

@@ -30,6 +30,9 @@ gem 'geocoder'
 # dotenv
 gem 'dotenv-rails', groups: [:development, :test]
 
+# dropzone-rails
+gem 'dropzonejs-rails', '~> 0.8.5'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
