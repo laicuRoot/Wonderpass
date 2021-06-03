@@ -7,6 +7,7 @@ class StampsController < ApplicationController
     @indexing = 0
     @collected = @stampbook.stamps.select(&:stamp_status).size
     @total = @stampbook.stamps.size
+    @percent = @collected.fdiv(@total)*100
     @limit = 6
     if (@stampbook.stamps.count / 6).ceil.even?
       @ensure_even_pages = 0
