@@ -15,6 +15,7 @@ class ItinerariesController < ApplicationController
 
   def create
     @itinerary = Itinerary.new(itinerary_params)
+    @itinerary.rating = 0
     @itinerary.user = @user
     if @itinerary.save
       redirect_to itinerary_itinerary_items_path(@itinerary)
@@ -30,6 +31,6 @@ class ItinerariesController < ApplicationController
   end
 
   def itinerary_params
-    params.require(:itinerary).permit(:itinerary_name, :destination, :public_status, rating: 3)
+    params.require(:itinerary).permit(:itinerary_name, :destination, :public_status)
   end
 end
