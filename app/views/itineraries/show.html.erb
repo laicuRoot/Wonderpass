@@ -1,0 +1,10 @@
+<h1><%=@itinerary.itinerary_name%></h1>
+<h2>You have collected <%= @itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count %> / <%= @itinerary.itinerary_items.count %> <%="stamp".pluralize(@itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count)%> in this itineary</h2>
+<!-- <div class="progress_bar"></div>
+ -->
+
+<div id="user-map"
+    class = "map"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>

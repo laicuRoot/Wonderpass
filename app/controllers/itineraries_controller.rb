@@ -5,8 +5,16 @@ class ItinerariesController < ApplicationController
     @itineraries = Itinerary.where(user: @user)
   end
 
-  def show 
+  def show
     @itinerary = Itinerary.find(params[:id])
+    @itinerary.itinerary_items.create(id: 1, itinerary_id: 1, stamp_id: 1)
+    @itinerary.itinerary_items.create(id: 2, itinerary_id: 1, stamp_id: 2)
+    @markers = Location.all.geocoded.map do |stamp|
+      {
+        lat: stamp.latitude,
+        lng: stamp.longitude
+      }
+    end
   end
 
   def new
