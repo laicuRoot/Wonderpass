@@ -33,7 +33,10 @@ import { hideProfile } from '../plugins/init_hide_profile';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  // initSelect2();
   initMapbox();
   toggleMenu();
   hideProfile();
 });
+
+import "controllers"
