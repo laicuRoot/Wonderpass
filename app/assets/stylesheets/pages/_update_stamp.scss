@@ -12,12 +12,22 @@
 
 .title {
   color: #FFDE55;
-  line-height: 72px;
-  font-size: 64px;
+  font-size: 2rem;
   text-align: center;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   font-weight: bold;
   letter-spacing: 0.2;
 }
 
+.checkbox {
+  visibility: hidden;
+}
+
+.custom_card {
+  border: none;
+}
+
+.location-pic {
+  border-radius: 8px;
+}
 
