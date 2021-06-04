@@ -2,7 +2,25 @@ class ItinerariesController < ApplicationController
   before_action :find_user, except: [:show]
 
   def index
+    # @locations = Location.all.each do |location|
+    #   @stamps = Stamp.find_by(location: location.id)
+
+    # end
+
     @itineraries = Itinerary.where(user: @user)
+    @itinerary_items = ItineraryItem.where(itinerary_id: @itineraries.ids)
+    @stamps = Stamp.all
+    @locations = Location.where(id: @itinerary_items.find_by(id: @stamps.ids))
+
+    @itinerary_markers = @locations.geocoded.map do |location|
+      {
+        lat: location.latitude,
+        lng: location.longitude
+        # stamp_window: render_to_string(partial: "stamp_window", locals: { stamp: @stamps.find_by(location: location) }),
+        # image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key)
+      }
+    end
+
   end
 
   def show
