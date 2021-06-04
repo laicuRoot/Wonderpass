@@ -21,35 +21,38 @@
     <% end %>
   </div>
 
-  <div id="book">
-    <% (1..((@stampbook.stamps.count/6).ceil)+@ensure_even_pages).each do |index| %>
-      <div class="my-page">
-        <div class="stamps-collection">
-          <% @stampbook.stamps.order(:id).offset(@indexing).limit(@limit).each_with_index do |stamp, index| %>
-            <div class="stamp-background">
-              <% if stamp.stamp_status %>
-                <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 100, width: 200, crop: :fill  %>
-                <%= render "collected_stamp_modal", stamp: stamp %>
-              <% else %>
-                <h3>#<span class="stamp-number-height"><%= index + 1 + @indexing %></span></h3>
-                <h4><%= stamp.location.location_name %></h4>
-                <%= render "uncollected_stamp_modal", stamp: stamp %>
-              <% end %>
-            </div>
-          <% end %>
+    <div id="book">
+      <% @stamps.each_slice(6) do |stamps| %>
+        <% @page_number += 1 %> 
+        <div class="my-page">
+          <div class="stamps-collection">
+            <% stamps.each do |stamp| %>
+              <div class="stamp-background">
+                <% if stamp.stamp_status %>
+                  <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 100, width: 200, crop: :fill  %>
+                  <%= render "collected_stamp_modal", stamp: stamp %>
+                <% else %>
+                  <h3>#<span class="stamp-number-height"><%= @index %></span></h3>
+                  <h4><%= stamp.location.location_name %></h4>
+                  <%= render "uncollected_stamp_modal", stamp: stamp %>
+                <% end %>
+                <% @index += 1 %>
+              </div>
+            <% end %>
         </div>
-        <% if (@stampbook.stamps.count - @indexing) < 6 %>
-          <% @indexing += (@stampbook.stamps.count - @indexing) %>
-          <% @limit = (@stampbook.stamps.count - @indexing) %>
-        <% else %>
-          <% @indexing += 6 %>
-          <% @limit = 6 %>
-        <% end %>
         <div class="page-number">
-          <p>Page <strong> <%= index %> </strong> / <%= ((@stampbook.stamps.count/6.to_f).ceil) %></p>
+          <p>Page <strong> <%= @page_number %> </strong> / <%= @count %></p>
         </div>
       </div>
-    <% end %>
+      <% end %>
+      <% if @page_number.odd? %>
+        <div class ="my-page">
+          <p class = "final-page">You’ve reached the end of the stampbook.</p>
+          <div class="page-number">
+            <p>Page <strong> <%= @page_number + 1 %> </strong> / <%= @count %></p>
+          </div>
+        </div>
+      <% end %>
   </div>
   <% if current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name)%>
     <div class="grey-button mt-3"><i class='fas fa-copy'></i> Can't clone. You already have this stampbook</div>
