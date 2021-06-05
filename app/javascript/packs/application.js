@@ -37,12 +37,10 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
-<<<<<<< HEAD
 import { init_slick } from '../plugins/slick_carousel';
-=======
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary'
->>>>>>> 6832ef5202ffb286fdd071e84acc445c79a4ef21
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -51,14 +49,13 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleMenu();
   hideProfile();
-<<<<<<< HEAD
-  // initPageFlip();
-  init_slick();
-=======
   if (document.getElementById("book")){
     initPageFlip();
   }
   initAutocomplete();
   addActiveItinerary();
->>>>>>> 6832ef5202ffb286fdd071e84acc445c79a4ef21
+  $('.scroller').slick({
+    slidesToShow: 2,
+    infinite: true
+  })
 });
