@@ -2,49 +2,79 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: absolute;
+  left: 50px;
+  top: 40px;
 }
 
 .user-photo {
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
+  z-index: 1;
+  border: 1px solid $bright-yellow;
 }
 
 .stampbook-owner-text {
-  margin-left: 10px;
   margin-bottom: 0px;
-  font-size: 15px;
-  color: rgba(0,0,0, 0.5);
+  position: relative;
+  left: -10px;
+  font-size:18px;
+  color: $black;
+  background-color: $bright-yellow;
+  padding: 4px 35px 4px 30px;
+  border-radius: 0 20px 20px 0;
 }
 
 .stamps-box {
   display: flex;
+  height: 100vh;
+  padding: 10px;
+  color: $white;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('stampbook_background.png');
+  background-size: cover;
+  position: relative;
 }
 
 .stamps-header {
   display: flex;
+  position: relative;
   align-items: center;
   flex-direction: column;
-  margin: 30px;
+  margin-bottom: 10px;
+  color: $white;
   p {
-    margin: 20px;
+    margin: 0px;
+  }
+  .number-stamps-collected-sml {
+    font-size: 25px;
+  }
+  .number-stamps-collected-big {
+    font-size: 40px;
   }
 }
 
-.stampbook-name {
-  color: #FFDE55;
+.stamps-title{
+  padding: 5px 30px;
+  position:relative; 
+  right:-650px; 
+  top:30px; 
+  text-align:right;
+  .stampbook-name {
+    color: $bright-yellow;
+    text-shadow:0 0 4px rgba(0,0,0,0.3);
+    font-weight: bold;
+    font-family: $headers-font;
+  }
+  p{
+    color: $white;
+  }
 }
 
-.number-stamps-collected-sml {
-  font-size: 25px;
-  color: rgba(0,0,0, 0.5);
-}
 
-.number-stamps-collected-big {
-  font-size: 40px;
-  color: rgba(0,0,0, 0.5);;
-}
+
 
 .stamps-collection {
   display: flex;
@@ -52,6 +82,7 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  padding: 30px;
 }
 
 .stamp-number-height {
@@ -84,14 +115,14 @@
 
 
 .stamp-background {
-  color: #CBCBCB;
+  color: #bebebe;
   background-color: rgba(203,203,203, 0.1);
   border: 3px solid;
   border-radius: 12px;
   border-color: #CBCBCB;
   margin: 10px;
   padding: 10px;
-  height: 100px;
+  height: 150px;
   width:200px;
   display: flex;
   align-items: center;
@@ -102,6 +133,7 @@
   }
   h3 {
     font-size: 20px;
+    white-space: nowrap;
   }
 }
 
@@ -110,17 +142,27 @@
 }
 
 .my-page {
-  background-color: rgba(203,203,203, 0.1);
+  background-color: $white;
+  border: solid 1px #c5b298;
+  box-shadow: inset -7px 0 30px -7px rgba(0,0,0,0.4);
 }
 
 .page-number {
+  position:absolute; 
+  bottom: 0; 
+  right: 45%;
   display: flex;
   justify-content: center;
   font-size: 13px;
-  color: #CBCBCB;
+  color: #aca9a9;
 }
 
-
+.final-page{
+  color: rgba(0,0,0, 0.4); 
+  position: absolute; 
+  top:45%;
+  right: 20%;
+}
 
 
 
