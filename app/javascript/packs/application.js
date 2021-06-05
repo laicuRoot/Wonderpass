@@ -34,16 +34,15 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
+import { addActiveItinerary } from '../plugins/add_active_itinerary'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // addSelectedClass();
   // initSelect2();
-  // if(document.querySelectorAll('.my-page')){
-  //   initPageFlip();
-  // };
   initMapbox();
   toggleMenu();
   hideProfile();
   initPageFlip();
+  addActiveItinerary();
 });
