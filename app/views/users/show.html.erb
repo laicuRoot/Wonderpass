@@ -29,10 +29,10 @@
        <div id = "user-menu-exit" class ="menu-button">X</i></div>
        <h2>Actions</h2>
        <ul>
-         <li>Collect your stamps</li>
-         <li>Create itinerary</li>
-         <li>See saved itineraries</li>
-         <li><%= link_to "Edit Profile", edit_user_path(@user)  %></li>
+         <li><%= link_to "Collect Your Stamps", "#" %></li>
+         <li><%= link_to "Create Itinerary", new_user_itinerary_path(@user) %></li>
+         <li><%= link_to "See Saved Itineraries", user_itineraries_path(@user) %></li>
+         <li><%= link_to "Edit Profile", edit_user_path(@user)%></li>
          <li><%= link_to "Sign-out", destroy_user_session_path, method: :delete %></li>
        </ul>
     </div>
