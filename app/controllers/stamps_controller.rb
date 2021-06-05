@@ -20,6 +20,7 @@ class StampsController < ApplicationController
 
   def update
     respond_to do |format|
+      # raise
       if @stamp.update(stamp_params)
         @stamp.stamp_status = true
         format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Stamp was successfully collected!' }
