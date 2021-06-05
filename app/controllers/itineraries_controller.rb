@@ -2,19 +2,19 @@ class ItinerariesController < ApplicationController
   before_action :find_user, except: [:show]
 
   def index
-    @stamps = Stamp.all
+    @stamps_all = Stamp.all
     @locations = Location.all
     @itineraries = Itinerary.where(user: @user)
-    @itinerary_items = ItineraryItem.where(itinerary_id: @itineraries.ids)
-    @itinerary_items_stamps = Stamp.where(id: @itinerary_items)
-    @get_location = Location.where(id: @itinerary_items_stamps)
-    # @itinerary_locations = Location.where(id: @itinerary_items_stamps.where(location_id: @locations.ids))
-    @itinerary_markers = @get_location.geocoded.map do |location|
+    @stamps = @itineraries.map(&:stamps).flatten
+    # @stamps = @itineraries.map(&:stamps).flatten
+    # @stamps = @itineraries.map{ |itinerary| itinerary.stamps }.flatten
+    @locations = Location.where(id: @stamps.map(&:location_id))
+    @itinerary_markers = @locations.geocoded.map do |location|
       {
         lat: location.latitude,
-        lng: location.longitude
-        # stamp_window: render_to_string(partial: "stamp_window", locals: { stamp: @stamps.find_by(location: location) })
-        # image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key)
+        lng: location.longitude,
+        stamp_itinerary_window: render_to_string(partial: "stamp_itinerary_window", locals: { stamp: @stamps_all.find_by(location: location) }),
+        image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key)
       }
     end
   end
