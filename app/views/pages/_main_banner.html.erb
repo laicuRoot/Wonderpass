@@ -1,0 +1,37 @@
+<div class="main-banner">
+  <h1 class="main-title"><strong>WonderPass</strong></h1>
+
+  <div class="session-buttons">
+    <% if user_signed_in? %>
+      <button class="yellow-button sign-out"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></button>
+    <% else %>
+      <a href="<%= new_user_registration_path %>">Create Account</a>
+
+      <form action="<%= new_user_session_path %>" style="display: inline;">
+        <input type="submit" value= "Log In" class="yellow-button">
+      </form>
+    <% end %>
+  </div>
+
+  <div class="value-prop">
+    <h2><strong>Discover the UK and collect memories</strong></h2>
+    <p>Plan, discover and collect stamps of your favorite places in the UK</p>
+
+    <% if user_signed_in? %>
+      <form action="<%= user_path(current_user) %>">
+        <input type="submit" value="→ START YOUR ADVENTURE NOW" class="yellow-button">
+      </form>
+    <% else %>
+      <form action="<%= new_user_registration_path %>">
+        <input type="submit" value="→ START YOUR ADVENTURE NOW" class="yellow-button">
+      </form>
+    <% end %>
+
+  </div>
+
+  <div class="stamp-and-path">
+    <img src="<%= asset_path('yellow-landing-path.png')%>" alt="" class="path-vector">
+    <img src="<%= asset_path('british-flag-bg.png')%>" alt="" class="british-stamp">
+    <img src="<%= asset_path('british-flag-stamp.png')%>" alt="" class="british-stamp">
+  </div>
+</div>
