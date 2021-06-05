@@ -1,9 +1,11 @@
-<div class="container">
-  <h2>Create your itinerary</h2>
-  <%= simple_form_for([@user, @itinerary]) do |f| %>
-    <%= f.input :itinerary_name %>
-    <%= f.input :destination, id: "destination-input" %>
-    <%= f.input :public_status, collection: [true, false]  %>
-    <%= f.submit %>
-  <% end %>
+<div class="background-box">
+  <div class="form-container">
+    <h2>Create your itinerary</h2>
+    <%= simple_form_for([@user, @itinerary]) do |f| %>
+      <%= f.input :itinerary_name %>
+      <%= f.input :destination, id: "destination-input" %>
+      <%= f.input :public_status, collection: [true, false]  %>
+      <%= f.submit 'next', class: "small-yellow-button" %>
+    <% end %>
+  </div>
 </div>
