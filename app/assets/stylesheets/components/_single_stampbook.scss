@@ -35,6 +35,7 @@
   background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('stampbook_background.png');
   background-size: cover;
   position: relative;
+  background-attachment: fixed;
 }
 
 .stamps-header {
@@ -71,9 +72,6 @@
     color: $white;
   }
 }
-
-
-
 
 .stamps-collection {
   display: flex;

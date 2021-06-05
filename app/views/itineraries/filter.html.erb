@@ -1,11 +1,13 @@
 <%= form_tag itinerary_itinerary_items_path(@itinerary), method: :get do %>
-  <div class="form-box">
+  <div class="form-box tag-item">
+    <h2>Choose from categories</h2>
     <% @categories.each do |category| %>
+      <%= check_box_tag("categories[]", category , false, class: "tag-selector") %>
       <%= label_tag(category) %>
-      <%= check_box_tag("categories[]",category) %>
     <% end %>
   </div>
   <div class="form-box">
+    <h2>Choose your distance</h2>
     <%= select_tag(:distance, options_for_select(@distances)) %>
   </div>
   <div class="form-box">
@@ -13,5 +15,5 @@
     <%= label_tag(:add_completed, "Include completed stamps?") %>
     <%= check_box_tag(:add_completed) %>
   </div>
-  <%= submit_tag "filter", class: "btn small-yellow-button" %>
+  <%= submit_tag "next", class: "btn small-yellow-button" %>
 <% end %>
