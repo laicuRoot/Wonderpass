@@ -37,7 +37,6 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
-import { init_slick } from '../plugins/slick_carousel';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary'
 
@@ -53,9 +52,11 @@ document.addEventListener('turbolinks:load', () => {
     initPageFlip();
   }
   initAutocomplete();
+  if (document.querySelector(".scroller")){
+    $('.scroller').slick({
+      slidesToShow: 2,
+      infinite: true
+    })
+  }
   addActiveItinerary();
-  $('.scroller').slick({
-    slidesToShow: 2,
-    infinite: true
-  })
 });
