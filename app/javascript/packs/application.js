@@ -43,8 +43,6 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleMenu();
   hideProfile();
-  // initPageFlip();
+  initPageFlip();
   addActiveItinerary();
 });
-
-import "controllers"

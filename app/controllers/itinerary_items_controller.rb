@@ -17,7 +17,7 @@ class ItineraryItemsController < ApplicationController
     if @itinerary_item.save
       redirect_to itinerary_itinerary_items_path(@itinerary)
     else
-      flash.alert = "The itinerary item was not created, please contact admin"
+      flash[:alert] = "The itinerary item was not created"
     end
   end
 
@@ -26,6 +26,8 @@ class ItineraryItemsController < ApplicationController
     @itinerary = @itinerary_item.itinerary
     if @itinerary_item.destroy
       redirect_to itinerary_itinerary_items_path(@itinerary)
+    else
+      flash[:alert] = "The itinerary item was not destroyed"
     end
   end
 

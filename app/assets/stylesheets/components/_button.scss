@@ -10,6 +10,16 @@
   }
 }
 
+.small-yellow-button{
+  padding: 8px 16px;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 10px;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba($black, 0.3);
+  box-shadow: 0 0 4px rgba($black, 0.2);
+}
+
 .log-out{
   position:absolute;
   top: -15px;
