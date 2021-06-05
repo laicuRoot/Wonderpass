@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="form-inputs">
+    <%= simple_form_for @user do |f| %>
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }%>
+
+      <%= f.input :first_name,
+                  required: true %>
+
+      <%= f.input :last_name,
+                  required: true %>
+
+      <%= f.input :username,
+                  required: true %>
+
+      <%= f.input :photo,
+                  input_html: { class: 'd-none' },
+                  label_html: { class: 'upload-btn' },
+                  label: '📷 Upload a photo' %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
