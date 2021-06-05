@@ -41,5 +41,4 @@ class StampsController < ApplicationController
   def find_stampbook
     @stampbook = Stampbook.find(params[:stampbook_id])
   end
-
 end
