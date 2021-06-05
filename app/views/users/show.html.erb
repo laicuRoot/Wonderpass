@@ -32,6 +32,7 @@
          <li>Collect your stamps</li>
          <li><%= link_to 'Create an itinerary', new_user_itinerary_path(@user) %></li>
          <li>See saved itineraries</li>
+         <li><%= link_to "Edit Profile", edit_user_path(@user)  %></li>
          <li><%= link_to "Sign-out", destroy_user_session_path, method: :delete %></li>
        </ul>
     </div>
