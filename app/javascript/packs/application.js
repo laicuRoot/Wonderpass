@@ -8,6 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("page-flip")
+var $ = require( "jquery" )
+require("slick-carousel")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -24,6 +26,8 @@ require("page-flip")
 
 // External imports
 import "bootstrap";
+import "slick-carousel/slick/slick.scss"
+import "slick-carousel/slick/slick-theme.scss"
 
 import 'controllers'
 // Internal imports, e.g:
@@ -33,8 +37,10 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
+import { init_slick } from '../plugins/slick_carousel';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary'
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -48,4 +54,8 @@ document.addEventListener('turbolinks:load', () => {
   }
   initAutocomplete();
   addActiveItinerary();
+  $('.scroller').slick({
+    slidesToShow: 2,
+    infinite: true
+  })
 });
