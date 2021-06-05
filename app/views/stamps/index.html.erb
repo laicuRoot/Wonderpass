@@ -36,6 +36,7 @@
     <% end %>
   </div>
 
+
     <div id="book">
       <% @stamps.each_slice(6) do |stamps| %>
         <% @page_number += 1 %> 
@@ -45,11 +46,11 @@
               <div class="stamp-background">
                 <% if stamp.stamp_status %>
                   <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 100, width: 200, crop: :fill  %>
-                  <%= render "collected_stamp_modal", stamp: stamp %>
+                  <button type="button" class="btn small-yellow-button" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">Show stamp</button>
                 <% else %>
                   <h3>#<span class="stamp-number-height"><%= @index %></span></h3>
                   <h4><%= stamp.location.location_name %></h4>
-                  <%= render "uncollected_stamp_modal", stamp: stamp %>
+                  <button type="button" class="btn small-yellow-button" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">View details</button>
                 <% end %>
                 <% @index += 1 %>
               </div>
@@ -78,3 +79,13 @@
   <% end %>
    <%= link_to("Go back to #{@stampbook.user.first_name}'s' profile", user_path(@stampbook.user) , class:'btn btn-info') %>
 </div>
+
+
+  <% @stamps.each do |stamp| %>
+    <% if stamp.stamp_status %>
+      <%= render 'collected_stamp_modal', stamp: stamp %>
+    <% else %>
+      <%= render "uncollected_stamp_modal", stamp: stamp %>
+    <% end %>
+  <% end %>
+
