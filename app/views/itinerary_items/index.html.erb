@@ -12,7 +12,6 @@
 					<% else %>
 					  <%= simple_form_for([@itinerary, @itinerary_item], remote: true) do |f| %>
 							<%= f.hidden_field :stamp_id, value: stamp.id %>
-							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 							<%= button_tag(type: "submit", class: "no-button") do %>
 									<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
 							<% end %>

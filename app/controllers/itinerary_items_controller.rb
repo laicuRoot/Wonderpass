@@ -1,10 +1,12 @@
 class ItineraryItemsController < ApplicationController
   before_action :find_itinerary, except: :destroy
-  
+  before_action :get_filter, only: :index
+
   def index
     @itinerary_item = ItineraryItem.new
-    @locations = Location.near(@itinerary.destination, 20)
-    @stamps = @itinerary.user.stamps
+    @locations = Location.near(@itinerary.destination, @distance).where(category: @categories)
+    @stamps = @completed? @itinerary.user.stamps : @itinerary.user.stamps.where(stamp_status: false) 
+    @locations.where(stamps: @stamps)
   end
 
   def new
@@ -39,5 +41,13 @@ class ItineraryItemsController < ApplicationController
 
   def itinerary_item_params
     params.require(:itinerary_item).permit(:stamp_id)
+  end
+
+  def get_filter
+    @distance = params[:distance]
+    @categories =params[:categories]
+    if params[:add_completed].present?
+      @completed = params[:add_completed]
+    end
   end
 end
