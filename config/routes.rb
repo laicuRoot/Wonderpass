@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :itineraries, only: [:show] do
     resources :itinerary_items, only: [:index, :new, :create]
+    member do
+      get :filter
+    end
   end
 
   resources :itinerary_items, only: [:show, :destroy]

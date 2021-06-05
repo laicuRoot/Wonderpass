@@ -9,7 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("page-flip")
 
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -34,6 +33,7 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
+import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary'
 
 document.addEventListener('turbolinks:load', () => {
@@ -43,6 +43,9 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleMenu();
   hideProfile();
-  initPageFlip();
+  if (document.getElementById("book")){
+    initPageFlip();
+  }
+  initAutocomplete();
   addActiveItinerary();
 });
