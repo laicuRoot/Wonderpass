@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :find_user, except: [:show, :filter]
+  before_action :find_user, except: [:show, :filter, :destroy]
 
 def index
   # @stamps_all = Stamp.all.where(user: @stampbooks..user)
@@ -27,7 +27,7 @@ end
   def filter
     @itinerary = Itinerary.find(params[:id])
     @categories = Location.all.map{|location| location.category}.uniq
-    @distances = [0, 5, 10, 20, 50]
+    @distances = [0, 5, 10, 20, 50, "Other"]
   end
 
   def new
@@ -42,6 +42,14 @@ end
       redirect_to filter_itinerary_path(@itinerary)
     else
       render :new
+    end
+  end
+
+  def destroy
+    @itinerary = Itinerary.find(params[:id])
+    @user = @itinerary.user
+    if @itinerary.destroy
+      redirect_to new_user_itinerary_path(@user)
     end
   end
 

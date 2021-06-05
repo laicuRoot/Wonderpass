@@ -1,19 +1,29 @@
-<%= form_tag itinerary_itinerary_items_path(@itinerary), method: :get do %>
-  <div class="form-box tag-item">
-    <h2>Choose from categories</h2>
-    <% @categories.each do |category| %>
-      <%= check_box_tag("categories[]", category , false, class: "tag-selector") %>
-      <%= label_tag(category) %>
+<div class="background-box">
+  <div class="form-container">
+    <%= form_tag itinerary_itinerary_items_path(@itinerary), method: :get do %>
+      <div class="form-box tag-item">
+        <h4>Choose your categories</h4>
+        <div class="form-categories">
+          <% @categories.each do |category| %>
+            <div class ="filter-category-width" style ="width:60px;">
+              <%= check_box_tag("categories[#{category}]", category , false, class: "tag-selector") %>
+              <%= label_tag("categories[#{category}]", category) %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-box" style = "display:block;">
+        <h4>Choose your distance (miles)</h4>
+        <%= select_tag(:distance, options_for_select(@distances), id: "select-distance", class:"form-control") %>
+      </div>
+      <div class="form-box">
+        <h4>Include completed stamps?</h4>
+        <input name="add_completed" type="hidden" value="0">
+        <input class="toggle" type="checkbox" value="1" name="add_completed" id="add_completed">
+        <label for="add_completed"></label>
+      </div>
+      <%= link_to 'back', itinerary_path(@itinerary), method: :delete, class: "btn small-yellow-button left" %>
+      <%= submit_tag "next", class: "btn small-yellow-button" %>
     <% end %>
   </div>
-  <div class="form-box">
-    <h2>Choose your distance</h2>
-    <%= select_tag(:distance, options_for_select(@distances)) %>
-  </div>
-  <div class="form-box">
-    <%= hidden_field_tag(:add_completed) %>
-    <%= label_tag(:add_completed, "Include completed stamps?") %>
-    <%= check_box_tag(:add_completed) %>
-  </div>
-  <%= submit_tag "next", class: "btn small-yellow-button" %>
-<% end %>
+</div>

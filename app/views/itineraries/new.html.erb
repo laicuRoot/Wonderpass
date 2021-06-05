@@ -4,7 +4,7 @@
     <%= simple_form_for([@user, @itinerary]) do |f| %>
       <%= f.input :itinerary_name %>
       <%= f.input :destination, id: "destination-input" %>
-      <%= f.input :public_status, collection: [true, false]  %>
+      <%= f.input :public_status, collection: [['Yes', true], ['No', false]]  %>
       <%= f.submit 'next', class: "small-yellow-button" %>
     <% end %>
   </div>
