@@ -9,7 +9,8 @@
   color: white;
 
   background-image: url(asset_path('trafalgar.png'));
-  background-size: contain;
+  background-repeat: no-repeat, repeat;
+  background-size: cover;
 
   .main-title {
     position: absolute;
