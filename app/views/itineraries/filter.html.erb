@@ -1,0 +1,17 @@
+<%= form_tag itinerary_itinerary_items_path(@itinerary), method: :get do %>
+  <div class="form-box">
+    <% @categories.each do |category| %>
+      <%= label_tag(category) %>
+      <%= check_box_tag("categories[]",category) %>
+    <% end %>
+  </div>
+  <div class="form-box">
+    <%= select_tag(:distance, options_for_select(@distances)) %>
+  </div>
+  <div class="form-box">
+    <%= hidden_field_tag(:add_completed) %>
+    <%= label_tag(:add_completed, "Include completed stamps?") %>
+    <%= check_box_tag(:add_completed) %>
+  </div>
+  <%= submit_tag "filter", class: "btn small-yellow-button" %>
+<% end %>

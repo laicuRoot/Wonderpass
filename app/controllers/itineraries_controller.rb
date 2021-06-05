@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :find_user, except: [:show]
+  before_action :find_user, except: [:show, :filter]
 
   def index
     @itineraries = Itinerary.where(user: @user)
@@ -7,6 +7,12 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+  end
+
+  def filter
+    @itinerary = Itinerary.find(params[:id])
+    @categories = Location.all.map{|location| location.category}.uniq
+    @distances = [0, 5, 10, 20, 50]
   end
 
   def new
@@ -18,7 +24,7 @@ class ItinerariesController < ApplicationController
     @itinerary.rating = 0
     @itinerary.user = @user
     if @itinerary.save
-      redirect_to itinerary_itinerary_items_path(@itinerary)
+      redirect_to filter_itinerary_path(@itinerary)
     else
       render :new
     end

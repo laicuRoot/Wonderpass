@@ -33,12 +33,6 @@
           <div class="progress-bar" role="progressbar" style="width: #{<%= @percent %>}%;" aria-valuenow= "#{<%= @percent %>}" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
         <% end %>
       </div>
-      <p><%= @stampbook.stampbook_description %></p>
-      <% if current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name) %>
-        <div class="grey-button"><i class='fas fa-copy'></i> Can't fork. You already have this stampbook</div>
-      <% else %>
-        <div class="collect-stamp-link"><%= link_to "<i class='fas fa-copy'></i> Fork the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
-      <% end %>
     <% end %>
   </div>
 

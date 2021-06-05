@@ -20,7 +20,7 @@
 //         fetch(`/itinerary/${itinId}/itinerary_item/${}`, {
 //             method: 'DELETE',
 //             })
-//             .then(response => response.json()) // or res.json()
+//             .then(response => response.json())
 //             .then((data) => {
               
 //             });
@@ -40,7 +40,7 @@
 //             body: JSON.stringify({ itinerary_item: { stamp_id: stampId, itinerary_id: itinId }})
 //           })
 //             .then(response => response.json())
-//             .then((data) => {
+//             .then((adat) => {
               
 //             });
 //     }  
