@@ -1,9 +1,9 @@
-#user-map{
+#user-map, #itinerary-map{
   position: fixed;
   width: 100vw;
   height:100vh;
   z-index: 0;
-} 
+}
 
 .mapboxgl-popup {
   text-align:center;

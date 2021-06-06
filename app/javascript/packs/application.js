@@ -33,17 +33,19 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
-import { initPageFlip } from '../plugins/init_turning-pages'
+import { initPageFlip } from '../plugins/init_turning-pages';
+import { mapRoute } from '../plugins/routes';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // addSelectedClass();
   // initSelect2();
-  pageFlip();
-  initMapbox();
+  // pageFlip();
+  // initMapbox();
   toggleMenu();
   hideProfile();
-  initPageFlip();
+  // initPageFlip();
+  mapRoute();
 });
 
 import "controllers"

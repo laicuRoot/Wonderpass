@@ -7,12 +7,14 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
-    @itinerary.itinerary_items.create(id: 1, itinerary_id: 1, stamp_id: 1)
-    @itinerary.itinerary_items.create(id: 2, itinerary_id: 1, stamp_id: 2)
-    @markers = Location.all.geocoded.map do |stamp|
+    @stamps = @itinerary.stamps
+    @locations = Location.where(id: @stamps.map(&:location_id))
+    @markers = @locations.geocoded.map do |stamp|
       {
         lat: stamp.latitude,
         lng: stamp.longitude
+        # stamp_window: render_to_string(partial: "stamp_window", locals: { stamp: @itinerary.stamps.find_by(location: location) }),
+        # image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key)
       }
     end
   end
