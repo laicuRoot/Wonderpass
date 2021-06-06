@@ -16,7 +16,7 @@ const last_item_index = markers.length - 1
 
 var map = new mapboxgl.Map({
   container: 'map2',
-  style: 'mapbox://styles/mapbox/streets-v10',
+  style: 'mapbox://styles/mapbox/light-v10',
   center: start, // starting position
   zoom: 12
 });
