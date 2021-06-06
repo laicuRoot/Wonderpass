@@ -26,8 +26,7 @@ require("slick-carousel")
 
 // External imports
 import "bootstrap";
-import "slick-carousel/slick/slick.scss"
-import "slick-carousel/slick/slick-theme.scss"
+
 
 import 'controllers'
 // Internal imports, e.g:
@@ -38,7 +37,8 @@ import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
 import { initAutocomplete } from '../plugins/init_autocomplete';
-import { addActiveItinerary } from '../plugins/add_active_itinerary'
+import { addActiveItinerary } from '../plugins/add_active_itinerary';
+import { initSlick } from '../plugins/slick_carousel';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -53,10 +53,7 @@ document.addEventListener('turbolinks:load', () => {
   }
   initAutocomplete();
   if (document.querySelector(".scroller")){
-    $('.scroller').slick({
-      slidesToShow: 2,
-      infinite: true
-    })
+    initSlick();
   }
   addActiveItinerary();
 });
