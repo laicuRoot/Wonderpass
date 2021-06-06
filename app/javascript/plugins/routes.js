@@ -75,10 +75,24 @@ function getRoute(endCoords) {
 
 
   document.getElementById("route-distance").innerHTML = Math.round(data.distance * 0.001) + "km";
-  document.getElementById("route-duration").innerHTML = Date(data.duration * 1000).toISOString().substr(11, 8);
+  document.getElementById("route-duration").innerHTML = new Date(data.duration * 1000).toISOString().substr(11, 8);
   // Math.round(data.duration / 3600 ) + "hrs";
 
+  var instruction_number = 1
 
+  data.legs.forEach((leg) => {
+      var newDiv = document.createElement("div");
+      newDiv.appendChild(document.createTextNode("New Leg"));
+      document.getElementById("route-instructions").appendChild(newDiv);
+
+    leg.steps.forEach((step) => {
+      var newDiv = document.createElement("div");
+      newDiv.appendChild(document.createTextNode(instruction_number + " " + step.maneuver.instruction));
+      document.getElementById("route-instructions").appendChild(newDiv);
+      instruction_number += 1
+      // console.log(step.maneuver.instruction)
+    })
+  })
 
     // if the route already exists on the map, reset it using setData
     if (map.getSource('route')) {
@@ -103,7 +117,7 @@ function getRoute(endCoords) {
           'line-cap': 'round'
         },
         paint: {
-          'line-color': '#3887be',
+          'line-color': '#FFDE55',
           'line-width': 5,
           'line-opacity': 0.75
         }
@@ -145,13 +159,11 @@ function getRoute(endCoords) {
       'text-keep-upright': false
     },
     paint: {
-      'text-color': '#3887be',
+      'text-color': '#FFDE55',
       'text-halo-color': 'hsl(55, 11%, 96%)',
       'text-halo-width': 3
     }
   }, 'waterway-label');
-
-
 
     }
   };

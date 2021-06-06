@@ -1,24 +1,32 @@
 <h1><%=@itinerary.itinerary_name%></h1>
 <h2>You have collected <%= @itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count %> / <%= @itinerary.itinerary_items.count %> <%="stamp".pluralize(@itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count)%> in this itineary</h2>
 
-<div class="type-transport-buttons">
-  <div id="walking" class="round-yellow-button-route">
-    <div><i class="fas fa-walking"></i></div>
-    <div>Walking</div>
+<div>
+  <div class="type-transport-buttons">
+    <div id="walking" class="round-yellow-button-route">
+      <div><i class="fas fa-walking"></i></div>
+      <div>Walking</div>
+    </div>
+
+    <div id="cycling" class="round-grey-button-route">
+      <div><i class="fas fa-biking"></i></div>
+      <div>Cycling</div>
+    </div>
+
+    <div id="driving" class="round-grey-button-route">
+      <div><i class="fas fa-car"></i></div>
+      <div>Driving</div>
+    </div>
   </div>
 
-  <div id="cycling" class="round-grey-button-route">
-    <div><i class="fas fa-biking"></i></div>
-    <div>Cycling</div>
-  </div>
-
-  <div id="driving" class="round-grey-button-route">
-    <div><i class="fas fa-car"></i></div>
-    <div>Driving</div>
-  </div>
-
-  <div id="route-distance">Calculating distance...</div>
+  <div>
+    <div id="route-distance">Calculating distance...</div>
     <div id="route-duration">Calculating time...</div>
+  </div>
+
+  <div id="route-instructions">
+  </div>
+
 </div>
 
 
