@@ -1,33 +1,42 @@
 <div class="container">
   <div class="row mt-5 mb-5">
+
     <div class="col-sm-12 col-md-6">
       <div class='text-center'>
         <h1 class='text-info main-title'>My Itineraries</h1>
         <h4 class=''> You have <%= pluralize(@itineraries.count, "itinerary") %></h4>
       </div>
-      <% @itineraries.each do |itinerary| %>
-        <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
-          <div class="row g-0">
-            <div class="col-4">
-            <%  first_itinerary_item = itinerary.itinerary_items.first.stamp_id
-                itinerary_stamp = Stamp.find(first_itinerary_item)
-                itinerary_stamp_location = Location.find(itinerary_stamp.location_id)
-                location_photo = itinerary_stamp_location.location_photos.first
-              %>
-              <%= cl_image_tag location_photo.key, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
-            </div>
-            <div class="col-8 d-flex align-items-center justify-content-around">
-              <div class="card-body">
-                <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
+      <% if @itineraries.length == 0 %>
+      <div class='text-center'>
+        <h4>You don't have itineraries yet. Create one!</h4>
+        <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'btn btn-outline-warning' %>
+      </div>
+      <% else %>
+        <% @itineraries.each do |itinerary| %>
+          <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
+            <div class="row g-0">
+              <div class="col-4">
+              <%  first_itinerary_item = itinerary.itinerary_items.first.stamp_id
+                  itinerary_stamp = Stamp.find(first_itinerary_item)
+                  itinerary_stamp_location = Location.find(itinerary_stamp.location_id)
+                  location_photo = itinerary_stamp_location.location_photos.first
+                %>
+                <%= cl_image_tag location_photo.key, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
               </div>
-              <div class='mr-2'>
-                <button class='itinerary-card-btn' id='itinerary-btn'>Set Active</button>
+              <div class="col-8 d-flex align-items-center justify-content-around">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
+                </div>
+                <div class='mr-2'>
+                  <button class='itinerary-card-btn' id='itinerary-btn'>Set Active</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
+
     <div class="col-sm-12 col-md-6 mt-3">
       <h4 class='mb-3'>
         <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(current_user), class:'text-secondary itinerary-link' %>
@@ -38,5 +47,6 @@
            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
+
   </div>
 </div>
