@@ -4,35 +4,35 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = "pk.eyJ1IjoicnViaXh0aGVjdWJpeCIsImEiOiJja213YmVid3EwZGZ2MnZudnI1OGN6Zm9mIn0.o9_KQSxzMvHX53JtF-hX5A"
 
 const mapElement = document.getElementById('map2');
+if(mapElement){
+  const markers = JSON.parse(mapElement.dataset.markers);
 
-const markers = JSON.parse(mapElement.dataset.markers);
+  var start = [markers[0].lng, markers[0].lat];
+  // var end = [markers[1].lng, markers[1].lat];
 
-var start = [markers[0].lng, markers[0].lat];
-// var end = [markers[1].lng, markers[1].lat];
+  var transport_profile = "walking"
 
-var transport_profile = "walking"
+  const last_item_index = markers.length - 1
 
-const last_item_index = markers.length - 1
+  var map = new mapboxgl.Map({
+    container: 'map2',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: start, // starting position
+    zoom: 12
+  });
+  // set the bounds of the map
+  // var bounds = [[-123.069003, 45.395273], [-122.303707, 45.612333]];
+  // map.setMaxBounds(bounds);
 
-var map = new mapboxgl.Map({
-  container: 'map2',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: start, // starting position
-  zoom: 12
-});
-// set the bounds of the map
-// var bounds = [[-123.069003, 45.395273], [-122.303707, 45.612333]];
-// map.setMaxBounds(bounds);
+  // initialize the map canvas to interact with later
+  var canvas = map.getCanvasContainer();
 
-// initialize the map canvas to interact with later
-var canvas = map.getCanvasContainer();
-
-markers.forEach((marker) => {
-  new mapboxgl.Marker()
-    .setLngLat([marker.lng, marker.lat])
-    .addTo(map);
-});
-
+  markers.forEach((marker) => {
+    new mapboxgl.Marker()
+      .setLngLat([marker.lng, marker.lat])
+      .addTo(map);
+  });
+}
 
 function getRoute(endCoords) {
   // make a directions request using cycling profile
@@ -171,53 +171,15 @@ function getRoute(endCoords) {
 }
 
 const mapRoute = () => {
-  map.on('load', function() {
-  // make an initial directions request that
-  // starts and ends at the same location
-  getRoute(start);
+  if(mapElement){
+    map.on('load', function() {
+    // make an initial directions request that
+    // starts and ends at the same location
+    getRoute(start);
 
-  // Add starting point to the map
-  map.addLayer({
-    id: 'point',
-    type: 'circle',
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: [{
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Point',
-            coordinates: start
-          }
-        }
-        ]
-      }
-    },
-    paint: {
-      'circle-radius': 10,
-      'circle-color': '#3887be'
-    }
-  });
-  // this is where the code from the next step will go
-  var end = {
-    type: 'FeatureCollection',
-    features: [{
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Point',
-        coordinates: [markers[last_item_index].lng, markers[last_item_index].lat]
-      }
-    }
-    ]
-  };
-  if (map.getLayer('end')) {
-    map.getSource('end').setData(end);
-  } else {
+    // Add starting point to the map
     map.addLayer({
-      id: 'end',
+      id: 'point',
       type: 'circle',
       source: {
         type: 'geojson',
@@ -228,50 +190,90 @@ const mapRoute = () => {
             properties: {},
             geometry: {
               type: 'Point',
-              coordinates: [markers[last_item_index].lng, markers[last_item_index].lat]
+              coordinates: start
             }
-          }]
+          }
+          ]
         }
       },
       paint: {
         'circle-radius': 10,
-        'circle-color': '#f30'
+        'circle-color': '#3887be'
       }
     });
-  }
-  getRoute([markers[last_item_index].lng, markers[last_item_index].lat]);
-});
+    // this is where the code from the next step will go
+    var end = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'Point',
+          coordinates: [markers[last_item_index].lng, markers[last_item_index].lat]
+        }
+      }
+      ]
+    };
+    if (map.getLayer('end')) {
+      map.getSource('end').setData(end);
+    } else {
+      map.addLayer({
+        id: 'end',
+        type: 'circle',
+        source: {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [{
+              type: 'Feature',
+              properties: {},
+              geometry: {
+                type: 'Point',
+                coordinates: [markers[last_item_index].lng, markers[last_item_index].lat]
+              }
+            }]
+          }
+        },
+        paint: {
+          'circle-radius': 10,
+          'circle-color': '#f30'
+        }
+      });
+    }
+    getRoute([markers[last_item_index].lng, markers[last_item_index].lat]);
+    });
+ }
 }
 
-document.getElementById("walking").addEventListener("click", function() {
-  document.getElementById("walking").className = "round-yellow-button-route";
-  document.getElementById("cycling").className = "round-grey-button-route";
-  document.getElementById("driving").className = "round-grey-button-route";
+// document.getElementById("walking").addEventListener("click", function() {
+//   document.getElementById("walking").className = "round-yellow-button-route";
+//   document.getElementById("cycling").className = "round-grey-button-route";
+//   document.getElementById("driving").className = "round-grey-button-route";
 
-  transport_profile = "walking"
+//   transport_profile = "walking"
 
-  mapRoute();
-});
+//   mapRoute();
+// });
 
-document.getElementById("cycling").addEventListener("click", function() {
-  document.getElementById("walking").className = "round-grey-button-route";
-  document.getElementById("cycling").className = "round-yellow-button-route";
-  document.getElementById("driving").className = "round-grey-button-route";
+// document.getElementById("cycling").addEventListener("click", function() {
+//   document.getElementById("walking").className = "round-grey-button-route";
+//   document.getElementById("cycling").className = "round-yellow-button-route";
+//   document.getElementById("driving").className = "round-grey-button-route";
 
-  transport_profile = "cycling"
+//   transport_profile = "cycling"
 
-  mapRoute();
-});
+//   mapRoute();
+// });
 
-document.getElementById("driving").addEventListener("click", function() {
-  document.getElementById("walking").className = "round-grey-button-route";
-  document.getElementById("cycling").className = "round-grey-button-route";
-  document.getElementById("driving").className = "round-yellow-button-route";
+// document.getElementById("driving").addEventListener("click", function() {
+//   document.getElementById("walking").className = "round-grey-button-route";
+//   document.getElementById("cycling").className = "round-grey-button-route";
+//   document.getElementById("driving").className = "round-yellow-button-route";
 
-  transport_profile = "driving"
+//   transport_profile = "driving"
 
-  mapRoute();
-});
+//   mapRoute();
+// });
 
 export { mapRoute };
 
