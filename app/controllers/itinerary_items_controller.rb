@@ -1,10 +1,12 @@
 class ItineraryItemsController < ApplicationController
   before_action :find_itinerary, except: :destroy
-  
+  before_action :get_filter, only: :index
+
   def index
     @itinerary_item = ItineraryItem.new
-    @locations = Location.near(@itinerary.destination, 20)
-    @stamps = @itinerary.user.stamps
+    @locations = Location.near(@itinerary.destination, @distance).where(category: @categories)
+    @stamps = @completed? @itinerary.user.stamps : @itinerary.user.stamps.where(stamp_status: false)
+    @locations.where(stamps: @stamps)
   end
 
   def new
@@ -15,9 +17,9 @@ class ItineraryItemsController < ApplicationController
     @itinerary_item = ItineraryItem.new(itinerary_item_params)
     @itinerary_item.itinerary = @itinerary
     if @itinerary_item.save
-      redirect_to itinerary_itinerary_items_path(@itinerary)
+      redirect_back(fallback_location: itinerary_itinerary_items_path(@itinerary))
     else
-      flash.alert = "The itinerary item was not created, please contact admin"
+      flash[:alert] = "The itinerary item was not created"
     end
   end
 
@@ -25,7 +27,9 @@ class ItineraryItemsController < ApplicationController
     @itinerary_item = ItineraryItem.find(params[:id])
     @itinerary = @itinerary_item.itinerary
     if @itinerary_item.destroy
-      redirect_to itinerary_itinerary_items_path(@itinerary)
+      redirect_back(fallback_location: itinerary_itinerary_items_path(@itinerary))
+    else
+      flash[:alert] = "The itinerary item was not destroyed"
     end
   end
 
@@ -37,5 +41,13 @@ class ItineraryItemsController < ApplicationController
 
   def itinerary_item_params
     params.require(:itinerary_item).permit(:stamp_id)
+  end
+
+  def get_filter
+    @distance = params[:distance].to_i.instance_of?(Integer) ? params[:distance].to_i : params[:query].to_i
+    @categories = params[:categories].values
+    if params[:add_completed].present?
+      @completed = params[:add_completed]
+    end
   end
 end

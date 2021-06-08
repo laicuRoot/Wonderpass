@@ -85,9 +85,16 @@
     color: $black;
   }
 }
+
+.stamp-select-card-deck{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px;
+}
+
 .itinerary-item-body{
   position:relative;
-  width: 200px;
+  width: 150px;
   grid-gap: 10px;
   margin-bottom: 10px;
   justify-content:center;
@@ -96,6 +103,7 @@
     position:absolute;
     bottom: 0;
     width: 80%;
+    font-size:16px;
     word-wrap: break-word;
     text-align:center;
     color: $bright-yellow;
@@ -104,5 +112,6 @@
 }
 
 .selected{
-  box-shadow: 0 0 10px $red;
+  box-shadow: 0 0 10px $bright-yellow;
+  border-radius: 10px;
 }

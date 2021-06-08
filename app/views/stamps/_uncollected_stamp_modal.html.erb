@@ -1,0 +1,22 @@
+<div class="modal fade stamp-<%= stamp.id %>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="stamp-div d-flex">
+        <div class="row col-6 p-0 m-0">
+          <div class="modal-header text-center">
+              <h1 class="modal-title"><%= stamp.location.location_name%></h1>
+          </div>
+          <div class="modal-body pt-0 mt-0">
+            <p><%= stamp.location.location_description %></p>
+            <%= link_to 'Collect Stamp', edit_stampbook_stamp_path(stamp.stampbook, stamp), class: "yellow-button" %>
+          </div>
+        </div>
+        <div class="row col-6 p-0 m-0">
+          <%= cl_image_tag(stamp.location.location_photos.first.key, class: "location-pic", width: 200, height: 200, crop: :fill)%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

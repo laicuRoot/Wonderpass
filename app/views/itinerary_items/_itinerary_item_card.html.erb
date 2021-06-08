@@ -5,9 +5,9 @@
     <div data-itinerary-items-update-id= "#{<%= stamp.id %>}" class="itinerary-item-body" style="display:flex;" data-itinerary-items-update-target="itineraryItem" data-action="click->itinerary-items-update#update">
   <% end %>
       <% if stamp.stamp_status %>
-        <%= cl_image_tag stamp.location.stamp_photos.first.key, class:"rounded-borders", height: 200, width: 200, crop: :fill %>
+        <%= cl_image_tag stamp.location.stamp_photos.first.key, class:"rounded-borders", height: 180, width: 180, crop: :fill %>
       <% else %>
-        <%= cl_image_tag stamp.location.location_photos.first.key, class:"rounded-borders", height: 200, width: 200, crop: :fill %>
+        <%= cl_image_tag stamp.location.location_photos.first.key, class:"rounded-borders", height: 180, width: 180, crop: :fill %>
       <% end %>
       <h5 class ="overlay-name"><%= stamp.location.location_name %></h5>
     </div>

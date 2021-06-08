@@ -1,26 +1,36 @@
-<div class="container" data-itinerary-items-update-target = "itinerary" data-itinerary_items_update-id = "#{<%= @itinerary.id %>}">
-  <h2>Select your stamps</h2> 
-  <div class = "card-deck" data-controller = "itinerary-items-update">
-		<% @locations.each do |location| %>
-			<% if  @stamps.find_by(location: location.id) %>
-			  <% stamp = @stamps.find_by(location: location.id) %>
-        <div class="itinerary-button">
-				  <% if @itinerary.itinerary_items.find_by(stamp_id: stamp.id) %>
-						<%= link_to itinerary_item_path(@itinerary.itinerary_items.find_by(stamp_id: stamp.id)), method: :delete, remote: true do %>
-							<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
-    				<% end %>
-					<% else %>
-					  <%= simple_form_for([@itinerary, @itinerary_item], remote: true) do |f| %>
-							<%= f.hidden_field :stamp_id, value: stamp.id %>
-							<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-							<%= button_tag(type: "submit", class: "no-button") do %>
-									<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
-							<% end %>
-						<% end %>
+<div class="background-box">
+  <div class="form-container itinerary-item-container" data-itinerary-items-update-target = "itinerary" data-itinerary_items_update-id = "#{<%= @itinerary.id %>}">
+		<h2>Select your stamps</h2> 
+		<% if @locations.empty? %>
+		<div style ="height: 80%; display:flex; justify-content:center; align-items:center;">
+			<p>No stamps found :( Please search again</p>
+		</div>
+		<% else %>
+			<div class="card-swipe" style= "height:650px; width:700px; padding: 20px; padding-left:40px;">
+				<%# <div class ="stamp-select-card-deck" data-controller = "itinerary-items-update"> %>
+					<% @locations.each do |location| %>
+						<% if  @stamps.find_by(location: location.id) %>
+							<% stamp = @stamps.find_by(location: location.id) %>
+							<div class="itinerary-button" style= "width:180px;">
+								<% if @itinerary.itinerary_items.find_by(stamp_id: stamp.id) %>
+									<%= link_to itinerary_item_path(@itinerary.itinerary_items.find_by(stamp_id: stamp.id)), method: :delete, remote: true do %>
+										<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
+									<% end %>
+								<% else %>
+									<%= simple_form_for([@itinerary, @itinerary_item], remote: true) do |f| %>
+										<%= f.hidden_field :stamp_id, value: stamp.id %>
+										<%= button_tag(type: "submit", class: "no-button") do %>
+												<%= render 'itinerary_item_card', stamp: @stamps.find_by(location: location.id) %>
+										<% end %>
+									<% end %>
+								<% end %>
+							</div>
+						<% end %>  
 					<% end %>
-        </div>
-			<% end %>  
+				<%# </div> %>
+			</div>
 		<% end %>
-  </div>
-  <%= link_to "View your itinerary", itinerary_path(@itinerary), class: "yellow-button" %>
+		<%= link_to "Back", filter_itinerary_path(@itinerary), class: "btn small-yellow-button left"%>
+		<%= link_to "Finish", itinerary_path(@itinerary), class: "btn small-yellow-button" %>
+	</div>
 </div>

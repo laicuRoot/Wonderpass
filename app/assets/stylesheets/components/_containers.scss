@@ -1,0 +1,40 @@
+.form-container{
+  position:relative;
+  padding: 40px;
+  padding-bottom: 60px;
+  border-radius: 20px;
+  height: 520px;
+  width: 800px;
+  background-color: $white;
+
+  .small-yellow-button{
+    position: absolute;
+    width: 100px;
+    right: 40px;
+    bottom: 40px;
+  }
+
+  .left{
+    left: 40px;
+    right: 0px;
+  }
+}
+
+.background-box{
+  background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('stampbook_background.png');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  background-repeat: no-repeat;
+}
+
+.form-box{
+  margin-bottom: 20px;
+}
+
+.itinerary-item-container{
+  height: 800px;
+}
