@@ -5,8 +5,8 @@ const active = (e) => {
     active.classList.remove('active-itinerary');
     active.innerText = 'Set Active'
   }
-  event.currentTarget.classList.add('active-itinerary')
-  event.currentTarget.innerText = 'Active'
+  e.currentTarget.classList.add('active-itinerary')
+  e.currentTarget.innerText = 'Active'
 }
 
 const addActiveItinerary = () => {
