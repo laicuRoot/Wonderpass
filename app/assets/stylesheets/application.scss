@@ -9,27 +9,39 @@
 @import "font-awesome";
 @import "dropzone/dist/min/dropzone.min.css";
 @import "dropzone/dist/min/basic.min.css";
+@import "slick-carousel/slick/slick.scss";
+@import "slick-carousel/slick/slick-theme.scss";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/itinerary_item_pages/index";
 
+// .scroller {
+//   div {
+//     text-align: center;
+//     font-size: 30px;
+//   }
+// }
 
-.scroller {
-  div {
-    text-align: center;
-    font-size: 30px;
-  }
+.slick-prev:before {
+  content: "<";
+  color: $yellow;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
-.slick-prev::before, .slick-next::before {
-  color: #000;
+.slick-next:before {
+  content: ">";
+  color: $yellow;
+  font-size: 30px;
+  font-weight: bolder;
 }
 
 .slick-next {
-  right: -5px;
+  right: -20px;
 }
 
 .slick-prev {
-  left: -5px;
+  left: -20px;
 }

@@ -1,5 +1,5 @@
-<div id="user-map"
-    class = "map"
+<div id="map2"
+    class = "user-map"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
@@ -11,9 +11,9 @@
       <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
     <% end %>
     <div class="card-body">
-      <h1 class="card-title"><%= @user.first_name %></h1> 
+      <h1 class="card-title"><%= @user.first_name %></h1>
       <p class="card-text">Number of stamps collected</p>
-      <h3><%= @stamp_count %></h3> 
+      <h3><%= @stamp_count %></h3>
       <p class="card-text">Number of km travelled</p>
       <h3>5</h3>
       <p>Traveller since</p>

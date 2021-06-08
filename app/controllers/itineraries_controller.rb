@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :find_user, except: [:show, :filter]
+  before_action :find_user, except: [:show, :filter, :destroy]
 
 def index
   # @stamps_all = Stamp.all.where(user: @stampbooks..user)
@@ -22,12 +22,22 @@ end
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @stamps = @itinerary.stamps
+    @locations = Location.where(id: @stamps.map(&:location_id))
+    @markers = @locations.geocoded.map do |stamp|
+      {
+        lat: stamp.latitude,
+        lng: stamp.longitude
+        # stamp_window: render_to_string(partial: "stamp_window", locals: { stamp: @itinerary.stamps.find_by(location: location) }),
+        # image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key)
+      }
+    end
   end
 
   def filter
     @itinerary = Itinerary.find(params[:id])
     @categories = Location.all.map{|location| location.category}.uniq
-    @distances = [0, 5, 10, 20, 50]
+    @distances = [0, 5, 10, 20, 50, "Other"]
   end
 
   def new
@@ -42,6 +52,14 @@ end
       redirect_to filter_itinerary_path(@itinerary)
     else
       render :new
+    end
+  end
+
+  def destroy
+    @itinerary = Itinerary.find(params[:id])
+    @user = @itinerary.user
+    if @itinerary.destroy
+      redirect_to new_user_itinerary_path(@user)
     end
   end
 

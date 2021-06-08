@@ -5,7 +5,7 @@ class ItineraryItemsController < ApplicationController
   def index
     @itinerary_item = ItineraryItem.new
     @locations = Location.near(@itinerary.destination, @distance).where(category: @categories)
-    @stamps = @completed? @itinerary.user.stamps : @itinerary.user.stamps.where(stamp_status: false) 
+    @stamps = @completed? @itinerary.user.stamps : @itinerary.user.stamps.where(stamp_status: false)
     @locations.where(stamps: @stamps)
   end
 
@@ -17,7 +17,7 @@ class ItineraryItemsController < ApplicationController
     @itinerary_item = ItineraryItem.new(itinerary_item_params)
     @itinerary_item.itinerary = @itinerary
     if @itinerary_item.save
-      redirect_to itinerary_itinerary_items_path(@itinerary)
+      redirect_back(fallback_location: itinerary_itinerary_items_path(@itinerary))
     else
       flash[:alert] = "The itinerary item was not created"
     end
@@ -27,7 +27,7 @@ class ItineraryItemsController < ApplicationController
     @itinerary_item = ItineraryItem.find(params[:id])
     @itinerary = @itinerary_item.itinerary
     if @itinerary_item.destroy
-      redirect_to itinerary_itinerary_items_path(@itinerary)
+      redirect_back(fallback_location: itinerary_itinerary_items_path(@itinerary))
     else
       flash[:alert] = "The itinerary item was not destroyed"
     end
@@ -44,8 +44,8 @@ class ItineraryItemsController < ApplicationController
   end
 
   def get_filter
-    @distance = params[:distance]
-    @categories =params[:categories]
+    @distance = params[:distance].to_i.instance_of?(Integer) ? params[:distance].to_i : params[:query].to_i
+    @categories = params[:categories].values
     if params[:add_completed].present?
       @completed = params[:add_completed]
     end
