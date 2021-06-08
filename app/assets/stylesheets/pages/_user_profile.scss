@@ -8,7 +8,11 @@
   left: -20px;
 }
 
-.hidden{
+.profile-box{
+  transition: right 2s;
+}
+
+.profile-box.hidden{
   position:relative;
   right: 400px;
 }
