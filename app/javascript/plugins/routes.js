@@ -4,11 +4,15 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = "pk.eyJ1IjoicnViaXh0aGVjdWJpeCIsImEiOiJja213YmVid3EwZGZ2MnZudnI1OGN6Zm9mIn0.o9_KQSxzMvHX53JtF-hX5A"
 
 const mapElement = document.getElementById('map2');
-if(mapElement){
-  const markers = JSON.parse(mapElement.dataset.markers);
 
-  var start = [markers[0].lng, markers[0].lat];
+// if(mapElement){
+
+const markers = JSON.parse(mapElement.dataset.markers);
+
+console.log(mapElement)
+
   // var end = [markers[1].lng, markers[1].lat];
+  var start = [markers[0].lng, markers[0].lat];
 
   var transport_profile = "walking"
 
@@ -26,13 +30,14 @@ if(mapElement){
 
   // initialize the map canvas to interact with later
   var canvas = map.getCanvasContainer();
+  console.log(canvas)
 
   markers.forEach((marker) => {
     new mapboxgl.Marker()
       .setLngLat([marker.lng, marker.lat])
       .addTo(map);
   });
-}
+
 
 function getRoute(endCoords) {
   // make a directions request using cycling profile
@@ -72,7 +77,7 @@ function getRoute(endCoords) {
         coordinates: route
       }
     };
-
+    console.log(geojson)
 
   document.getElementById("route-distance").innerHTML = Math.round(data.distance * 0.001) + "km";
   document.getElementById("route-duration").innerHTML = new Date(data.duration * 1000).toISOString().substr(11, 8);
@@ -171,10 +176,10 @@ function getRoute(endCoords) {
 }
 
 const mapRoute = () => {
-  if(mapElement){
     map.on('load', function() {
     // make an initial directions request that
     // starts and ends at the same location
+
     getRoute(start);
 
     // Add starting point to the map
@@ -243,37 +248,33 @@ const mapRoute = () => {
     getRoute([markers[last_item_index].lng, markers[last_item_index].lat]);
     });
  }
-}
 
-// document.getElementById("walking").addEventListener("click", function() {
-//   document.getElementById("walking").className = "round-yellow-button-route";
-//   document.getElementById("cycling").className = "round-grey-button-route";
-//   document.getElementById("driving").className = "round-grey-button-route";
+document.getElementById("walking").addEventListener("click", function() {
+  document.getElementById("walking").className = "round-yellow-button-route";
+  document.getElementById("cycling").className = "round-grey-button-route";
+  document.getElementById("driving").className = "round-grey-button-route";
 
-//   transport_profile = "walking"
+  transport_profile = "walking"
+});
 
-//   mapRoute();
-// });
+document.getElementById("cycling").addEventListener("click", function() {
+  document.getElementById("walking").className = "round-grey-button-route";
+  document.getElementById("cycling").className = "round-yellow-button-route";
+  document.getElementById("driving").className = "round-grey-button-route";
 
-// document.getElementById("cycling").addEventListener("click", function() {
-//   document.getElementById("walking").className = "round-grey-button-route";
-//   document.getElementById("cycling").className = "round-yellow-button-route";
-//   document.getElementById("driving").className = "round-grey-button-route";
+  transport_profile = "cycling"
+});
 
-//   transport_profile = "cycling"
+document.getElementById("driving").addEventListener("click", function() {
+  document.getElementById("walking").className = "round-grey-button-route";
+  document.getElementById("cycling").className = "round-grey-button-route";
+  document.getElementById("driving").className = "round-yellow-button-route";
 
-//   mapRoute();
-// });
+  transport_profile = "driving"
+});
 
-// document.getElementById("driving").addEventListener("click", function() {
-//   document.getElementById("walking").className = "round-grey-button-route";
-//   document.getElementById("cycling").className = "round-grey-button-route";
-//   document.getElementById("driving").className = "round-yellow-button-route";
+// };
 
-//   transport_profile = "driving"
-
-//   mapRoute();
-// });
 
 export { mapRoute };
 

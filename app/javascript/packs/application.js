@@ -48,7 +48,6 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleMenu();
   hideProfile();
-  mapRoute();
   if (document.getElementById("book")){
     initPageFlip();
   }
@@ -56,4 +55,5 @@ document.addEventListener('turbolinks:load', () => {
   addOtherOption();
   initSlick();
   initAutocomplete();
+  mapRoute();
 });
