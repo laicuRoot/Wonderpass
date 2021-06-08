@@ -10,10 +10,13 @@ const active = (e) => {
 }
 
 const addActiveItinerary = () => {
+
   const itinerariesBtns = document.querySelectorAll('#itinerary-btn');
-  itinerariesBtns.forEach((itinerary)=>{
-    itinerary.addEventListener('click', active)
-  })
+  if(itinerariesBtns){
+    itinerariesBtns.forEach((itinerary)=>{
+      itinerary.addEventListener('click', active)
+    });
+  }
 }
 
 

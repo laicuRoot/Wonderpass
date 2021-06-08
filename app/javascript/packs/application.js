@@ -52,8 +52,9 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById("book")){
     initPageFlip();
   }
-  initAutocomplete();
+  
   addActiveItinerary();
   addOtherOption();
   initSlick();
+  initAutocomplete();
 });
