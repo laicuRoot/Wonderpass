@@ -6,5 +6,4 @@ class Itinerary < ApplicationRecord
   # validates :rating, inclusion: { in: [1..5] }
   validates :public_status, inclusion: [true, false] 
   validates :itinerary_name, :destination, presence: true
-
 end

@@ -20,7 +20,7 @@ const addMarkers = (map, markers) =>{
 				.setPopup(popup)
 				.addTo(map);
 	});
-} 
+}
 
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
@@ -30,17 +30,19 @@ const fitMapToMarkers = (map, markers) => {
 
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
-	let cont = ((document.getElementById("user-map"))? "user-map" : "itinerary-map");
+  let cont = ((document.getElementById("user-map"))? "user-map" : "itinerary-map");
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-		const markers = JSON.parse(mapElement.dataset.markers);
-    const map = new mapboxgl.Map({
-      container: cont,
-      style: 'mapbox://styles/rubixthecubix/ckpa6hfqu6ejy18oj9bz9d98a'
-    });
-		console.log(map);
-		addMarkers(map, markers);
-		fitMapToMarkers(map, markers);
+    if (mapElement.dataset.markers) {
+      const markers = JSON.parse(mapElement.dataset.markers);
+      const map = new mapboxgl.Map({
+        container: cont,
+        style: 'mapbox://styles/rubixthecubix/ckpa6hfqu6ejy18oj9bz9d98a'
+      });
+      console.log(map);
+      addMarkers(map, markers);
+      fitMapToMarkers(map, markers);
+    }
   }
 };
 

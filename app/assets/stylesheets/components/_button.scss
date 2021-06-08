@@ -60,3 +60,63 @@
     color: $black;
   }
 }
+
+.no-button{
+  padding: 0;
+  margin: 0 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  .col-sm{
+    padding:0;
+  }
+  .itinerary-item-body{
+    margin:0;
+  }
+}
+
+.type-transport-buttons {
+  display: flex;
+  margin: 10px;
+  background-color: white;
+  border-radius: 12px;
+  background-size: cover;
+}
+
+
+.round-yellow-button-route{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 50%;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+
+}
+
+.round-grey-button-route{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 50%;
+  background-color: grey;
+  color: white;
+  border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+}
