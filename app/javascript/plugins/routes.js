@@ -4,22 +4,21 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = "pk.eyJ1IjoicnViaXh0aGVjdWJpeCIsImEiOiJja213YmVid3EwZGZ2MnZudnI1OGN6Zm9mIn0.o9_KQSxzMvHX53JtF-hX5A"
 
 const mapElement = document.getElementById('map2');
-if(mapElement){
-  const markers = JSON.parse(mapElement.dataset.markers);
+const markers = JSON.parse(mapElement.dataset.markers);
 
-  var start = [markers[0].lng, markers[0].lat];
+var start = [markers[0].lng, markers[0].lat];
   // var end = [markers[1].lng, markers[1].lat];
 
-  var transport_profile = "walking"
+var transport_profile = "walking"
 
-  const last_item_index = markers.length - 1
+const last_item_index = markers.length - 1
 
-  var map = new mapboxgl.Map({
-    container: 'map2',
-    style: 'mapbox://styles/mapbox/light-v10',
-    center: start, // starting position
-    zoom: 12
-  });
+var map = new mapboxgl.Map({
+  container: 'map2',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: start, // starting position
+  zoom: 12
+});
   // set the bounds of the map
   // var bounds = [[-123.069003, 45.395273], [-122.303707, 45.612333]];
   // map.setMaxBounds(bounds);
@@ -27,12 +26,11 @@ if(mapElement){
   // initialize the map canvas to interact with later
   var canvas = map.getCanvasContainer();
 
-  markers.forEach((marker) => {
-    new mapboxgl.Marker()
-      .setLngLat([marker.lng, marker.lat])
-      .addTo(map);
-  });
-}
+markers.forEach((marker) => {
+  new mapboxgl.Marker()
+    .setLngLat([marker.lng, marker.lat])
+    .addTo(map);
+});
 
 function getRoute(endCoords) {
   // make a directions request using cycling profile
@@ -171,7 +169,6 @@ function getRoute(endCoords) {
 }
 
 const mapRoute = () => {
-  if(mapElement){
     map.on('load', function() {
     // make an initial directions request that
     // starts and ends at the same location
@@ -242,7 +239,6 @@ const mapRoute = () => {
     }
     getRoute([markers[last_item_index].lng, markers[last_item_index].lat]);
     });
- }
 }
 
 // document.getElementById("walking").addEventListener("click", function() {
