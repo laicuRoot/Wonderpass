@@ -26,7 +26,6 @@ require("slick-carousel")
 
 // External imports
 import "bootstrap";
-
 import 'controllers'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -40,6 +39,7 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary';
 import { addOtherOption } from '../plugins/add_other_option';
 import { initSlick } from '../plugins/slick_carousel';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
