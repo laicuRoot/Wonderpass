@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :stamps, only: [:index, :show, :edit, :update]
   end
 
-  resources :itineraries, only: [:show] do
+  resources :itineraries, only: [:show, :destroy] do
     resources :itinerary_items, only: [:index, :new, :create]
     member do
       get :filter

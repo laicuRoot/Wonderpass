@@ -27,8 +27,7 @@
 }
 
 .stamps-box {
-  display: flex;
-  padding: 10px;
+  display: flex;  
   color: $white;
   flex-direction: column;
   align-items: center;
@@ -41,6 +40,7 @@
 .stamps-header {
   display: flex;
   position: relative;
+  bottom: 50px;
   align-items: center;
   flex-direction: column;
   margin-bottom: 10px;
@@ -135,6 +135,9 @@
 }
 
 #book {
+  transform:scale(0.9);
+  position: relative;
+  bottom: 80px;
   box-shadow: 0px 0px 40px rgba(0,0,0, 0.1);
 }
 
@@ -162,4 +165,11 @@
 }
 
 
-
+.grey-button{
+  position:relative;
+  bottom:80px;
+}
+.btn-info{
+  position:relative;
+  bottom:80px;
+}

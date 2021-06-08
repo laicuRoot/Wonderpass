@@ -3,12 +3,20 @@
   padding: 40px;
   padding-bottom: 60px;
   border-radius: 20px;
+  height: 520px;
   width: 800px;
   background-color: $white;
+
   .small-yellow-button{
     position: absolute;
+    width: 100px;
     right: 40px;
-    bottom: 20px;
+    bottom: 40px;
+  }
+
+  .left{
+    left: 40px;
+    right: 0px;
   }
 }
 
@@ -21,4 +29,12 @@
   justify-content: center;
   align-items:center;
   background-repeat: no-repeat;
+}
+
+.form-box{
+  margin-bottom: 20px;
+}
+
+.itinerary-item-container{
+  height: 800px;
 }

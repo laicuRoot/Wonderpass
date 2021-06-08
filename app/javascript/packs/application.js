@@ -26,8 +26,6 @@ require("slick-carousel")
 
 // External imports
 import "bootstrap";
-
-
 import 'controllers'
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -36,8 +34,10 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
+import { mapRoute } from '../plugins/routes';
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary';
+import { addOtherOption } from '../plugins/add_other_option';
 import { initSlick } from '../plugins/slick_carousel';
 
 
@@ -48,12 +48,12 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   toggleMenu();
   hideProfile();
+  mapRoute();
   if (document.getElementById("book")){
     initPageFlip();
   }
   initAutocomplete();
-  if (document.querySelector(".scroller")){
-    initSlick();
-  }
   addActiveItinerary();
+  addOtherOption();
+  initSlick();
 });
