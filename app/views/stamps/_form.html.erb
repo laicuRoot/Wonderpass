@@ -32,7 +32,7 @@
 <div class='col-sm-12 col-md-6 text-center d-flex justify-content-center align-items-center'>
   <div>
     <h4 class='mb-3'>
-      <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(current_user), class:'text-secondary itinerary-link' %>
+      <%= link_to 'Go back to your stampbook <i class="fas fa-chevron-circle-left"></i>'.html_safe, stampbook_stamps_path(@stampbook), class:'text-secondary itinerary-link' %>
     </h4>
     <div>
       <h1 class='title'>Collect your stamp!</h1>
@@ -42,7 +42,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= @stamp.location.location_name %></h5>
         <p class="card-text text-left"><%= @stamp.location.location_description %></p>
-        <%= link_to "See stamp", stampbook_stamp_path(@stamp), class:'btn btn-info text-white px-5'  %>
+        <%= link_to "See Stampbook", stampbook_stamps_path(@stampbook), class:'btn btn-info text-white px-5'  %>
       </div>
     </div>
   </div>

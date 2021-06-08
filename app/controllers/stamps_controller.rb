@@ -23,7 +23,7 @@ class StampsController < ApplicationController
       # raise
       if @stamp.update(stamp_params)
         @stamp.stamp_status = true
-        format.html { redirect_to stampbook_stamp_path(@stampbook, @stamp), notice: 'Stamp was successfully collected!' }
+        format.html { redirect_to stampbook_stamps_path(@stampbook), notice: 'Stamp was successfully collected!' }
         format.json { render :show, status: :ok, location: @stamp }
       else
         format.html { render :edit, notice: 'Your stamp cannot be collected. Try again.' }
