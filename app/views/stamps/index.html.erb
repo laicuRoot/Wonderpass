@@ -15,14 +15,13 @@
   <div class="stamps-header mt-5">
     <% if @stampbook.user == current_user %>
       <h2 class="number-stamps-collected-sml">You collected <span class="number-stamps-collected-big"><%= @collected %></span>/<%= @total%> <%="stamp".pluralize(@collected)%></h2>
-      <div class="progress">
+      <div class="progress" style = "width: 400px;">
         <% if @percent.floor.zero? %>
           <div class="progress-bar" role="progressbar" style="width: #{<%= @percent %>}%;" aria-valuenow= "#{<%= @percent %>}" aria-valuemin="0" aria-valuemax="100"></div>
         <% else %>
           <div class="progress-bar" role="progressbar" style="width: #{<%= @percent %>}%;" aria-valuenow= "#{<%= @percent %>}" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
         <% end %>
       </div>
-      <p><%= @stampbook.stampbook_description %></p>
       <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
     <% else %>
       <h2 class="number-stamps-collected-sml"><%= @stampbook.user.first_name %> collected <span class="number-stamps-collected-big"><%= @collected %></span>/<%= @total%> <%="stamp".pluralize(@collected)%></h2>
