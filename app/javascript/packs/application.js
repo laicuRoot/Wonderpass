@@ -52,7 +52,6 @@ document.addEventListener('turbolinks:load', () => {
   if (document.getElementById("book")){
     initPageFlip();
   }
-  
   addActiveItinerary();
   addOtherOption();
   initSlick();
