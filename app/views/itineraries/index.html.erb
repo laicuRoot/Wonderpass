@@ -27,8 +27,12 @@
                 <div class="card-body">
                   <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
                 </div>
-                <div class='mr-2'>
-                  <button class='itinerary-card-btn' id='itinerary-btn'>Set Active</button>
+                <div class='activation-button mr-2'>
+                  <% if itinerary.active_itinerary %>
+                    <button class="itinerary-card-btn active-itinerary" id="itinerary-btn">Active</button>
+                  <% else %>
+                    <%= button_to "Set Active", itinerary_activate_path(itinerary), class:"itinerary-card-btn inactive-itinerary", remote: true %>
+                  <% end %>
                 </div>
               </div>
             </div>

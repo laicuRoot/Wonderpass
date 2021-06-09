@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :itineraries, only: [:show, :destroy] do
+    post :activate
     resources :itinerary_items, only: [:index, :new, :create]
     member do
       get :filter

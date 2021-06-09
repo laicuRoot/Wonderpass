@@ -6,4 +6,13 @@ class Itinerary < ApplicationRecord
   # validates :rating, inclusion: { in: [1..5] }
   validates :public_status, inclusion: [true, false] 
   validates :itinerary_name, :destination, presence: true
+  before_save :set_active
+
+  private
+
+  def set_active
+    if active_itinerary
+      Itinerary.where.not(id: id).update_all(active_itinerary: false)
+    end
+  end
 end

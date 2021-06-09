@@ -1,11 +1,12 @@
 class ItinerariesController < ApplicationController
-  before_action :find_user, except: [:show, :filter, :destroy]
+  before_action :find_user, except: [:show, :filter, :destroy, :activate]
 
 def index
   # @stamps_all = Stamp.all.where(user: @stampbooks..user)
   @locations = Location.all
   @itineraries = Itinerary.where(user: @user)
-  @stamps = @itineraries.map(&:stamps).flatten
+  @active_itinerary = Itinerary.where(active_itinerary: true)
+  @stamps = @active_itinerary.map(&:stamps).flatten
   @stamps_all = Stamp.all.where(id: @stamps)
   # @stamps = @itineraries.map(&:stamps).flatten
   # @stamps = @itineraries.map{ |itinerary| itinerary.stamps }.flatten
@@ -64,10 +65,19 @@ end
     end
   end
 
+  def activate
+    @itinerary = Itinerary.find(params[:itinerary_id])
+    @itinerary.active_itinerary = true
+    @itinerary.save
+
+    redirect_back(fallback_location: user_itineraries_path(current_user))
+  end
+
   private
 
   def find_user
     @user = User.find(params[:user_id])
+
   end
 
   def itinerary_params
