@@ -19,6 +19,14 @@
     </div>
   </div>
 
+  <div id="map2"
+      class = "map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
   <div>
     <div id="route-distance">Calculating distance...</div>
     <div id="route-duration">Calculating time...</div>
@@ -31,10 +39,4 @@
 
 
 
-<div id="map2"
-      class = "map"
-      style="width: 100%;
-      height: 600px;"
-      data-markers="<%= @markers.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
+

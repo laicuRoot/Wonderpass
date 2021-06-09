@@ -1,45 +1,44 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = "pk.eyJ1IjoicnViaXh0aGVjdWJpeCIsImEiOiJja213YmVid3EwZGZ2MnZudnI1OGN6Zm9mIn0.o9_KQSxzMvHX53JtF-hX5A"
+// const mapElement = document.getElementById('map2');
+// const markers = JSON.parse(mapElement.dataset.markers);
 
-const mapElement = document.getElementById('map2');
-const markers = JSON.parse(mapElement.dataset.markers);
+// var start = [markers[0].lng, markers[0].lat];
+//   // var end = [markers[1].lng, markers[1].lat];
 
-var start = [markers[0].lng, markers[0].lat];
-  // var end = [markers[1].lng, markers[1].lat];
+// var transport_profile = "walking"
 
-var transport_profile = "walking"
+// const last_item_index = markers.length - 1
 
-const last_item_index = markers.length - 1
-
-var map = new mapboxgl.Map({
-  container: 'map2',
-  style: 'mapbox://styles/mapbox/light-v10',
-  center: start, // starting position
-  zoom: 12
-});
+// var map = new mapboxgl.Map({
+//   container: 'map2',
+//   style: 'mapbox://styles/mapbox/light-v10',
+//   center: start, // starting position
+//   zoom: 12
+// });
   // set the bounds of the map
   // var bounds = [[-123.069003, 45.395273], [-122.303707, 45.612333]];
   // map.setMaxBounds(bounds);
 
   // initialize the map canvas to interact with later
-  var canvas = map.getCanvasContainer();
+  // var canvas = map.getCanvasContainer();
 
-markers.forEach((marker) => {
-  new mapboxgl.Marker()
-    .setLngLat([marker.lng, marker.lat])
-    .addTo(map);
-});
 
-function getRoute(endCoords) {
+// markers.forEach((marker) => {
+//   new mapboxgl.Marker()
+//     .setLngLat([marker.lng, marker.lat])
+//     .addTo(map);
+// });
+
+const getRoute = (endCoords, transportProfile, map, markers) => {
   // make a directions request using cycling profile
   // an arbitrary start will always be the same
   // only the end or destination will change
 
   var url = "https://api.mapbox.com/directions/v5/mapbox/"
 
-  url += transport_profile + "/"
+  url += transportProfile + "/"
 
   if(markers.length > 0) {
     markers.forEach(marker => { url += marker.lng + "," + marker.lat + ";" });
@@ -168,11 +167,11 @@ function getRoute(endCoords) {
   req.send();
 }
 
-const mapRoute = () => {
+const mapRoute = (map, markers, transportProfile, lastItemIndex, start) => {
     map.on('load', function() {
     // make an initial directions request that
     // starts and ends at the same location
-    getRoute(start);
+    getRoute(start, transportProfile, map, markers);
 
     // Add starting point to the map
     map.addLayer({
@@ -206,7 +205,7 @@ const mapRoute = () => {
         properties: {},
         geometry: {
           type: 'Point',
-          coordinates: [markers[last_item_index].lng, markers[last_item_index].lat]
+          coordinates: [markers[lastItemIndex].lng, markers[lastItemIndex].lat]
         }
       }
       ]
@@ -226,7 +225,7 @@ const mapRoute = () => {
               properties: {},
               geometry: {
                 type: 'Point',
-                coordinates: [markers[last_item_index].lng, markers[last_item_index].lat]
+                coordinates: [markers[lastItemIndex].lng, markers[lastItemIndex].lat]
               }
             }]
           }
@@ -237,10 +236,44 @@ const mapRoute = () => {
         }
       });
     }
-    getRoute([markers[last_item_index].lng, markers[last_item_index].lat]);
+    getRoute(end, transportProfile, map, markers);
     });
 }
 
+
+const createMap = (start) => {
+  var map = new mapboxgl.Map({
+    container: 'map2',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: start, // starting position
+    zoom: 12
+  });
+  return map
+}
+
+const generateMarkers = (map, markers) => {
+  markers.forEach((marker) => {
+    new mapboxgl.Marker()
+      .setLngLat([marker.lng, marker.lat])
+      .addTo(map);
+  });
+  
+}
+
+const generateRoutes = () => {
+  if (document.getElementById('map2')){
+    const mapElement = document.getElementById('map2');
+    mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+    const markers = JSON.parse(mapElement.dataset.markers);
+    let transportProfile = "walking"
+    const start = [markers[0].lng, markers[0].lat];
+    const lastItemIndex = markers.length - 1
+    const map = createMap(start);
+    const canvas = map.getCanvasContainer();
+    generateMarkers(map, markers);
+    mapRoute(map, markers, transportProfile, lastItemIndex, start);
+  }
+}
 // document.getElementById("walking").addEventListener("click", function() {
 //   document.getElementById("walking").className = "round-yellow-button-route";
 //   document.getElementById("cycling").className = "round-grey-button-route";
@@ -271,7 +304,7 @@ const mapRoute = () => {
 //   mapRoute();
 // });
 
-export { mapRoute };
+export { generateRoutes };
 
 
 
