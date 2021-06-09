@@ -30,7 +30,7 @@ const fitMapToMarkers = (map, markers) => {
 
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
-  let cont = ((document.getElementById("user-map"))? "user-map" : "map2");
+  let cont = ((document.getElementById("user-map"))? "user-map" : "map-iti");
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     if (mapElement.dataset.markers) {
