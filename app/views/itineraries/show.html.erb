@@ -1,7 +1,7 @@
 <h1><%=@itinerary.itinerary_name%></h1>
 <h2>You have collected <%= @itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count %> / <%= @itinerary.itinerary_items.count %> <%="stamp".pluralize(@itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count)%> in this itineary</h2>
 
-<div>
+<div class="sidebar-itinerary">
   <div class="type-transport-buttons">
     <div id="walking" class="round-yellow-button-route">
       <div><i class="fas fa-walking"></i></div>
@@ -19,12 +19,16 @@
     </div>
   </div>
 
-  <div>
+<!--   <div>
     <div id="route-distance">Calculating distance...</div>
     <div id="route-duration">Calculating time...</div>
   </div>
-
+ -->
   <div id="route-instructions">
+    <div>Distance</div>
+    <div><span id="distance-display">Calculating distance...</span><span id="km-display"></span></div>
+    <div>Time</div>
+    <div><span id="time-display">Calculating time...</span></div>
   </div>
 
 </div>

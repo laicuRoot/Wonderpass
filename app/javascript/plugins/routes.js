@@ -9,12 +9,12 @@ const mapElement = document.getElementById('map2');
 
 const markers = JSON.parse(mapElement.dataset.markers);
 
-console.log(mapElement)
+console.log(markers)
 
   // var end = [markers[1].lng, markers[1].lat];
   var start = [markers[0].lng, markers[0].lat];
 
-  var transport_profile = "walking"
+  var transport_profile = "cycling"
 
   const last_item_index = markers.length - 1
 
@@ -79,25 +79,42 @@ function getRoute(endCoords) {
     };
     console.log(geojson)
 
-  document.getElementById("route-distance").innerHTML = Math.round(data.distance * 0.001) + "km";
-  document.getElementById("route-duration").innerHTML = new Date(data.duration * 1000).toISOString().substr(11, 8);
+  var route_distance = Math.round(data.distance * 0.001)
+  // document.getElementById("route-distance").innerHTML = route_distance + "km" ;
+  document.getElementById("distance-display").innerHTML = route_distance;
+  document.getElementById("km-display").innerHTML = "km";
+
+  var route_time = new Date(data.duration * 1000).toISOString().substr(11, 8)
+  // document.getElementById("route-duration").innerHTML = route_time;
+  document.getElementById("time-display").innerHTML = route_time;
   // Math.round(data.duration / 3600 ) + "hrs";
+    console.log(data.duration)
+
+
+  route_time_date = new Date(route_time)
+  console.log(route_time_date)
 
   var instruction_number = 1
 
-  data.legs.forEach((leg) => {
-      var newDiv = document.createElement("div");
-      newDiv.appendChild(document.createTextNode("New Leg"));
-      document.getElementById("route-instructions").appendChild(newDiv);
+  if ( (transport_profile=="walking" && route_time_date.getHours() > 4 ) || (transport_profile=="cycling" && route_time_date.getHours() > 6 ) || transport_profile=="driving" ) {
+    data.legs.forEach((leg) => {
+        var newDiv = document.createElement("div");
+        newDiv.appendChild(document.createTextNode("New Leg"));
+        document.getElementById("route-instructions").appendChild(newDiv);
 
-    leg.steps.forEach((step) => {
-      var newDiv = document.createElement("div");
-      newDiv.appendChild(document.createTextNode(instruction_number + " " + step.maneuver.instruction));
-      document.getElementById("route-instructions").appendChild(newDiv);
-      instruction_number += 1
-      // console.log(step.maneuver.instruction)
+      leg.steps.forEach((step) => {
+        var newDiv = document.createElement("div");
+        newDiv.appendChild(document.createTextNode(instruction_number + " " + step.maneuver.instruction));
+        document.getElementById("route-instructions").appendChild(newDiv);
+        instruction_number += 1
+        // console.log(step.maneuver.instruction)
+      })
     })
-  })
+  } else {
+    var newDiv = document.createElement("div");
+    newDiv.appendChild(document.createTextNode("Please choose an alternative mode of transportation."));
+    document.getElementById("route-instructions").appendChild(newDiv);
+  }
 
     // if the route already exists on the map, reset it using setData
     if (map.getSource('route')) {
@@ -180,7 +197,7 @@ const mapRoute = () => {
     // make an initial directions request that
     // starts and ends at the same location
 
-    getRoute(start);
+    // getRoute(start);
 
     // Add starting point to the map
     map.addLayer({
