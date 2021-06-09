@@ -28,19 +28,19 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
 
-const getElement = () => {
+const getMapElements = () => {
   if (document.getElementById("user-map")){
-    return document.getElementById("user-map");
+    return "user-map";
   } else if (document.getElementById("itinerary-map")){
-    return document.getElementById("itinerary-map");
-  } else{
-    return document.getElementById("map2");
+    return "itinerary-map";
+  } else {
+    return "map2";
   }
-}
+};
 
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
-  let cont = getElement();
+  let cont = getMapElements();
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     if (mapElement.dataset.markers) {
