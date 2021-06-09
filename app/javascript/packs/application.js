@@ -34,8 +34,8 @@ import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
-// if (document.querySelector('.itinerary-show')){
-//   import { mapRoute } from '../plugins/routes';
+// if (document.getElementById('map2')){
+import { generateRoutes } from '../plugins/routes';
 // }
 import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary';
@@ -56,7 +56,7 @@ document.addEventListener('turbolinks:load', () => {
   addOtherOption();
   initSlick();
   initAutocomplete();
-  // if (document.querySelector('.itinerary-show')){
-  //   mapRoute();
+  // if (document.getElementById('map2')){
+    generateRoutes();
   // }
 });
