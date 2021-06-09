@@ -27,7 +27,7 @@ end
     @markers = @locations.geocoded.map do |stamp|
       {
         lat: stamp.latitude,
-        lng: stamp.longitude,
+        lng: stamp.longitude
         # stamp_window: render_to_string(partial: "users/stamp_window", locals: { stamp: @stamps.find_by(location: location)})
         # raise
         # image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key)

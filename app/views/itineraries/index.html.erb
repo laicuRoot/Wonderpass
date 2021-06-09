@@ -41,7 +41,7 @@
       <h4 class='mb-3'>
         <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(current_user), class:'text-secondary itinerary-link' %>
       </h4>
-      <div id="map2"
+      <div id="itinerary-map"
            class = "map"
            data-markers="<%= @itinerary_markers.to_json %>"
            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
