@@ -41,7 +41,7 @@ const getMapElements = () => {
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
   let cont = getMapElements();
-  // (document.getElementById("user-map"))? "user-map" : "itinerary-map";
+  // (document.getElementById("user-map"))? "user-map" : "itinerary-map"; 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     if (mapElement.dataset.markers) {
