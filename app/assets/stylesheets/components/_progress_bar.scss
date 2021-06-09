@@ -1,6 +1,10 @@
-.progress_bar {
-  width: 200px;
-  height: 5px;
-  background-color: black;
-  border-radius: 12px;
+.progress-bar {
+  background-color: $yellow;
+  color: black;
+  font-size: 0.9rem;
+}
+
+.progress {
+  height: 2rem;
+  border-radius: 16px;
 }
