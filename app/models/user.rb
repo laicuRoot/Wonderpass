@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
   has_many :stampbooks, dependent: :destroy
-  has_many :itineraries
+  has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
   # validates :first_name, :last_name, :username, presence: true
   after_create :create_stampbook_and_stamps
