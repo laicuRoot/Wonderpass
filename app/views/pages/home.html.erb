@@ -1,5 +1,32 @@
 <div>
-  <%= render "main_banner" %>
-  <%= render "card_banner" %>
-  <%= render "shared/footer" %>
+ <div class="homepage-main-image">
+  <div class="homepage-main-text">
+    <div>
+      <h2>Welcome to</h2>
+      <h1>WonderPass</h1>
+    </div>
+    <div>
+      <h3>Travel the world and collect memories</h3>
+      <p>Discover, plan and collect stamps from historical, cultural and natural landmarks from across the globe.</p>
+    </div>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to '<i class="far fa-compass"></i> Continue your adventure now'.html_safe, user_path(current_user), class:'yellow-button-homepage' %>
+      <% else %>
+        <%= link_to '<i class="far fa-compass"></i> Start your adventure now'.html_safe, new_user_registration_path, class:'yellow-button-homepage' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="session-buttons">
+    <% if user_signed_in? %>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "yellow-button-log-in-out"%>
+    <% else %>
+      <%= link_to 'Create Account', new_user_registration_path, class:'create-account-link  margin-log-in-out' %>
+      <%= link_to 'Log In', new_user_session_path, class:'yellow-button-log-in-out margin-log-in-out' %>
+    <% end %>
+  </div>
+
+</div>
+
 </div>

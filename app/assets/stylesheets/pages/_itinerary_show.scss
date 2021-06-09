@@ -1,0 +1,64 @@
+.sidebar-itinerary {
+  height: 300px ;
+  width: 400px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  background-color: white;
+  border-radius: 12px;
+  background-size: cover;
+}
+
+
+.type-transport-buttons {
+  display: flex;
+  margin: 5px;
+  background-color: white;
+  border-radius: 12px;
+  background-size: cover;
+}
+
+.route-instructions {
+  height: 30px;
+  overflow: auto;
+}
+
+
+.round-yellow-button-route{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 50%;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+
+}
+
+.round-grey-button-route{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 50%;
+  background-color: grey;
+  color: white;
+  border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+}
