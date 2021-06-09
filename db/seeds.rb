@@ -20,7 +20,7 @@ locations = [{name: "Durdle Door", description: "Durdle Door is probably the mos
 url = 'https://randomuser.me/api/?results=5'
 users_serialized = URI.open(url).read
 users = JSON.parse(users_serialized)
-stamp_url = "https://source.unsplash.com/random?badges"
+stamp_url = {"https://source.unsplash.com/random?badges"}
 
 puts 'Cleaning DB'
 Location.destroy_all

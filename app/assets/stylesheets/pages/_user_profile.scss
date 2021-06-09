@@ -129,9 +129,9 @@
 .profile-box{
   position: relative;
   right: 0px;
-  transition: transform 0.8s ease-in;
-  -webkit-transition: transform 0.8s ease-in;
-  -moz-transition: transform 0.8s ease-in;
+  transition: transform 0.5s ease-in-out;
+  -webkit-transition: transform 0.5s ease-in-out;
+  -moz-transition: transform 0.5s ease-in-out;
 }
 
 .profile-box.hidden{
