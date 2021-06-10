@@ -33,10 +33,13 @@
   margin: 0;
 }
 
-#itinerary-map {
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  position: sticky;
-  padding: 0px 8px;
+.map-container{
+  height: 100%;
+  #itinerary-map {
+    width: 100%;
+    height: 90%;
+    top: 0;
+    position: sticky;
+    padding: 0px 8px;
+  }
 }
