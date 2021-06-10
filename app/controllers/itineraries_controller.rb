@@ -68,15 +68,13 @@ end
     @itinerary = Itinerary.find(params[:itinerary_id])
     @itinerary.active_itinerary = true
     @itinerary.save
-
-    redirect_back(fallback_location: user_itineraries_path(current_user))
+    redirect_to user_itineraries_path(current_user)
   end
 
   private
 
   def find_user
     @user = User.find(params[:user_id])
-
   end
 
   def itinerary_params

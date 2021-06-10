@@ -11,7 +11,7 @@
         <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'btn btn-outline-warning' %>
       </div>
       <% else %>
-        <% @itineraries.each do |itinerary| %>
+        <% @itineraries.order(updated_at: :desc).each do |itinerary| %>
           <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
             <div class="row g-0">
               <div class="col-4">
