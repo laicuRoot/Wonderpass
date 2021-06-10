@@ -1,5 +1,86 @@
 <div>
-  <%= render "main_banner" %>
-  <%= render "card_banner" %>
-  <%= render "shared/footer" %>
+ <div class="homepage-main-image">
+  <div class="homepage-main-text">
+    <div>
+      <h2 class="yellow-text">WELCOME TO</h2>
+      <h1 class="yellow-text">WONDERPASS</h1>
+    </div>
+    <div class="middle-text">
+      <h3>Travel the world and collect memories</h3>
+      <p>Discover, plan and collect stamps from historical, cultural and natural landmarks from across the globe.</p>
+    </div>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to '<i class="far fa-compass"></i> Continue your adventure now'.html_safe, user_path(current_user), class:'yellow-button-homepage' %>
+      <% else %>
+        <%= link_to '<i class="far fa-compass"></i> Start your adventure now'.html_safe, new_user_registration_path, class:'yellow-button-homepage' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="session-buttons">
+    <% if user_signed_in? %>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "yellow-button-log-in-out"%>
+    <% else %>
+      <%= link_to 'Create Account', new_user_registration_path, class:'create-account-link  margin-log-in-out' %>
+      <%= link_to 'Log In', new_user_session_path, class:'yellow-button-log-in-out margin-log-in-out' %>
+    <% end %>
+  </div>
+</div>
+
+<div class="general-info-homepage">
+  <h2 class="general-info-homepage-title">Go on epic quests to collect stamps from across the world</h2>
+
+  <div class="general-info-homepage-cards">
+    <img src="<%= asset_path('WP Homepage 7.png')%>" alt="" class="general-info-homepage-pics">
+    <div class="general-info-homepage-cards-text">
+      <i class="fas fa-search-location homepage-icons"></i>
+      <p>Browse WonderPass to find stamps to collect from a variety of stampbooks. You can also create your own stampbook.</p>
+    </div>
+  </div>
+
+  <div class="general-info-homepage-cards">
+    <div class="general-info-homepage-cards-text">
+      <i class="fas fa-map-marked-alt homepage-icons"></i>
+      <p>Build your itinerary, or simply choose one built by other WonderPass travelers.</p>
+    </div>
+    <img src="<%= asset_path('WP Homepage 6.png')%>" alt="" class="general-info-homepage-pics">
+  </div>
+
+  <div class="general-info-homepage-cards">
+    <img src="<%= asset_path('WP Homepage 4.png')%>" alt="" class="general-info-homepage-pics">
+    <div class="general-info-homepage-cards-text">
+      <i class="fas fa-landmark homepage-icons"></i>
+      <p>Visit the wonders and enjoy the adventure!</p>
+    </div>
+  </div>
+
+  <div class="general-info-homepage-cards">
+    <div class="general-info-homepage-cards-text">
+      <i class="fas fa-camera homepage-icons"></i>
+      <p>To collect a stamp, simply take a picture of the landmark and upload it on WonderPass. That's really it! And also, don't forget to turn on the geolocation feature on your device.</p>
+    </div>
+    <img src="<%= asset_path('WP Homepage 5.png')%>" alt="" class="general-info-homepage-pics">
+  </div>
+
+  <div class="general-info-homepage-cards">
+    <img src="<%= asset_path('WP Homepage 8.png')%>" alt="" class="general-info-homepage-pics">
+    <div class="general-info-homepage-cards-text">
+      <i class="fas fa-users homepage-icons"></i>
+      <p>Impress your friends and the whole WonderPass community by sharing your stamp collection with them.</p>
+    </div>
+  </div>
+</div>
+
+<div class="homepage-end">
+  <p>What are you waiting for?</p>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to '<i class="far fa-compass"></i> Continue your adventure now'.html_safe, user_path(current_user), class:'yellow-button-homepage' %>
+      <% else %>
+        <%= link_to '<i class="far fa-compass"></i> Start your adventure now'.html_safe, new_user_registration_path, class:'yellow-button-homepage' %>
+      <% end %>
+    </div>
+</div>
+
 </div>

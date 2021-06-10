@@ -1,89 +1,247 @@
-
-.main-banner {
-  position: relative;
-  width: 100%;
-  height: 800px;
-  left: 0px;
-  top: 0px;
-  overflow: hidden;
-  color: white;
-
-  background-image: url(asset_path('trafalgar.png'));
-  background-repeat: no-repeat, repeat;
+.homepage-main-image {
+  height: 100vh;
+  min-height: 200px;
+  background: url('WP Homepage 2.png') no-repeat center center;
   background-size: cover;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
-  .main-title {
-    position: absolute;
-    width: 491px;
-    height: 172px;
-    left: 100px;
-    top: 90px;
-    font-weight: bold;
-    font-size: 71px;
-    line-height: 86px;
-    letter-spacing: 0.2px;
-    text-shadow: 0px 4px 6px #000000;
+.homepage-main-text {
+  font-family: 'Chivo', sans-serif;
+  margin: 12vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  h1 {
+    font-size: 60px;
+    font-weight: 900;
   }
-
-  .session-buttons {
-    position: absolute;
-    width: 349px;
-    height: 54px;
-    left: 75%;
-    top: 12%;
-
-    a {
-      color: $bright-yellow;
-      padding-right: 16px;
-    }
-
-    .sign-out {
-      a{
-        color: white;
-        text-decoration: none;
-
-        &:hover {
-         color: black;
-        }
-      }
-    }
+  h2 {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 20px;
+    margin-bottom: 0.1rem;
   }
-
-
-  .value-prop {
-    position: absolute;
-    width: 452px;
-    height: 437px;
-    left: 103px;
-    top: 245px;
-    border-radius: 93px;
-
-    input {
-      color: $mustard;
-      font-weight: bold;
-      margin-top: 32px;
-    }
-  }
-
-  .stamp-and-path {
-
-    overflow: hidden;
-
-    .british-stamp {
-      position: absolute;
-      width: 186.73px;
-      height: 188.22px;
-      left: 59%;
-      top: 45%;
-    }
-
-    .path-vector {
-      position: absolute;
-      width: 62%;
-      height: 467px;
-      left: 38.89%;
-      top: 57%;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    }
+  color: white;
+  text-shadow: 0px 0px 50px rgba(0,0,0,0.8);
+  .yellow-text {
+    color: $bright-yellow;
   }
 }
+
+.middle-text {
+  margin: 10px;
+}
+
+.yellow-button-homepage{
+  padding: 10px 25px;
+  margin: 5px;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 40px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.02);
+  }
+}
+
+
+.yellow-button-log-in-out{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 70px;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 10px;
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
+  }
+}
+
+  .session-buttons {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+
+    .create-account-link {
+      color: $white;
+      &:hover{
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    .margin-log-in-out {
+      margin-left: 15px;
+    }
+  }
+
+
+.general-info-homepage {
+  padding: 10vh 20vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.general-info-homepage-title {
+  font-weight: 600;
+  color: $bright-yellow;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+.general-info-homepage-pics {
+  border-radius: 15px;
+  height: 250px;
+  width: 400px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.general-info-homepage-cards {
+  display: flex;
+  margin: 10px;
+}
+
+.general-info-homepage-cards-text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+  p {
+    overflow: hidden;
+    height: 50px;
+  }
+}
+
+.homepage-icons {
+  color: $bright-yellow;
+  margin: 20px;
+  font-size: 40px;
+}
+
+
+.homepage-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 150px;
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+
+
+
+
+
+// .main-banner {
+//   position: relative;
+//   width: 100%;
+//   height: 800px;
+//   left: 0px;
+//   top: 0px;
+//   overflow: hidden;
+//   color: white;
+
+//   // background-image: url(asset_path('trafalgar.png'));
+//   // background-repeat: no-repeat, repeat;
+//   // background-size: cover;
+
+//   .main-title {
+//     position: absolute;
+//     width: 491px;
+//     height: 172px;
+//     left: 100px;
+//     top: 90px;
+//     font-weight: bold;
+//     font-size: 71px;
+//     line-height: 86px;
+//     letter-spacing: 0.2px;
+//     text-shadow: 0px 4px 6px #000000;
+//   }
+
+//   // .session-buttons {
+//   //   position: absolute;
+//   //   width: 349px;
+//   //   height: 54px;
+//   //   left: 75%;
+//   //   top: 12%;
+
+//   //   a {
+//   //     color: $bright-yellow;
+//   //     padding-right: 16px;
+//   //   }
+
+//   //   .sign-out {
+//   //     a{
+//   //       color: white;
+//   //       text-decoration: none;
+
+//   //       &:hover {
+//   //        color: black;
+//   //       }
+//   //     }
+//   //   }
+//   // }
+
+
+//   .value-prop {
+//     position: absolute;
+//     width: 452px;
+//     height: 437px;
+//     left: 103px;
+//     top: 245px;
+//     border-radius: 93px;
+
+//     input {
+//       color: $mustard;
+//       font-weight: bold;
+//       margin-top: 32px;
+//     }
+//   }
+
+//   .stamp-and-path {
+
+//     overflow: hidden;
+
+//     .british-stamp {
+//       position: absolute;
+//       width: 186.73px;
+//       height: 188.22px;
+//       left: 59%;
+//       top: 45%;
+//     }
+
+//     .path-vector {
+//       position: absolute;
+//       width: 62%;
+//       height: 467px;
+//       left: 38.89%;
+//       top: 57%;
+//       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//     }
+//   }
+// }
