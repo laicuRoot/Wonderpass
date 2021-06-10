@@ -19,7 +19,7 @@
         <% if @percent.floor.zero? %>
           <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
         <% else %>
-          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
+          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent.to_s.sub(/\.?0+$/, '') %>%</div>
         <% end %>
       </div>
       <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
