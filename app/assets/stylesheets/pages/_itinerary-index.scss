@@ -59,3 +59,15 @@
   font-size: 3rem;
   font-weight: 700;
 }
+
+.destroy-container {
+  position: absolute;
+  right: 16px;
+  top: -12px;
+  width: 40px;
+  font-size: 16px;
+}
+
+.destroy-btn {
+  color: $bright-yellow;
+}
