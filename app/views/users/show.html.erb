@@ -4,7 +4,7 @@
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 <div class="container user-profile-cont">
-  <div class="card profile-box" style ="transition: right 2s ease-in-out">
+  <div class="card profile-box">
     <% if @user.photo.attached? %>
       <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
     <% else %>

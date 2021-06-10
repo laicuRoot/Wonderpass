@@ -20,11 +20,17 @@ locations = [{name: "Durdle Door", description: "Durdle Door is probably the mos
 url = 'https://randomuser.me/api/?results=5'
 users_serialized = URI.open(url).read
 users = JSON.parse(users_serialized)
-stamp_url = "https://source.unsplash.com/random?badges"
+stamp_url = {
+  "Culinary" => "http://res.cloudinary.com/laicuroot/image/upload/v1623269729/v4hwladdia8itca44jqh.png",
+  "Sports" => "http://res.cloudinary.com/laicuroot/image/upload/v1623269793/n8epjjjfaftulhgcn20k.png",
+	"Historical" => "http://res.cloudinary.com/laicuroot/image/upload/v1623269836/opcwnrbhljb1wl32saub.png",
+	"Cultural" => "http://res.cloudinary.com/laicuroot/image/upload/v1623269861/ds36ac9c074gmvldnc8b.png",
+	"Natural" => "http://res.cloudinary.com/laicuroot/image/upload/v1623269890/g65zo5fk6ijnrw4s2byb.png"
+}
 
 puts 'Cleaning DB'
-Location.destroy_all
 User.destroy_all
+Location.destroy_all
 puts 'DB is clean'
 puts 'Creating Locations'
 
@@ -32,7 +38,8 @@ locations.each do |location|
 	puts "Creating #{location[:name]}"
   location_pic = URI.open(location[:location_pic])
 	sleep 5
-	stamp_pic = URI.open(stamp_url)
+	stamp_pic = URI.open(stamp_url[location[:category]])
+	puts stamp_pic
   place = Location.new(
     location_name: location[:name],
     location_description: location[:description],
