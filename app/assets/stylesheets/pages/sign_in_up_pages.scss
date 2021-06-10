@@ -1,0 +1,140 @@
+.sign-up-background-image {
+  height: 100vh;
+  min-height: 200px;
+  background: url('WP Homepage 9.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-family: 'Chivo', sans-serif;
+    display: flex;
+    font-weight: 600;
+    color: $bright-yellow;
+    text-shadow: 0px 0px 15px rgba(0,0,0,0.5)
+  }
+}
+
+.sign-up-text-container {
+  position: absolute;
+  top: 10%;
+}
+
+.sign-up-container {
+  .form-group {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    margin: 0px;
+    text-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+  }
+  .form-control {
+    border-radius: 30px;
+        background-color: rgba(255,255,255,0.5);
+  }
+
+}
+
+.form-actions {
+  padding: 5px 25px;
+  margin: 10px;
+  background-color: $bright-yellow;
+  color: white;
+  border-radius: 40px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  text-align: center;
+  width: 140px;
+  &:hover{
+    text-decoration: none;
+    color: white;
+    transition: all .2s ease-in-out;
+    transform: scale(1.08);
+  }
+  .btn {
+    color: white;
+  }
+}
+
+.sign-up-button {
+  width: 10px;
+}
+
+.names-container {
+    display: flex;
+  justify-content: space-between;
+}
+
+.username-photo-container {
+    display: flex;
+  justify-content: space-between;
+}
+
+.password-container {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+
+
+
+
+
+
+.sign-in-background-image {
+  height: 100vh;
+  min-height: 200px;
+  background: url('WP Homepage 3.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-family: 'Chivo', sans-serif;
+    display: flex;
+    font-weight: 600;
+  }
+}
+
+.email-and-password-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  .form-group {
+    padding: 10px;
+    text-align: center;
+    color: grey;
+    margin: 0px;
+  }
+  .form-control {
+    border-radius: 30px;
+  }
+}
+
+.log-in-content {
+  position: absolute;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    color: $bright-yellow;
+    text-shadow: 0px 0px 25px rgba(0,0,0,0.3);
+  }
+  .user_remember_me {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    color: grey;
+  }
+}
+
+
+
+
+
+
+
+
+
+
