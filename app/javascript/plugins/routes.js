@@ -247,8 +247,10 @@ const createMap = (start) => {
 
 const generateMarkers = (map, markers) => {
   markers.forEach((marker) => {
+    const popup = new mapboxgl.Popup().setHTML(marker.stamp_window);
     new mapboxgl.Marker()
       .setLngLat([marker.lng, marker.lat])
+      .setPopup(popup)
       .addTo(map);
   });
   
