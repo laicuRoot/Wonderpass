@@ -32,7 +32,7 @@ import 'controllers'
 import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
-import { addSelectedClass } from '../plugins/add_selected';
+// import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
 import { generateRoutes } from '../plugins/routes';
 import { initAutocomplete } from '../plugins/init_autocomplete';

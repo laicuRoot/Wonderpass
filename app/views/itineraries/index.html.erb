@@ -1,6 +1,5 @@
-<div class="container itinerary-show">
-  <div class="row mt-5 mb-5">
-
+<div class="background-box">
+  <div class="container itinerary-show row">
     <div class="col-sm-12 col-md-6">
       <div class='text-center'>
         <h1 class='text-info main-title'>My Itineraries</h1>
@@ -37,7 +36,7 @@
       <% end %>
     </div>
 
-    <div class="col-sm-12 col-md-6 mt-3">
+    <div class="col-sm-12 col-md-6 mt-3 map-container">
       <h4 class='mb-3'>
         <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(current_user), class:'text-secondary itinerary-link' %>
       </h4>
