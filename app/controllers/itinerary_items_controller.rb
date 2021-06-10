@@ -45,7 +45,7 @@ class ItineraryItemsController < ApplicationController
 
   def get_filter
     @distance = params[:distance] == "Other" ? params[:query].to_i : params[:distance].to_i
-    @categories = params[:categories].values
+    @categories = params[:categories] ? params[:categories].values : Location.all.map{|location| location.category}.uniq
     if params[:add_completed].to_i != 0
       @completed = true
     end

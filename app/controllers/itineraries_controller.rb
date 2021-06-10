@@ -38,7 +38,7 @@ end
   def filter
     @itinerary = Itinerary.find(params[:id])
     @categories = Location.all.map{|location| location.category}.uniq
-    @distances = [0, 5, 10, 20, 50, "Other"]
+    @distances = [5, 10, 20, 50, "Other"]
   end
 
   def new
