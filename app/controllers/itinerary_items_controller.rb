@@ -50,4 +50,8 @@ class ItineraryItemsController < ApplicationController
       @completed = params[:add_completed]
     end
   end
+
+  def activate
+    @itinerary.active_itinerary = true
+  end
 end
