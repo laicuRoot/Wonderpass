@@ -32,8 +32,8 @@
            <div id = "user-menu-exit" class ="menu-button">X</i></div>
            <h2>Actions</h2>
            <ul>
-             <li><%= link_to "See #{@user.username} stampbook", user_stampbooks_path(@user) %></li>
-             <li><%= link_to "See #{@user.username} saved Itineraries", user_itineraries_path(@user) %></li>
+             <li><%= link_to "See #{@user.first_name} stampbook", user_stampbooks_path(@user) %></li>
+             <li><%= link_to "See #{@user.first_name} saved Itineraries", user_itineraries_path(@user) %></li>
            </ul>
         </div>
       </div>
