@@ -1,6 +1,5 @@
 <div class="background-box">
   <div class="container card-container">
-
     <% if @user == current_user %>
       <div class="row mt-2">
         <div class="col-sm-12 text-center">
@@ -48,8 +47,8 @@
     <% else %>
       <div class="row mt-2">
         <div class="col-sm-12 text-center">
-          <h1 class='text-info bolder'> <%= @user.username %> Stampbooks </h1>
-          <h2> <%= @user.username  %> has <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
+          <h1 class='text-info bolder'> <%= @user.first_name %>'s Stampbooks </h1>
+          <h2> <%= @user.first_name  %> has <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
         </div>
       </div>
 
@@ -82,7 +81,7 @@
 
       <div class="row text-center mt-5">
         <div class="col-sm-12">
-          <%= link_to("Go back to your profile", user_path(current_user) , class:'btn btn-info') %>
+          <%= link_to("Go back to #{@user.first_name}'s profile", user_path(@user) , class:'btn btn-info') %>
         </div>
       </div>
     <% end %>
