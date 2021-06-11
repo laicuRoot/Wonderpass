@@ -3,38 +3,39 @@
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
-<div class="container user-profile-cont">
-  <div class="card profile-box">
-    <% if @user.photo.attached? %>
-      <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
-    <% else %>
-      <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
-    <% end %>
-    <div class="card-body">
-      <h1 class="card-title"><%= @user.first_name %></h1>
-      <p class="card-text">Number of stamps collected</p>
-      <h3><%= @stamp_count %></h3>
-      <p class="card-text">Number of km travelled</p>
-      <h3>5</h3>
-      <p>Traveller since</p>
-       <h3><%= @user.created_at.strftime("%d %B %Y") %></h3>
-      <%= link_to "See stampbook", user_stampbooks_path(@user), class: "yellow-button" %>
+<% if @user == current_user %>
+  <%= render 'userprofile', user: current_user %>
+<% else %>
+    <div class="container user-profile-cont">
+      <div class="card profile-box">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
+        <% else %>
+          <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
+        <% end %>
+        <div class="card-body">
+          <h1 class="card-title"><%= @user.first_name %></h1>
+          <p class="card-text">Number of stamps collected</p>
+          <h3><%= @stamp_count %></h3>
+          <p class="card-text">Number of km travelled</p>
+          <h3>5</h3>
+          <p>Traveller since</p>
+           <h3><%= @user.created_at.strftime("%d %B %Y") %></h3>
+          <%= link_to "See stampbook", user_stampbooks_path(@user), class: "yellow-button" %>
+        </div>
+        <%= link_to "Sign-out", destroy_user_session_path, method: :delete, class: "yellow-button log-out" %>
+        <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
+      </div>
+      <div class="user-menu">
+        <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
+        <div class = "user-menu-popup">
+           <div id = "user-menu-exit" class ="menu-button">X</i></div>
+           <h2>Actions</h2>
+           <ul>
+             <li><%= link_to "See #{@user.username} stampbook", user_stampbooks_path(@user) %></li>
+             <li><%= link_to "See #{@user.username} saved Itineraries", user_itineraries_path(@user) %></li>
+           </ul>
+        </div>
+      </div>
     </div>
-    <%= link_to "Sign-out", destroy_user_session_path, method: :delete, class: "yellow-button log-out" %>
-    <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
-  </div>
-  <div class="user-menu">
-    <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
-    <div class = "user-menu-popup">
-       <div id = "user-menu-exit" class ="menu-button">X</i></div>
-       <h2>Actions</h2>
-       <ul>
-         <li><%= link_to "Collect Your Stamps", "#" %></li>
-         <li><%= link_to "Create Itinerary", new_user_itinerary_path(@user) %></li>
-         <li><%= link_to "See Saved Itineraries", user_itineraries_path(@user) %></li>
-         <li><%= link_to "Edit Profile", edit_user_path(@user)%></li>
-         <li><%= link_to "Sign-out", destroy_user_session_path, method: :delete %></li>
-       </ul>
-    </div>
-  </div>
-</div>
+<% end %>
