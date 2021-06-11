@@ -79,7 +79,7 @@
               </div>
               <div class="col-8 d-flex align-items-center justify-content-around">
                 <div class="card-body">
-                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, user_itinerary_path(current_user,itinerary), class:'itinerary-title'  %></h5>
+                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, user_itinerary_path(@user,itinerary), class:'itinerary-title'  %></h5>
                 </div>
                 <div class='activation-button mr-2'>
                   <% if itinerary.active_itinerary %>
