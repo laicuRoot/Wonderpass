@@ -31,6 +31,8 @@ stamp_url = {
 puts 'Cleaning DB'
 User.destroy_all
 Location.destroy_all
+Achievement.destroy_all
+Badge.destroy_all
 puts 'DB is clean'
 puts 'Creating Locations'
 
@@ -78,3 +80,31 @@ users['results'].each do |user|
 		puts "#{stamp.location.location_name} stamp is created!"
 	end
 end
+
+puts 'creating badges'
+gold_badge = Badge.new(
+	name: "Gold",
+	description: "Collected 90% of your stamps!",
+	color: "#FFD700",
+	image_url:
+)
+gold_badge.save!
+puts "#{gold_badge.name} badge is created!"
+
+silver_badge = Badge.new(
+  name: "Silver",
+	description: "Collected 50% of your stamps!",
+	color: "#C0C0C0",
+	image_url: '<i class="fas fa-star"></i>'
+)
+silver_badge.save!
+puts "#{silver_badge.name} badge is created!"
+
+bronze_badge = Badge.new(
+  name: "Bronze",
+	description: "Collected 50% of your stamps!",
+	color: "#cc6633",
+	image_url: '<i class="fas fa-star"></i>'
+)
+bronze_badge.save!
+puts "#{bronze_badge.name} badge is created!"
