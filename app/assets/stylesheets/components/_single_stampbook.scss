@@ -106,6 +106,7 @@
 
 
 .stamp-background {
+  position:relative;
   color: #bebebe;
   background-color: rgba(203,203,203, 0.1);
   border: 3px solid;
@@ -119,12 +120,29 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transition: 0.3s ease-in-out;
   h4 {
     font-size: 15px;
   }
   h3 {
     font-size: 20px;
     white-space: nowrap;
+  }
+  &:hover{
+    transform:scale(115%);
+    cursor: pointer;
+    border-color: $bright-yellow;
+    background-color: rgba($bright-yellow, 0.3);
+    // .stamp-view-icon{
+    //   color: rgba($bright-yellow,0.7);
+    //   font-size: 5rem;
+    //   top:3%;
+    //   right: 5%;
+    //   background-color: rgba(white, 0.4);
+    //   border-radius: 50%;
+    //   padding: 10px 40px;
+    //   z-index:0;
+    // }
   }
 }
 
@@ -167,4 +185,69 @@
 .btn-information{
   position:relative;
   bottom:80px;
+}
+
+.stamp-view-icon{
+  color: #CBCBCB;
+  position:absolute;
+  font-size: 1.2rem;
+  top:2px;
+  right:5px;
+  z-index:3;
+  transition: 0.2s ease-in-out;
+}
+
+.collected{
+  position: relative;
+  font-size: 2.2rem;
+  transition: 0.5s ease-in-out;
+  &:hover i{
+    font-size: 3rem;
+    text-shadow: 0 0 8px rgba($bright-yellow, 0.8);
+    animation: fly .6s ease forwards;
+  }
+}
+.badge-tooltiptext {
+  position:absolute;
+  bottom: -60%;
+  left: -30px;
+  width: 200%;
+  opacity: 0;
+  font-size: 10px;
+  color: $black;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba($black, 0.6);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.not-collected-tooltip{
+  position: absolute;
+  width: 400%;
+  bottom: -300%;
+  background-color: $white;
+}
+
+.badge-style:hover{
+  position:relative;
+  .badge-tooltiptext{
+    opacity: 1;
+  }
+}
+
+
+@keyframes fly {
+  8.3% { transform: translate(50px, -60px) rotate(-60deg); }
+  16.66% { transform: translate(50px, -100px) rotate(-120deg); }
+  25% { transform: translate(0, -120px) rotate(-180deg); }
+  33.33% { transform: translate(-50px, -100px) rotate(-240deg); }
+  41.67% { transform: translate(-50px, -50px) rotate(-300deg); }
+  50% { transform: translate(0, 0) rotate(-360deg); }
+  58.3% { transform: translate(50px, 60px) rotate(60deg); }
+  66.66% { transform: translate(50px, 100px) rotate(120deg); }
+  75% { transform: translate(0, 120px) rotate(180deg); }
+  83.33% { transform: translate(-50px, 100px) rotate(240deg); }
+  91.67% { transform: translate(-50px, 50px) rotate(300deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
 }

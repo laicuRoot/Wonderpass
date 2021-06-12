@@ -86,8 +86,10 @@ gold_badge = Badge.new(
 	name: "Gold",
 	description: "Collected 90% of your stamps!",
 	color: "#FFD700",
-	image_url:
+	image_url: '<i class="fas fa-star"></i>',
+	value: 50
 )
+
 gold_badge.save!
 puts "#{gold_badge.name} badge is created!"
 
@@ -95,16 +97,19 @@ silver_badge = Badge.new(
   name: "Silver",
 	description: "Collected 50% of your stamps!",
 	color: "#C0C0C0",
-	image_url: '<i class="fas fa-star"></i>'
+	image_url: '<i class="fas fa-star"></i>',
+	value: 20
 )
+
 silver_badge.save!
 puts "#{silver_badge.name} badge is created!"
 
 bronze_badge = Badge.new(
   name: "Bronze",
-	description: "Collected 50% of your stamps!",
+	description: "Collected 25% of your stamps!",
 	color: "#cc6633",
-	image_url: '<i class="fas fa-star"></i>'
+	image_url: '<i class="fas fa-star"></i>',
+	value: 10;
 )
 bronze_badge.save!
 puts "#{bronze_badge.name} badge is created!"

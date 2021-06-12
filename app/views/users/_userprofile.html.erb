@@ -9,8 +9,8 @@
       <h1 class="card-title"><%=  user.first_name %></h1>
       <p class="card-text">Number of stamps collected</p>
       <h3><%= @stamp_count %></h3>
-      <p class="card-text">Number of km travelled</p>
-      <h3>5</h3>
+      <p class="card-text">Number of stars earned</p>
+      <h3><%= @achievements %></h3>
       <p>Traveller since</p>
        <h3><%= user.created_at.strftime("%d %B %Y") %></h3>
       <%= link_to "See stampbook", user_stampbooks_path(user), class: "yellow-button" %>
