@@ -51,6 +51,7 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem "algoliasearch-rails"
+gem 'merit'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

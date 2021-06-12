@@ -1,6 +1,6 @@
-<div class="container itinerary-show">
-  <div class="row mt-5 mb-5">
-
+<% if current_user == @user %>
+<div class="background-box">
+  <div class="container itinerary-show row">
     <div class="col-sm-12 col-md-6">
       <div class='text-center'>
         <h1 class='text-info main-title'>My Itineraries</h1>
@@ -12,7 +12,58 @@
         <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'btn btn-outline-warning' %>
       </div>
       <% else %>
-        <% @itineraries.each do |itinerary| %>
+        <% @itineraries.order(updated_at: :desc).each do |itinerary| %>
+          <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
+            <div class="row g-0">
+              <div class="col-4">
+                <%= cl_image_tag itinerary.itinerary_items.first.stamp.location.location_photos.first.key, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
+              </div>
+              <div class="col-8 d-flex align-items-center justify-content-around">
+                <div class='destroy-container'>
+                  <%= link_to '<i class="fas fa-minus-circle destroy-btn"></i>'.html_safe, itinerary_path(itinerary), method: :delete,:data => { :confirm => 'Do you want to delete this itinerary?' } %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, user_itinerary_path(current_user,itinerary), class:'itinerary-title'  %></h5>
+                </div>
+                <div class='activation-button mr-2'>
+                  <% if itinerary.active_itinerary %>
+                    <button class="itinerary-card-btn active-itinerary" id="itinerary-btn">Active</button>
+                  <% else %>
+                    <%= button_to "Set Active", itinerary_activate_path(itinerary), class:"itinerary-card-btn inactive-itinerary", remote: true %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-sm-12 col-md-6 mt-3 map-container">
+      <h4 class='mb-3'>
+        <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(current_user), class:'text-secondary itinerary-link' %>
+      </h4>
+      <div id="itinerary-map"
+          class = "map"
+          data-markers="<%= @itinerary_markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="background-box">
+  <div class="container itinerary-show row">
+    <div class="col-sm-12 col-md-6">
+      <div class='text-center'>
+        <h1 class='text-info main-title'><%= @user.first_name %>'s Itineraries</h1>
+      </div>
+      <% if @itineraries.length == 0 %>
+      <div class='text-center'>
+        <h4><%= @user.first_name %> doesn't have any itineraries yet</h4>
+      </div>
+      <% else %>
+        <% @itineraries.order(updated_at: :desc).each do |itinerary| %>
           <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
             <div class="row g-0">
               <div class="col-4">
@@ -25,10 +76,14 @@
               </div>
               <div class="col-8 d-flex align-items-center justify-content-around">
                 <div class="card-body">
-                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
+                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, user_itinerary_path(@user,itinerary), class:'itinerary-title'  %></h5>
                 </div>
-                <div class='mr-2'>
-                  <button class='itinerary-card-btn' id='itinerary-btn'>Set Active</button>
+                <div class='activation-button mr-2'>
+                  <% if itinerary.active_itinerary %>
+                    <button class="itinerary-card-btn active-itinerary" id="itinerary-btn">Active</button>
+                  <% else %>
+                    <%= button_to "Set Active", itinerary_activate_path(itinerary), class:"itinerary-card-btn inactive-itinerary", remote: true %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -37,9 +92,9 @@
       <% end %>
     </div>
 
-    <div class="col-sm-12 col-md-6 mt-3">
+    <div class="col-sm-12 col-md-6 mt-3 map-container">
       <h4 class='mb-3'>
-        <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(current_user), class:'text-secondary itinerary-link' %>
+        <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(@user), class:'text-secondary itinerary-link' %>
       </h4>
       <div id="itinerary-map"
           class = "map"
@@ -49,3 +104,4 @@
     </div>
   </div>
 </div>
+<% end %>
