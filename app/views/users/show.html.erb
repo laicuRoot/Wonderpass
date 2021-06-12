@@ -4,7 +4,7 @@
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
 <% if @user == current_user %>
-  <%= render 'userprofile', user: current_user %>
+  <%= render 'userprofile', user: @user %>
 <% else %>
     <div class="container user-profile-cont">
       <div class="card profile-box">

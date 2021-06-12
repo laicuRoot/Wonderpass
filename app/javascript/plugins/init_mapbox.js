@@ -15,7 +15,7 @@ const addMarkers = (map, markers) =>{
 	markers.forEach((marker) => {
 		  const popup = new mapboxgl.Popup().setHTML(marker.stampWindow);
 			const pic = customiseMarkers;
-      let completedColor = "#FCF5DC";
+      let completedColor = "#8f8f8f";
       if (marker.stampStatus){
         completedColor = "#FFDE55";
       }
