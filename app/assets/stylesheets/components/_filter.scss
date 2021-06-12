@@ -16,7 +16,12 @@
   display: inline-block;
   font-size: 1rem;
   border-radius: 1rem;
-  padding: 2rem 2rem;  
+  box-shadow: border-box;
+  padding: 20% 0;
+  text-align: center;
+  vertical-align: center;
+  width: 6.67rem;
+  height: 5rem;
   background-color: rgba($bright-yellow, 0.4);
   color: $black;
   border: 1px solid $bright-yellow;
@@ -26,8 +31,7 @@
 
 .tag-selector:checked + label {
   background-color: $bright-yellow;
-  color: $black;
-  color: white;
+  color: $white;
 }
 
 .distance-item {

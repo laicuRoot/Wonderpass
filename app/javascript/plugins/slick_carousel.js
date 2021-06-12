@@ -10,8 +10,7 @@ const initSlick = () => {
 
   if($('.form-categories')){
     $('.form-categories').slick({
-      slidesToShow: 4,
-      infinite: true
+      slidesToShow: 5,
     });
   }
 
