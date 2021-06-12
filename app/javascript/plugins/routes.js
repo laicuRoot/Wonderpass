@@ -11,13 +11,18 @@ const addToggle = () => {
 }
 
 const createDirections = (data) =>{
-  document.getElementById("route-distance").innerHTML = Math.round(data.distance * 0.001) + "km";
-  document.getElementById("route-duration").innerHTML = new Date(data.duration * 1000).toISOString().substr(11, 8);
+  document.getElementById("route-distance").innerHTML = `Distance: ${Math.round(data.distance * 0.001)}km`;
+  document.getElementById("route-duration").innerHTML = `Time expected: ${new Date(data.duration * 1000).toISOString().substr(11, 8)}`;
+  console.log("time", data.duration)
   let instructionNumber = 1
   let routeInfo = document.getElementById("route-instructions");
+  routeInfo.innerHTML = "";
+  console.log(data.legs);
+  let journeyCount = 0;
   data.legs.forEach((leg) => {
-    routeInfo.insertAdjacentHTML("beforeend", "<div class = 'route-header'>New Leg</div>");
-    routeInfo.insertAdjacentHTML("beforeend", "<div class ='route-toggle'></div>");
+    journeyCount += 1;
+    routeInfo.insertAdjacentHTML("beforeend", `<div class = 'route-header' style: "display:flex;"><p style="font-weight:bold; width:90%; display:inline-block;">Leg ${journeyCount} - ${leg.summary}</p><i class="fas fa-caret-down"></i></div>`);
+    routeInfo.insertAdjacentHTML("beforeend", "<div class = 'route-toggle hidden-route'></div>");
     leg.steps.forEach((step) => {
       routeInfo.lastChild.insertAdjacentHTML("beforeend", `<div class = 'route-details'>${instructionNumber} ${step.maneuver.instruction}</div>`)
       instructionNumber += 1
@@ -93,52 +98,52 @@ const getRoute = (endCoords, transportProfile, map, markers) => {
         'line-opacity': 0.75
       }
     });
-  if (map.getSource('routearrows')) {
-    map.getSource('routearrows').setData(route);
-  } else {
-    map.addLayer({
-      id: 'routearrows',
-      type: 'symbol',
-      source: {
-            type: 'geojson',
-            data: {
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'LineString',
-                coordinates: route
-              }
-            }
-          },
-      layout: {
-        'symbol-placement': 'line',
-        'text-field': '▶',
-        'text-size': [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          12, 24,
-          22, 120,
-          40, 100
-        ],
-        'symbol-spacing': [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          12, 30,
-          22, 160,
-          40, 200
-        ],
-        'text-keep-upright': false
-      },
-      paint: {
-        'text-color': '#FFDE55',
-        'text-halo-color': 'hsl(55, 11%, 96%)',
-        'text-halo-width': 3
-      }
-    }, 'waterway-label');
+  // if (map.getSource('routearrows')) {
+  //   map.getSource('routearrows').setData(route);
+  // } else {
+  //   map.addLayer({
+  //     id: 'routearrows',
+  //     type: 'symbol',
+  //     source: {
+  //           type: 'geojson',
+  //           data: {
+  //             type: 'Feature',
+  //             properties: {},
+  //             geometry: {
+  //               type: 'LineString',
+  //               coordinates: route
+  //             }
+  //           }
+  //         },
+  //     layout: {
+  //       'symbol-placement': 'line',
+  //       'text-field': '▶',
+  //       'text-size': [
+  //         "interpolate",
+  //         ["linear"],
+  //         ["zoom"],
+  //         12, 24,
+  //         22, 120,
+  //         40, 100
+  //       ],
+  //       'symbol-spacing': [
+  //         "interpolate",
+  //         ["linear"],
+  //         ["zoom"],
+  //         12, 30,
+  //         22, 160,
+  //         40, 200
+  //       ],
+  //       'text-keep-upright': false
+  //     },
+  //     paint: {
+  //       'text-color': '#FFDE55',
+  //       'text-halo-color': 'hsl(55, 11%, 96%)',
+  //       'text-halo-width': 3
+  //     }
+  //   }, 'waterway-label');
 
-      }
+  //     }
     };
   };
       
