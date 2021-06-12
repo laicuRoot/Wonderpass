@@ -15,12 +15,7 @@
           <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
             <div class="row g-0">
               <div class="col-4">
-              <%  first_itinerary_item = itinerary.itinerary_items.first.stamp_id
-                  itinerary_stamp = Stamp.find(first_itinerary_item)
-                  itinerary_stamp_location = Location.find(itinerary_stamp.location_id)
-                  location_photo = itinerary_stamp_location.location_photos.first
-                %>
-                <%= cl_image_tag location_photo.key, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
+                <%= cl_image_tag itinerary.itinerary_items.first.stamp.location.location_photos.first.key, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
               </div>
               <div class="col-8 d-flex align-items-center justify-content-around">
                 <div class='destroy-container'>
