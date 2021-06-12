@@ -1,0 +1,18 @@
+.mapboxgl-popup-content {
+  border-radius: 15px !important;
+}
+
+.stamp-location-name {
+  font-size: 180%;
+  text-align: center;
+}
+
+.stamp-location-photo-div {
+
+  .stamp-location-photo {
+    width: 100%;
+    height: 10em;
+    // object-fit: contain !important;
+    border-radius: 8px;
+  }
+}
