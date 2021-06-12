@@ -1,4 +1,4 @@
-<div class="col-sm-12 col-md-6">
+<div class="col-sm-12 col-md-6 ">
   <%= form_with(model: [@stampbook, @stamp], local: true, multipart: true) do |form| %>
     <% if @stamp.errors.any? %>
       <div id="error_explanation">
@@ -32,7 +32,7 @@
 <div class='col-sm-12 col-md-6 text-center d-flex justify-content-center align-items-center'>
   <div>
     <h4 class='mb-3'>
-      <%= link_to 'Go back to your stampbook <i class="fas fa-chevron-circle-left"></i>'.html_safe, stampbook_stamps_path(@stampbook), class:'text-secondary itinerary-link' %>
+      <%= link_to 'Go back <i class="fas fa-chevron-circle-left"></i>'.html_safe, :back , class:'text-secondary itinerary-link' %>
     </h4>
     <div>
       <h1 class='title'>Collect your stamp!</h1>

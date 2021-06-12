@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const customiseMarkers = () => {
 	const element = document.createElement('div');
 	element.className = 'marker';
-	element.style.backgroundImage = `url('${marker.image_url}')`;
+	element.style.backgroundImage = `url('${marker.imageUrl}')`;
 	element.style.backgroundSize = 'contain';
 	element.style.width = '25px';
 	element.style.height = '25px';
@@ -13,9 +13,13 @@ const customiseMarkers = () => {
 
 const addMarkers = (map, markers) =>{
 	markers.forEach((marker) => {
-		  const popup = new mapboxgl.Popup().setHTML(marker.stamp_window);
+		  const popup = new mapboxgl.Popup().setHTML(marker.stampWindow);
 			const pic = customiseMarkers;
-			new mapboxgl.Marker(pic)
+      let completedColor = "#FCF5DC";
+      if (marker.stampStatus){
+        completedColor = "#FFDE55";
+      }
+			new mapboxgl.Marker({pic, color: completedColor})
 				.setLngLat([ marker.lng, marker.lat ])
 				.setPopup(popup)
 				.addTo(map);

@@ -8,7 +8,11 @@
           </div>
           <div class="modal-body pt-0 mt-0">
             <p><%= stamp.location.location_description %></p>
+            <% if stamp.stampbook.user == current_user %>
             <%= link_to 'Collect Stamp', edit_stampbook_stamp_path(stamp.stampbook, stamp), class: "yellow-button" %>
+            <% else %>
+            <span></span>
+            <% end %>
           </div>
         </div>
         <div class="row col-6 p-0 m-0">

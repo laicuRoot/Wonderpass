@@ -1,16 +1,18 @@
 <div class="stamps-box">
-  <div class="stampbook-owner">
-    <%= cl_image_tag @stampbook.user.photo.key, height: 50, width: 50, crop: :fill, :class => "user-photo"  %>
-    <% if @stampbook.user == current_user %>
-      <h4 class="stampbook-owner-text">You are viewing <strong>your</strong> stampbook</h4>
-    <% else %>
-      <h4 class="stampbook-owner-text">You are viewing <br> <strong><%= @stampbook.user.first_name %></strong>'s stampbook</h4>
-    <% end %>
-  </div>
+  <div class='d-flex justify-content-between w-100 mt-5'>
+    <div class="stampbook-owner ml-3">
+      <%= cl_image_tag @stampbook.user.photo.key, height: 50, width: 50, crop: :fill, :class => "user-photo"  %>
+      <% if @stampbook.user == current_user %>
+        <h4 class="stampbook-owner-text">You are viewing <strong>your</strong> stampbook</h4>
+      <% else %>
+        <h4 class="stampbook-owner-text">You are viewing <br> <strong><%= @stampbook.user.first_name %></strong>'s stampbook</h4>
+      <% end %>
+    </div>
 
-  <div class="stamps-title">
-    <h1 class="stampbook-name" style ="font-size: 48px;"><%=@stampbook.stampbook_name%></h1>
-    <p><%= @stampbook.stampbook_description %></p>
+    <div class="stamps-title mr-3">
+      <h1 class="stampbook-name" style ="font-size: 48px;"><%=@stampbook.stampbook_name%></h1>
+      <p><%= @stampbook.stampbook_description %></p>
+    </div>
   </div>
   <div class="stamps-header mt-5">
     <% if @stampbook.user == current_user %>
@@ -19,7 +21,7 @@
         <% if @percent.floor.zero? %>
           <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
         <% else %>
-          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
+          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent.to_s.sub(/\.?0+$/, '') %>%</div>
         <% end %>
       </div>
       <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
@@ -76,7 +78,7 @@
   <% else %>
     <div class="collect-stamp-link mt-3"><%= link_to "<i class='fas fa-copy'></i> Clone the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
   <% end %>
-   <%= link_to("Go back to #{@stampbook.user.first_name}'s profile", user_path(@stampbook.user) , class:'btn btn-sm btn-info mb-2') %>
+   <%= link_to("Go back to #{@stampbook.user.first_name}'s profile", user_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
 </div>
 
 

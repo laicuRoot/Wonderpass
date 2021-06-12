@@ -1,17 +1,17 @@
-const addSelectedClass = () => {
-  const itineraryItems = document.querySelectorAll(".itinerary-button");
-  console.log(itineraryItems);
-  if (itineraryItems){
-    itineraryItems.forEach( element =>{
-      element.addEventListener("click", (event) =>{
-        if (event.currentTarget.classList.contains("selected")){
-          event.currentTarget.classList.remove("selected");
-        } else{
-          event.currentTarget.classList.add("selected");
-        }
-      });
-    });
-  }
-}
+// const addSelectedClass = () => {
+//   const itineraryButtons = document.querySelectorAll(".transport-button");
+//   if (itineraryButtons){
+//     itineraryButtons.forEach( element =>{
+//       element.addEventListener("click", (event) =>{
+//         itineraryButtons.forEach( element =>{
+//           element.classList.remove("round-yellow-button-route")
+//           element.classList.add("round-grey-button-route")
+//         })
+//         event.currentTarget.classList.remove("round-grey-button-route")
+//         event.currentTarget.classList.add("round-yellow-button-route");
+//       });
+//     });
+//   }
+// }
 
-export { addSelectedClass };
+// export { addSelectedClass };
