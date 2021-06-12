@@ -37,8 +37,8 @@ end
 
   def filter
     @itinerary = Itinerary.find(params[:id])
-    @categories = Location.all.map{ |location| location.category }.uniq
-    @distances = [0, 5, 10, 20, 50, "Other"]
+    @categories = Location.all.map{|location| location.category}.uniq
+    @distances = [5, 10, 20, 50, "Other"]
   end
 
   def new
@@ -60,7 +60,7 @@ end
     @itinerary = Itinerary.find(params[:id])
     @user = @itinerary.user
     if @itinerary.destroy
-      redirect_to new_user_itinerary_path(@user)
+      redirect_to user_itineraries_path(@user)
     end
   end
 
