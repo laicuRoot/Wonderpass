@@ -59,7 +59,6 @@
     <div class="col-sm-12 col-md-6">
       <div class='text-center'>
         <h1 class='text-info main-title'><%= @user.first_name %>'s Itineraries</h1>
-        <h4 class=''> <%= @user.first_name %>'s has <%= pluralize(@itineraries.count, "itinerary") %></h4>
       </div>
       <% if @itineraries.length == 0 %>
       <div class='text-center'>
