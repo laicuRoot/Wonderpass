@@ -5,8 +5,8 @@ def index
   # @stamps_all = Stamp.all.where(user: @stampbooks..user)
   @locations = Location.all
   @itineraries = Itinerary.where(user: @user)
-  @active_itinerary = Itinerary.where(active_itinerary: true)
-  @stamps = @active_itinerary.map(&:stamps).flatten
+  @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: current_user)
+  @stamps = @user_active_itinerary.map(&:stamps).flatten
   @stamps_all = Stamp.all.where(id: @stamps)
   # @stamps = @itineraries.map(&:stamps).flatten
   # @stamps = @itineraries.map{ |itinerary| itinerary.stamps }.flatten
@@ -68,6 +68,9 @@ end
     @itinerary = Itinerary.find(params[:itinerary_id])
     @itinerary.active_itinerary = true
     @itinerary.save
+    if @itinerary.save
+      Itinerary.where(user: current_user).where.not(id: @itinerary.id).update_all(active_itinerary: false)
+    end
     redirect_to user_itineraries_path(current_user)
   end
 
