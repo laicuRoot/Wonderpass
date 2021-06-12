@@ -29,8 +29,9 @@ end
       {
         lat: stamp.latitude,
         lng: stamp.longitude,
-        stamp_window: render_to_string(partial: "users/stamp_window", locals: { stamp: @stamps.find_by(location: stamp)}),
-        image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ stamp.stamp_photos.first.key)
+        stampWindow: render_to_string(partial: "users/stamp_window", locals: { stamp: @stamps.find_by(location: stamp)}),
+        imageUrl: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ stamp.stamp_photos.first.key),
+        stampStatus: @stamps.find_by(location: stamp).stamp_status
       }
     end
   end
