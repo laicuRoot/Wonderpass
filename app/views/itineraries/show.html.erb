@@ -2,7 +2,7 @@
 <div class="background-box">
   <div class="container itinerary-show">
     <h1><%=@itinerary.itinerary_name%></h1>
-    <h2>You have collected <%= @itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count %> / <%= @itinerary.itinerary_items.count %> <%="stamp".pluralize(@itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count)%> in this itineary</h2>
+    <h2>You have collected <%= @itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count %> / <%= @itinerary.itinerary_items.count %> <%="stamp".pluralize(@itinerary.itinerary_items.select {|item| item.stamp.stamp_status==true}.count)%> in this itinerary</h2>
       <div class="type-transport-buttons">
         <div id="walking" class="transport-button round-yellow-button-route">
           <div><i class="fas fa-walking"></i></div>
