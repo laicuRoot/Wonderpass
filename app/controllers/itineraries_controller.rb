@@ -60,7 +60,7 @@ end
     @itinerary = Itinerary.find(params[:id])
     @user = @itinerary.user
     if @itinerary.destroy
-      redirect_to new_user_itinerary_path(@user)
+      redirect_to user_itineraries_path(@user)
     end
   end
 
