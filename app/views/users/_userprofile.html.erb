@@ -15,7 +15,6 @@
        <h3><%= user.created_at.strftime("%d %B %Y") %></h3>
       <%= link_to "See stampbook", user_stampbooks_path(user), class: "yellow-button" %>
     </div>
-    <%= link_to "Sign-out", destroy_user_session_path, method: :delete, class: "yellow-button log-out" %>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
   <div class="user-menu">
@@ -24,11 +23,11 @@
        <div id = "user-menu-exit" class ="menu-button">X</i></div>
        <h2>Actions</h2>
        <ul>
-         <li><%= link_to "Collect Your Stamps", "#" %></li>
-         <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
+<!--          <li><%= link_to "Collect Your Stamps", "#" %></li>-->
+        <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
          <li><%= link_to "See Saved Itineraries", user_itineraries_path(user) %></li>
          <li><%= link_to "Edit Profile", edit_user_path(user)%></li>
-         <li><%= link_to "Sign-out", destroy_user_session_path, method: :delete %></li>
+         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
        </ul>
     </div>
   </div>
