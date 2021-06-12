@@ -67,8 +67,10 @@ end
   def activate
     @itinerary = Itinerary.find(params[:itinerary_id])
     @itinerary.active_itinerary = true
-    Itinerary.where(user: current_user).where.not(id: @itinerary.id).update_all(active_itinerary: false)
     @itinerary.save
+    if @itinerary.save
+      Itinerary.where(user: current_user).where.not(id: @itinerary.id).update_all(active_itinerary: false)
+    end
     redirect_to user_itineraries_path(current_user)
   end
 
