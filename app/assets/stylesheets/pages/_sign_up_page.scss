@@ -18,6 +18,19 @@
 .sign-up-text-container {
   position: absolute;
   top: 10%;
+    a {
+    background-color: lightgrey;
+    color: white;
+    border-radius: 40px;
+    padding: 10px 25px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    &:hover{
+      text-decoration: none;
+      color: white;
+      transition: all .2s ease-in-out;
+      transform: scale(1.04);
+    }
+  }
 }
 
 .sign-up-container {
@@ -32,7 +45,11 @@
     border-radius: 30px;
         background-color: rgba(255,255,255,0.5);
   }
-
+  .new_user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .form-actions {
@@ -74,67 +91,3 @@
   justify-content: space-between;
   flex-grow: 1;
 }
-
-
-
-
-
-
-
-.sign-in-background-image {
-  height: 100vh;
-  min-height: 200px;
-  background: url('WP Homepage 3.png') no-repeat center center;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h2 {
-    font-family: 'Chivo', sans-serif;
-    display: flex;
-    font-weight: 600;
-  }
-}
-
-.email-and-password-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-  .form-group {
-    padding: 10px;
-    text-align: center;
-    color: grey;
-    margin: 0px;
-  }
-  .form-control {
-    border-radius: 30px;
-  }
-}
-
-.log-in-content {
-  position: absolute;
-  top: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h2 {
-    color: $bright-yellow;
-    text-shadow: 0px 0px 25px rgba(0,0,0,0.3);
-  }
-  .user_remember_me {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    color: grey;
-  }
-}
-
-
-
-
-
-
-
-
-
-
