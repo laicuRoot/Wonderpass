@@ -1,22 +1,26 @@
-<div class="stamp-window-body" style="display:flex;">
-	<div class="left-box">
+<strong><h3 class="stamp-location-name py-2"><%= stamp.location.location_name %></h3></strong>
+
+
+  <div class="stamp-location-photo-div pb-2">
 		<% if stamp.stamp_status %>
-			<%= cl_image_tag stamp.location.stamp_photos.first.key, class:"rounded-borders", height: 100, width: 100, crop: :fill %>
+			<%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo", crop: :fill %>
 		<% else %>
-			<%= cl_image_tag stamp.location.location_photos.first.key, class:"rounded-borders", height: 100, width: 100, crop: :fill %>
+			<%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo", crop: :fill %>
 		<% end %>
 	</div>
+<!--
+  <div class="stamp-window-body">
+
 	<div class="right-box">
-		<h4><%= stamp.location.location_name %></h4>
 	</div>
-</div>
+  </div> -->
 
 <div class="stamp-window-footer">
 		<p class ="yellow-button">
 			<%if stamp.stamp_status %>
 				Stamp collected on <%= stamp.updated_at.strftime("%d %B %Y") %>
 			<% else %>
-				<%= link_to "collect your stamp", edit_stampbook_stamp_path(stamp.stampbook, stamp) %>
+				<%= link_to "Collect Stamp", edit_stampbook_stamp_path(stamp.stampbook, stamp) %>
 			<% end %>
 		</p>
 </div>
