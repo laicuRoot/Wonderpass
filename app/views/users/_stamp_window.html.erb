@@ -1,28 +1,41 @@
-<strong><h3 class="stamp-location-name py-2"><%= stamp.location.location_name %></h3></strong>
+<% if @user == current_user %>
+  <strong><h3 class="stamp-location-name py-2"><%= stamp.location.location_name %></h3></strong>
 
+    <div class="stamp-location-photo-div pb-2">
+  		<% if stamp.stamp_status %>
+  			<%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo"%>
+  		<% else %>
+  			<%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo"%>
+  		<% end %>
+  	</div>
 
-  <div class="stamp-location-photo-div pb-2">
-		<% if stamp.stamp_status %>
-			<%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo", crop: :fill %>
-		<% else %>
-			<%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo", crop: :fill %>
-		<% end %>
-	</div>
-<!--
-  <div class="stamp-window-body">
+    <div class="stamp-window-footer">
+        <p class ="yellow-button">
+          <%if stamp.stamp_status %>
+            Stamp collected on <%= stamp.updated_at.strftime("%d %B %Y") %>
+          <% else %>
+            <%= link_to "collect your stamp", edit_stampbook_stamp_path(stamp.stampbook, stamp) %>
+          <% end %>
+        </p>
+    </div>
+    <% else %>
+    <strong><h3 class="stamp-location-name py-2"><%= stamp.location.location_name %></h3></strong>
 
-	<div class="right-box">
-	</div>
-  </div> -->
+    <div class="stamp-location-photo-div pb-2">
+      <% if stamp.stamp_status %>
+        <%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo"%>
+      <% else %>
+        <%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo"%>
+      <% end %>
+    </div>
 
-<div class="stamp-window-footer">
-		<p class ="yellow-button">
-			<%if stamp.stamp_status %>
-				Stamp collected on <%= stamp.updated_at.strftime("%d %B %Y") %>
-			<% else %>
-				<%= link_to "Collect Stamp", edit_stampbook_stamp_path(stamp.stampbook, stamp) %>
-			<% end %>
-		</p>
-</div>
-
-
+    <div class="stamp-window-footer">
+        <p class ="yellow-button">
+          <%if stamp.stamp_status %>
+            Stamp collected on <%= stamp.updated_at.strftime("%d %B %Y") %>
+          <% else %>
+            <%= link_to "See stamp", stampbook_stamp_path(stamp.stampbook, stamp) %>
+          <% end %>
+        </p>
+    </div>
+<% end %>
