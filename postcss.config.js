@@ -8,11 +8,5 @@ module.exports = {
       },
       stage: 3
     })
-  ],
-  module: {
-    rules: [{
-      test: /\.css$/,
-      use: ["style-loader", "css-loader"]
-    }]
-  }
+  ]
 }
