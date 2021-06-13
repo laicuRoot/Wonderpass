@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
+    @invitation = Invitation.new
     if params[:query].present?
       @users = User.search_by_username_and_fullname(params[:query])
       # raise

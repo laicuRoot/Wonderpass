@@ -17,29 +17,50 @@
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
+  <div class="friend-menu">
+    <div id = "user-menu-friends" class ="friends-button">
+      <i class="fas fa-users"></i>
+    </div>
+    <div class = "friends-menu-popup">
+       <div id = "friends-menu-exit" class ="friends-menu-button">
+        X
+       </div>
+       <h2>Find friends</h2>
+       <ul>
+         <li> <%= form_tag user_path(user), method: :get do %>
+                  <%= text_field_tag :query,
+                  params[:query],
+                  class: 'form-control',
+                  placeholder: 'Search here...' %>
+                  <%= submit_tag "Search", class:"search-button mt-2" %>
+                <% end %>
+           </li>
+           <ul>
+            <% if params[:query].present? %>
+              <% if @users.empty? %>
+              <p>No results</p>
+              <% else %>
+                 <% @users.each do |user| %>
+                      <li>
+                        <%= user.first_name %>
+                        <%= link_to("See profile", user_path(user.id)) %>
+                      </li>
+                 <% end %>
+              <% end %>
+            <% end %>
+         </ul>
+    </div>
+  </div>
   <div class="user-menu">
-    <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
+    <div id = "user-menu-button" class ="menu-button">
+      <i class="fas fa-bars"></i>
+    </div>
     <div class = "user-menu-popup">
-       <div id = "user-menu-exit" class ="menu-button">X</i></div>
+       <div id = "user-menu-exit" class ="menu-button">
+        X
+       </div>
        <h2>Actions</h2>
        <ul>
-       <li> <%= form_tag user_path(user), method: :get do %>
-                <%= text_field_tag :query,
-                params[:query],
-                class: 'form-control',
-                placeholder: 'Find your friends' %>
-                <%= submit_tag "Search", class:"btn btn-info" %>
-              <% end %>
-         </li>
-         <ul>
-          <% if params[:query].present? %>
-           <% @users.each do |user| %>
-                <li><%= user.first_name %>
-                    <%= link_to("See profile", user_path(user.id)) %>
-                </li>
-           <% end %>
-          <% end %>
-         </ul>
          <li><%= link_to "Collect Your Stamps", "#" %></li>
          <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
          <li><%= link_to "See Saved Itineraries", user_itineraries_path(user) %></li>

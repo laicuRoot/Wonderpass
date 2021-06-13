@@ -8,6 +8,13 @@
 <% else %>
     <div class="container user-profile-cont">
       <div class="card profile-box">
+        <div class='mt-2 add-user-wrapper'>
+          <%= simple_form_for ([@user, @invitation]), remote: true do |f| %>
+              <%= button_tag(type: 'submit', class: "add-user") do %>
+                <i class="fas fa-user-plus"></i>
+              <% end %>
+          <% end %>
+        </div>
         <% if @user.photo.attached? %>
           <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
         <% else %>
@@ -20,7 +27,7 @@
           <p class="card-text">Number of km travelled</p>
           <h3>5</h3>
           <p>Traveller since</p>
-           <h3><%= @user.created_at.strftime("%d %B %Y") %></h3>
+          <h3><%= @user.created_at.strftime("%d %B %Y") %></h3>
           <%= link_to "See stampbook", user_stampbooks_path(@user), class: "yellow-button" %>
         </div>
         <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>

@@ -32,6 +32,7 @@ import 'controllers';
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
+import {toggleFriendMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 // import { addSelectedClass } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
@@ -47,6 +48,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   initMapbox();
   toggleMenu();
+  toggleFriendMenu();
   hideProfile();
   if (document.getElementById("book")){
     initPageFlip();
