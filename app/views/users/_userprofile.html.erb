@@ -23,6 +23,23 @@
        <div id = "user-menu-exit" class ="menu-button">X</i></div>
        <h2>Actions</h2>
        <ul>
+       <li> <%= form_tag user_path(user), method: :get do %>
+                <%= text_field_tag :query,
+                params[:query],
+                class: 'form-control',
+                placeholder: 'Find your friends' %>
+                <%= submit_tag "Search", class:"btn btn-info" %>
+              <% end %>
+         </li>
+         <ul>
+          <% if params[:query].present? %>
+           <% @users.each do |user| %>
+                <li><%= user.first_name %>
+                    <%= link_to("See profile", user_path(user.id)) %>
+                </li>
+           <% end %>
+          <% end %>
+         </ul>
          <li><%= link_to "Collect Your Stamps", "#" %></li>
          <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
          <li><%= link_to "See Saved Itineraries", user_itineraries_path(user) %></li>

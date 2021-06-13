@@ -1,6 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include PgSearch::Model
+  pg_search_scope :search_by_username_and_fullname,
+    against: [ :username, :first_name, :last_name ],
+    using: {
+      tsearch: { prefix: true }
+    }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
@@ -8,7 +14,7 @@ class User < ApplicationRecord
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
   has_many :invitations
-  has_many :pending_invitations, -> {where: confirmed: false}, class_name: 'Invitation', foreign_key: "friend_id"
+  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id"
   # validates :first_name, :last_name, :username, presence: true
   after_create :create_stampbook_and_stamps
 
