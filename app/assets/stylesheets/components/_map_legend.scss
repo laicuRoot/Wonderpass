@@ -1,0 +1,16 @@
+.collected-stamp-marker {
+  color: #FFDE55;
+}
+
+.uncollected-stamp-marker {
+  color: #FCF5DC;
+  text-shadow: -11px 10px 5px 0px rgba(52,52,52,0.78);
+}
+
+.legend-icons {
+  list-style: none;
+}
+
+.legend-toggle {
+  z-index: 1;
+}

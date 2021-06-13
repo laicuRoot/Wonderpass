@@ -18,6 +18,10 @@
     <%= link_to "Sign-out", destroy_user_session_path, method: :delete, class: "yellow-button log-out" %>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
+  <button id="legend-toggle">Legend</button>
+  <div class="map-legend">
+    <%= render 'shared/map_legend' %>
+  </div>
   <div class="user-menu">
     <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
     <div class = "user-menu-popup">

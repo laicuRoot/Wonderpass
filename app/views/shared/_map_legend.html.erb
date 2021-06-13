@@ -1,1 +1,9 @@
-_map_legend.html.erb
+<div class="card-container" id="map-legend-container">
+  <div class="card px-2 py-1">
+    <p>You're currently on your <%= @user_active_itinerary.first.itinerary_name %> itinerary</p>
+    <ul class="legend-icons inline-list">
+      <li><i class="fas fa-map-marker-alt fa-2x collected-stamp-marker"></i> Collected Stamp</li>
+      <li><i class="fas fa-map-marker-alt fa-2x uncollected-stamp-marker"></i> Uncollected Stamp</li>
+    </ul>
+  </div>
+</div>

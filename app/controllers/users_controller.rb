@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     # @stamps = @user.stamps
     # @stamp_count = @stamps.where(stamp_status: true).count
-    @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: current_user)
+    @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: @user)
     @stamps = @user_active_itinerary.empty? ? Stamp.all : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
     @locations = Location.where(id: @stamps.map(&:location_id))
@@ -39,5 +39,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :username, :photo)
+  end
+
+  def find_active
+    @user.itineraries.where(active_itinerary: true).first.itinerary_name
   end
 end
