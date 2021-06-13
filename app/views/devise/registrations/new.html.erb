@@ -1,42 +1,52 @@
-<h2>Sign up</h2>
-<div class="container">
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.error_notification %>
+<div class="sign-up-background-image">
+  <div class="sign-up-text-container">
+    <h2>Create a WonderPass account and start exploring!</h2>
+    <div class="sign-up-container">
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" }%>
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }%>
+          <div class="names-container">
+            <%= f.input :first_name,
+                        required: true %>
 
-      <%= f.input :first_name,
-                  required: true %>
+            <%= f.input :last_name,
+                        required: true %>
+          </div>
 
-      <%= f.input :last_name,
-                  required: true %>
+          <div class="username-photo-container">
+          <%= f.input :username,
+                      required: true %>
 
-      <%= f.input :username,
-                  required: true %>
+          <%= f.input :photo,
+                      input_html: { class: 'd-none' },
+                      label_html: { class: 'upload-btn' },
+                      label: '<i class="fas fa-camera"></i> Upload a profile picture'.html_safe %>
+          </div>
 
-      <%= f.input :photo,
-                  input_html: { class: 'd-none' },
-                  label_html: { class: 'upload-btn' },
-                  label: '📷 Upload a photo' %>
+          <div class="password-container">
+            <%= f.input :password,
+                        required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation,
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+          </div>
 
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: true,
-                  input_html: { autocomplete: "new-password" } %>
+        </div>
 
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up", class: "sign-up-button" %>
+        </div>
+      <% end %>
+    <%= render "devise/shared/links" %>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up" %>
-    </div>
-  <% end %>
-<%= render "devise/shared/links" %>
+  </div>
 </div>
+
 

@@ -15,7 +15,6 @@
        <h3><%= user.created_at.strftime("%d %B %Y") %></h3>
       <%= link_to "See stampbook", user_stampbooks_path(user), class: "yellow-button" %>
     </div>
-    <%= link_to "Sign-out", destroy_user_session_path, method: :delete, class: "yellow-button log-out" %>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
   <button id="legend-toggle">Legend</button>

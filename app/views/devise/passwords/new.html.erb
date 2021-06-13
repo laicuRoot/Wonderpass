@@ -1,18 +1,29 @@
-<h2>Forgot your password?</h2>
+<div class="forgot-password-background-image">
+  <div class="forgot-password-content">
+    <h2>Forgot your password?</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" }, label: '<i class="fas fa-envelope"></i> Email'.html_safe %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Send me reset password instructions" %>
+      </div>
+    <% end %>
+
+    <div class="other-buttons">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+<!--   <div class="exit-to-homepage">
+    <i class="fas fa-times cross-icon"></i>
+    <div class="hide">Go back to the homepage</div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+ --></div>

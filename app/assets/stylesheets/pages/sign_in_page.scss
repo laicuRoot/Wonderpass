@@ -1,0 +1,185 @@
+.sign-in-background-image {
+  height: 100vh;
+  min-height: 200px;
+  background: url('https://res.cloudinary.com/laicuroot/image/upload/v1623347596/WP_Homepage_1_ip2kdr.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-family: 'Chivo', sans-serif;
+    display: flex;
+    font-weight: 600;
+  }
+
+  .log-in-content {
+    position: absolute;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    font-family: 'Chivo', sans-serif;
+    display: flex;
+    font-weight: 600;
+    color: $bright-yellow;
+    text-shadow: 0px 0px 15px rgba(0,0,0,0.4)
+  }
+
+  .email-and-password-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    .form-group {
+      padding: 10px;
+      text-align: center;
+      color: grey;
+      margin: 0px;
+    }
+    .form-control {
+      border-radius: 30px;
+    }
+  }
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-actions {
+    padding: 7px 25px;
+    background-color: $bright-yellow;
+    color: white;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    &:hover{
+      text-decoration: none;
+      color: white;
+      transition: all .2s ease-in-out;
+      transform: scale(1.08);
+    }
+    .btn {
+      color: white;
+      padding: 3px 2px;
+    }
+  }
+
+  .form-group {
+    padding: 3px;
+    text-align: center;
+    color: grey;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .other-buttons {
+    display: flex;
+    align-items: space-around;
+  }
+
+  a {
+    background-color: rgba(220,220,220, 0.6);
+    color: white;
+    border-radius: 40px;
+    padding: 10px 25px;
+    margin: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    &:hover{
+      text-decoration: none;
+      color: white;
+      transition: all .2s ease-in-out;
+      transform: scale(1.02);
+    }
+
+    .simple_form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+  }
+
+
+
+
+  // .email-and-password-container {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   margin: 10px;
+  //   .form-group {
+  //     padding: 10px;
+  //     text-align: center;
+  //     color: grey;
+  //     margin: 0px;
+  //   }
+  //   .form-control {
+  //     border-radius: 30px;
+  //   }
+  // }
+
+  // .log-in-content {
+  //   position: absolute;
+  //   top: 8%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   h2 {
+  //     color: $bright-yellow;
+  //     text-shadow: 0px 0px 25px rgba(0,0,0,0.3);
+  //   }
+  //   .user_remember_me {
+  //     display: flex;
+  //     justify-content: center;
+  //     margin: 20px;
+  //     color: grey;
+  //   }
+  //     a {
+  //     background-color: rgba(220,220,220, 0.6);
+  //     color: white;
+  //     border-radius: 40px;
+  //     padding: 10px 25px;
+  //     margin: 10px;
+  //     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  //     &:hover{
+  //       text-decoration: none;
+  //       color: white;
+  //       transition: all .2s ease-in-out;
+  //       transform: scale(1.03);
+  //     }
+  //   }
+
+  //   .form-actions {
+  //     display: flex;
+  //     justify-content: center;
+  //   }
+  //   .new_user {
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: center;
+  //   }
+
+  //   .other-buttons {
+  //     display: flex;
+  //     align-items: space-around;
+  //   }
+  // }
+}
+
+
+
+
+
+
+
+
+
+
+
