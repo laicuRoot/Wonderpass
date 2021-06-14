@@ -7,11 +7,11 @@ class StampsController < ApplicationController
     @stamps = @stampbook.stamps.order(:id)
     @index = 1
     @page_number = 0
-    @count = @stampbook.stamps.count.fdiv(6).ceil
+    @total = @stampbook.count_stamps
+    @count = @stampbook.stampbook_pages
     @count += 1 unless @count.even?
-    @collected = @stamps.where(stamp_status: true).size
-    @total = @stamps.size
-    @percent = @collected.fdiv(@total) * 100
+    @collected = @stampbook.collected_stamps.size
+    @percent = @stampbook.percent_completed
   end
 
   def show; end

@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    @stamp_count = @user.stamps.where(stamp_status: true).count
-    @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: current_user)
+    @stamp_count = @user.collected_stamps.size
+    @user_active_itinerary = Itinerary.get_active(@user)
     @stamps = @user_active_itinerary.empty? ? @user.stamps : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
     @locations = Location.where(id: @stamps.map(&:location_id))
@@ -26,8 +26,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(@user)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+      flash[:notice] = "User profile updated"
+    end
   end
 
   private

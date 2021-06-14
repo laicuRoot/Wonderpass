@@ -5,7 +5,7 @@ class ItineraryItemsController < ApplicationController
   def index
     @itinerary_item = ItineraryItem.new
     @locations = Location.near(@itinerary.destination, @distance).where(category: @categories)
-    @stamps = @completed? @itinerary.user.stamps : @itinerary.user.stamps.where(stamp_status: false)
+    @stamps = @completed? @itinerary.all_stamps : @itinerary.uncollected_stamps
     @locations.where(stamps: @stamps)
   end
 
@@ -45,7 +45,7 @@ class ItineraryItemsController < ApplicationController
 
   def get_filter
     @distance = params[:distance] == "Other" ? params[:query].to_i : params[:distance].to_i
-    @categories = params[:categories] ? params[:categories].values : Location.all.map{|location| location.category}.uniq
+    @categories = params[:categories] ? params[:categories].values : Location.get_categories
     if params[:add_completed].to_i != 0
       @completed = true
     end

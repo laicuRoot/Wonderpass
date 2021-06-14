@@ -5,7 +5,7 @@ def index
   # @stamps_all = Stamp.all.where(user: @stampbooks..user)
   @locations = Location.all
   @itineraries = Itinerary.where(user: @user)
-  @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: current_user)
+  @user_active_itinerary = Itinerary.get_active(@user)
   @stamps = @user_active_itinerary.map(&:stamps).flatten
   @stamps_all = Stamp.all.where(id: @stamps)
   # @stamps = @itineraries.map(&:stamps).flatten
@@ -39,7 +39,7 @@ end
 
   def filter
     @itinerary = Itinerary.find(params[:id])
-    @categories = Location.all.map{|location| location.category}.uniq
+    @categories = Location.get_categories
     @distances = [5, 10, 20, 50, "Other"]
   end
 
