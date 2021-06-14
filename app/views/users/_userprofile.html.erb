@@ -12,7 +12,7 @@
       <p class="card-text">Number of km travelled</p>
       <h3>5</h3>
       <p>Traveller since</p>
-       <h3><%= user.created_at.strftime("%d %B %Y") %></h3>
+       <h3><%= user.create_date %></h3>
       <%= link_to "See stampbook", user_stampbooks_path(user), class: "yellow-button" %>
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>

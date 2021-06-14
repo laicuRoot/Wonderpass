@@ -22,7 +22,7 @@ class Stampbook < ApplicationRecord
   def stampbook_pages
     count_stamps.fdiv(6).ceil
   end
-  
+
   def count_stamps
     self.stamps.count
   end

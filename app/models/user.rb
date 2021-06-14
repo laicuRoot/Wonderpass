@@ -9,9 +9,13 @@ class User < ApplicationRecord
   has_many :stamps, through: :stampbooks
   # validates :first_name, :last_name, :username, presence: true
   after_create :create_stampbook_and_stamps
-  
+
   def collected_stamps
     self.stamps.where(stamp_status: true)
+  end
+
+  def create_date
+    self.created_at.strftime("%d %B %Y")
   end
 
   private

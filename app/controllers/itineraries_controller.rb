@@ -1,22 +1,22 @@
 class ItinerariesController < ApplicationController
-  before_action :find_user, except: [:show, :filter, :destroy, :activate]
+  before_action :find_user, except: [:filter, :destroy, :activate]
 
 def index
   # @stamps_all = Stamp.all.where(user: @stampbooks..user)
-  @locations = Location.all
+  # @locations = Location.all
   @itineraries = Itinerary.where(user: @user)
   @user_active_itinerary = Itinerary.get_active(@user)
   @stamps = @user_active_itinerary.map(&:stamps).flatten
   @stamps_all = Stamp.all.where(id: @stamps)
-  # @stamps = @itineraries.map(&:stamps).flatten
+  @all_int_stamps = @itineraries.map(&:stamps).flatten
   # @stamps = @itineraries.map{ |itinerary| itinerary.stamps }.flatten
   @locations = Location.where(id: @stamps.map(&:location_id))
   @itinerary_markers = @locations.geocoded.map do |location|
     {
       lat: location.latitude,
       lng: location.longitude,
-      stamp_window: render_to_string(partial: "stamp_itinerary_window", locals: { stamp: @stamps_all.find_by(location: location) }),
-      image_url: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key),
+      stampWindow: render_to_string(partial: "stamp_itinerary_window", locals: { stamp: @stamps_all.find_by(location: location) }),
+      imageUrl: helpers.asset_url("http://res.cloudinary.com/laicuroot/image/upload/c_fill,h_40,w_40/"+ location.stamp_photos.first.key),
       stampStatus: @stamps_all.find_by(location: location).stamp_status
     }
   end
@@ -24,6 +24,8 @@ end
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @collected = @itinerary.collected_stamps
+    @total = @itinerary.itinerary_items.count
     @stamps = @itinerary.stamps
     @locations = Location.where(id: @stamps.map(&:location_id))
     @markers = @locations.geocoded.map do |stamp|
