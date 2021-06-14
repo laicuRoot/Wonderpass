@@ -22,33 +22,69 @@
       <i class="fas fa-users"></i>
     </div>
     <div class = "friends-menu-popup">
-       <div id = "friends-menu-exit" class ="friends-menu-button">
+      <div id = "friends-menu-exit" class ="friends-menu-button">
         X
-       </div>
-       <h2>Find friends</h2>
-       <ul>
-         <li> <%= form_tag user_path(user), method: :get do %>
-                  <%= text_field_tag :query,
-                  params[:query],
-                  class: 'form-control',
-                  placeholder: 'Search here...' %>
-                  <%= submit_tag "Search", class:"search-button mt-2" %>
-                <% end %>
-           </li>
-           <ul>
-            <% if params[:query].present? %>
-              <% if @users.empty? %>
-              <p>No results</p>
-              <% else %>
-                 <% @users.each do |user| %>
-                      <li>
-                        <%= user.first_name %>
-                        <%= link_to("See profile", user_path(user.id)) %>
-                      </li>
-                 <% end %>
-              <% end %>
+      </div>
+      <div>
+        <h2>Find friends</h2>
+        <%= form_tag user_path(user), method: :get do %>
+          <%= text_field_tag :query,
+          params[:query],
+          class: 'form-control',
+          placeholder: 'Search here...' %>
+          <%= submit_tag "Search", class:"search-button mt-2" %>
+        <% end %>
+        <ul id='search-results'>
+          <% if params[:query].present? %>
+            <% if @users.empty? %>
+            <li>No results</li>
+            <% else %>
+               <% @users.each do |user| %>
+                    <li class='m-1'><%= cl_image_tag user.photo.key, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %><%= user.first_name %> - <%= link_to("See profile", user_path(user.id)) %></li>
+               <% end %>
             <% end %>
-         </ul>
+          <% end %>
+        </ul>
+      </div>
+      <div class='mt-3'>
+      <% if @invitations.count == 0 %>
+        <span></span>
+      <% else %>
+        <h2 class='pending-title'>Pending invitations</h2>
+        <ul>
+        <% @invitations.each do |invitation| %>
+          <% pending_user = User.find(invitation.user_id)  %>
+          <li class='m-1 d-flex align-items-center'>
+            <%= cl_image_tag pending_user.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+            <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
+            <%= simple_form_for ([current_user, invitation]), remote: true do |f| %>
+              <%= f.check_box :confirmed, class:'checkbox', checked: true  %>
+              <%= f.submit "Confirm", class:'confirmed-btn ml-5'  %>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+      </div>
+      <div class='mt-3'>
+        <h2>Friends</h2>
+
+        <% if !@friends.nil? %>
+          <ul>
+          <% @friends.each do |invitation|%>
+            <% id = invitation.user_id == current_user.id ? invitation.friend_id : invitation.user_id  %>
+            <% friend = User.find(id) %>
+
+            <li class='m-1 d-flex align-items-center'>
+              <%= cl_image_tag friend.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+              <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name ml-3' %>
+            </li>
+          <% end %>
+        <% else %>
+          <p>Add friends</p>
+        <% end %>
+          </ul>
+      </div>
     </div>
   </div>
   <div class="user-menu">

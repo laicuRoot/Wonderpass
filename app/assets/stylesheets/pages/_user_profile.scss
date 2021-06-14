@@ -148,7 +148,7 @@
 
 .friends-menu-popup{
   position:relative;
-  height: 230px;
+  height: 450px;
   width:300px;
   background-color: $bright-yellow;
   color: $white;
@@ -181,4 +181,38 @@
     font-size: 20px;
     color: $black;
   }
+}
+
+.friends-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.confirmed-btn {
+  background-color: $white;
+  color: $bright-yellow;
+  padding: 4px 4px;
+  border: none;
+  border-radius: 16px;
+  font-size: 12px;
+  transition: transform 250ms;
+  &:hover{
+    z-index: 5;
+    transform: scale(1.2);
+  }
+}
+
+.name{
+  color: $white;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba($black, 0.3);
+  &:hover{
+    text-decoration: underline;
+    color: white
+  }
+}
+
+.pending-title {
+  font-size: 24px;
 }

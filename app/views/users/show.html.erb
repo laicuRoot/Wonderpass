@@ -8,13 +8,23 @@
 <% else %>
     <div class="container user-profile-cont">
       <div class="card profile-box">
-        <div class='mt-2 add-user-wrapper'>
-          <%= simple_form_for ([@user, @invitation]), remote: true do |f| %>
-              <%= button_tag(type: 'submit', class: "add-user") do %>
-                <i class="fas fa-user-plus"></i>
-              <% end %>
+          <div class='mt-2 add-user-wrapper'>
+          <% if @user_invitation.nil? && @friend_invitation.nil?  %>
+            <%= simple_form_for ([@user, @invitation]), remote: true do |f| %>
+                <%= button_tag(type: 'submit', class: "add-user") do %>
+                  <i class="fas fa-user-plus"></i>
+                <% end %>
+            <% end %>
           <% end %>
-        </div>
+          <% invitation = @friend_invitation.nil? ? @user_invitation : @friend_invitation %>
+          <% if !invitation.nil? %>
+            <% if invitation.confirmed == false %>
+              <p class='small-yellow-button m-2'>Pending</p>
+            <% else %>
+              <p class='small-yellow-button m-2'>Friend</p>
+            <% end %>
+          <% end %>
+          </div>
         <% if @user.photo.attached? %>
           <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
         <% else %>
@@ -38,8 +48,9 @@
            <div id = "user-menu-exit" class ="menu-button">X</i></div>
            <h2>Actions</h2>
            <ul>
-             <li><%= link_to "See #{@user.first_name} stampbook", user_stampbooks_path(@user) %></li>
-             <li><%= link_to "See #{@user.first_name} saved Itineraries", user_itineraries_path(@user) %></li>
+            <li><%= link_to "See #{@user.first_name} stampbook", user_stampbooks_path(@user) %></li>
+            <li><%= link_to "See #{@user.first_name} saved Itineraries", user_itineraries_path(@user) %></li>
+            <li><%= link_to "Back to your profile", user_path(current_user) %></li>
            </ul>
         </div>
       </div>
