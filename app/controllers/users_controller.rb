@@ -2,13 +2,30 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
+    @invitation = Invitation.new
+
+    @friends_received = Invitation.all.where(user_id: current_user, confirmed: true)
+    @friends_sent = Invitation.all.where(friend_id: current_user, confirmed: true)
+    @friends = @friends_sent + @friends_received
+
+    @user_invitation = Invitation.find_by(user_id: current_user, friend_id: @user)
+    @friend_invitation = Invitation.find_by(user_id: @user, friend_id: current_user)
+
+
+    @invitations = Invitation.where(friend_id: current_user, confirmed: false)
+    if params[:query].present?
+      @users = User.search_by_username_and_fullname(params[:query])
+    end
+    respond_to do |format|
+      format.html
+      format.text
+    end
     @stamp_count = @user.collected_stamps.size
     @user_active_itinerary = Itinerary.get_active(@user)
     @all_stamps = @user.stamps
     @achievements = @user.achievements.size
     @stamps = @user_active_itinerary.empty? ? @all_stamps : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
-    @stamp_count = @user.stamps.where(stamp_status: true).count
     @locations = Location.where(id: @stamps.map(&:location_id))
     @markers = @locations.geocoded.map do |location|
       {

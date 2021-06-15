@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_151354) do
+
+ActiveRecord::Schema.define(version: 2021_06_13_140033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +44,26 @@ ActiveRecord::Schema.define(version: 2021_06_12_151354) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "following_id", null: false
+    t.integer "follower_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
+    t.index ["following_id"], name: "index_follows_on_following_id"
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "friend_id"
+    t.boolean "confirmed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "badges", force: :cascade do |t|
@@ -124,6 +145,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_151354) do
   add_foreign_key "achievements", "badges"
   add_foreign_key "achievements", "stampbooks"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "invitations", "users"
   add_foreign_key "itineraries", "users"
   add_foreign_key "itinerary_items", "itineraries"
   add_foreign_key "itinerary_items", "stamps"
