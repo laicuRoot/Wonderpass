@@ -1,8 +1,5 @@
 class StampbooksController < ApplicationController
-<<<<<<< HEAD
   before_action :find_user, except: [:clone]
-=======
->>>>>>> f5f05cd5cbc3a7eefa552a5aa42f1dc1698086cd
 
   def index
     @user = User.find(params[:user_id])
