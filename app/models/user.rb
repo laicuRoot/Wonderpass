@@ -1,6 +1,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include PgSearch::Model
+  pg_search_scope :search_by_username_and_fullname,
+    against: [ :username, :first_name, :last_name ],
+    using: {
+      tsearch: { prefix: true }
+    }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
@@ -8,8 +14,24 @@ class User < ApplicationRecord
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
   has_many :achievements, through: :stampbooks
-  # validates :first_name, :last_name, :username, presence: true
+  has_many :invitations
+  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id"
   after_create :create_stampbook_and_stamps
+
+  def friends
+    friends_i_sent_invitation = Invitation.where(user_id: id, confirmed: true).pluck(:friend_id)
+    friends_i_got_invitation = Invitation.where(friend_id: id, confirmed: true).pluck(:user_id)
+    ids = friends_i_sent_invitation + friends_i_got_invitation
+    User.where(id: ids)
+  end
+
+  def friend_with?(user)
+    Invitation.confirmed_record?(id, user.id)
+  end
+
+  def send_invitation(user)
+    invitations.create(friend_id: user.id)
+  end
 
   def collected_stamps
     self.stamps.where(stamp_status: true)

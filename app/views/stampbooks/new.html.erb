@@ -1,0 +1,12 @@
+<h1>Create a new stampbook</h1>
+
+  <%= simple_form_for([@user, @stampbook]) do |form| %>
+    <%= form.input :stampbook_name, :required => true %>
+    <%= form.input :stampbook_description, :required => true %>
+    <%= form.association :locations, as: :select, multiple: true, include_blank: false, collection: Location.order('location_name ASC'), label_method: :location_name, :required => true %>
+    <%= form.input :status, label:'Allow other users to clone your stampbook' %>
+    <%= form.submit  value:"Create stampbook" %>
+  <% end %>
+
+<%= link_to("Go back to #{current_user.first_name}'s profile", user_path(current_user) , class:'btn btn-info') %>
+<%= link_to("Go back to #{current_user.first_name}'s stampbook collection", user_stampbooks_path(current_user), class:'btn btn-info' ) %>
