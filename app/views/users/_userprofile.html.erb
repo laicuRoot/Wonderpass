@@ -6,14 +6,14 @@
       <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
     <% end %>
     <div class="card-body">
-      <h1 class="card-title"><%=  user.first_name %></h1>
+      <h1 class="card-title"><%=user.first_name%></h1>
       <p class="card-text">Number of stamps collected</p>
       <h3><%= @stamp_count %></h3>
-      <p class="card-text">Number of km travelled</p>
-      <h3>5</h3>
+      <p class="card-text">Number of stars earned</p>
+      <h3><%= @achievements %></h3>
       <p>Traveller since</p>
-       <h3><%= user.created_at.strftime("%d %B %Y") %></h3>
-      <%= link_to "See stampbook", user_stampbooks_path(user), class: "yellow-button" %>
+       <h3><%= user.create_date %></h3>
+      <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(user), class: "yellow-button" %>
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
@@ -25,17 +25,89 @@
     <%= render 'shared/map_legend' %>
   </div>
 
+  <div class="friend-menu">
+    <div id = "user-menu-friends" class ="friends-button">
+      <i class="fas fa-users"></i>
+    </div>
+    <div class = "friends-menu-popup">
+      <div id = "friends-menu-exit" class ="friends-menu-button">
+        X
+      </div>
+      <div>
+        <h2>Find friends</h2>
+        <%= form_tag user_path(user,remote: true), method: :get do %>
+          <%= text_field_tag :query,
+          params[:query],
+          class: 'form-control',
+          placeholder: 'Search here...' %>
+          <%= submit_tag "Search", class:"search-button mt-2" %>
+        <% end %>
+        <ul id='search-results'>
+          <% if params[:query].present? %>
+            <% if @users.empty? %>
+            <li>No results</li>
+            <% else %>
+               <% @users.each do |user| %>
+                    <li class='m-1'><%= cl_image_tag user.photo.key, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %><%= user.first_name %> - <%= link_to("See profile", user_path(user.id)) %></li>
+               <% end %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class='mt-3'>
+      <% if @invitations.count == 0 %>
+        <span></span>
+      <% else %>
+        <h2 class='pending-title'>Pending invitations</h2>
+        <ul>
+        <% @invitations.each do |invitation| %>
+          <% pending_user = User.find(invitation.user_id)  %>
+          <li class='m-1 d-flex align-items-center'>
+            <%= cl_image_tag pending_user.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+            <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
+            <%= simple_form_for ([current_user, invitation]), remote: true do |f| %>
+              <%= f.check_box :confirmed, class:'checkbox', checked: true  %>
+              <%= f.submit "Confirm", class:'confirmed-btn ml-5'  %>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+      </div>
+      <div class='mt-3'>
+        <h2>Friends</h2>
+
+        <% if !@friends.nil? %>
+          <ul>
+          <% @friends.each do |invitation|%>
+            <% id = invitation.user_id == current_user.id ? invitation.friend_id : invitation.user_id  %>
+            <% friend = User.find(id) %>
+
+            <li class='m-1 d-flex align-items-center'>
+              <%= cl_image_tag friend.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+              <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name ml-3' %>
+            </li>
+          <% end %>
+        <% else %>
+          <p>Add friends</p>
+        <% end %>
+          </ul>
+      </div>
+    </div>
+  </div>
+
   <div class="user-menu">
-    <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
+    <div id = "user-menu-button" class ="menu-button">
+      <i class="fas fa-bars"></i>
+    </div>
     <div class = "user-menu-popup">
-       <div id = "user-menu-exit" class ="menu-button">X</i></div>
+       <div id = "user-menu-exit" class ="menu-button"><i class="fas fa-times"></i></i></div>
        <h2>Actions</h2>
        <ul>
-         <li><%= link_to "Collect Your Stamps", "#" %></li>
-         <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
+        <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
          <li><%= link_to "See Saved Itineraries", user_itineraries_path(user) %></li>
          <li><%= link_to "Edit Profile", edit_user_path(user)%></li>
-         <li><%= link_to "Sign-out", destroy_user_session_path, method: :delete %></li>
+         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
        </ul>
     </div>
   </div>
