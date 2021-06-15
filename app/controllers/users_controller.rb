@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @achievements = @user.achievements.size
     @stamps = @user_active_itinerary.empty? ? @all_stamps : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
+    @stamp_count = @user.stamps.where(stamp_status: true).count
     @locations = Location.where(id: @stamps.map(&:location_id))
     @markers = @locations.geocoded.map do |location|
       {
