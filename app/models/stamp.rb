@@ -5,21 +5,20 @@ class Stamp < ApplicationRecord
   validates :stampbook_id, uniqueness: { scope: :location_id }
   validates :stamp_status, inclusion: [true, false]
   has_one_attached :user_stamp_photo
-  after_update :add_stamp_to_other_stampbooks
+  # after_update :add_stamp_to_other_stampbooks
 
-  # private
+  def update_date
+    self.updated_at.strftime("%d %B %Y")
+  end
 
-  # def add_stamp_to_other_stampbooks
-  #   if stamp_status == true
-  #     stampbooks = self.stampbook.user.stampbooks
-  #     stampbooks.each do |stampbook|
-  #       stamp = stampbook.stamps.find_by_location_id(self.location.id)
-  #       stamp.update(stamp_status: true) if stamp
-  #     end
-  #   end
-  # end
+  def add_stamp_to_other_stampbooks
+    if stamp_status == true
+      stampbooks = self.stampbook.user.stampbooks
+      stampbooks.each do |stampbook|
+        stamp = stampbook.stamps.find_by_location_id(self.location.id)
+        stamp.update(stamp_status: true) if stamp
+      end
+    end
+  end
 
-  # def update_date
-  #   self.updated_at.strftime("%d %B %Y")
-  # end
 end
