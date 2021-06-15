@@ -1,3 +1,17 @@
+const toggleHidden = () =>{
+  const button = document.querySelector(".direction-arrow");
+  console.log(button);
+  if (button){
+    button.addEventListener("click", event =>{
+      console.log(button);
+      const directionBox = document.querySelector('.direction-box');
+      directionBox.classList.toggle("hidden-direction");
+      const routeBox = document.querySelector('.route-box');
+      routeBox.classList.toggle("hidden-route-box");
+    });
+  }
+}
+
 // const addSelectedClass = () => {
 //   const itineraryButtons = document.querySelectorAll(".transport-button");
 //   if (itineraryButtons){
@@ -14,4 +28,4 @@
 //   }
 // }
 
-// export { addSelectedClass };
+export { toggleHidden };

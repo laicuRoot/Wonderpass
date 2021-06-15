@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update] do
+    resources :invitations, only: [:new, :create, :edit, :update]
     resources :stamps, only: [:index]
     resources :stampbooks, only: [:index, :show, :create]
     resources :itineraries, only: [:new, :create, :index, :show]
