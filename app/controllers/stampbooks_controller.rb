@@ -1,13 +1,12 @@
 class StampbooksController < ApplicationController
-  before_action :find_user, except: [:create, :clone]
-
+  before_action :find_user, only: :index
+  
   def index
-    @user = User.find(params[:user_id])
     @user_stampbooks = Stampbook.where(user_id: @user.id)
     # @stampbooks = Stampbook.where(status: true)
   end
 
-  def show
+  def show;
   end
 
   def new
