@@ -1,7 +1,7 @@
 class StampbooksController < ApplicationController
-  before_action :find_user
 
   def index
+    @user = User.find(params[:user_id])
     @user_stampbooks = Stampbook.where(user_id: @user.id)
     # @stampbooks = Stampbook.where(status: true)
   end
@@ -16,9 +16,13 @@ class StampbooksController < ApplicationController
 
   def create
     @stampbook = Stampbook.new(stampbook_params)
-    @stampbook.user = @user
+    @stampbook.user = current_user
+    @location_ids = params[:stampbook][:location_ids]
     if @stampbook.save
-      redirect_to user_stampbooks_path(@user)
+      @location_ids.each do |location_id|
+        Stamp.create(location_id: location_id, stampbook_id: @stampbook.id, stamp_status: false)
+      end
+      redirect_to user_stampbooks_path(current_user)
     else
       render :new
     end
@@ -26,11 +30,7 @@ class StampbooksController < ApplicationController
 
   private
 
-  def find_user
-    @user = current_user
-  end
-
   def stampbook_params
-    params.require(:stampbook).permit(:stampbook_name, :stampbook_description, :status, :location_id)
+    params.require(:stampbook).permit(:stampbook_name, :stampbook_description, :status, :location_name, :location_ids)
   end
 end
