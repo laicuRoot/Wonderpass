@@ -75,7 +75,10 @@ class ItinerariesController < ApplicationController
     if @itinerary.save
       Itinerary.where(user: current_user).where.not(id: @itinerary.id).update_all(active_itinerary: false)
     end
+<<<<<<< Updated upstream
     redirect_to user_itineraries_path(current_user)
+=======
+>>>>>>> Stashed changes
   end
 
   private

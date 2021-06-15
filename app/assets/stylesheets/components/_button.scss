@@ -33,6 +33,31 @@
   z-index: 1;
 }
 
+<<<<<<< Updated upstream
+=======
+.friend-menu{
+  position:relative;
+  
+}
+
+.add-user-wrapper{
+  position: absolute;
+  right: 0px;
+}
+
+.add-user{
+  color: $bright-yellow;
+  font-size: 32px;
+  border: none;
+  background-color: transparent;
+  transition: transform 250ms;
+  &:hover{
+    z-index: 5;
+    transform: scale(1.2);
+  }
+}
+
+>>>>>>> Stashed changes
 .menu-button{
   position:absolute;
   top: 0;
@@ -48,6 +73,24 @@
   cursor: pointer;
 }
 
+<<<<<<< Updated upstream
+=======
+.friends-button{
+  position:absolute;
+  top: 0;
+  right: 40px;
+  padding: 8px 12px;
+  border-radius: 50%;
+  background-color: $bright-yellow;
+  color: $white;
+  text-shadow: 0 0 16px rgba($black, 0.6);
+  &:hover{
+    color: $black;
+  }
+  cursor: pointer;
+}
+
+>>>>>>> Stashed changes
 .round-yellow-button{
   position: absolute;
   padding: 8px 16px;
