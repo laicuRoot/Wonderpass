@@ -11,6 +11,14 @@ class User < ApplicationRecord
   # validates :first_name, :last_name, :username, presence: true
   after_create :create_stampbook_and_stamps
 
+  def collected_stamps
+    self.stamps.where(stamp_status: true)
+  end
+
+  def create_date
+    self.created_at.strftime("%d %B %Y")
+  end
+
   private
   def create_stampbook_and_stamps
     @stampbook = Stampbook.new(stampbook_name: "Top Wonders of the UK",

@@ -6,4 +6,26 @@ class Stampbook < ApplicationRecord
   validates :stampbook_name, :stampbook_description, presence: true
   validates :stampbook_name, length: { maximum: 50 }
   validates :stampbook_description, length: { maximum: 1000, too_long: "%{count} characters is the maximum allowed" }
+
+  def none_collected?
+    self.stamps.select(&:stamp_status).size.zero?
+  end
+
+  def collected_stamps
+    self.stamps.where(stamp_status: true)
+  end
+
+  def percent_completed
+    collected = collected_stamps.size
+    total = count_stamps
+    (collected.fdiv(total) * 100).floor
+  end
+
+  def stampbook_pages
+    count_stamps.fdiv(6).ceil
+  end
+
+  def count_stamps
+    self.stamps.count
+  end
 end

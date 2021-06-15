@@ -46,13 +46,48 @@
 }
 
 .direction-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position:absolute;
-  background-color: $white;
   bottom: 0px;
   left:0px;
   height: 100%;
-  width: 250px;
+  width: 270px;
   z-index: 5;
+  transition: 0.4s ease-in-out;
+}
+
+.hidden-direction{
+  transform: translateX(-235px);
+}
+
+.route-box{
+  background-color: $white;
+  padding: 0 10px;
+  height: 100%;
+  width: 240px;
+  box-shadow: 4px 2px 10px rgba($black, 0.5);
+  opacity: 1;
+  transition: 0.4s ease-in-out;
+}
+
+.hidden-route-box{
+  opacity: 0;
+}
+
+#route-instructions{
+  overflow-y: scroll;
+  height: 78%;
+}
+
+.direction-arrow{
+  cursor: pointer;
+  background-color: $white;
+  padding: 50px 5px;
+  font-size: 30px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 4px 2px 8px rgba($black, 0.5);
 }
 
 .hidden-route{

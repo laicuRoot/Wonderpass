@@ -12,8 +12,8 @@
       <p class="card-text">Number of stars earned</p>
       <h3><%= @achievements %></h3>
       <p>Traveller since</p>
-      <h3><%= user.created_at.strftime("%d %B %Y") %></h3>
-      <%= link_to '<i class="fas fa-book"></i> '.html_safe + "See stampbooks", user_stampbooks_path(user), class: "yellow-button" %>
+       <h3><%= user.create_date %></h3>
+      <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(user), class: "yellow-button" %>
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
