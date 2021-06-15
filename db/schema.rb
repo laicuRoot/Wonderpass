@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_141528) do
+ActiveRecord::Schema.define(version: 2021_06_12_151354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.bigint "stampbook_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["badge_id"], name: "index_achievements_on_badge_id"
+    t.index ["stampbook_id"], name: "index_achievements_on_stampbook_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +43,16 @@ ActiveRecord::Schema.define(version: 2021_06_09_141528) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.integer "value"
+    t.string "name"
+    t.text "description"
+    t.string "color"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
@@ -102,6 +121,8 @@ ActiveRecord::Schema.define(version: 2021_06_09_141528) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "achievements", "badges"
+  add_foreign_key "achievements", "stampbooks"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "itineraries", "users"
   add_foreign_key "itinerary_items", "itineraries"
