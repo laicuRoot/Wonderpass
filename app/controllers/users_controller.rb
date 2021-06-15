@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: current_user)
     @stamps = @user_active_itinerary.empty? ? @user.stamps : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
+    @stamp_count = @user.stamps.where(stamp_status: true).count
     @locations = Location.where(id: @stamps.map(&:location_id))
     @markers = @locations.geocoded.map do |location|
       {
