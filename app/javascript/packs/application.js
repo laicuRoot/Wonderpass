@@ -40,7 +40,6 @@ import { initAutocomplete } from '../plugins/init_autocomplete';
 import { addActiveItinerary } from '../plugins/add_active_itinerary';
 import { addOtherOption } from '../plugins/add_other_option';
 import { initSlick } from '../plugins/slick_carousel';
-import { showLegend } from '../plugins/show_map_legend'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:

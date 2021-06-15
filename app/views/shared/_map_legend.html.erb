@@ -1,9 +1,20 @@
-<div class="card-container" id="map-legend-container">
-  <div class="card px-2 py-1">
-    <p>You're currently on your <%= @user_active_itinerary.first.itinerary_name %> itinerary</p>
-    <ul class="legend-icons inline-list">
-      <li><i class="fas fa-map-marker-alt fa-2x collected-stamp-marker"></i> Collected Stamp</li>
-      <li><i class="fas fa-map-marker-alt fa-2x uncollected-stamp-marker"></i> Uncollected Stamp</li>
-    </ul>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content legend-modal">
+      <div class="modal-header">
+            <h2><%= @user_active_itinerary.first.itinerary_name %> Itinerary</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <ul class="legend-icons inline-list">
+              <li><i class="fas fa-map-marker-alt fa-2x user-location-marker"></i> You Are Here</li>
+              <li><i class="fas fa-map-marker-alt fa-2x collected-stamp-marker"></i> Collected Stamp</li>
+              <li><i class="fas fa-map-marker-alt fa-2x uncollected-stamp-marker"></i> Uncollected Stamp</li>
+            </ul>
+      </div>
+    </div>
   </div>
 </div>
