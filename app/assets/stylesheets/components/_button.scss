@@ -10,6 +10,21 @@
   }
 }
 
+
+.search-button {
+  color: $bright-yellow;
+  border: 1px solid $bright-yellow;
+  background-color: white;
+  padding: 4px 32px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  &:hover{
+    opacity: 1;
+  }
+}
+
 .small-yellow-button{
   padding: 8px 16px;
   background-color: $bright-yellow;
@@ -35,7 +50,6 @@
 
 .friend-menu{
   position:relative;
-  
 }
 
 .add-user-wrapper{

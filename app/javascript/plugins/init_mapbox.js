@@ -42,6 +42,19 @@ const getMapElements = () => {
   }
 };
 
+const myLocation = (map) => {
+  // Add geolocate control to the map.
+  map.addControl(
+    new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+    },
+        trackUserLocation: true,
+        fitBoundsOptions: {maxZoom:9},
+    }),
+  );
+}
+
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
   let cont = getMapElements();
@@ -51,13 +64,16 @@ const initMapbox = () => {
       const markers = JSON.parse(mapElement.dataset.markers);
       const map = new mapboxgl.Map({
         container: cont,
-        style: 'mapbox://styles/rubixthecubix/ckpa6hfqu6ejy18oj9bz9d98a'
+        style: 'mapbox://styles/rubixthecubix/ckpa6hfqu6ejy18oj9bz9d98a',
       });
       console.log(map);
       addMarkers(map, markers);
       fitMapToMarkers(map, markers);
+      myLocation(map);
     }
   }
 };
+
+
 
 export { initMapbox };

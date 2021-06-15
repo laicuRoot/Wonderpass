@@ -71,15 +71,19 @@ class ItinerariesController < ApplicationController
   def activate
     @itinerary = Itinerary.find(params[:itinerary_id])
     @itinerary.active_itinerary = true
-    @itinerary.save
     if @itinerary.save
-      Itinerary.where(user: current_user).where.not(id: @itinerary.id).update_all(active_itinerary: false)
+      Itinerary.set_inactive(@itinerary)
+      redirect_to user_itineraries_path(current_user)
     end
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     redirect_to user_itineraries_path(current_user)
 =======
 >>>>>>> Stashed changes
   end
+=======
+ end
+>>>>>>> f5f05cd5cbc3a7eefa552a5aa42f1dc1698086cd
 
   private
 

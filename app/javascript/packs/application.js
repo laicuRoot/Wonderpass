@@ -11,7 +11,6 @@ require("page-flip")
 var $ = require( "jquery" )
 require("slick-carousel")
 require("jquery")
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -33,6 +32,7 @@ import 'controllers';
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
+import {toggleFriendMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { toggleHidden } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
@@ -47,6 +47,7 @@ document.addEventListener('turbolinks:load', () => {
   toggleHidden();
   initMapbox();
   toggleMenu();
+  toggleFriendMenu();
   hideProfile();
   if (document.getElementById("book")){
     initPageFlip();
@@ -56,5 +57,4 @@ document.addEventListener('turbolinks:load', () => {
   initSlick();
   initAutocomplete();
   generateRoutes();
-
 });

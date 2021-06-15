@@ -17,9 +17,6 @@
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
-<<<<<<< Updated upstream
-=======
-
   <div class="map-legend">
     <button type="button" class="btn btn-sm legend-toggle" data-toggle="modal" data-target="#exampleModal">
       Legend <i class="fas fa-question-circle"></i>
@@ -33,7 +30,7 @@
     </div>
     <div class = "friends-menu-popup">
       <div id = "friends-menu-exit" class ="friends-menu-button">
-        X
+        <i class="fas fa-times"></i>
       </div>
       <div>
         <h2>Find friends</h2>
@@ -78,7 +75,6 @@
       </div>
       <div class='mt-3'>
         <h2>Friends</h2>
-
         <% if !@friends.nil? %>
           <ul>
           <% @friends.each do |invitation|%>
@@ -97,12 +93,12 @@
       </div>
     </div>
   </div>
-
->>>>>>> Stashed changes
   <div class="user-menu">
-    <div id = "user-menu-button" class ="menu-button"><i class="fas fa-bars"></i></div>
+    <div id = "user-menu-button" class ="menu-button">
+      <i class="fas fa-bars"></i>
+    </div>
     <div class = "user-menu-popup">
-       <div id = "user-menu-exit" class ="menu-button"><i class="fas fa-times"></i></i></div>
+       <div id = "user-menu-exit" class ="menu-button"><i class="fas fa-times"></i></div>
        <h2>Actions</h2>
        <ul>
         <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
