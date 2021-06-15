@@ -17,6 +17,14 @@
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
+
+  <div class="map-legend">
+    <button type="button" class="btn btn-sm legend-toggle" data-toggle="modal" data-target="#exampleModal">
+      Legend <i class="fas fa-question-circle"></i>
+    </button>
+    <%= render 'shared/map_legend' %>
+  </div>
+
   <div class="friend-menu">
     <div id = "user-menu-friends" class ="friends-button">
       <i class="fas fa-users"></i>
@@ -87,6 +95,7 @@
       </div>
     </div>
   </div>
+
   <div class="user-menu">
     <div id = "user-menu-button" class ="menu-button">
       <i class="fas fa-bars"></i>

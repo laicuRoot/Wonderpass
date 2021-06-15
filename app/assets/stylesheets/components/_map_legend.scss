@@ -1,0 +1,40 @@
+.collected-stamp-marker {
+  color: #FFDE55;
+}
+
+.uncollected-stamp-marker {
+  color: #FCF5DC;
+  text-shadow: -11px 10px 5px 0px rgba(52,52,52,0.78);
+}
+
+.user-location-marker {
+  color: red;
+}
+
+.legend-icons {
+  list-style: none;
+
+  li {
+    padding: 8px;
+    margin: 8px;
+  }
+}
+
+.legend-toggle {
+  background-color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+
+  z-index: 1;
+  vertical-align:top;
+
+  position: absolute;
+  top: 90%;
+  right: 0;
+  margin-right: 8px;
+}
+
+.legend-modal {
+    width: 500px !important;
+    border-radius: 8px;
+}

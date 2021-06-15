@@ -61,4 +61,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :username, :photo)
   end
+
+  def find_active
+    @user.itineraries.where(active_itinerary: true).first.itinerary_name
+  end
 end
