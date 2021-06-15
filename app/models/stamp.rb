@@ -5,7 +5,6 @@ class Stamp < ApplicationRecord
   validates :stampbook_id, uniqueness: { scope: :location_id }
   validates :stamp_status, inclusion: [true, false]
   has_one_attached :user_stamp_photo
-  # after_update :add_stamp_to_other_stampbooks
 
   def update_date
     self.updated_at.strftime("%d %B %Y")
