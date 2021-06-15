@@ -11,6 +11,7 @@ class StampbooksController < ApplicationController
 
   def new
     @stampbook = Stampbook.new
+    @locations = Location.all
   end
 
   def create
@@ -26,7 +27,7 @@ class StampbooksController < ApplicationController
   private
 
   def find_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def stampbook_params

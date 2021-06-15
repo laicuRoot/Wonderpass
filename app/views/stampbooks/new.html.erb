@@ -1,10 +1,11 @@
-<!-- <div>
-  <% simple_form_for([@stampbook]) do |form| %>
-    <%= form.label :stampbook_name, class: "d-none" %>
-    <%= form.submit  value:"Check stamp" %>
-  <% end %>
-</div>
- -->
+<h1>Create a new stampbook</h1>
 
- <h1>Yes</h1>
- <%= @user.first_name %>
+  <%= simple_form_for(@stampbook) do |form| %>
+    <%= form.input :stampbook_name, :required => true %>
+    <%= form.input :stampbook_description, :required => true %>
+    <%= form.input :status, label:'Allow other users to clone your stampbook' %>
+    <%= form.submit  value:"Create stampbook" %>
+  <% end %>
+
+<%= link_to("Go back to #{current_user.first_name}'s profile", user_path(@user) , class:'btn btn-info') %>
+<%= link_to("Go back to #{current_user.first_name}'s stampbook collection", user_stampbooks_path(@user), class:'btn btn-info' ) %>
