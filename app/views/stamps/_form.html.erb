@@ -1,9 +1,8 @@
 <div class="col-sm-12 col-md-6 ">
-  <%= form_with(model: [@stampbook, @stamp], local: true, multipart: true) do |form| %>
+  <%= form_with(model: [@stampbook, @stamp], local: true, multipart: true, class: "drop-height") do |form| %>
     <% if @stamp.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@stamp.errors.count, "error") %> prohibited this stamp from being saved:</h2>
-
         <ul>
           <% @stamp.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -11,8 +10,7 @@
         </ul>
       </div>
     <% end %>
-
-    <div class="mb-6">
+    <div class="mb-6 drop-height">
       <%= form.label :user_stamp_photo, class: "d-none" %>
       <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
         <%= form.file_field :user_stamp_photo, direct_upload: true, data: { dropzone_target: 'input' }, class:'pic_target', options: { image_metadata: true } %>
@@ -27,8 +25,6 @@
     </div>
   <% end %>
 </div>
-
-
 <div class='col-sm-12 col-md-6 text-center d-flex justify-content-center align-items-center'>
   <div>
     <h4 class='mb-3'>

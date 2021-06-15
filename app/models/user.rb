@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :stampbooks, dependent: :destroy
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
+  has_many :achievements, through: :stampbooks
   # validates :first_name, :last_name, :username, presence: true
   after_create :create_stampbook_and_stamps
 
