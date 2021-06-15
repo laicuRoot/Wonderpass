@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :invitations, only: [:new, :create, :edit, :update]
     resources :stamps, only: [:index]
     resources :stampbooks, only: [:index, :show]
-    resources :itineraries, only: [:new, :create, :index, :show]
+    resources :itineraries, only: [:new, :create, :index]
   end
 
   resources :stampbooks do
