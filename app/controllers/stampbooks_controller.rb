@@ -1,5 +1,5 @@
 class StampbooksController < ApplicationController
-  before_action :find_user, except: [:clone]
+  before_action :find_user, except: [:create, :clone]
 
   def index
     @user = User.find(params[:user_id])
@@ -41,6 +41,10 @@ class StampbooksController < ApplicationController
   end
 
   private
+
+  def find_user
+    @user = User.find(params[:user_id])
+  end
 
   def stampbook_params
     params.require(:stampbook).permit(:stampbook_name, :stampbook_description, :status, :location_name, :location_ids)

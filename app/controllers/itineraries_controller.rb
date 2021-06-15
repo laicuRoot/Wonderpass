@@ -75,15 +75,7 @@ class ItinerariesController < ApplicationController
       Itinerary.set_inactive(@itinerary)
       redirect_to user_itineraries_path(current_user)
     end
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    redirect_to user_itineraries_path(current_user)
-=======
->>>>>>> Stashed changes
   end
-=======
- end
->>>>>>> f5f05cd5cbc3a7eefa552a5aa42f1dc1698086cd
 
   private
 
