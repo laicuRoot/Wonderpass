@@ -4,7 +4,7 @@
       <h1 class='text-info bolder'> Your Stampbooks </h1>
       <h2> You have <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
       <div class='d-flex justify-content-center'>
-        <%= link_to("Create a stampbook", new_stampbook_path , class:'btn btn-info mr-1 rounded') %>
+        <%= link_to("Create a stampbook", new_user_stampbook_path , class:'btn btn-info mr-1 rounded') %>
         <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'btn btn-info ml-1') %>
       </div>
     </div>
