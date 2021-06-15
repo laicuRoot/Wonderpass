@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    @stamp_count = @user.stamps.where(stamp_status: true).count
+    @all_stamps = @user.stamps
+    @stamp_count = @all_stamps.where(stamp_status: true).count
     @user_active_itinerary = Itinerary.where(active_itinerary: true).where(user: current_user)
-    @stamps = @user_active_itinerary.empty? ? @user.stamps : @user_active_itinerary.map(&:stamps).flatten
+    @achievements = @user.achievements.size
+    @stamps = @user_active_itinerary.empty? ? @all_stamps : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
     @stamp_count = @user.stamps.where(stamp_status: true).count
     @locations = Location.where(id: @stamps.map(&:location_id))
