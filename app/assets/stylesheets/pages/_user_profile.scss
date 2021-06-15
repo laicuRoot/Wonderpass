@@ -131,11 +131,6 @@
   border-radius: 10px;
 }
 
-.hide-profile{
-  top: 50%;
-  right: -20px;
-}
-
 .view-profile{
   top: 50%;
   left: -20px;
@@ -153,9 +148,21 @@
   transform: translate(-350px);
   -webkit-transform: translate(-350px);
   -moz-transform: translate(-350px);
-  opacity: 20%;
+  background-color:rgba($white, 0.4);
+  .card-body{
+    opacity: 40%;
+  }
+  .card-img-top{
+    opacity: 40%;
+  }
 }
 
+.hide-profile{
+  top: 50%;
+  right: -20px;
+  opacity: 1;
+  z-index: 4;
+}
 .user-menu-popup {
   height: 35%;
 }
