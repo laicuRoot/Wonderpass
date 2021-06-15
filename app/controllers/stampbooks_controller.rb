@@ -17,7 +17,7 @@ class StampbooksController < ApplicationController
   def create
     @stampbook = Stampbook.new(stampbook_params)
     @stampbook.user = @user
-    if @itinerary.save
+    if @stampbook.save
       redirect_to user_stampbooks_path(@user)
     else
       render :new
@@ -31,6 +31,6 @@ class StampbooksController < ApplicationController
   end
 
   def stampbook_params
-    params.require(:stampbook).permit(:stampbook_name, :stampbook_description, :status)
+    params.require(:stampbook).permit(:stampbook_name, :stampbook_description, :status, :location_id)
   end
 end

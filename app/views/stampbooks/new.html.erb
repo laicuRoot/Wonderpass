@@ -1,8 +1,9 @@
 <h1>Create a new stampbook</h1>
 
-  <%= simple_form_for(@stampbook) do |form| %>
+  <%= simple_form_for([@user, @stampbook]) do |form| %>
     <%= form.input :stampbook_name, :required => true %>
     <%= form.input :stampbook_description, :required => true %>
+    <%= form.association :locations, as: :check_boxes, collection: Location.all.map {|u| [u.location_name]}.sort %>
     <%= form.input :status, label:'Allow other users to clone your stampbook' %>
     <%= form.submit  value:"Create stampbook" %>
   <% end %>
