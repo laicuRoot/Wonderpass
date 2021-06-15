@@ -27,13 +27,14 @@ require("jquery")
 // External imports
 import "bootstrap";
 import 'controllers';
+// import "stylesheets/application";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
 import { toggleMenu } from '../plugins/init_menu';
 import {toggleFriendMenu } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
-// import { addSelectedClass } from '../plugins/add_selected';
+import { toggleHidden } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
 import { generateRoutes } from '../plugins/routes';
 import { initAutocomplete } from '../plugins/init_autocomplete';
@@ -43,8 +44,7 @@ import { initSlick } from '../plugins/slick_carousel';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // addSelectedClass();
-  // initSelect2();
+  toggleHidden();
   initMapbox();
   toggleMenu();
   toggleFriendMenu();

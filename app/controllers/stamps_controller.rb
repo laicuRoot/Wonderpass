@@ -1,17 +1,19 @@
 class StampsController < ApplicationController
   before_action :find_stamp, only: [:show, :edit, :update]
-  before_action :find_stampbook, only: [:edit, :update]
+  before_action :find_stampbook, only: [:index, :edit, :update]
+  before_action :calc_percent, only: [:edit, :index, :update]
+  before_action :count_badges, only: :index
+  after_action :create_badge, only: :update
 
   def index
-    @stampbook = Stampbook.find(params[:stampbook_id])
     @stamps = @stampbook.stamps.order(:id)
     @index = 1
     @page_number = 0
-    @count = @stampbook.stamps.count.fdiv(6).ceil
+    @total = @stampbook.count_stamps
+    @count = @stampbook.stampbook_pages
     @count += 1 unless @count.even?
-    @collected = @stamps.where(stamp_status: true).size
-    @total = @stamps.size
-    @percent = @collected.fdiv(@total) * 100
+    @collected = @stampbook.collected_stamps.size
+    @percent = @stampbook.percent_completed
   end
 
   def show; end
@@ -20,7 +22,6 @@ class StampsController < ApplicationController
 
   def update
     respond_to do |format|
-      # raise
       if @stamp.update(stamp_params)
         @stamp.stamp_status = true
         format.html { redirect_to stampbook_stamps_path(@stampbook), notice: 'Stamp was successfully collected!' }
@@ -44,5 +45,34 @@ class StampsController < ApplicationController
 
   def find_stampbook
     @stampbook = Stampbook.find(params[:stampbook_id])
+  end
+
+  def count_badges
+    @badges = @stampbook.badges.order(created_at: :desc)
+    @badge_total = Badge.count - @badges.size
+  end
+
+  def create_badge
+    get_badges
+    @achievement = Achievement.where(stampbook: @stampbook)
+    gold = Achievement.new(stampbook: @stampbook, badge: @gold)
+    gold.save! unless @percent < 90 || @achievement.where(badge: @gold).present?
+    silver = Achievement.new(stampbook: @stampbook, badge: @silver) 
+    silver.save! unless @percent < 50 || @achievement.where(badge: @silver).present?
+    bronze = Achievement.new(stampbook: @stampbook, badge: @bronze)
+    bronze.save! unless @percent < 25 || @achievement.where(badge: @bronze).present?
+  end
+
+  def get_badges
+    @gold = Badge.find_by(name: "Gold")
+    @silver = Badge.find_by(name: "Silver")
+    @bronze = Badge.find_by(name: "Bronze")
+  end
+
+  def calc_percent
+    @stamps = @stampbook.stamps.order(:id)
+    @collected = @stamps.where(stamp_status: true).size
+    @total = @stamps.size
+    @percent = (@collected.fdiv(@total) * 100).floor
   end
 end

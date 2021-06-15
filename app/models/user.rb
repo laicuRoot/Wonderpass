@@ -13,9 +13,9 @@ class User < ApplicationRecord
   has_many :stampbooks, dependent: :destroy
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
+  has_many :achievements, through: :stampbooks
   has_many :invitations
   has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id"
-  # validates :first_name, :last_name, :username, presence: true
   after_create :create_stampbook_and_stamps
 
   def friends
@@ -31,6 +31,14 @@ class User < ApplicationRecord
 
   def send_invitation(user)
     invitations.create(friend_id: user.id)
+  end
+
+  def collected_stamps
+    self.stamps.where(stamp_status: true)
+  end
+
+  def create_date
+    self.created_at.strftime("%d %B %Y")
   end
 
   private
