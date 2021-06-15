@@ -42,7 +42,7 @@ class ItinerariesController < ApplicationController
   def filter
     @itinerary = Itinerary.find(params[:id])
     @categories = Location.get_categories
-    @distances = [5, 10, 20, 50, "Other"]
+    @distances = Itinerary.get_distances
   end
 
   def new
