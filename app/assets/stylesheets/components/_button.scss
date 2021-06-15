@@ -10,6 +10,21 @@
   }
 }
 
+
+.search-button {
+  color: $bright-yellow;
+  border: 1px solid $bright-yellow;
+  background-color: white;
+  padding: 4px 32px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  &:hover{
+    opacity: 1;
+  }
+}
+
 .small-yellow-button{
   padding: 8px 16px;
   background-color: $bright-yellow;
@@ -33,7 +48,44 @@
   z-index: 1;
 }
 
+.friend-menu{
+  position:relative;
+  left: 28%;
+}
+
+.add-user-wrapper{
+  position: absolute;
+  right: 0px;
+}
+
+.add-user{
+  color: $bright-yellow;
+  font-size: 32px;
+  border: none;
+  background-color: transparent;
+  transition: transform 250ms;
+  &:hover{
+    z-index: 5;
+    transform: scale(1.2);
+  }
+}
+
 .menu-button{
+  position:absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 12px;
+  border-radius: 50%;
+  background-color: $bright-yellow;
+  color: $white;
+  text-shadow: 0 0 16px rgba($black, 0.6);
+  &:hover{
+    color: $black;
+  }
+  cursor: pointer;
+}
+
+.friends-button{
   position:absolute;
   top: 0;
   right: 0;

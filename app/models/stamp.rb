@@ -18,4 +18,8 @@ class Stamp < ApplicationRecord
   #     end
   #   end
   # end
+
+  # def update_date
+  #   self.updated_at.strftime("%d %B %Y")
+  # end
 end
