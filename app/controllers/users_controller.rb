@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @invitations = Invitation.where(friend_id: current_user, confirmed: false)
     if params[:query].present?
       @users = User.search_by_username_and_fullname(params[:query])
+      # raise
     end
     respond_to do |format|
       format.html

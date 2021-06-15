@@ -27,7 +27,7 @@
       </div>
       <div>
         <h2>Find friends</h2>
-        <%= form_tag user_path(user), method: :get do %>
+        <%= form_tag user_path(user,remote: true), method: :get do %>
           <%= text_field_tag :query,
           params[:query],
           class: 'form-control',
