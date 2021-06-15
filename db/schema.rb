@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2021_06_13_140033) do
 
   # These are extensions that must be enabled in order to support this database
@@ -46,6 +45,15 @@ ActiveRecord::Schema.define(version: 2021_06_13_140033) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "badges", force: :cascade do |t|
+    t.integer "value"
+    t.string "name"
+    t.text "description"
+    t.string "color"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "follows", force: :cascade do |t|
     t.integer "following_id", null: false
@@ -64,16 +72,6 @@ ActiveRecord::Schema.define(version: 2021_06_13_140033) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_invitations_on_user_id"
-  end
-
-  create_table "badges", force: :cascade do |t|
-    t.integer "value"
-    t.string "name"
-    t.text "description"
-    t.string "color"
-    t.string "image_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
