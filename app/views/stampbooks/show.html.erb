@@ -4,7 +4,7 @@
       <h1 class='text-info bolder'> Your Stampbooks </h1>
       <h2> You have <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
       <div class='d-flex justify-content-center'>
-        <%= link_to("Create a stampbook", new_stampbook_path , class:'btn btn-info mr-1 rounded') %>
+        <%= link_to("Create a stampbook", new_user_stampbook_path , class:'btn btn-info mr-1 rounded') %>
         <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'btn btn-info ml-1') %>
       </div>
     </div>
@@ -19,9 +19,9 @@
               <div class="progress" style = "width: 400px;">
                 <% if stampbook.stamps.select(&:stamp_status).size.zero?%>
                   <div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow= "0" aria-valuemin="0" aria-valuemax="100"></div>
-                <% else %> 
+                <% else %>
                   <% collected = stampbook.stamps.select(&:stamp_status).size %>
-                  <% total = stampbook.stamps.size %>  
+                  <% total = stampbook.stamps.size %>
                   <div class="progress-bar" role="progressbar" style="width: <%= collected.fdiv(total)*100 %>%" aria-valuenow= "<%= collected.fdiv(total)*100 %>" aria-valuemin="0" aria-valuemax="100"><%=  collected.fdiv(total)*100 %>%</div>
                 <% end %>
               </div>

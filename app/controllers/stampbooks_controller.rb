@@ -6,7 +6,21 @@ class StampbooksController < ApplicationController
     # @stampbooks = Stampbook.where(status: true)
   end
 
-  def show;
+  def show
+  end
+
+  def new
+    @stampbook = Stampbook.new
+  end
+
+  def create
+    @stampbook = Stampbook.new(stampbook_params)
+    @stampbook.user = @user
+    if @itinerary.save
+      redirect_to user_stampbooks_path(@user)
+    else
+      render :new
+    end
   end
 
   private
@@ -15,9 +29,7 @@ class StampbooksController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  private
-
-  def find_user
-    @user = User.find(params[:user_id])
+  def stampbook_params
+    params.require(:stampbook).permit(:stampbook_name, :stampbook_description, :status)
   end
 end
