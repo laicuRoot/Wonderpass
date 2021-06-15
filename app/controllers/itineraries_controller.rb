@@ -1,5 +1,5 @@
 class ItinerariesController < ApplicationController
-  before_action :find_user, except: [:filter, :destroy, :activate]
+  before_action :find_user, except: [:filter, :destroy, :activate, :show]
 
   def index
     # @stamps_all = Stamp.all.where(user: @stampbooks..user)
