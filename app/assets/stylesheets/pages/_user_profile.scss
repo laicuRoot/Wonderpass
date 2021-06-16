@@ -144,7 +144,13 @@
   transform: translate(-350px);
   -webkit-transform: translate(-350px);
   -moz-transform: translate(-350px);
-  opacity: 20%;
+  background-color:rgba($white, 0.4);
+  .card-body{
+    opacity: 40%;
+  }
+  .card-img-top{
+    opacity: 40%;
+  }
 }
 
 .hide-profile{
