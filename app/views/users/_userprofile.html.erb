@@ -19,8 +19,8 @@
   </div>
 
   <div class="map-legend">
-    <button type="button" class="btn btn-sm legend-toggle" data-toggle="modal" data-target="#exampleModal">
-      Legend <i class="fas fa-question-circle"></i>
+    <button type="button" class="legend-toggle" data-toggle="modal" data-target="#exampleModal">
+      <i class="fas fa-question-circle"></i>
     </button>
     <%= render 'shared/map_legend' %>
   </div>
@@ -40,3 +40,16 @@
     </div>
   </div>
 </div>
+
+<style>
+  .mapboxgl-user-location-dot:after{
+    background-image: url("<%= rails_blob_path(user.photo, disposition: "attachment", only_path: true) %>");
+    background-size: contain;
+    height: 30px;
+    width: 30px;
+  }
+
+  .mapboxgl-user-location-dot:before{
+    display: none;
+  }
+</style>

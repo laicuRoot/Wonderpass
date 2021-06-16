@@ -22,19 +22,22 @@
 
 .legend-toggle {
   background-color: #FFFFFF;
-  font-weight: 600;
-  border-radius: 10px;
+  border-radius: 8px;
 
   z-index: 1;
   vertical-align:top;
 
   position: absolute;
-  top: 90%;
-  right: 0;
-  margin-right: 8px;
+  top: 93%;
+  right: 4%;
+  margin-right: 4px;
 }
 
 .legend-modal {
     width: 500px !important;
     border-radius: 8px;
+}
+
+.mapboxgl-ctrl-geolocate {
+
 }

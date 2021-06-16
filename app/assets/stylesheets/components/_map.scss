@@ -58,3 +58,9 @@
 .hidden-route{
   display: none;
 }
+
+.mapboxgl-user-location-dot:after {
+  background-size: contain;
+  height: 30px;
+  width: 30px;
+}
