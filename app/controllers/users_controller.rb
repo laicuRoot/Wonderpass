@@ -23,7 +23,10 @@ class UsersController < ApplicationController
     @stamp_count = @user.collected_stamps.size
     @user_active_itinerary = Itinerary.get_active(@user)
     @all_stamps = @user.stamps
-    @achievements = @user.achievements.size
+    # @achievements = @user.achievements.size
+    @num_bronze_stars = @user.achievements.map(&:badge_id).count(3)
+    @num_silver_stars = @user.achievements.map(&:badge_id).count(2)
+    @num_gold_stars = @user.achievements.map(&:badge_id).count(1)
     @stamps = @user_active_itinerary.empty? ? @all_stamps : @user_active_itinerary.map(&:stamps).flatten
     @stamps_all = Stamp.all.where(id: @stamps)
     @locations = Location.where(id: @stamps.map(&:location_id))
