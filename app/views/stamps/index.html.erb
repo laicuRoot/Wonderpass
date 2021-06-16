@@ -17,6 +17,22 @@
   <div class="stamps-header mt-5">
     <% if @stampbook.user == current_user %>
       <h2 class="number-stamps-collected-sml">You collected <span class="number-stamps-collected-big"><%= @collected %></span>/<%= @total%> <%="stamp".pluralize(@collected)%></h2>
+      <div class="badge-container d-flex align-items-center">
+        <% @badges.each do |badge| %>
+          <div class="badge-style mr-3 collected" style="color:<%= badge.color %>">
+            <%= badge.image_url.html_safe %>
+            <span class="badge-tooltiptext" style= "background-color:<%= badge.color %>"><%= badge.description %></span>
+          </div>
+        <% end %>
+        <% unless @badge_total.zero? %>
+          <% @badge_total.times do %>
+            <div class="badge-style mr-3" style="font-size: 1rem; color: white;">
+              <i class="fas fa-star"></i>
+              <span class="badge-tooltiptext not-collected-tooltip">Collect more stamps to unlock this star!</span>
+             </div>
+          <% end %>
+        <% end %>
+        </div>
       <div class="progress" style = "width: 400px;">
         <% if @percent.floor.zero? %>
           <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
@@ -24,7 +40,6 @@
           <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent.to_s.sub(/\.?0+$/, '') %>%</div>
         <% end %>
       </div>
-      <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
     <% else %>
       <h2 class="number-stamps-collected-sml"><%= @stampbook.user.first_name %> collected <span class="number-stamps-collected-big"><%= @collected %></span>/<%= @total%> <%="stamp".pluralize(@collected)%></h2>
       <div class="progress" style = "width: 400px;">
@@ -40,21 +55,20 @@
 
     <div id="book">
       <% @stamps.each_slice(6) do |stamps| %>
-        <% @page_number += 1 %> 
+        <% @page_number += 1 %>
         <div class="my-page">
           <div class="stamps-collection">
             <% stamps.each do |stamp| %>
-              <div class="stamp-background">
+              <button type="button" class="stamp-background" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">
+                <div class="stamp-view-icon"><i class="fas fa-search"></i></div>
                 <% if stamp.stamp_status %>
-                  <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 100, width: 200, crop: :fill  %>
-                  <button type="button" class="btn small-yellow-button" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">Show stamp</button>
+                  <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 200, width: 200, crop: :fill %>              
                 <% else %>
                   <h3>#<span class="stamp-number-height"><%= @index %></span></h3>
-                  <h4><%= stamp.location.location_name %></h4>
-                  <button type="button" class="btn small-yellow-button" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">View details</button>
+                  <h4><%= stamp.location.location_name %></h4>                
                 <% end %>
                 <% @index += 1 %>
-              </div>
+              </button>  
             <% end %>
         </div>
         <div class="page-number">
@@ -64,7 +78,6 @@
       <% end %>
       <% if @page_number.odd? %>
         <div class ="my-page">
-          <p class = "final-page">You’ve reached the end of the stampbook.</p>
           <div class="page-number">
             <p>Page <strong> <%= @page_number + 1 %> </strong> / <%= @count %></p>
           </div>
@@ -78,7 +91,8 @@
   <% else %>
     <div class="collect-stamp-link mt-3"><%= link_to "<i class='fas fa-copy'></i> Clone the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
   <% end %>
-   <%= link_to("Go back to #{@stampbook.user.first_name}'s profile", user_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
+  <%= link_to("Go to #{@stampbook.user.first_name}'s profile", user_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
+  <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
 </div>
 
 
@@ -89,4 +103,10 @@
       <%= render "uncollected_stamp_modal", stamp: stamp %>
     <% end %>
   <% end %>
+
+
+<!--         <div class="collect-stamp-link"><%= link_to "<i class='fas fa-plus'></i> Collect a stamp".html_safe, user_stamps_path(@stampbook.user.id) %></div>
+ -->
+<!--            <p class = "final-page">You’ve reached the end of the stampbook.</p>
+ -->
 

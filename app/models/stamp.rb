@@ -5,4 +5,8 @@ class Stamp < ApplicationRecord
   validates :stampbook_id, uniqueness: { scope: :location_id }
   validates :stamp_status, inclusion: [true, false]
   has_one_attached :user_stamp_photo
+
+  def update_date
+    self.updated_at.strftime("%d %B %Y")
+  end
 end

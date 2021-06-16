@@ -6,7 +6,7 @@
           <h1 class='text-info bolder'> Your Stampbooks </h1>
           <h2> You have <%= pluralize(current_user.stampbooks.count, 'stampbook')%></h2>
           <div class='d-flex justify-content-center'>
-            <%= link_to("Create a stampbook", new_stampbook_path , class:'btn btn-info mr-1 rounded') %>
+            <%= link_to("Create a stampbook", new_stampbook_path, class:'btn btn-info mr-1 rounded') %>
             <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'btn btn-info ml-1') %>
           </div>
         </div>
@@ -17,18 +17,15 @@
           <div class="scroller">
           <% current_user.stampbooks.each do |stampbook| %>
             <div class="card text-center">
-              <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture'  %>
               <div class="card-body">
                 <h5 class="card-title"> <%= link_to stampbook.stampbook_name, stampbook_stamps_path(stampbook) %></h5>
                 <p class="card-text"><%= stampbook.stampbook_description %></p>
                 <div class="d-flex justify-content-center">
                   <div class="progress" style = "width: 250px; font-size: 12px;">
-                    <% if stampbook.stamps.select(&:stamp_status).size.zero?%>
+                    <% if stampbook.none_collected?%>
                       <div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow= "0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <% else %>
-                      <% collected = stampbook.stamps.select(&:stamp_status).size %>
-                      <% total = stampbook.stamps.size %>
-                      <div class="progress-bar" role="progressbar" style="width: <%= collected.fdiv(total)*100 %>%;" aria-valuenow= "<%= collected.fdiv(total)*100 %>" aria-valuemin="0" aria-valuemax="100"><%=  (collected.fdiv(total)*100).to_s.sub(/\.?0+$/, '') %>%</div>
+                    <% else %> 
+                      <div class="progress-bar" role="progressbar" style="width: <%= stampbook.percent_completed %>%" aria-valuenow= "<%= stampbook.percent_completed %>" aria-valuemin="0" aria-valuemax="100"><%= stampbook.percent_completed %>%</div>
                     <% end %>
                   </div>
                 </div>
@@ -63,12 +60,10 @@
                 <p class="card-text"><%= stampbook.stampbook_description %></p>
                 <div class="d-flex justify-content-center">
                   <div class="progress" style = "width: 250px; font-size: 12px;">
-                    <% if stampbook.stamps.select(&:stamp_status).size.zero?%>
+                    <% if stampbook.none_collected?%>
                       <div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow= "0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <% else %>
-                      <% collected = stampbook.stamps.select(&:stamp_status).size %>
-                      <% total = stampbook.stamps.size %>
-                      <div class="progress-bar" role="progressbar" style="width: <%= collected.fdiv(total)*100 %>%;" aria-valuenow= "<%= collected.fdiv(total)*100 %>" aria-valuemin="0" aria-valuemax="100"><%=  (collected.fdiv(total)*100).to_s.sub(/\.?0+$/, '') %>%</div>
+                    <% else %> 
+                      <div class="progress-bar" role="progressbar" style="width: <%= stampbook.percent_completed %>%" aria-valuenow= "<%= stampbook.percent_completed %>" aria-valuemin="0" aria-valuemax="100"><%= stampbook.percent_completed %>%</div>
                     <% end %>
                   </div>
                 </div>
