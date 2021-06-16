@@ -43,21 +43,21 @@ const getMapElements = () => {
 };
 
 const toggleMarkers = (map, mapElement) =>{
-  let toggle = document.querySelector(".toggle-all");
+  const toggle = document.querySelector(".toggle-all");
+  const activeMarkers = JSON.parse(mapElement.dataset.markers);
+  const allMarkers = JSON.parse(mapElement.dataset.allMarkers);
   toggle.addEventListener("click", event =>{
     let target = event.currentTarget
-    console.log(target);
     if (target.innerText == "All Stamps"){
-    target.innerText = "View Active";
-    console.log(target);
-    let markers = JSON.parse(mapElement.dataset.allMarkers);
-    addMarkers(map, markers);
-    fitMapToMarkers(map, markers);
+      target.innerText = "View Active";
+      $('.mapboxgl-marker').remove();
+      addMarkers(map, allMarkers);
+      fitMapToMarkers(map, allMarkers);
     } else if (target.innerText == "View Active"){
-       target.innerText = "All Stamps";
-       let markers = JSON.parse(mapElement.dataset.markers);
-       addMarkers(map, markers);
-       fitMapToMarkers(map, markers);
+      target.innerText = "All Stamps";
+      $('.mapboxgl-marker').remove();
+      addMarkers(map, activeMarkers);
+      fitMapToMarkers(map, activeMarkers);
     }    
   });
 }

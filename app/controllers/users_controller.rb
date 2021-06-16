@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def show
-    get_invitations
-    get_search
     @stamp_count = @user.collected_stamps.size
     @achievements = @user.achievements.size
     @user_active_itinerary = Itinerary.get_active(@user)
+    get_invitations
+    get_search
     get_stamps
     get_locations
     get_active_markers

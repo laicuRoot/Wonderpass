@@ -12,6 +12,10 @@ class Itinerary < ApplicationRecord
     Itinerary.where(active_itinerary: true).where(user: user)
   end
 
+  def self.get_distances
+    [5, 10, 25, 50, 100, "Other"]
+  end
+
   def find_item_by_stamp
     self.itinerary_items.find_by(stamp_id: stamp.id)
   end
@@ -35,10 +39,8 @@ class Itinerary < ApplicationRecord
   def collected_stamps
     self.itinerary_items.select {|item| item.stamp.stamp_status==true}.count
   end
-  # def set_active
-  #   if active_itinerary
-  #     # Itinerary.where.not(id: id).and(user: current_user).update_all(active_itinerary: false)
-  #     Itinerary.where.not(id: id).where(user: current_user).update_all(active_itinerary: false)
-  #   end
-  # end
+
+  def self.set_inactive(itinerary)
+    where.not(id: itinerary.id).where(user: itinerary.user).update_all(active_itinerary: false)
+  end
 end
