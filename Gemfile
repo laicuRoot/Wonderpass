@@ -38,6 +38,8 @@ gem 'exifr', '~> 1.3', '>= 1.3.9'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+# PG Search
+gem 'pg_search', '~> 2.3.0'
 
 # faker
 gem 'faker'

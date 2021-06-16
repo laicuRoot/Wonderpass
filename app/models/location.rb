@@ -10,4 +10,12 @@ class Location < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_location_name?
   has_many_attached :location_photos
   has_many_attached :stamp_photos
+
+  def self.get_categories
+    Location.all.map{|location| location.category}.uniq
+  end
+
+  def find_stamp(location)
+    @stamps.find_by(location: location.id)
+  end
 end

@@ -11,8 +11,8 @@ const addToggle = () => {
 }
 
 const createDirections = (data) =>{
-  document.getElementById("route-distance").innerHTML = `Distance: ${Math.round(data.distance * 0.001)}km`;
-  document.getElementById("route-duration").innerHTML = `Time expected: ${new Date(data.duration * 1000).toISOString().substr(11, 8)}`;
+  document.getElementById("route-distance").innerHTML = `<strong>Distance:</strong> ${Math.round(data.distance * 0.001)}km`;
+  document.getElementById("route-duration").innerHTML = `<strong>Time expected:</strong> ${new Date(data.duration * 1000).toISOString().substr(11, 8)}`;
   console.log("time", data.duration)
   let instructionNumber = 1
   let routeInfo = document.getElementById("route-instructions");
@@ -21,7 +21,9 @@ const createDirections = (data) =>{
   let journeyCount = 0;
   data.legs.forEach((leg) => {
     journeyCount += 1;
-    routeInfo.insertAdjacentHTML("beforeend", `<div class = 'route-header' style: "display:flex;"><p style="font-weight:bold; width:90%; display:inline-block;">Leg ${journeyCount} - ${leg.summary}</p><i class="fas fa-caret-down"></i></div>`);
+    routeInfo.insertAdjacentHTML("beforeend", `<div class = 'route-header' style: "display:flex;"><p style="font-weight:bold; width:90%; display:inline-block;">Leg ${journeyCount} - from ${leg.summary.replace(',', ' to ')}</p>
+                                                <span style="font-size:20px;"><i class="fas fa-caret-down"></i></span>
+                                              </div>`);
     routeInfo.insertAdjacentHTML("beforeend", "<div class = 'route-toggle hidden-route'></div>");
     leg.steps.forEach((step) => {
       routeInfo.lastChild.insertAdjacentHTML("beforeend", `<div class = 'route-details'>${instructionNumber} ${step.maneuver.instruction}</div>`)
@@ -30,6 +32,7 @@ const createDirections = (data) =>{
   });
   addToggle();
 }
+
 const getRoute = (endCoords, transportProfile, map, markers) => {
   // make a directions request using cycling profile
   // an arbitrary start will always be the same
