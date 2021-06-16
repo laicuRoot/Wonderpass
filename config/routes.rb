@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :invitations, only: [:new, :create, :edit, :update]
     resources :stamps, only: [:index]
-    resources :stampbooks, only: [:index, :show]
-    resources :itineraries, only: [:new, :create, :index]
+    resources :stampbooks, only: [:index, :show, :create]
+    resources :itineraries, only: [:new, :create, :index, :show]
   end
 
   resources :stampbooks do
