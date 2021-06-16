@@ -62,7 +62,9 @@
 
 
 .user-menu-popup{
-  position:relative;
+  position:fixed;
+  top: 10%;
+  right: 150px;
   height: 230px;
   width:300px;
   background-color: $bright-yellow;
@@ -163,9 +165,9 @@
   opacity: 1;
   z-index: 4;
 }
-.user-menu-popup {
-  height: 35%;
-}
+// .user-menu-popup {
+//   height: 35%;
+// }
 
 .friends-menu-popup{
   position:relative;
