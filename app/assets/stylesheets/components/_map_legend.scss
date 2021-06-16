@@ -21,20 +21,45 @@
 }
 
 .legend-toggle {
-  background-color: #FFFFFF;
+  background-color: $bright-yellow;
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 20px;
 
   z-index: 1;
   vertical-align:top;
 
-  position: absolute;
-  top: 90%;
-  right: 0;
-  margin-right: 8px;
+  position: fixed;
+  bottom: 5%;
+  right: 15%;
+
+  padding: 10px 20px;
+  p {
+    margin: 0px;
+  }
 }
 
 .legend-modal {
     width: 500px !important;
     border-radius: 8px;
 }
+
+.yellow-button-map-legend-active-itinerary {
+  background-color: $bright-yellow;
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  a {
+    text-decoration: none;
+  }
+}
+
+
+
+
+
+
+
