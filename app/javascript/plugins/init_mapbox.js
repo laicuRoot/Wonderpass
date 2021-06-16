@@ -42,6 +42,24 @@ const getMapElements = () => {
   }
 };
 
+// const toggleMarkers = (map, mapElement) =>{
+//   let toggle = document.querySelector(".toggle-all");
+//   toggle.addEventListener("click", event =>{
+//     let target = event.currentTarget.innerText
+//     if (target == "All Stamps"){
+//     target = "View Active";
+//     let markers = JSON.parse(mapElement.dataset.allMarkers);
+//     addMarkers(map, markers);
+//     fitMapToMarkers(map, markers);
+//     } else{
+//        target ="All Stamps";
+//        let markers = JSON.parse(mapElement.dataset.markers);
+//        addMarkers(map, markers);
+//        fitMapToMarkers(map, markers);
+//     }    
+//   });
+// }
+
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
   let cont = getMapElements();
@@ -56,6 +74,9 @@ const initMapbox = () => {
       console.log(map);
       addMarkers(map, markers);
       fitMapToMarkers(map, markers);
+      // if (mapElement == "user-map"){
+      //   toggleMarkers(map, mapElement);
+      // }
     }
   }
 };
