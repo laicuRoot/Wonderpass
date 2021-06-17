@@ -109,7 +109,7 @@ bronze_badge = Badge.new(
 	description: "Collected 25% of your stamps!",
 	color: "#cc6633",
 	image_url: '<i class="fas fa-star"></i>',
-	value: 10;
+	value: 10
 )
 bronze_badge.save!
 puts "#{bronze_badge.name} badge is created!"
