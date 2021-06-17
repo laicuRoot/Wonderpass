@@ -12,6 +12,10 @@ class Itinerary < ApplicationRecord
     Itinerary.where(active_itinerary: true).where(user: user)
   end
 
+  def self.get_distances
+    [5, 10, 25, 50, 100, "Other"]
+  end
+
   def find_item_by_stamp
     self.itinerary_items.find_by(stamp_id: stamp.id)
   end
