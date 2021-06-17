@@ -42,6 +42,26 @@ const getMapElements = () => {
   }
 };
 
+const toggleMarkers = (map, mapElement) =>{
+  const toggle = document.querySelector(".toggle-all");
+  const activeMarkers = JSON.parse(mapElement.dataset.markers);
+  const allMarkers = JSON.parse(mapElement.dataset.allMarkers);
+  toggle.addEventListener("click", event =>{
+    let target = event.currentTarget
+    if (target.innerText == "All Stamps"){
+      target.innerText = "View Active";
+      $('.mapboxgl-marker').remove();
+      addMarkers(map, allMarkers);
+      fitMapToMarkers(map, allMarkers);
+    } else if (target.innerText == "View Active"){
+      target.innerText = "All Stamps";
+      $('.mapboxgl-marker').remove();
+      addMarkers(map, activeMarkers);
+      fitMapToMarkers(map, activeMarkers);
+    }    
+  });
+}
+
 const myLocation = (map) => {
   // Add geolocate control to the map.
   map.addControl(
@@ -69,6 +89,9 @@ const initMapbox = () => {
       console.log(map);
       addMarkers(map, markers);
       fitMapToMarkers(map, markers);
+      if (cont == "user-map"){
+        toggleMarkers(map, mapElement);
+      }
       myLocation(map);
     }
   }

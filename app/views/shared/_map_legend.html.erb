@@ -6,7 +6,7 @@
             <% if @user_active_itinerary.exists? %>
               <h2><%= @user_active_itinerary.first.itinerary_name %> Itinerary</h2>
             <% else %>
-              <h2>No Active Itinerary</h2>
+              <h2 style="display:block;">No Active Itinerary</h2>
               <%= link_to "Choose an itinerary to display", user_itineraries_path(@user), class: 'yellow-button-map-legend-active-itinerary' %>
             <% end %>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
