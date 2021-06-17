@@ -147,3 +147,73 @@
 .mapboxgl-user-location-dot:before{
   display: none;
 }
+
+.friends-menu-popup{
+  position:relative;
+  height: 450px;
+  width:300px;
+  background-color: $bright-yellow;
+  color: $white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  h2{
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba($black, 0.3);
+  }
+  ul{
+    margin:0;
+    padding: 0;
+  }
+  li{
+    text-decoration: none;
+    color: $black;
+    list-style:none;
+    padding-bottom: 10px;
+  }
+  a{
+    text-decoration: none;
+  }
+
+  #friends-menu-exit{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    color: $black;
+  }
+}
+
+.friends-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.confirmed-btn {
+  background-color: $white;
+  color: $bright-yellow;
+  padding: 4px 4px;
+  border: none;
+  border-radius: 16px;
+  font-size: 12px;
+  transition: transform 250ms;
+  &:hover{
+    z-index: 5;
+    transform: scale(1.2);
+  }
+}
+
+.name{
+  color: $white;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba($black, 0.3);
+  &:hover{
+    text-decoration: underline;
+    color: white
+  }
+}
+
+.pending-title {
+  font-size: 24px;
+}
