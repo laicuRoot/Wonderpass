@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import 'jquery';
 
 const customiseMarkers = () => {
 	const element = document.createElement('div');
@@ -42,18 +43,34 @@ const getMapElements = () => {
   }
 };
 
+const toggleMarkers = (map, mapElement) =>{
+  const toggle = document.querySelector(".toggle-all");
+  const activeMarkers = JSON.parse(mapElement.dataset.markers);
+  const allMarkers = JSON.parse(mapElement.dataset.allMarkers);
+  toggle.addEventListener("click", event =>{
+    let target = event.currentTarget
+    if (target.innerText == "All Stamps"){
+      target.innerText = "View Active";
+      $('.mapboxgl-marker').remove();
+      addMarkers(map, allMarkers);
+      fitMapToMarkers(map, allMarkers);
+    } else if (target.innerText == "View Active"){
+      target.innerText = "All Stamps";
+      $('.mapboxgl-marker').remove();
+      addMarkers(map, activeMarkers);
+      fitMapToMarkers(map, activeMarkers);
+    }    
+  });
+}
+
 const myLocation = (map) => {
   // Add geolocate control to the map.
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-    },
-        trackUserLocation: true,
-        fitBoundsOptions: {maxZoom:9},
-    }),
-  );
+  map.addControl(new mapboxgl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, fitBoundsOptions: {maxZoom: 7},}),'bottom-right');
 }
+
+// myLocation.on('myLocation', (e) =>{
+//   console.log('vibes');
+// })
 
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
@@ -69,6 +86,9 @@ const initMapbox = () => {
       console.log(map);
       addMarkers(map, markers);
       fitMapToMarkers(map, markers);
+      if (cont == "user-map"){
+        toggleMarkers(map, mapElement);
+      }
       myLocation(map);
     }
   }

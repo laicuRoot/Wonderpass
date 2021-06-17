@@ -50,17 +50,23 @@
         <% end %>
       </div>
     <% end %>
+    <% if current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name)%>
+      <div class="grey-button mt-3"><i class='fas fa-copy'></i> Can't clone. You already have this stampbook</div>
+    <% elsif @stampbook.user == current_user%>
+      <div class="grey-button"><i class='fas fa-copy'></i> Can't clone your own stampbook</div>
+    <% else %>
+      <div class="collect-stamp-link mt-3">
+        <%= link_to "<i class='fas fa-copy'></i>Clone the stampbook".html_safe, clone_stampbook_path(@stampbook), method: :post, data: { confirm: "Would you like to clone #{}?"} %>
+      </div>
+    <% end %>
   </div>
-
-
-    <div id="book">
+   <div id="book">
       <% @stamps.each_slice(6) do |stamps| %>
         <% @page_number += 1 %>
         <div class="my-page">
           <div class="stamps-collection">
             <% stamps.each do |stamp| %>
               <button type="button" class="stamp-background" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">
-                <div class="stamp-view-icon"><i class="fas fa-search"></i></div>
                 <% if stamp.stamp_status %>
                   <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 200, width: 200, crop: :fill %>              
                 <% else %>
@@ -84,13 +90,6 @@
         </div>
       <% end %>
   </div>
-  <% if current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name)%>
-    <div class="grey-button mt-3"><i class='fas fa-copy'></i> Can't clone. You already have this stampbook</div>
-  <% elsif @stampbook.user == current_user%>
-   <div class="grey-button"><i class='fas fa-copy'></i> Can't clone your own stampbook</div>
-  <% else %>
-    <div class="collect-stamp-link mt-3"><%= link_to "<i class='fas fa-copy'></i> Clone the stampbook".html_safe, user_stamps_path(@stampbook.user.id) %></div>
-  <% end %>
   <%= link_to("Go to #{@stampbook.user.first_name}'s profile", user_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
   <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
 </div>

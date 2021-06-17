@@ -4,12 +4,12 @@
   justify-content:space-between;
   align-items: flex-start;
   max-width: 100vw;
-  padding: 80px 200px 80px 60px;
+  padding: 80px 200px;
 }
 .profile-box{
   position: relative;
   width: 350px;
-  // height: 700px;
+  height: 700px;
   border-radius: 20px;
   align-items: center;
   text-align: center;
@@ -20,7 +20,7 @@
     margin: 0;
     font-size: 60px;
     position: absolute;
-    top: 35%;
+    top: 34%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -32,7 +32,7 @@
     color: $bright-yellow;
   }
   .card-img-top{
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px;
     margin-bottom: 20px;
   }
 
@@ -44,7 +44,7 @@
     font-weight: 600;
   }
 
-  p {
+   p {
     color: rgba(0,0,0,0.5);
     letter-spacing: 0.5px;
   }
@@ -53,9 +53,9 @@
     align-items: center;
     flex-direction: column;
     text-align:center;
-    .card-title {
-      flex-grow: 1;
-      text-shadow: 0px 0px 30px rgba(0,0,0,0.8);
+  .card-title {
+    flex-grow: 1;
+    text-shadow: 0px 0px 30px rgba(0,0,0,0.8);
     }
   }
 }
@@ -97,11 +97,9 @@
     top: 5px;
     right: 10px;
     font-size: 20px;
-    color: white;
+    color: $black;
   }
 }
-
-
 
 .stamp-select-card-deck{
   display: flex;
@@ -133,10 +131,6 @@
   border-radius: 10px;
 }
 
-.view-profile{
-  top: 50%;
-  left: -20px;
-}
 
 .profile-box{
   position: relative;
@@ -163,11 +157,18 @@
   top: 50%;
   right: -20px;
   opacity: 1;
-  z-index: 4;
 }
-// .user-menu-popup {
-//   height: 35%;
-// }
+
+
+.view-profile{
+  top: 50%;
+  left: -20px;
+}
+
+
+.mapboxgl-user-location-dot:before{
+  display: none;
+}
 
 .friends-menu-popup{
   position:relative;
@@ -176,7 +177,6 @@
   background-color: $bright-yellow;
   color: $white;
   padding: 20px;
-  display: none;
   border-radius: 10px;
   text-align: center;
   h2{
@@ -238,4 +238,16 @@
 
 .pending-title {
   font-size: 24px;
+}
+
+.bronze-star {
+  color: #cc6633;
+}
+
+.silver-star {
+  color: #C0C0C0;
+}
+
+.gold-star {
+  color: #FFD700;
 }
