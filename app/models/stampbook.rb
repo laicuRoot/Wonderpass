@@ -9,6 +9,14 @@ class Stampbook < ApplicationRecord
   validates :stampbook_name, length: { maximum: 50 }
   validates :stampbook_description, length: { maximum: 1000, too_long: "%{count} characters is the maximum allowed" }
 
+  def self.create_stamps(stampbook, newbook)
+    stamps = Stampbook.find(stampbook.id).stamps
+    stamps.each do |stamp|
+      newstamp = Stamp.new(stampbook: newbook, location: stamp.location)
+      newstamp.save!
+    end
+  end
+
   def none_collected?
     self.stamps.select(&:stamp_status).size.zero?
   end
