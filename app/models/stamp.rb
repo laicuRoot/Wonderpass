@@ -9,4 +9,15 @@ class Stamp < ApplicationRecord
   def update_date
     self.updated_at.strftime("%d %B %Y")
   end
+
+  def add_stamp_to_other_stampbooks
+    if stamp_status == true
+      stampbooks = self.stampbook.user.stampbooks
+      stampbooks.each do |stampbook|
+        stamp = stampbook.stamps.find_by_location_id(self.location.id)
+        stamp.update(stamp_status: true) if stamp
+      end
+    end
+  end
+
 end
