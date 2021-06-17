@@ -17,16 +17,23 @@
   transition: 2s;
 
   h1{
-    margin: 0;
-    font-size: 50px;
-    position: absolute;
-    bottom: 55%;
-    align-self: center;
-    font-weight: 900;
-    font-size: 80px;
-    line-height: 97px;
-    letter-spacing: 0.2px;
-    color: $bright-yellow;
+     margin: 0;
+     font-size: 60px;
+     font-size: 50px;
+     position: absolute;
+     top: 40%;
+     margin-left: auto;
+     margin-right: auto;
+     left: 0;
+     right: 0;
+     text-align: center;
+     bottom: 55%;
+     align-self: center;
+     font-weight: 900;
+     font-size: 80px;
+     line-height: 97px;
+     letter-spacing: 0.2px;
+     color: $bright-yellow;
   }
   .card-img-top{
     border-radius: 20px;
@@ -75,6 +82,7 @@
   }
   a{
     text-decoration: none;
+    color: rgba(0,0,0,0.5);
   }
 
   #user-menu-exit{
