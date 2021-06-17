@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :stampbooks do
     resources :stamps, only: [:index, :show, :edit, :update]
+    member do
+      post :clone
+    end
   end
 
   resources :itineraries, only: [:show, :destroy] do

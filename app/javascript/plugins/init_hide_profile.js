@@ -6,8 +6,8 @@ const hideProfile = () => {
      if (button.classList.contains("view-profile")){
        button.classList.remove("view-profile");
        button.innerHTML = '<i class="fas fa-arrow-right"></i>';
-       button.classList.add("hide-profile");
        profile.classList.add("hidden");
+       button.classList.add("hide-profile");
      } else{
        button.classList.remove("hide-profile");
        button.classList.add("view-profile");

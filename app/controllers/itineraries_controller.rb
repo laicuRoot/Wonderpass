@@ -75,7 +75,7 @@ class ItinerariesController < ApplicationController
       Itinerary.set_inactive(@itinerary)
       redirect_to user_itineraries_path(current_user)
     end
- end
+  end
 
   private
 

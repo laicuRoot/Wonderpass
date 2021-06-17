@@ -20,7 +20,7 @@
     margin: 0;
     font-size: 60px;
     position: absolute;
-    top: 40%;
+    top: 34%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -131,10 +131,6 @@
   border-radius: 10px;
 }
 
-.view-profile{
-  top: 50%;
-  left: -20px;
-}
 
 .profile-box{
   position: relative;
@@ -161,8 +157,13 @@
   top: 50%;
   right: -20px;
   opacity: 1;
-  z-index: 4;
 }
+
+.view-profile{
+  top: 50%;
+  left: -20px;
+}
+
 .user-menu-popup {
   height: 35%;
 }
