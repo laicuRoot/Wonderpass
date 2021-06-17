@@ -1,4 +1,5 @@
 class Location < ApplicationRecord
+  belongs_to :user
   has_many :stamps, dependent: :destroy
   has_many :itinerary_items, through: :stamps
   has_many :stamobooks, through: :stamps

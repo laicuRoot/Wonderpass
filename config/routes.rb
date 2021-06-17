@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   end
 
   resources :itinerary_items, only: [:show, :destroy]
+
+  resources :locations, only: [:new, :create]
 end

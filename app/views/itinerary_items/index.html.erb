@@ -1,6 +1,12 @@
 <div class="background-box">
   <div class="form-container itinerary-item-container" data-itinerary-items-update-target = "itinerary" data-itinerary_items_update-id = "#{<%= @itinerary.id %>}">
-		<h2>Select your stamps</h2> 
+		<div class="p-0 m- d-flex justify-content-between">
+      <h2>Select your stamps</h2>
+      <button type="button" class="new-location-modal-btn" data-toggle="modal" data-target="#exampleModal">
+        <i class="fas fa-plus-circle fa-2x"></i>
+      </button>
+      <%= render "shared/location_create_modal" %>
+    </div>
 		<% if @locations.empty? %>
 		<div style ="height: 80%; display:flex; justify-content:center; align-items:center;">
 			<p>No stamps found :( Please search again</p>
@@ -34,3 +40,4 @@
 		<%= link_to "Finish", itinerary_path(@itinerary), class: "btn small-yellow-button" %>
 	</div>
 </div>
+
