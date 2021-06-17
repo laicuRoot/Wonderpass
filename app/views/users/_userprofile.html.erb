@@ -23,9 +23,11 @@
     </button>
     <%= render 'shared/map_legend' %>
   </div>
-  <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);">
-    All Stamps
-  </div>
+  <% if @user_active_itinerary.exists? %>
+    <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);">
+      All Stamps
+    </div>
+  <% end %>
   <div class="menus">
     <div class="friend-menu">
       <div id = "user-menu-friends" class ="friends-button">
