@@ -41,6 +41,24 @@ class Itinerary < ApplicationRecord
   end
 
   def self.set_inactive(itinerary)
-    where.not(id: itinerary.id).where(user: itinerary.user).update_all(active_itinerary: false)
+    where(user: itinerary.user).where.not(id: itinerary.id).update_all(active_itinerary: false)
   end
+
+  def self.get_categories
+    Location.all.map{|location| location.category}.uniq
+  end
+
+  def self.get_distances
+    [5, 10, 20, 50, "Other"]
+  end
+  
+  def find_stamp(location)
+    @stamps.find_by(location: location.id)
+  end
+  # def set_active
+  #   if active_itinerary
+  #     # Itinerary.where.not(id: id).and(user: current_user).update_all(active_itinerary: false)
+  #     Itinerary.where.not(id: id).where(user: current_user).update_all(active_itinerary: false)
+  #   end
+  # end
 end

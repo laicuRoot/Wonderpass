@@ -23,6 +23,7 @@ class StampsController < ApplicationController
   def update
     respond_to do |format|
       if @stamp.update(stamp_params)
+        @stamp.add_stamp_to_other_stampbooks
         @stamp.stamp_status = true
         format.html { redirect_to stampbook_stamps_path(@stampbook), notice: 'Stamp was successfully collected!' }
         format.json { render :show, status: :ok, location: @stamp }
@@ -57,7 +58,7 @@ class StampsController < ApplicationController
     @achievement = Achievement.where(stampbook: @stampbook)
     gold = Achievement.new(stampbook: @stampbook, badge: @gold)
     gold.save! unless @percent < 90 || @achievement.where(badge: @gold).present?
-    silver = Achievement.new(stampbook: @stampbook, badge: @silver) 
+    silver = Achievement.new(stampbook: @stampbook, badge: @silver)
     silver.save! unless @percent < 50 || @achievement.where(badge: @silver).present?
     bronze = Achievement.new(stampbook: @stampbook, badge: @bronze)
     bronze.save! unless @percent < 25 || @achievement.where(badge: @bronze).present?
