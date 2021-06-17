@@ -1,0 +1,76 @@
+.user-menu-leaderboard{
+  position: relative;
+  z-index: 1;
+}
+
+.menu-button-leaderboard{
+  position: fixed;
+  top: 10%;
+  right: 250px;
+  padding: 8px 12px;
+  border-radius: 50%;
+  background-color: $bright-yellow;
+  color: $white;
+  text-shadow: 0 0 16px rgba($black, 0.6);
+  &:hover{
+    color: $black;
+  }
+  cursor: pointer;
+}
+
+.user-menu-popup-leaderboard{
+  position:fixed;
+  top: 10%;
+  right: 250px;
+  height: 230px;
+  width:300px;
+  background-color: $bright-yellow;
+  color: $white;
+  padding: 20px;
+  display: none;
+  border-radius: 10px;
+  text-align: center;
+  h2{
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba($black, 0.3);
+  }
+  ul{
+    margin:0;
+    padding: 0;
+  }
+  li{
+    text-decoration: none;
+    color: $black;
+    list-style:none;
+    padding-bottom: 10px;
+  }
+  a{
+    text-decoration: none;
+    color: rgba(0,0,0,0.5);
+  }
+
+  #user-menu-exit{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    color: $black;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

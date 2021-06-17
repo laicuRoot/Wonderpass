@@ -33,4 +33,21 @@ const toggleFriendMenu = () =>{
     }
 }
 
-export {toggleMenu, toggleFriendMenu}
+const toggleLeaderBoardMenu = () =>{
+    const menuButton = document.getElementById("user-menu-button-leaderboard");
+    const removeButton = document.getElementById("user-menu-exit-leaderboard");
+    const menu = document.querySelector(".user-menu-popup-leaderboard")
+    const friendButton = document.getElementById("user-menu-friends-leaderboard");
+    if(menu){
+      menuButton.addEventListener("click", () => {
+        menu.style.display = "inline-block";
+        friendButton.style.display = "none";
+    })
+      removeButton.addEventListener("click", () =>{
+        menu.style.display = "none";
+        friendButton.style.display = "";
+      })
+    }
+}
+
+export {toggleMenu, toggleFriendMenu, toggleLeaderBoardMenu}
