@@ -17,23 +17,19 @@
   transition: 2s;
 
   h1{
-     margin: 0;
-     font-size: 60px;
-     font-size: 50px;
-     position: absolute;
-     top: 40%;
-     margin-left: auto;
-     margin-right: auto;
-     left: 0;
-     right: 0;
-     text-align: center;
-     bottom: 55%;
-     align-self: center;
-     font-weight: 900;
-     font-size: 80px;
-     line-height: 97px;
-     letter-spacing: 0.2px;
-     color: $bright-yellow;
+    margin: 0;
+    font-size: 60px;
+    position: absolute;
+    top: 34%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-weight: 900;
+    line-height: 97px;
+    letter-spacing: 0.2px;
+    color: $bright-yellow;
   }
   .card-img-top{
     border-radius: 20px;
@@ -133,15 +129,6 @@
   border-radius: 10px;
 }
 
-.hide-profile{
-  top: 50%;
-  right: -20px;
-}
-
-.view-profile{
-  top: 50%;
-  left: -20px;
-}
 
 .profile-box{
   position: relative;
@@ -152,9 +139,27 @@
 }
 
 .profile-box.hidden{
-  transform: translate(-400px);
-  -webkit-transform: translate(-400px);
-  -moz-transform: translate(-400px);
+  transform: translate(-350px);
+  -webkit-transform: translate(-350px);
+  -moz-transform: translate(-350px);
+  background-color:rgba($white, 0.4);
+  .card-body{
+    opacity: 40%;
+  }
+  .card-img-top{
+    opacity: 40%;
+  }
+}
+
+.hide-profile{
+  top: 50%;
+  right: -20px;
+  opacity: 1;
+}
+
+.view-profile{
+  top: 50%;
+  left: -20px;
 }
 
 .user-menu-popup {

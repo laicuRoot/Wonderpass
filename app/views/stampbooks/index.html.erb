@@ -6,16 +6,23 @@
           <h1 class='text-info bolder'> Your Stampbooks </h1>
           <h2> You have <%= pluralize(current_user.stampbooks.count, 'stampbook')%></h2>
           <div class='d-flex justify-content-center'>
-            <%= link_to("Create a stampbook", new_stampbook_path , class:'btn btn-info mr-1 rounded') %>
+            <%= link_to("Create a stampbook", new_stampbook_path, class:'btn btn-info mr-1 rounded') %>
             <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'btn btn-info ml-1') %>
           </div>
         </div>
       </div>
-
-      <div class="row mt-5">
-        <div class="col-sm-12">
-          <div class="scroller">
-          <% current_user.stampbooks.each do |stampbook| %>
+    <% else %>
+      <div class="row mt-2">
+        <div class="col-sm-12 text-center">
+          <h1 class='text-info bolder'> <%= @user.first_name %>'s Stampbooks </h1>
+          <h2> <%= @user.first_name  %> has <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
+        </div>
+      </div>
+    <% end %>
+    <div class="row mt-5">
+      <div class="col-sm-12">
+        <div class="scroller">
+          <% @user_stampbooks.each do |stampbook| %>
             <div class="card text-center">
               <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture'  %>
               <div class="card-body">
@@ -33,54 +40,22 @@
               </div>
             </div>
           <% end %>
-          </div>
         </div>
       </div>
-
-      <div class="row text-center mt-5">
+    </div>
+    
+    <% if current_user %>
+       <div class="row text-center mt-5">
         <div class="col-sm-12">
           <%= link_to("Go back to your profile", user_path(current_user) , class:'btn btn-info') %>
         </div>
       </div>
     <% else %>
-      <div class="row mt-2">
-        <div class="col-sm-12 text-center">
-          <h1 class='text-info bolder'> <%= @user.first_name %>'s Stampbooks </h1>
-          <h2> <%= @user.first_name  %> has <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
-        </div>
-      </div>
-
-      <div class="row mt-5">
-        <div class="col-sm-12">
-          <div class="scroller">
-          <% @user_stampbooks.each do |stampbook| %>
-            <div class="card text-center">
-              <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture'  %>
-              <div class="card-body">
-                <h5 class="card-title"> <%= link_to stampbook.stampbook_name, stampbook_stamps_path(stampbook) %>  <%=  %></h5>
-                <p class="card-text"><%= stampbook.stampbook_description %></p>
-                <div class="d-flex justify-content-center">
-                  <div class="progress" style = "width: 250px; font-size: 12px;">
-                    <% if stampbook.none_collected?%>
-                      <div class="progress-bar" role="progressbar" style="width: 0" aria-valuenow= "0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <% else %> 
-                      <div class="progress-bar" role="progressbar" style="width: <%= stampbook.percent_completed %>%" aria-valuenow= "<%= stampbook.percent_completed %>" aria-valuemin="0" aria-valuemax="100"><%= stampbook.percent_completed %>%</div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          </div>
-        </div>
-      </div>
-
       <div class="row text-center mt-5">
         <div class="col-sm-12">
           <%= link_to("Go back to #{@user.first_name}'s profile", user_path(@user) , class:'btn btn-info') %>
         </div>
       </div>
     <% end %>
-
   </div>
 </div>

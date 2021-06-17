@@ -50,7 +50,6 @@
 
 .friend-menu{
   position:relative;
-  left: 28%;
 }
 
 .add-user-wrapper{
@@ -88,7 +87,7 @@
 .friends-button{
   position:absolute;
   top: 0;
-  right: 0;
+  right: 40px;
   padding: 8px 12px;
   border-radius: 50%;
   background-color: $bright-yellow;

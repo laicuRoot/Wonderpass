@@ -42,7 +42,7 @@ class ItinerariesController < ApplicationController
   def filter
     @itinerary = Itinerary.find(params[:id])
     @categories = Location.get_categories
-    @distances = [5, 10, 20, 50, "Other"]
+    @distances = Itinerary.get_distances
   end
 
   def new
@@ -71,11 +71,10 @@ class ItinerariesController < ApplicationController
   def activate
     @itinerary = Itinerary.find(params[:itinerary_id])
     @itinerary.active_itinerary = true
-    @itinerary.save
     if @itinerary.save
-      Itinerary.where(user: current_user).where.not(id: @itinerary.id).update_all(active_itinerary: false)
+      Itinerary.set_inactive(@itinerary)
+      redirect_to user_itineraries_path(current_user)
     end
-    redirect_to user_itineraries_path(current_user)
   end
 
   private
