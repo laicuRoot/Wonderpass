@@ -15,7 +15,7 @@
     <ul id='search-results'>
       <% if params[:query].present? %>
         <% if @users.empty? %>
-        <li>No results</li>
+        <li style ="margin: 0 auto;">No results</li>
         <% else %>
           <% @users.each do |user| %>
             <% unless user == current_user %>
