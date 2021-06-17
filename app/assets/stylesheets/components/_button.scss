@@ -49,7 +49,9 @@
 }
 
 .friend-menu{
-  position:relative;
+  position:fixed;
+  top: 10%;
+  right: 200px;
 }
 
 .add-user-wrapper{
@@ -70,9 +72,9 @@
 }
 
 .menu-button{
-  position:absolute;
-  top: 0;
-  right: 0;
+  position: fixed;
+  top: 10%;
+  right: 150px;
   padding: 8px 12px;
   border-radius: 50%;
   background-color: $bright-yellow;
@@ -85,10 +87,10 @@
 }
 
 .friends-button{
-  position:absolute;
-  top: 0;
-  right: 40px;
-  padding: 8px 12px;
+  position:fixed;
+  top: 10%;
+  right: 200px;
+  padding: 8px 10px;
   border-radius: 50%;
   background-color: $bright-yellow;
   color: $white;

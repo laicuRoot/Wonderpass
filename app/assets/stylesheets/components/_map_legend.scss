@@ -21,21 +21,56 @@
 }
 
 .legend-toggle {
-  background-color: #FFFFFF;
-  border-radius: 8px;
+
+  background-color: $bright-yellow;
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 20px;
 
   z-index: 1;
   vertical-align:top;
 
-  position: absolute;
-  top: 93%;
-  right: 4%;
-  margin-right: 4px;
+  position: fixed;
+  bottom: 8%;
+  right: 150px;
+
+  padding: 8px 12px;
+  p {
+    margin: 0px;
+  }
 }
 
 .legend-modal {
     width: 500px !important;
     border-radius: 8px;
+}
+
+.yellow-button-map-legend-active-itinerary {
+  background-color: $bright-yellow;
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 20px;
+  a {
+    text-decoration: none;
+  }
+}
+
+.mapboxgl-ctrl button .mapboxgl-ctrl-icon {
+  background-color: $bright-yellow !important;
+  opacity: 100% !important;
+  border-radius: 50%;
+  padding: 18px;
+  position: fixed !important;
+  right: 10%;
+  top: 0%
+}
+
+.mapboxgl-ctrl-group button {
+  width: 0 !important;
 }
 
 .mapboxgl-ctrl-geolocate {

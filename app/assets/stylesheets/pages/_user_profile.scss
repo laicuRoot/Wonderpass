@@ -62,7 +62,9 @@
 
 
 .user-menu-popup{
-  position:relative;
+  position:fixed;
+  top: 10%;
+  right: 150px;
   height: 230px;
   width:300px;
   background-color: $bright-yellow;
@@ -157,14 +159,12 @@
   opacity: 1;
 }
 
+
 .view-profile{
   top: 50%;
   left: -20px;
 }
 
-.user-menu-popup {
-  height: 35%;
-}
 
 .mapboxgl-user-location-dot:before{
   display: none;
@@ -252,15 +252,17 @@
   color: #FFD700;
 }
 
-
-
-
-
-
-
-
-
-
+.yellow-button-toggle {
+  background-color: $bright-yellow;
+  border-radius: 15px;
+  padding: 8px 14px;
+  color: white;
+  text-shadow: 0 0 8px rgba($black, 0.5);
+  position: fixed;
+  bottom: 8%;
+  right: 200px;
+  border-style: solid;
+}
 
 
 
