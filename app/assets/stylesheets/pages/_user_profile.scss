@@ -251,3 +251,20 @@
 .gold-star {
   color: #FFD700;
 }
+
+.yellow-button-toggle {
+  background-color: $bright-yellow;
+  border-radius: 15px;
+  padding: 8px 14px;
+  color: white;
+  text-shadow: 0 0 8px rgba($black, 0.5);
+  position: fixed;
+  bottom: 8%;
+  right: 200px;
+  border-style: solid;
+}
+
+
+
+
+
