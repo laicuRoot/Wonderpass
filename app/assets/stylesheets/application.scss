@@ -17,12 +17,12 @@
 @import "pages/index";
 @import "pages/itinerary_item_pages/index";
 
-// .scroller {
-//   div {
-//     text-align: center;
-//     font-size: 30px;
-//   }
-// }
+.scroller {
+  div {
+    text-align: center;
+    font-size: 30px;
+  }
+}
 
 .slick-prev:before {
   content: "<";

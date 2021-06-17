@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import 'jquery';
 
 const customiseMarkers = () => {
 	const element = document.createElement('div');
@@ -64,16 +65,12 @@ const toggleMarkers = (map, mapElement) =>{
 
 const myLocation = (map) => {
   // Add geolocate control to the map.
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-    },
-        trackUserLocation: true,
-        fitBoundsOptions: {maxZoom:9},
-    }),
-  );
+  map.addControl(new mapboxgl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, fitBoundsOptions: {maxZoom: 7},}),'bottom-right');
 }
+
+// myLocation.on('myLocation', (e) =>{
+//   console.log('vibes');
+// })
 
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
