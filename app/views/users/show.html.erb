@@ -10,7 +10,7 @@
     <div class="container user-profile-cont">
       <div class="card profile-box">
           <div class='mt-2 add-user-wrapper'>
-          <% if @user_invitation.nil? && @friend_invitation.nil?  %>
+          <% if @user_invitation.empty? && @friend_invitation.empty?  %>
             <%= simple_form_for ([@user, @invitation]), remote: true do |f| %>
                 <%= button_tag(type: 'submit', class: "add-user") do %>
                   <i class="fas fa-user-plus"></i>

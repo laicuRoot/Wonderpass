@@ -58,8 +58,8 @@
 
 <style>
   .mapboxgl-user-location-dot:after{
-    background-image: url("<%= rails_blob_path(user.photo, disposition: "attachment", only_path: true) %>");
-    background-size: contain;
+    background-image: url('<%= cl_image_path user.photo.key, crop: :fill %>');
+    background-size: cover;
     height: 30px;
     width: 30px;
   }
