@@ -14,14 +14,13 @@
 .search-button {
   color: $bright-yellow;
   border: 1px solid $bright-yellow;
-  background-color: white;
+  background-color: rgba(white, 0.9);
   padding: 4px 32px;
+  font-weight: bold;
   border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.9;
-  transition: opacity 0.3s ease;
+  margin-left: 10px;
   &:hover{
-    opacity: 1;
+    background-color: rgba(white, 1);
   }
 }
 

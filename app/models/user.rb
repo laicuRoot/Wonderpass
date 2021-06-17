@@ -32,6 +32,10 @@ class User < ApplicationRecord
   def send_invitation(user)
     invitations.create(friend_id: user.id)
   end
+ 
+  def invitation_exists?(user)
+    Invitation.find_by(user_id: user, friend_id: self) || Invitation.find_by(user_id: self, friend_id: user)
+  end
 
   def collected_stamps
     self.stamps.where(stamp_status: true)

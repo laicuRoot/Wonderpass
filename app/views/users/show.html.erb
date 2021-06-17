@@ -17,9 +17,9 @@
                 <% end %>
             <% end %>
           <% end %>
-          <% invitation = @friend_invitation.nil? ? @user_invitation : @friend_invitation %>
-          <% if !invitation.nil? %>
-            <% if invitation.confirmed == false %>
+          <% invitation = @friend_invitation.empty? ? @user_invitation : @friend_invitation %>
+          <% unless invitation.empty? %>
+            <% if invitation.first.confirmed == false %>
               <p class='small-yellow-button m-2'>Pending</p>
             <% else %>
               <p class='small-yellow-button m-2'>Friend</p>
