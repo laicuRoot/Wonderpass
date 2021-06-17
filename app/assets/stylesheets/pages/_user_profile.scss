@@ -45,13 +45,22 @@
     &:last-of-type{
       margin-bottom: 40px;
     }
+    font-weight: 600;
   }
 
+   p {
+    color: rgba(0,0,0,0.5);
+    letter-spacing: 0.5px;
+  }
 
   .card-body{
     align-items: center;
     flex-direction: column;
     text-align:center;
+  .card-title {
+    flex-grow: 1;
+    text-shadow: 0px 0px 30px rgba(0,0,0,0.8);
+    }
   }
 }
 
