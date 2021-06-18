@@ -45,7 +45,7 @@ const getMapElements = () => {
 
 const toggleMarkers = (map, mapElement) =>{
   const toggle = document.querySelector(".toggle-all");
-  if (toggle){
+  if (toggle) {
     const activeMarkers = JSON.parse(mapElement.dataset.markers);
     const allMarkers = JSON.parse(mapElement.dataset.allMarkers);
     toggle.addEventListener("click", event =>{
@@ -60,14 +60,19 @@ const toggleMarkers = (map, mapElement) =>{
         $('.mapboxgl-marker').remove();
         addMarkers(map, activeMarkers);
         fitMapToMarkers(map, activeMarkers);
-      }    
+      }
     });
-  } 
+  }
 }
 
 const myLocation = (map) => {
   // Add geolocate control to the map.
-  map.addControl(new mapboxgl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, fitBoundsOptions: {maxZoom: 7},}),'bottom-right');
+  map.addControl(new mapboxgl.GeolocateControl(
+	  { positionOptions: { enableHighAccuracy: true },
+	   trackUserLocation: true,
+	   fitBoundsOptions: {maxZoom: 7}
+	  })
+	);
 }
 
 // myLocation.on('myLocation', (e) =>{

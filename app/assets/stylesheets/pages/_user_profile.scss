@@ -20,7 +20,7 @@
     margin: 0;
     font-size: 60px;
     position: absolute;
-    top: 34%;
+    top: 33%;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -62,7 +62,9 @@
 
 
 .user-menu-popup{
-  position:relative;
+  position:fixed;
+  top: 10%;
+  right: 150px;
   height: 230px;
   width:300px;
   background-color: $bright-yellow;
@@ -157,14 +159,12 @@
   opacity: 1;
 }
 
+
 .view-profile{
   top: 50%;
   left: -20px;
 }
 
-.user-menu-popup {
-  height: 35%;
-}
 
 .mapboxgl-user-location-dot:before{
   display: none;
@@ -306,9 +306,24 @@
   color: #FFD700;
 }
 
+
 .toggle-all{
   position:relative;
 }
+
+
+.yellow-button-toggle {
+  background-color: $bright-yellow;
+  border-radius: 15px;
+  padding: 8px 14px;
+  color: white;
+  text-shadow: 0 0 8px rgba($black, 0.5);
+  position: fixed;
+  bottom: 8%;
+  right: 200px;
+  border-style: solid;
+}
+
 
 @media( max-width: 1650px) {
   .friends-menu-popup{
@@ -328,4 +343,3 @@
       margin-right: 5px;
     }
   }
-}
