@@ -6,9 +6,15 @@ class UsersController < ApplicationController
 #     @achievements = @user.achievements.size
     @user_active_itinerary = Itinerary.get_active(@user)
     @badges = Badge.all
+<<<<<<< HEAD
     @num_bronze_stars = @user.achievements.map(&:badge_id).count(@badges[3])
     @num_silver_stars = @user.achievements.map(&:badge_id).count(@badges[2])
     @num_gold_stars = @user.achievements.map(&:badge_id).count(@badges[1])
+=======
+    @num_bronze_stars = @user.achievements.map(&:badge_id).count(@badges[2].id)
+    @num_silver_stars = @user.achievements.map(&:badge_id).count(@badges[1].id)
+    @num_gold_stars = @user.achievements.map(&:badge_id).count(@badges[0].id)
+>>>>>>> e95dddd9f082d0e34395d7dc39b8c2c8a871cbc9
     get_invitations
     get_search
     get_stamps
@@ -33,7 +39,8 @@ class UsersController < ApplicationController
   private
 
   def get_search
-    if params[:query].present?
+    @query = params[:query]
+    if @query.present?
       @users = User.search_by_username_and_fullname(params[:query])
     end
     respond_to do |format|
@@ -47,11 +54,14 @@ class UsersController < ApplicationController
     @friends_received = Invitation.all.where(user_id: current_user, confirmed: true)
     @friends_sent = Invitation.all.where(friend_id: current_user, confirmed: true)
     @friends = @friends_sent + @friends_received
-    @user_invitation = Invitation.find_by(user_id: current_user, friend_id: @user)
-    @friend_invitation = Invitation.find_by(user_id: @user, friend_id: current_user)
-    @invitations = Invitation.where(friend_id: current_user, confirmed: false)
-  end 
-  
+    @received = Invitation.where(friend_id: current_user, confirmed: false)
+    @sent = Invitation.where(user_id: current_user, confirmed: false)
+    @user_invitation = Invitation.where(user_id: current_user, friend_id: @user )
+    @friend_invitation = Invitation.where(friend_id: current_user, user_id: @user)
+    @all_sent = @sent + @received + @friends_sent
+    @all_received = @received + @friends_received
+  end
+
   def get_stamps
     @user_stamps = @user.stamps
     @stamps = @user_active_itinerary.empty? ? @user_stamps : @user_active_itinerary.map(&:stamps).flatten
