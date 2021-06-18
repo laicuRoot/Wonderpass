@@ -3,7 +3,6 @@ class StampsController < ApplicationController
   before_action :find_stampbook, only: [:index, :edit, :update]
   before_action :calc_percent, only: [:edit, :index, :update]
   before_action :count_badges, only: :index
-  after_action :create_badge, only: :update
 
   def index
     @stamps = @stampbook.stamps.order(:id)
@@ -23,6 +22,8 @@ class StampsController < ApplicationController
   def update
     respond_to do |format|
       if @stamp.update(stamp_params)
+        @percent = @stampbook.percent_completed
+        create_badge
         @stamp.add_stamp_to_other_stampbooks
         @stamp.stamp_status = true
         format.html { redirect_to stampbook_stamps_path(@stampbook), notice: 'Stamp was successfully collected!' }
