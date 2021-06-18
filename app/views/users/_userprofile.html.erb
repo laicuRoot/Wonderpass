@@ -3,7 +3,7 @@
     <% if user.photo.attached? %>
       <%= cl_image_tag user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
     <% else %>
-      <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
+      <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
     <% end %>
     <div class="card-body">
       <h1 class="card-title"><%=user.first_name%></h1>
@@ -64,16 +64,18 @@
   </div>
 </div>
 
-<style>
-  .mapboxgl-user-location-dot:after{
-    background-image: url('<%= cl_image_path user.photo.key, crop: :fill %>');
-    background-size: cover;
-    height: 30px;
-    width: 30px;
-  }
+<% if user.photo.attached? %>
+  <style>
+    .mapboxgl-user-location-dot:after{
+      background-image: url('<%= cl_image_path user.photo.key, crop: :fill %>');
+      background-size: cover;
+      height: 30px;
+      width: 30px;
+    }
 
-  .mapboxgl-user-location-dot:before{
-    display: none;
-  }
-</style>
+    .mapboxgl-user-location-dot:before{
+      display: none;
+    }
+  </style>
+<% end %>
 

@@ -22,7 +22,7 @@ class InvitationsController < ApplicationController
     # @user = User.find(params[:user_id])
     @invitation = Invitation.find(params[:id])
     @invitation.update(invitation_params)
-    redirect_to user_path(current_user)
+    redirect_ user_path(current_user)
   end
 
   def destroy
