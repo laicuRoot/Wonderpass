@@ -14,8 +14,8 @@ class User < ApplicationRecord
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
   has_many :achievements, through: :stampbooks
-  has_many :invitations
-  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id"
+  has_many :invitations, dependent: :destroy
+  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id", dependent: :destroy
   after_create :create_stampbook_and_stamps
 
   def friends

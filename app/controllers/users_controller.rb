@@ -5,9 +5,10 @@ class UsersController < ApplicationController
     @stamp_count = @user.collected_stamps.size
 #     @achievements = @user.achievements.size
     @user_active_itinerary = Itinerary.get_active(@user)
-    @num_bronze_stars = @user.achievements.map(&:badge_id).count(3)
-    @num_silver_stars = @user.achievements.map(&:badge_id).count(2)
-    @num_gold_stars = @user.achievements.map(&:badge_id).count(1)
+    @badges = Badge.all
+    @num_bronze_stars = @user.achievements.map(&:badge_id).count(@badges[3])
+    @num_silver_stars = @user.achievements.map(&:badge_id).count(@badges[2])
+    @num_gold_stars = @user.achievements.map(&:badge_id).count(@badges[1])
     get_invitations
     get_search
     get_stamps
