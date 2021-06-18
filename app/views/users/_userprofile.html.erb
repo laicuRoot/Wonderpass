@@ -17,16 +17,17 @@
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
-  
   <div class="map-legend">
     <button type="button" class="legend-toggle" data-toggle="modal" data-target="#exampleModal">
       <i class="fas fa-question-circle"></i>
     </button>
     <%= render 'shared/map_legend' %>
   </div>
-  <div class="toggle-all btn yellow-button" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);">
-    All Stamps
-  </div>
+  <% if @user_active_itinerary.exists? %>
+    <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);">
+      All Stamps
+    </div>
+  <% end %>
   <div class="menus">
     <div class="friend-menu">
       <div id = "user-menu-friends" class ="friends-button">
