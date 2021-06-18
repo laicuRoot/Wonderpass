@@ -13,7 +13,7 @@
       <%= submit_tag "Search", class:"search-button py-2" %>
     <% end %>
     <ul id='search-results'>
-      <% if params[:query].present? %>
+      <% if @query %>
         <% if @users.empty? %>
         <li style ="margin: 0 auto;">No results</li>
         <% else %>
@@ -55,6 +55,7 @@
             <li class='p-1 d-flex align-items-center'>
               <%= cl_image_tag friend.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
               <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name ml-3' %>
+              <%= link_to "Remove", user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to remove #{friend.first_name} from your friend list?"}, class: "ml-5" %>
             </li>              
           <% end %>
         </ul>
@@ -74,9 +75,9 @@
             <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
             <%= simple_form_for ([current_user, invitation]), remote: true do |f| %>
               <%= f.check_box :confirmed, class:'checkbox', checked: true  %>
-              <%= f.submit "Confirm", class:'confirmed-btn ml-5'  %>
-              <%=  %>
+              <%= f.submit "Confirm", class:'confirmed-btn ml-5 mr-2'%>
             <% end %>
+            <%= link_to "Reject", user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to reject #{invitation.user.first_name}?"} %>
           </li>
         <% end %>
         </ul>
@@ -92,6 +93,7 @@
           <li class='p-1 d-flex align-items-center'>
             <%= cl_image_tag pending_user.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
             <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
+            <%= link_to "Cancel", user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to cancel this invitation?"}, class: "ml-5" %>
           </li>
         <% end %>
         </ul>

@@ -5,9 +5,10 @@ class UsersController < ApplicationController
     @stamp_count = @user.collected_stamps.size
 #     @achievements = @user.achievements.size
     @user_active_itinerary = Itinerary.get_active(@user)
-    @num_bronze_stars = @user.achievements.map(&:badge_id).count(3)
-    @num_silver_stars = @user.achievements.map(&:badge_id).count(2)
-    @num_gold_stars = @user.achievements.map(&:badge_id).count(1)
+    @badges = Badge.all
+    @num_bronze_stars = @user.achievements.map(&:badge_id).count(@badges[2].id)
+    @num_silver_stars = @user.achievements.map(&:badge_id).count(@badges[1].id)
+    @num_gold_stars = @user.achievements.map(&:badge_id).count(@badges[0].id)
     get_invitations
     get_search
     get_stamps
@@ -32,7 +33,8 @@ class UsersController < ApplicationController
   private
 
   def get_search
-    if params[:query].present?
+    @query = params[:query]
+    if @query.present?
       @users = User.search_by_username_and_fullname(params[:query])
     end
     respond_to do |format|
