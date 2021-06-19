@@ -33,7 +33,11 @@ class User < ApplicationRecord
   def send_invitation(user)
     invitations.create(friend_id: user.id)
   end
- 
+
+  def all_confirmed_invites
+    invitations.where(confirmed: true)
+  end
+
   def invitation_exists?(user)
     Invitation.find_by(user_id: user, friend_id: self) || Invitation.find_by(user_id: self, friend_id: user)
   end
@@ -44,6 +48,22 @@ class User < ApplicationRecord
 
   def create_date
     self.created_at.strftime("%d %B %Y")
+  end
+
+  def self.sort_by_achievements
+    all.sort_by{ |e| [e.username, e.get_gold, e.get_silver, e.get_bronze, e.collected_stamps.size] }
+  end
+
+  def get_gold
+    achievements.map(&:badge_id).count(Badge.all[0].id)
+  end
+
+  def get_silver
+    achievements.map(&:badge_id).count(Badge.all[1].id)
+  end
+
+  def get_bronze
+    achievements.map(&:badge_id).count(Badge.all[2].id)
   end
 
   private
