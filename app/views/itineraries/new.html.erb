@@ -1,12 +1,14 @@
 <div class="background-box">
   <div class="form-container">
     <h2>Create your itinerary</h2>
-    <%= simple_form_for([@user, @itinerary]) do |f| %>
-      <%= f.input :itinerary_name %>
-      <%= f.input :destination, id: "destination-input" %>
-      <%= f.input :public_status, collection: [['Yes', true], ['No', false]]  %>
-      <%= f.submit 'next', class: "small-yellow-button" %>
-    <% end %>
+    <div class="pb-5">
+      <%= simple_form_for([@user, @itinerary]) do |f| %>
+        <%= f.input :itinerary_name %>
+        <%= f.input :destination, id: "destination-input" %>
+        <%= f.input :public_status, collection: [['Yes', true], ['No', false]]  %>
+        <%= f.submit 'next', class: "small-yellow-button" %>
+      <% end %>
+    </div>
     <%= link_to 'Return to profile', user_path(@user), class: "btn small-yellow-button left", style: "width:200px;" %>
   </div>
 </div>
