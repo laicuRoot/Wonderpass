@@ -58,7 +58,7 @@ class UsersController < ApplicationController
 
   def get_stamps
     @user_stamps = @user.stamps
-    @stamps = @user_active_itinerary.empty? ? @user_stamps : @user_active_itinerary.map(&:stamps).flatten
+    @stamps = @user_active_itinerary.map(&:stamps).flatten
     @active_stamps = Stamp.all.where(id: @stamps)
     @all_stamps = Stamp.all.where(id: @user_stamps)
   end

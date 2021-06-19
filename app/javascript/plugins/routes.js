@@ -71,8 +71,9 @@ const getRoute = (endCoords, transportProfile, map, markers) => {
         coordinates: route
       }
     };
-
-  createDirections(data);
+  if (document.getElementById('map2')){
+    createDirections(data);
+  }
       // if the route already exists on the map, reset it using setData
   if (map.getSource('route')) {
     map.getSource('route').setData(geojson);
@@ -290,4 +291,5 @@ const generateRoutes = () => {
   }
 }
 
+export { mapRoute };
 export { generateRoutes };
