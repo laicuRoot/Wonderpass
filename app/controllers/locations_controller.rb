@@ -9,7 +9,6 @@ before_action :find_stampbook
     @location = Location.new(location_params)
     @location.user = @stampbook.user
     add_geocoding
-    @location.add_stamp_photo
     if @location.save
       @location.generate_stamp(@stampbook)
       redirect_to new_stampbook_location_path(@stampbook)
@@ -30,7 +29,11 @@ before_action :find_stampbook
   end
 
   def add_geocoding
-    @location.latitude = Geocoder.search(@location.location_name)[0].data['lat']
-    @location.longitude = Geocoder.search(@location.location_name)[0].data['lon']
+    if Geocoder.search(@location.location_name).empty?
+      flash[:alert] = "#{@location.location_name} was NOT created, please create another location or click finish to exit"
+    else
+      @location.latitude = Geocoder.search(@location.location_name)[0].data['lat']
+      @location.longitude = Geocoder.search(@location.location_name)[0].data['lon']
+    end
   end
 end
