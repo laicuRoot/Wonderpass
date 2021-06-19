@@ -82,7 +82,7 @@
                 <% if user == current_user %>
                   <div class="leaderboard-current-user"> <strong><i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></strong></div>
                 <% elsif current_user.all_confirmed_invites.include? user %>
-                  <div class="leaderboard-friends"><i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
+                  <div class="leaderboard-friends"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
                 <% else %>
                   <div class="leaderbaord-other-users"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
                 <% end %>
