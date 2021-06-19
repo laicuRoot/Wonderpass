@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @stamp_count = @user.collected_stamps.size
     @user_active_itinerary = Itinerary.get_active(@user)
+    @ranking_number = 1
     @num_bronze_stars = @user.achievements.map(&:badge_id).count(3)
     @num_silver_stars = @user.achievements.map(&:badge_id).count(2)
     @num_gold_stars = @user.achievements.map(&:badge_id).count(1)
