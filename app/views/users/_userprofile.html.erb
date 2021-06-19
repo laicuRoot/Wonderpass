@@ -120,6 +120,17 @@
       <div class = "user-menu-popup-leaderboard">
         <div id = "user-menu-exit-leaderboard" class ="menu-button-leaderboard"><i class="fas fa-times"></i></div>
         <h2>Leaderboard</h2>
+        <div class="leaderboard-list">
+          <% User.all.sort_by{|e| [e.first_name, e.achievements.map(&:badge_id).count(Badge.all[2].id), e.achievements.map(&:badge_id).count(Badge.all[1].id), e.achievements.map(&:badge_id).count(Badge.all[0].id)]}.each do |user| %>
+            <% if user == current_user %>
+              <div class="leaderboard-current-user"> <strong>You <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[0].id) %> <i class="fas fa-star silver-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[1].id) %> <i class="fas fa-star bronze-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[2].id) %> </strong></div>
+            <% elsif current_user.invitations.where(confirmed: true).include? user %>
+              <div class="leaderboard-friends"> <i class="fas fa-user-friends"></i> <%= user.first_name %> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[0].id) %> <i class="fas fa-star silver-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[1].id) %> <i class="fas fa-star bronze-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[2].id) %> </div>
+            <% else %>
+              <div class="leaderbaord-other-users"> <%= user.first_name %> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[0].id) %> <i class="fas fa-star silver-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[1].id) %> <i class="fas fa-star bronze-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[2].id) %> </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

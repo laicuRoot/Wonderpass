@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @stamp_count = @user.collected_stamps.size
-#     @achievements = @user.achievements.size
     @user_active_itinerary = Itinerary.get_active(@user)
     @num_bronze_stars = @user.achievements.map(&:badge_id).count(3)
     @num_silver_stars = @user.achievements.map(&:badge_id).count(2)
@@ -49,15 +48,15 @@ class UsersController < ApplicationController
     @user_invitation = Invitation.find_by(user_id: current_user, friend_id: @user)
     @friend_invitation = Invitation.find_by(user_id: @user, friend_id: current_user)
     @invitations = Invitation.where(friend_id: current_user, confirmed: false)
-  end 
-  
+  end
+
   def get_stamps
     @user_stamps = @user.stamps
     @stamps = @user_active_itinerary.empty? ? @user_stamps : @user_active_itinerary.map(&:stamps).flatten
     @active_stamps = Stamp.all.where(id: @stamps)
     @all_stamps = Stamp.all.where(id: @user_stamps)
   end
-  
+
   def get_locations
     @locations = Location.where(id: @stamps.map(&:location_id))
     @all_locations = Location.where(id: @user.stamps.map(&:location_id))

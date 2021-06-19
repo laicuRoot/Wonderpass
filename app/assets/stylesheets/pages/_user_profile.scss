@@ -65,7 +65,6 @@
   position:fixed;
   top: 10%;
   right: 150px;
-  height: 230px;
   width:300px;
   background-color: $bright-yellow;
   color: $white;
@@ -177,6 +176,7 @@
   background-color: $bright-yellow;
   color: $white;
   padding: 20px;
+  display: none;
   border-radius: 10px;
   text-align: center;
   h2{
@@ -257,7 +257,7 @@
   border-radius: 15px;
   padding: 8px 14px;
   color: white;
-  text-shadow: 0 0 8px rgba($black, 0.5);
+  text-shadow: 0 0 8px rgba($black, 0.3);
   position: fixed;
   bottom: 8%;
   right: 200px;
