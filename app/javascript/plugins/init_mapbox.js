@@ -49,14 +49,15 @@ const toggleMarkers = (map, mapElement) =>{
     const activeMarkers = JSON.parse(mapElement.dataset.markers);
     const allMarkers = JSON.parse(mapElement.dataset.allMarkers);
     toggle.addEventListener("click", event =>{
-      let target = event.currentTarget
-      if (target.innerText == "All Stamps"){
-        target.innerText = "View Active";
+      let target = event.currentTarget;
+      console.log(target.innerHTML);
+      if (target.innerHTML == '<i class="fas fa-eye"></i> See all stamps'){
+        target.innerHTML = '<i class="fas fa-eye"></i> View active itinerary';
         $('.mapboxgl-marker').remove();
         addMarkers(map, allMarkers);
         fitMapToMarkers(map, allMarkers);
-      } else if (target.innerText == "View Active"){
-        target.innerText = "All Stamps";
+      } else if (target.innerHTML == '<i class="fas fa-eye"></i> View active itinerary'){
+        target.innerHTML = '<i class="fas fa-eye"></i> See all stamps';
         $('.mapboxgl-marker').remove();
         addMarkers(map, activeMarkers);
         fitMapToMarkers(map, activeMarkers);

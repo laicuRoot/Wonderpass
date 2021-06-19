@@ -256,7 +256,7 @@
   background-color: $bright-yellow;
   border-radius: 15px;
   padding: 8px 14px;
-  color: white;
+  color: white !important;
   text-shadow: 0 0 8px rgba($black, 0.3);
   position: fixed;
   bottom: 8%;
