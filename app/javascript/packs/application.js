@@ -27,6 +27,8 @@ require("jquery")
 // External imports
 import "bootstrap";
 import 'controllers';
+import "dropzone/dist/min/dropzone.min.css";
+import "dropzone/dist/min/basic.min.css";
 // import "stylesheets/application";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
