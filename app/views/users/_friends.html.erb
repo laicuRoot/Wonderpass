@@ -22,6 +22,8 @@
               <li class='p-2 d-flex align-items-center justify-content-between'>
                 <% if user.photo.attached? %>
                   <%= cl_image_tag user.photo.key, height: 50, width: 50, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %>
+                <% else %>
+                  <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
                 <% end %>
                 <%= link_to user.first_name, user_path(user.id), class: "name" %>
                 <% if user.invitation_exists?(@user)%>
@@ -61,6 +63,8 @@
             <li class='p-1 d-flex align-items-center justify-content-between'>
               <% if friend.photo.attached? %>
                 <%= cl_image_tag friend.photo.key, height: 50, width: 50,  crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+              <% else %>
+                <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
               <% end %>
               <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name' %>
               <%= link_to user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to remove #{friend.first_name} from your friend list?"}, class: "mr-3 delete-btn" do %>
@@ -83,6 +87,8 @@
           <li class='p-1 d-flex align-items-center justify-content-between'>
             <% if pending_user.photo.attached? %>
               <%= cl_image_tag pending_user.photo.key, height: 50, width: 50,  crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+            <% else %>
+              <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
             <% end %>
             <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
             <div class="accept">
@@ -108,6 +114,8 @@
           <li class='p-1 d-flex align-items-center justify-content-between'>
             <% if pending_user.photo.attached? %>
               <%= cl_image_tag pending_user.photo.key, height: 50, width: 50,  crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+            <% else %>
+              <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
             <% end %>
             <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name' %>
             <%= link_to user_invitation_path(current_user, invitation), remote: true, method: :delete, remote: true, data: { confirm: "Would you like to cancel this invitation?"}, class: "mr-3 delete-btn" do %>

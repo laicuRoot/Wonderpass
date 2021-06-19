@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
     if @invitation.save
       # raise
       flash.alert = "The invitation has been sent"
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       flash.alert = "Unable to add to send invitation"
     end

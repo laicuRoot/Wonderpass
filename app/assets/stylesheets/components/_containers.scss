@@ -3,7 +3,7 @@
   padding: 40px;
   padding-bottom: 60px;
   border-radius: 20px;
-  height: 520px;
+  max-height: 520px;
   width: 800px;
   background-color: $white;
 
@@ -37,5 +37,5 @@
 }
 
 .itinerary-item-container{
-  height: 800px;
+  max-height: 800px;
 }
