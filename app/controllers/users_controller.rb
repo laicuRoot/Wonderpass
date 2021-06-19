@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @stamp_count = @user.collected_stamps.size
-#     @achievements = @user.achievements.size
     @user_active_itinerary = Itinerary.get_active(@user)
+    @ranking_number = 1
     @badges = Badge.all
     @num_bronze_stars = @user.achievements.map(&:badge_id).count(@badges[2].id)
     @num_silver_stars = @user.achievements.map(&:badge_id).count(@badges[1].id)
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     @active_stamps = Stamp.all.where(id: @stamps)
     @all_stamps = Stamp.all.where(id: @user_stamps)
   end
-  
+
   def get_locations
     @locations = Location.where(id: @stamps.map(&:location_id))
     @all_locations = Location.where(id: @user.stamps.map(&:location_id))

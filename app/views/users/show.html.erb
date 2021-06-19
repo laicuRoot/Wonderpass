@@ -40,7 +40,9 @@
           <p class="card-text">Number of stamps collected</p>
           <h3><%= @stamp_count %></h3>
           <p class="card-text">Number of stars earned</p>
+
           <h3><i class="fas fa-star bronze-star mr-1"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star mr-1"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star mr-1"></i><%= @num_gold_stars %></h3>
+
           <p>Traveller since</p>
            <h3><%= @user.create_date %></h3>
           <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(@user), class: "yellow-button" %>

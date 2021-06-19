@@ -24,9 +24,7 @@
     <%= render 'shared/map_legend' %>
   </div>
   <% if @user_active_itinerary.exists? %>
-    <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);">
-      All Stamps
-    </div>
+    <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);"><i class="fas fa-eye"></i> See all stamps</div>
   <% end %>
   <div class="menus">
     <div class="friend-menu">
@@ -58,6 +56,41 @@
           <li><%= link_to "Edit Profile", edit_user_path(user)%></li>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
         </ul>
+      </div>
+    </div>
+    <div class="user-menu-leaderboard">
+      <div id = "user-menu-button-leaderboard" class ="menu-button-leaderboard">
+        <i class="fas fa-trophy"></i>
+      </div>
+      <div class = "user-menu-popup-leaderboard">
+        <div id = "user-menu-exit-leaderboard" class ="menu-button-leaderboard"><i class="fas fa-times"></i></div>
+        <h2>Leaderboard</h2>
+        <div class="leaderboard-list">
+          <% User.all.sort_by{|e| [e.username, e.achievements.map(&:badge_id).count(Badge.all[2].id), e.achievements.map(&:badge_id).count(Badge.all[1].id), e.achievements.map(&:badge_id).count(Badge.all[0].id)]}.each do |user| %>
+            <div class="leaderboard-one-user">
+              <div class="ranking-number"><%= @ranking_number %></div>
+              <div class="">
+                <% if user == current_user %>
+                  <div class="leaderboard-current-user"><strong><i class="fas fa-user"></i> You</strong></div>
+                <% elsif current_user.invitations.where(confirmed: true).include? user %>
+                  <div class="leaderboard-friends"> <i class="fas fa-user-friends"></i> <%= user.first_name %> </div>
+                <% else %>
+                  <div class="leaderbaord-other-users"> <%= user.username %> </div>
+                <% end %>
+              </div>
+              <div class="user-ranking-results">
+                <% if user == current_user %>
+                  <div class="leaderboard-current-user"> <strong><i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[0].id) %> <i class="fas fa-star silver-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[1].id) %> <i class="fas fa-star bronze-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[2].id) %> </strong></div>
+                <% elsif current_user.invitations.where(confirmed: true).include? user %>
+                  <div class="leaderboard-friends"><i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[0].id) %> <i class="fas fa-star silver-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[1].id) %> <i class="fas fa-star bronze-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[2].id) %> </div>
+                <% else %>
+                  <div class="leaderbaord-other-users"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[0].id) %> <i class="fas fa-star silver-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[1].id) %> <i class="fas fa-star bronze-star"></i> <%= user.achievements.map(&:badge_id).count(Badge.all[2].id) %> </div>
+                <% end %>
+              </div>
+            </div>
+            <% @ranking_number += 1 %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
