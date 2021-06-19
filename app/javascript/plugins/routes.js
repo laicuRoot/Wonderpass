@@ -269,7 +269,7 @@ const changeRoute = (map, markers, lastItemIndex, start) => {
         mapRoute(map, markers, transportProfile, lastItemIndex, start);
       });
     });
-  }
+  } 
 }
 
 const generateRoutes = () => {
