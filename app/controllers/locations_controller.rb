@@ -9,6 +9,7 @@ before_action :find_stampbook
     @location = Location.new(location_params)
     @location.user = @stampbook.user
     add_geocoding
+    @location.add_stamp_photo
     if @location.save
       @location.generate_stamp(@stampbook)
       redirect_to new_stampbook_location_path(@stampbook)
