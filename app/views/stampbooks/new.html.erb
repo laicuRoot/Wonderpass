@@ -5,9 +5,9 @@
     <%= simple_form_for([@user, @stampbook]) do |form| %>
       <%= form.input :stampbook_name, :required => true %>
       <%= form.input :stampbook_description, :required => true %>
-      <%= form.association :locations, as: :select, multiple: true, include_blank: false, collection: Location.order('location_name ASC'), label_method: :location_name, :required => true %>
+      <%= form.association :locations, as: :select, multiple: true, include_blank: false, collection: Location.order('location_name ASC'), label_method: :location_name, :required => true, label: "Existing Locations" %>
       <%= form.input :status, label:'Allow other users to clone your stampbook' %>
-      <%= form.submit  value:"Create stampbook", class:"yellow-button" %>
+      <%= form.submit  value:"Next", class:"yellow-button" %>
     <% end %>
 
     <%= link_to("Go back to #{current_user.first_name}'s profile", user_path(current_user) , class:'btn grey-button') %>
