@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 2021_06_17_190822) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "following_id", null: false
+    t.integer "follower_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id"], name: "index_follows_on_follower_id"
+    t.index ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
+    t.index ["following_id"], name: "index_follows_on_following_id"
+  end
+
   create_table "invitations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "friend_id"
@@ -93,7 +103,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_190822) do
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
