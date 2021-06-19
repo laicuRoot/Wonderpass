@@ -7,7 +7,10 @@
           <% @categories.each do |category| %>
             <div class ="filter-category-width" style ="width:60px;">
               <%= check_box_tag("categories[#{category}]", category , false, class: "tag-selector") %>
-              <%= label_tag("categories[#{category}]", category) %>
+              <%= label_tag("categories[#{category}]", category) do %>
+                <span style="font-size:20px;display:block;"><%= @category_pics[category].html_safe %></span>
+                <%= category %>
+              <% end %>
             </div>
           <% end %>
         </div>
