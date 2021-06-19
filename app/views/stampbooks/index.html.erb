@@ -18,10 +18,12 @@
     </div>
   </div>
   <div class="container card-container">
-    <div class='d-flex justify-content-center'>
+    <% if @user == current_user %>
+      <div class='d-flex justify-content-center'>
         <%= link_to("Create a stampbook", new_stampbook_path, class:'yellow-button') %>
         <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'yellow-button ml-2') %>
-    </div>
+      </div>
+    <% end %>
     <div class="row mt-4">
       <div class="col-sm-12">
         <div class="scroller">
