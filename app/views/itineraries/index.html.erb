@@ -15,7 +15,8 @@
         <% if @user.itineraries.count == 0 %>
         <h1 class="stampbook-name" style ="font-size: 36px;">Create an itinerary! </h1>
         <% else %>
-          <h1 class="stampbook-name" style ="font-size: 36px;">You have <%= pluralize(current_user.itineraries.count, 'itinerary')%> </h1>
+          <h1 class="stampbook-name" style ="font-size: 36px;">All itineraries </h1>
+          <p>You have <%= pluralize(current_user.itineraries.count, 'itinerary')%> </p>
         <% end %>
       <% else %>
       <h1 class="stampbook-name" style ="font-size: 36px;"><%= @user.first_name  %> has <%= pluralize(@user.itineraries.count, 'itinerary')%> </h1>

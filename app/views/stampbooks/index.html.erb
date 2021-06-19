@@ -11,7 +11,8 @@
 
     <div class="stamps-title mr-3">
       <% if @user == current_user %>
-      <h1 class="stampbook-name" style ="font-size: 36px;">You have <%= pluralize(current_user.stampbooks.count, 'stampbook')%> </h1>
+        <h1 class="stampbook-name" style ="font-size: 36px;">All Stampbooks </h1>
+        <p>You have <%= pluralize(current_user.stampbooks.count, 'stampbook')%> </p>
       <% else %>
       <h1 class="stampbook-name" style ="font-size: 36px;"><%= @user.first_name  %> has <%= pluralize(@user_stampbooks.count, 'stampbook')%> </h1>
       <% end %>
