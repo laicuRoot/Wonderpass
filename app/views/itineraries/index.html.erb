@@ -2,7 +2,11 @@
 <div class="stamps-box">
   <div class='d-flex justify-content-between w-100 mt-5'>
     <div class="stampbook-owner ml-3">
-      <%= cl_image_tag @user.photo.key, height: 50, width: 50, crop: :fill, :class => "user-photo"  %>
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key , width: 50, height: 50, crop: :fill, class: "user-photo" %>
+      <% else %>
+        <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
+      <% end %>
       <% if @user == current_user %>
         <h4 class="stampbook-owner-text">You are viewing <strong>your</strong> itineraries</h4>
       <% else %>
