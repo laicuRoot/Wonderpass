@@ -25,8 +25,8 @@
   </div>
   <div class="container itinerary-show row">
     <div class="col-sm-12 col-md-6">
-      <div class='text-center'>
-        <h1 class='text-info main-title'>My Itineraries</h1>
+      <div class='text-center mb-5'>
+        <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'yellow-button' %>
       </div>
       <div class="itin-container" style ="height:75%; overflowy:scroll;">
         <% if @itineraries.length == 0 %>

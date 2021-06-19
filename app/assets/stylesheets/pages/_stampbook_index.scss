@@ -1,6 +1,6 @@
 .card-container {
   position:relative;
-  padding: 20px;
+  padding: 20px 20px;
   background-color: $white;
   margin: 30px;
   border-radius: 20px;
@@ -14,7 +14,8 @@
 }
 
 .card-transition{
-  margin: 15px;
+  height: 450px;
+  margin: 20px;
   transition: transform 250ms;
   &:hover{
     transform: scale(1.05);
@@ -36,4 +37,8 @@
 .img-edges {
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
+}
+
+.slick-slide {
+  margin: 5px !important;
 }

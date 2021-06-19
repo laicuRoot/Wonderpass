@@ -33,7 +33,7 @@
               <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture img-edges'  %>
               <div class="card-body">
                 <h5 class="card-title card-title-font"> <%= link_to stampbook.stampbook_name, stampbook_stamps_path(stampbook) %></h5>
-                <p class="card-text card-text-font"><%= stampbook.stampbook_description %></p>
+                <p class="card-text card-text-font m-2"><%= stampbook.stampbook_description %></p>
                 <div class="d-flex justify-content-center">
                   <div class="progress" style = "width: 250px; font-size: 12px;">
                     <% if stampbook.none_collected?%>
