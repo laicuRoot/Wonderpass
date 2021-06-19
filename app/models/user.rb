@@ -10,6 +10,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
+  has_many :locations, dependent: :destroy
   has_many :stampbooks, dependent: :destroy
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
