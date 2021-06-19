@@ -45,6 +45,16 @@ class Itinerary < ApplicationRecord
     Location.all.map{|location| location.category}.uniq
   end
 
+  def self.category_pics
+    {
+      "Natural" => '<i class="fas fa-tree"></i>',
+      "Culinary" => '<i class="fas fa-utensil-spoon"></i>',
+      "Historical" => '<i class="fas fa-landmark"></i>',
+      "Sports" => '<i class="fas fa-futbol"></i>',
+      "Cultural" => '<i class="fas fa-palette"></i>'
+    }
+  end
+
   def self.get_distances
     [5, 10, 20, 50, "Other"]
   end

@@ -34,8 +34,23 @@ Location.destroy_all
 Achievement.destroy_all
 Badge.destroy_all
 puts 'DB is clean'
-puts 'Creating Locations'
+puts 'Creating admin'
 
+admin_account = User.new(
+  email:'admin@wonderpass.com',
+  password: 'password',
+  first_name: 'Admiral',
+  last_name: 'Minter',
+  username: 'admin'
+  )
+
+admin_pic_url = 'https://randomuser.me/api/portraits/women/8.jpg'
+admin_pic_file = URI.open(admin_pic_url)
+admin_account.photo.attach(io: admin_pic_file, filename: 'admin_pic.png', content_type: 'image/png')
+admin_account.save!
+puts 'Admin has been created'
+
+puts 'Creating Locations'
 locations.each do |location|
 	puts "Creating #{location[:name]}"
   location_pic = URI.open(location[:location_pic])
@@ -45,7 +60,8 @@ locations.each do |location|
   place = Location.new(
     location_name: location[:name],
     location_description: location[:description],
-    category: location[:category].capitalize
+    category: location[:category].capitalize,
+    user: admin_account
 	)
   place.location_photos.attach(io: location_pic, filename: "location_pic-#{location[:name]}.png", content_type: "image/png")
   place.stamp_photos.attach(io: stamp_pic, filename: "stamp_pic-#{location[:name]}.png", content_type: "image/png")

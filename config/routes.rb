@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :invitations, only: [:new, :create, :edit, :update, :destroy]
     resources :stamps, only: [:index]
-    resources :stampbooks, only: [:index, :show, :create]
+    resources :stampbooks, only: [:index, :show, :create, :new, :destroy]
     resources :itineraries, only: [:new, :create, :index, :show]
   end
 
   resources :stampbooks do
+    resources :locations, only: [:new, :create]
     resources :stamps, only: [:index, :show, :edit, :update]
     member do
       post :clone
@@ -25,4 +26,5 @@ Rails.application.routes.draw do
   end
 
   resources :itinerary_items, only: [:show, :destroy]
+
 end

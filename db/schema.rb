@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_140033) do
+ActiveRecord::Schema.define(version: 2021_06_17_190822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,16 +55,6 @@ ActiveRecord::Schema.define(version: 2021_06_13_140033) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "follows", force: :cascade do |t|
-    t.integer "following_id", null: false
-    t.integer "follower_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["follower_id"], name: "index_follows_on_follower_id"
-    t.index ["following_id", "follower_id"], name: "index_follows_on_following_id_and_follower_id", unique: true
-    t.index ["following_id"], name: "index_follows_on_following_id"
-  end
-
   create_table "invitations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "friend_id"
@@ -103,6 +93,8 @@ ActiveRecord::Schema.define(version: 2021_06_13_140033) do
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "stampbooks", force: :cascade do |t|
@@ -147,6 +139,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_140033) do
   add_foreign_key "itineraries", "users"
   add_foreign_key "itinerary_items", "itineraries"
   add_foreign_key "itinerary_items", "stamps"
+  add_foreign_key "locations", "users"
   add_foreign_key "stampbooks", "users"
   add_foreign_key "stamps", "locations"
   add_foreign_key "stamps", "stampbooks"

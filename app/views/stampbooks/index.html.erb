@@ -30,7 +30,12 @@
         <div class="scroller">
           <% @user_stampbooks.each do |stampbook| %>
             <div class="card text-center card-edges card-transition">
-              <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture img-edges'  %>
+              <% if @user == current_user %>
+                <div class='destroy-container'>
+                  <%= link_to '<i class="fas fa-minus-circle destroy-btn"></i>'.html_safe, stampbook_path(stampbook), method: :delete,:data => { :confirm => 'Do you want to delete this stampbook?' } %>
+                </div>
+              <% end %>
+              <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture'  %>
               <div class="card-body">
                 <h5 class="card-title card-title-font"> <%= link_to stampbook.stampbook_name, stampbook_stamps_path(stampbook) %></h5>
                 <p class="card-text card-text-font"><%= stampbook.stampbook_description %></p>

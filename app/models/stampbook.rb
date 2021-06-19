@@ -2,7 +2,7 @@ class Stampbook < ApplicationRecord
   belongs_to :user
   has_many :stamps, dependent: :destroy
   has_many :locations, :through => :stamps
-  has_many :achievements
+  has_many :achievements, dependent: :destroy
   has_many :badges, through: :achievements
 
   validates :stampbook_name, :stampbook_description, presence: true
