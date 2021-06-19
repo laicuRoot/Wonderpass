@@ -22,6 +22,8 @@ class StampsController < ApplicationController
   def update
     respond_to do |format|
       if @stamp.update(stamp_params)
+        @percent = @stampbook.percent_completed
+        create_badge
         @stamp.add_stamp_to_other_stampbooks
         @percent = @stampbook.percent_completed
         create_badge

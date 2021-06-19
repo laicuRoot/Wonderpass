@@ -56,7 +56,7 @@
       <div class="grey-button mt-3"><i class='fas fa-copy'></i> Can't clone. You already have this stampbook</div>
     <% else %>
       <div class="collect-stamp-link mt-3">
-        <%= link_to "<i class='fas fa-copy'></i>Clone the stampbook".html_safe, clone_stampbook_path(@stampbook), method: :post, data: { confirm: "Would you like to clone #{}?"} %>
+        <%= link_to "<i class='fas fa-copy'></i>Clone the stampbook".html_safe, clone_stampbook_path(@stampbook), method: :post, data: { confirm: "Would you like to clone #{@stampbook.stampbook_name}?"} %>
       </div>
     <% end %>
   </div>
