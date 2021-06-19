@@ -86,10 +86,10 @@
             <% end %>
             <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
             <div class="accept">
-              <%= link_to user_invitation_path(current_user, invitation), method: :patch, remote: true, class:'confirmed-btn' do %>
+              <%= link_to user_invitation_path(pending_user, invitation), method: :patch, remote: true, class:'confirmed-btn' do %>
                 <i class="fas fa-user-check"></i>
               <% end %>
-              <%= link_to user_invitation_path(current_user, invitation), method: :delete, remote: true, data: { confirm: "Would you like to reject #{invitation.user.first_name}?"}, class: "delete-btn" do %>
+              <%= link_to user_invitation_path(pending_user, invitation), method: :delete, remote: true, data: { confirm: "Would you like to reject #{invitation.user.first_name}?"}, class: "delete-btn" do %>
                 <i class="fas fa-user-times"></i>
               <% end %>
             </div>
