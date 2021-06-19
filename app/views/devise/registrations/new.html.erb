@@ -23,6 +23,7 @@
                       required: true %>
 
           <%= f.input :photo,
+                      as: :file,
                       input_html: { class: 'd-none' },
                       label_html: { class: 'upload-btn' },
                       label: '<i class="fas fa-camera"></i> Upload a profile picture'.html_safe %>

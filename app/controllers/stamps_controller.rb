@@ -25,6 +25,8 @@ class StampsController < ApplicationController
         @percent = @stampbook.percent_completed
         create_badge
         @stamp.add_stamp_to_other_stampbooks
+        @percent = @stampbook.percent_completed
+        create_badge
         @stamp.stamp_status = true
         format.html { redirect_to stampbook_stamps_path(@stampbook), notice: 'Stamp was successfully collected!' }
         format.json { render :show, status: :ok, location: @stamp }
