@@ -18,6 +18,10 @@
     </div>
   </div>
   <div class="container card-container">
+    <div class='d-flex justify-content-center'>
+        <%= link_to("Create a stampbook", new_stampbook_path, class:'yellow-button') %>
+        <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'yellow-button ml-2') %>
+    </div>
     <div class="row mt-4">
       <div class="col-sm-12">
         <div class="scroller">
@@ -46,13 +50,13 @@
     <% if current_user %>
        <div class="row text-center mt-5">
         <div class="col-sm-12">
-          <%= link_to("Go back to your profile", user_path(current_user) , class:'btn btn-info') %>
+          <%= link_to("Go back to your profile", user_path(current_user) , class:'yellow-button') %>
         </div>
       </div>
     <% else %>
       <div class="row text-center mt-5">
         <div class="col-sm-12">
-          <%= link_to("Go back to #{@user.first_name}'s profile", user_path(@user) , class:'btn btn-info') %>
+          <%= link_to("Go back to #{@user.first_name}'s profile", user_path(@user) , class:'yellow-button') %>
         </div>
       </div>
     <% end %>
