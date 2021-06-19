@@ -201,3 +201,21 @@
     text-shadow: 0px $white;
   }
 }
+
+.back-btn {
+  color: $white;
+  background-color: #4A4A4A;;
+  padding: 8px 24px;
+  border-radius: 15px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+  &:hover {
+    background-color: $bright-yellow;
+    opacity: 1;
+    text-decoration: none;
+    color: $white;
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  }
+}
+
