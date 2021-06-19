@@ -33,9 +33,7 @@ import "dropzone/dist/min/basic.min.css";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
-import { toggleMenu } from '../plugins/init_menu';
-import { toggleFriendMenu } from '../plugins/init_menu';
-import { toggleLeaderBoardMenu } from '../plugins/init_menu';
+import { addToggleMenus } from '../plugins/init_menu';
 import { hideProfile } from '../plugins/init_hide_profile';
 import { toggleHidden } from '../plugins/add_selected';
 import { initPageFlip } from '../plugins/init_turning-pages';
@@ -49,9 +47,7 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   toggleHidden();
   initMapbox();
-  toggleMenu();
-  toggleFriendMenu();
-  toggleLeaderBoardMenu();
+  addToggleMenus();
   hideProfile();
   if (document.getElementById("book")){
     initPageFlip();

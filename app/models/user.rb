@@ -60,7 +60,7 @@ class User < ApplicationRecord
 
   def generate_stamps
     places = Location.all
-    places.each do |place|
+    places[0..39].each do |place|
       @stamp = Stamp.new(
         location: place,
         stampbook: @stampbook
