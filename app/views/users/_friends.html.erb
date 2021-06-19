@@ -1,0 +1,122 @@
+<div id = "friends-menu-exit" class ="friends-menu-button">
+  <i class="fas fa-times"></i>
+</div>
+<div class="d-flex flex-column" style="height:100%;">
+  <div class ="search-box">
+    <h2>Find friends</h2>
+    <%= form_tag user_path(user, remote: true), class: "form-inline mb-2", method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: 'form-control',
+      style: "flex-grow: 1;",
+      placeholder: 'Search here...' %>
+      <%= submit_tag "Search", class:"search-button py-2" %>
+    <% end %>
+    <ul id='search-results'>
+      <% if @query %>
+        <% if @users.nil? %>
+        <li style ="margin: 0 auto; color: rgba(0,0,0,0.4); background-color:transparent;">No found</li>
+        <% else %>
+          <% @users.each do |user| %>
+            <% unless user == current_user %>
+              <li class='p-2 d-flex align-items-center justify-content-between'>
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %>
+                <% end %>
+                <%= link_to user.first_name, user_path(user.id), class: "name" %>
+                <% if user.invitation_exists?(@user)%>
+                  <span class= "add-user" style="font-size:18px;"><i class="fas fa-user-friends"></i></span>
+                <% else %>
+                  <%= simple_form_for ([user, @invitation]), remote: true do |f| %>
+                    <%= button_tag(type: 'submit', class: "add-user", style: "font-size:18px;" ) do %>
+                      <i class="fas fa-user-plus"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <ul class="nav nav-tabs mt-2">
+    <li class="nav-item">
+      <a href="#friends" class="nav-link active" data-toggle="tab">Friends</a>
+    </li>
+    <li class="nav-item">
+      <a href="#received" class="nav-link" data-toggle="tab">Received</a>
+    </li>
+    <li class="nav-item">
+      <a href="#sent" class="nav-link" data-toggle="tab">Sent</a>
+    </li>
+  </ul>
+  <div class="tab-content" style="flex-grow: 1;">
+    <div class="tab-pane fade show active" id="friends">
+      <% if @friends.present? %>
+        <ul>
+          <% @friends.each do |invitation|%>
+            <% id = invitation.user_id == current_user.id ? invitation.friend_id : invitation.user_id  %>
+            <% friend = User.find(id) %>
+            <li class='p-1 d-flex align-items-center justify-content-between'>
+              <% if friend.photo.attached? %>
+                <%= cl_image_tag friend.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+              <% end %>
+              <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name' %>
+              <%= link_to user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to remove #{friend.first_name} from your friend list?"}, class: "mr-3 delete-btn" do %>
+                <i class="fas fa-user-alt-slash"></i>
+              <% end %>
+            </li>              
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No friends yet!<br>Search for friends to add them to your friends list</p>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="received">
+      <% if @received.count == 0 %>
+        <p>No invitations received yet? <br>Search for your friends and send them a friend request</p>
+      <% else %>
+        <ul>
+        <% @received.each do |invitation| %>
+          <% pending_user = User.find(invitation.user_id)  %>
+          <li class='p-1 d-flex align-items-center justify-content-between'>
+            <% if pending_user.photo.attached? %>
+              <%= cl_image_tag pending_user.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+            <% end %>
+            <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
+            <div class="accept">
+              <%= link_to user_invitation_path(pending_user, invitation), method: :patch, remote: true, class:'confirmed-btn' do %>
+                <i class="fas fa-user-check"></i>
+              <% end %>
+              <%= link_to user_invitation_path(pending_user, invitation), method: :delete, remote: true, data: { confirm: "Would you like to reject #{invitation.user.first_name}?"}, class: "delete-btn" do %>
+                <i class="fas fa-user-times"></i>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="sent">
+      <% if @sent.count == 0 %>
+        <p>No invitations sent yet!<br> Search for friends to send them an invite</p>
+      <% else %>
+        <ul>
+        <% @sent.each do |invitation| %>
+          <% pending_user = User.find(invitation.friend_id)  %>
+          <li class='p-1 d-flex align-items-center justify-content-between'>
+            <% if pending_user.photo.attached? %>
+              <%= cl_image_tag pending_user.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
+            <% end %>
+            <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name' %>
+            <%= link_to user_invitation_path(current_user, invitation), remote: true, method: :delete, remote: true, data: { confirm: "Would you like to cancel this invitation?"}, class: "mr-3 delete-btn" do %>
+              <i class="fas fa-user-alt-slash"></i>
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

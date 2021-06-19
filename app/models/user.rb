@@ -10,12 +10,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :photo
+  has_many :locations, dependent: :destroy
   has_many :stampbooks, dependent: :destroy
   has_many :itineraries, dependent: :destroy
   has_many :stamps, through: :stampbooks
   has_many :achievements, through: :stampbooks
-  has_many :invitations
-  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id"
+  has_many :invitations, dependent: :destroy
+  has_many :pending_invitations, -> { where confirmed: false }, class_name: 'Invitation', foreign_key: "friend_id", dependent: :destroy
   after_create :create_stampbook_and_stamps
 
   def friends
@@ -31,6 +32,10 @@ class User < ApplicationRecord
 
   def send_invitation(user)
     invitations.create(friend_id: user.id)
+  end
+ 
+  def invitation_exists?(user)
+    Invitation.find_by(user_id: user, friend_id: self) || Invitation.find_by(user_id: self, friend_id: user)
   end
 
   def collected_stamps

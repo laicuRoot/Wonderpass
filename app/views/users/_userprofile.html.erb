@@ -3,14 +3,14 @@
     <% if user.photo.attached? %>
       <%= cl_image_tag user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
     <% else %>
-      <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
+      <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
     <% end %>
     <div class="card-body">
       <h1 class="card-title"><%=user.first_name%></h1>
       <p class="card-text">Number of stamps collected</p>
       <h3><%= @stamp_count %></h3>
       <p class="card-text">Number of stars earned</p>
-      <h3><i class="fas fa-star bronze-star"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star"></i><%= @num_gold_stars %></h3>
+      <h3><i class="fas fa-star bronze-star mr-1"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star mr-1"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star mr-1"></i><%= @num_gold_stars %></h3>
       <p>Traveller since</p>
        <h3><%= user.create_date %></h3>
       <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(user), class: "yellow-button" %>
@@ -31,73 +31,20 @@
       <div id = "user-menu-friends" class ="friends-button">
         <i class="fas fa-users"></i>
       </div>
+    <% if @query %>
+      <div class = "friends-menu-popup" style ="display:inline-block;">
+    <% else %>
       <div class = "friends-menu-popup">
-        <div id = "friends-menu-exit" class ="friends-menu-button">
-          <i class="fas fa-times"></i>
-        </div>
-        <div>
-          <h2>Find friends</h2>
-          <%= form_tag user_path(user,remote: true), method: :get do %>
-            <%= text_field_tag :query,
-            params[:query],
-            class: 'form-control',
-            placeholder: 'Search here...' %>
-            <%= submit_tag "Search", class:"search-button mt-2" %>
-          <% end %>
-          <ul id='search-results'>
-            <% if params[:query].present? %>
-              <% if @users.empty? %>
-              <li>No results</li>
-              <% else %>
-                <% @users.each do |user| %>
-                      <li class='m-1'><%= cl_image_tag user.photo.key, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %><%= user.first_name %> - <%= link_to("See profile", user_path(user.id)) %></li>
-                <% end %>
-              <% end %>
-            <% end %>
-          </ul>
-        </div>
-        <div class='mt-3'>
-        <% if @invitations.count == 0 %>
-          <span></span>
-        <% else %>
-          <h2 class='pending-title'>Pending invitations</h2>
-          <ul>
-          <% @invitations.each do |invitation| %>
-            <% pending_user = User.find(invitation.user_id)  %>
-            <li class='m-1 d-flex align-items-center'>
-              <%= cl_image_tag pending_user.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
-              <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
-              <%= simple_form_for ([current_user, invitation]), remote: true do |f| %>
-                <%= f.check_box :confirmed, class:'checkbox', checked: true  %>
-                <%= f.submit "Confirm", class:'confirmed-btn ml-5'  %>
-              <% end %>
-            </li>
-          <% end %>
-          </ul>
-        <% end %>
-        </div>
-        <div class='mt-3'>
-          <h2>Friends</h2>
-          <% if !@friends.nil? %>
-            <ul>
-            <% @friends.each do |invitation|%>
-              <% id = invitation.user_id == current_user.id ? invitation.friend_id : invitation.user_id  %>
-              <% friend = User.find(id) %>
-
-              <li class='m-1 d-flex align-items-center'>
-                <%= cl_image_tag friend.photo.key, crop: :fill, class: "friends-avatar mr-3", alt: "Card image cap" %>
-                <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name ml-3' %>
-              </li>
-            <% end %>
-          <% else %>
-            <p>Add friends</p>
-          <% end %>
-            </ul>
-        </div>
+    <% end %>
+        <%= render 'friends', user: user %>
       </div>
     </div>
     <div class="user-menu">
+    <% if @query %>
+      <div id = "user-menu-button" class ="menu-button" style="display:none;">
+    <% else %>
       <div id = "user-menu-button" class ="menu-button">
+    <% end %>
         <i class="fas fa-bars"></i>
       </div>
       <div class = "user-menu-popup">
@@ -150,16 +97,18 @@
   </div>
 </div>
 
-<style>
-  .mapboxgl-user-location-dot:after{
-    background-image: url("<%= rails_blob_path(user.photo, disposition: "attachment", only_path: true) %>");
-    background-size: contain;
-    height: 30px;
-    width: 30px;
-  }
+<% if user.photo.attached? %>
+  <style>
+    .mapboxgl-user-location-dot:after{
+      background-image: url('<%= cl_image_path user.photo.key, crop: :fill %>');
+      background-size: cover;
+      height: 30px;
+      width: 30px;
+    }
 
-  .mapboxgl-user-location-dot:before{
-    display: none;
-  }
-</style>
+    .mapboxgl-user-location-dot:before{
+      display: none;
+    }
+  </style>
+<% end %>
 

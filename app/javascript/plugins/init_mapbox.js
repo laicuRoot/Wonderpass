@@ -1,6 +1,8 @@
 import mapboxgl from 'mapbox-gl';
+import { mapRoute } from '../plugins/routes';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'jquery';
+
 
 const customiseMarkers = () => {
 	const element = document.createElement('div');
@@ -43,7 +45,7 @@ const getMapElements = () => {
   }
 };
 
-const toggleMarkers = (map, mapElement) =>{
+const toggleMarkers = (map, mapElement,transportProfile, lastItemIndex, start) =>{
   const toggle = document.querySelector(".toggle-all");
   if (toggle) {
     const activeMarkers = JSON.parse(mapElement.dataset.markers);
@@ -61,6 +63,7 @@ const toggleMarkers = (map, mapElement) =>{
         $('.mapboxgl-marker').remove();
         addMarkers(map, activeMarkers);
         fitMapToMarkers(map, activeMarkers);
+        mapRoute(map, activeMarkers, transportProfile, lastItemIndex, start);
       }
     });
   }
@@ -86,22 +89,34 @@ const initMapbox = () => {
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     if (mapElement.dataset.markers) {
-      const markers = JSON.parse(mapElement.dataset.markers);
+      let markers = JSON.parse(mapElement.dataset.markers);
       const map = new mapboxgl.Map({
         container: cont,
         style: 'mapbox://styles/rubixthecubix/ckpa6hfqu6ejy18oj9bz9d98a',
       });
-      console.log(map);
-      addMarkers(map, markers);
-      fitMapToMarkers(map, markers);
       if (cont == "user-map"){
-        toggleMarkers(map, mapElement);
+        if(markers.length == 0 ){
+          markers = JSON.parse(mapElement.dataset.allMarkers);
+          addMarkers(map, markers);
+          fitMapToMarkers(map, markers);
+        } else {
+          let transportProfile = "walking";
+          const start = [markers[0].lng, markers[0].lat];
+          const lastItemIndex = markers.length - 1;
+          addMarkers(map, markers);
+          fitMapToMarkers(map, markers);
+          map.on('load', function() {
+            mapRoute(map, markers, transportProfile, lastItemIndex, start);
+          });
+          toggleMarkers(map, mapElement,transportProfile, lastItemIndex, start); // keep this in if if we revert back
+        }
+      } else {
+        addMarkers(map, markers);
+        fitMapToMarkers(map, markers);
       }
       myLocation(map);
     }
   }
 };
-
-
 
 export { initMapbox };

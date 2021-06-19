@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:show, :edit, :update] do
-    resources :invitations, only: [:new, :create, :edit, :update]
+    resources :invitations, only: [:new, :create, :edit, :update, :destroy]
     resources :stamps, only: [:index]
-    resources :stampbooks, only: [:index, :show, :create]
+    resources :stampbooks, only: [:index, :show, :create, :new, :destroy]
     resources :itineraries, only: [:new, :create, :index, :show]
   end
 
   resources :stampbooks do
+    resources :locations, only: [:new, :create]
     resources :stamps, only: [:index, :show, :edit, :update]
     member do
       post :clone
@@ -25,4 +26,5 @@ Rails.application.routes.draw do
   end
 
   resources :itinerary_items, only: [:show, :destroy]
+
 end

@@ -1,4 +1,5 @@
 class InvitationsController < ApplicationController
+  before_action :find_invitation, only: [:edit, :update, :destroy]
 
   def new;end
 
@@ -20,14 +21,19 @@ class InvitationsController < ApplicationController
 
   def update
     # @user = User.find(params[:user_id])
-    @invitation = Invitation.find(params[:id])
-    @invitation.update(invitation_params)
+    @invitation.confirmed = true
+    @invitation.save!
+    redirect_to user_path(current_user)
+  end
+
+  def destroy
+    @invitation.destroy
     redirect_to user_path(current_user)
   end
 
   private
 
-  def invitation_params
-    params.require(:invitation).permit(:confirmed)
+  def find_invitation
+    @invitation = Invitation.find(params[:id])
   end
 end

@@ -1,0 +1,16 @@
+<div class="background-box">
+  <div class="container card-container">
+    <%= simple_form_for([@stampbook, @location]) do |f| %>
+      <%= f.input :location_name %>
+      <%= f.input :location_description %>
+      <%= f.input :category, collection: %w[Culinary Cultural Historical Natural Sports] %>
+      <%= f.input :location_photos,
+                          input_html: { class: 'd-none' },
+                          label_html: { class: 'upload-btn' },
+                          label: '<i class="fas fa-camera"></i> Upload a location picture'.html_safe  %>
+      <%= f.submit 'Create Location'%>
+    <% end %>
+
+    <%= link_to "Finish",  stampbook_stamps_path(@stampbook) %>
+  </div>
+</div>

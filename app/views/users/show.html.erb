@@ -10,33 +10,39 @@
     <div class="container user-profile-cont">
       <div class="card profile-box">
           <div class='mt-2 add-user-wrapper'>
-          <% if @user_invitation.nil? && @friend_invitation.nil?  %>
+          <% if @user_invitation.empty? && @friend_invitation.empty?  %>
             <%= simple_form_for ([@user, @invitation]), remote: true do |f| %>
                 <%= button_tag(type: 'submit', class: "add-user") do %>
                   <i class="fas fa-user-plus"></i>
                 <% end %>
             <% end %>
           <% end %>
-          <% invitation = @friend_invitation.nil? ? @user_invitation : @friend_invitation %>
-          <% if !invitation.nil? %>
-            <% if invitation.confirmed == false %>
-              <p class='small-yellow-button m-2'>Pending</p>
+          <% invitation = @friend_invitation.empty? ? @user_invitation : @friend_invitation %>
+          <% unless invitation.empty? %>
+            <% if @user_invitation.present? && @user_invitation.first.confirmed == false %>
+              <p class= "add-user" style="color: #FFDE55;"><i class="fas fa-user-clock"></i></p>
+            <% elsif  @friend_invitation.present? && @friend_invitation.first.confirmed == false %>
+              <%= link_to user_invitation_path(current_user, @friend_invitation), method: :patch do %>
+                <p class= "add-user" style="color: #FFDE55;"><i class="fas fa-user-check"></i></p>
+              <% end %>
             <% else %>
-              <p class='small-yellow-button m-2'>Friend</p>
+              <p class= "add-user" style="color: #FFDE55;"><i class="fas fa-user-friends"></i></p>
             <% end %>
           <% end %>
           </div>
         <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key , width: 350, height: 280, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
+          <%= cl_image_tag @user.photo.key , width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
         <% else %>
-          <img class="card-img-top" src="app/assets/images/Default.PNG" alt="Card image cap">
+          <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
         <% end %>
         <div class="card-body">
           <h1 class="card-title"><%= @user.first_name %></h1>
           <p class="card-text">Number of stamps collected</p>
           <h3><%= @stamp_count %></h3>
           <p class="card-text">Number of stars earned</p>
-          <h3><i class="fas fa-star bronze-star"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star"></i><%= @num_gold_stars %></h3>
+
+          <h3><i class="fas fa-star bronze-star mr-1"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star mr-1"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star mr-1"></i><%= @num_gold_stars %></h3>
+
           <p>Traveller since</p>
            <h3><%= @user.create_date %></h3>
           <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(@user), class: "yellow-button" %>

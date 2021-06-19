@@ -22,7 +22,7 @@ class StampbooksController < ApplicationController
       @location_ids.each do |location_id|
         Stamp.create(location_id: location_id, stampbook_id: @stampbook.id, stamp_status: false)
       end
-      redirect_to user_stampbooks_path(current_user)
+      redirect_to new_stampbook_location_path(@stampbook)
     else
       render :new
     end
@@ -37,6 +37,14 @@ class StampbooksController < ApplicationController
       redirect_to stampbook_stamps_path(@newbook);
       flash[:notice] = "Stampbook #{@newbook.stampbook_name} has been cloned"
     end
+  end
+
+  def destroy
+    @stampbook = Stampbook.find(params[:id])
+    @user = @stampbook.user
+    @stampbook.destroy
+
+    redirect_to user_stampbooks_path(@user)
   end
 
   private
