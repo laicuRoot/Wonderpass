@@ -1,7 +1,7 @@
 .sign-up-background-image {
   height: 100vh;
   min-height: 200px;
-  background: url('https://res.cloudinary.com/laicuroot/raw/upload/v1623508721/T02NE0241-F025K9FPL56-b46d26e45d_mk0wgt') no-repeat center center;
+  background: url('https://res.cloudinary.com/laicuroot/image/upload/v1623347593/WP_Homepage_6_ecwzwj.png') no-repeat center center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -34,16 +34,18 @@
 }
 
 .sign-up-container {
+  font-size: 18px;
+  text-shadow: 0px 0px 15px rgba(0,0,0,0.9);
   .form-group {
     padding: 10px;
     text-align: center;
     color: white;
     margin: 0px;
-    text-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+    flex-grow: 1;
   }
   .form-control {
     border-radius: 30px;
-        background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.8);
   }
   .new_user {
     display: flex;
@@ -53,36 +55,37 @@
 }
 
 .form-actions {
-  padding: 5px 25px;
-  margin: 10px;
-  background-color: $bright-yellow;
-  color: white;
-  border-radius: 40px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
   text-align: center;
-  width: 140px;
-  &:hover{
+  width: 100%;
+  .btn-sign-up {
+    padding: 10px 100px;
+    margin: 10px;
+    background-color: $bright-yellow;
+    color: white;
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    color: white;
+  }&:hover{
     text-decoration: none;
     color: white;
     transition: all .2s ease-in-out;
     transform: scale(1.08);
   }
-  .btn {
-    color: white;
+  .btn-log-in {
+    padding: 10px 100px;
   }
 }
 
-.sign-up-button {
-  width: 10px;
-}
-
 .names-container {
-    display: flex;
+  display: flex;
   justify-content: space-between;
+
 }
 
 .username-photo-container {
-    display: flex;
+  display: flex;
   justify-content: space-between;
 }
 
