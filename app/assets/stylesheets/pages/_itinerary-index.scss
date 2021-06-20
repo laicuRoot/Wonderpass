@@ -10,6 +10,7 @@
 }
 
 .card-product {
+  position: relative;
   overflow: hidden;
   height: 120px;
   background: white;
@@ -102,7 +103,7 @@
 
 .destroy-container {
   position: absolute;
-  right: 20px;
+  right: 5px;
   top: 0px;
   font-size: 16px;
 }
