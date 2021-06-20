@@ -9,7 +9,7 @@
       params[:query],
       class: 'form-control',
       style: "flex-grow: 1;",
-      placeholder: 'Search here...' %>
+      placeholder: 'Search...' %>
       <%= submit_tag "Search", class:"search-button py-2" %>
     <% end %>
     <ul id='search-results'>
@@ -25,7 +25,11 @@
                 <% else %>
                   <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
                 <% end %>
-                <%= link_to user.first_name, user_path(user.id), class: "name" %>
+                <% if current_user.all_confirmed_invites.include? user %>
+                  <%= link_to user.first_name, user_path(user.id), class: "name" %>
+                <% else %>
+                  <%= link_to user.username, user_path(user.id), class: "name" %>
+                <% end %>
                 <% if user.invitation_exists?(@user)%>
                   <span class= "add-user" style="font-size:18px;"><i class="fas fa-user-friends"></i></span>
                 <% else %>
@@ -44,13 +48,13 @@
   </div>
   <ul class="nav nav-tabs mt-2">
     <li class="nav-item">
-      <a href="#friends" class="nav-link active" data-toggle="tab">Friends</a>
+      <a href="#friends" class="nav-link active" data-toggle="tab">Friends (<%= @friends.count %>)</a>
     </li>
     <li class="nav-item">
-      <a href="#received" class="nav-link" data-toggle="tab">Received</a>
+      <a href="#received" class="nav-link" data-toggle="tab">Invitations received (<%= @received.count %>)</a>
     </li>
     <li class="nav-item">
-      <a href="#sent" class="nav-link" data-toggle="tab">Sent</a>
+      <a href="#sent" class="nav-link" data-toggle="tab">Invitations sent (<%= @sent.count %>)</a>
     </li>
   </ul>
   <div class="tab-content" style="flex-grow: 1;">
@@ -66,20 +70,24 @@
               <% else %>
                 <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
               <% end %>
-              <%= link_to "#{friend.first_name}", user_path(friend.id), class:'name' %>
+              <% if current_user.all_confirmed_invites.include? user %>
+                  <%= link_to friend.first_name, user_path(friend.id), class: "name" %>
+                <% else %>
+                  <%= link_to friend.username, user_path(friend.id), class: "name" %>
+                <% end %>
               <%= link_to user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to remove #{friend.first_name} from your friend list?"}, class: "mr-3 delete-btn" do %>
                 <i class="fas fa-user-alt-slash"></i>
               <% end %>
-            </li>              
+            </li>
           <% end %>
         </ul>
       <% else %>
-        <p>No friends yet!<br>Search for friends to add them to your friends list</p>
+        <p><i class="fas fa-frown sad-face"></i> <br> <span class="bold-text">No friends yet</span><br>Search for your friends and send them a friend request</p>
       <% end %>
     </div>
     <div class="tab-pane fade" id="received">
       <% if @received.count == 0 %>
-        <p>No invitations received yet? <br>Search for your friends and send them a friend request</p>
+        <p><i class="fas fa-frown sad-face"></i> <br> <span class="bold-text">No invitations received yet</span> <br>Let your friends know that you are on Wonderpass so they can send you a friend request</p>
       <% else %>
         <ul>
         <% @received.each do |invitation| %>
@@ -90,7 +98,11 @@
             <% else %>
               <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
             <% end %>
-            <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name ml-3' %>
+            <% if current_user.all_confirmed_invites.include? user %>
+              <%= link_to pending_user.first_name, user_path(pending_user.id), class: "name ml-3" %>
+            <% else %>
+              <%= link_to pending_user.username, user_path(pending_user.id), class: "name ml-3" %>
+            <% end %>
             <div class="accept">
               <%= link_to user_invitation_path(pending_user, invitation), method: :patch, remote: true, class:'confirmed-btn' do %>
                 <i class="fas fa-user-check"></i>
@@ -106,7 +118,7 @@
     </div>
     <div class="tab-pane fade" id="sent">
       <% if @sent.count == 0 %>
-        <p>No invitations sent yet!<br> Search for friends to send them an invite</p>
+        <p><i class="fas fa-frown sad-face"></i> <br> <span class="bold-text">No invitations sent yet!</span> <br> Search for your friends and send them a friend request</p>
       <% else %>
         <ul>
         <% @sent.each do |invitation| %>
@@ -117,7 +129,11 @@
             <% else %>
               <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
             <% end %>
-            <%= link_to "#{pending_user.first_name}", user_path(pending_user.id), class:'name' %>
+            <% if current_user.all_confirmed_invites.include? user %>
+              <%= link_to pending_user.first_name, user_path(pending_user.id), class: "name" %>
+            <% else %>
+              <%= link_to pending_user.username, user_path(pending_user.id), class: "name" %>
+            <% end %>
             <%= link_to user_invitation_path(current_user, invitation), remote: true, method: :delete, remote: true, data: { confirm: "Would you like to cancel this invitation?"}, class: "mr-3 delete-btn" do %>
               <i class="fas fa-user-alt-slash"></i>
             <% end %>
