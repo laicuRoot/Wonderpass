@@ -10,6 +10,34 @@
   }
 }
 
+.main-yellow-button{
+  margin-bottom: 10px;
+  padding: 8px 24px;
+  background-color: $bright-yellow;
+  color: $white;
+  border-radius: 15px;
+  transition: transform 250ms;
+  &:hover{
+    color: white;
+    text-decoration: none;
+    transform: scale(1.05);
+  }
+}
+
+.secondary-yellow-button{
+  margin-bottom: 10px;
+  padding: 8px 24px;
+  background-color: $bright-yellow;
+  opacity: 0.8;
+  color: $white;
+  border-radius: 15px;
+  &:hover{
+    opacity: 1;
+    background-color: $bright-yellow;
+    text-decoration: none;
+    color: $white;
+  }
+}
 
 .search-button {
   color: $bright-yellow;
@@ -208,7 +236,7 @@
   padding: 8px 24px;
   border-radius: 15px;
   font-weight: lighter;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: opacity 0.5s ease;
   &:hover {
     background-color: $bright-yellow;
