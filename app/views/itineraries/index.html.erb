@@ -1,5 +1,4 @@
-<% if current_user == @user %>
-<div class="stamps-box">
+<div class="stamps-box min-vh-100" >
   <div class='d-flex justify-content-between w-100 mt-5'>
     <div class="stampbook-owner ml-3">
       <% if @user.photo.attached? %>
@@ -23,43 +22,50 @@
           <p>You have <%= pluralize(current_user.itineraries.count, 'itinerary')%> </p>
         <% end %>
       <% else %>
-      <h1 class="stampbook-name" style ="font-size: 36px;"><%= @user.first_name  %> has <%= pluralize(@user.itineraries.count, 'itinerary')%> </h1>
+        <% if @user.itineraries.count == 0 %>
+          <h3 class='stampbook-name'><%= @user.first_name %> doesn't have any itineraries yet</h3>
+        <% else %>
+          <h1 class="stampbook-name" style ="font-size: 36px;"><%= @user.first_name  %> has <%= pluralize(@user.itineraries.count, 'itinerary')%> </h1>
+        <% end %>
       <% end %>
     </div>
   </div>
+  <div class='text-center'>
+    <% if @user == current_user %>
+      <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'main-yellow-button' %>
+    <% else %>
+      <span></span>
+    <% end %>
+  </div>
   <div class="container itinerary-show row">
     <div class="col-sm-12 col-md-6">
-      <div class='text-center mb-5'>
-        <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'yellow-button' %>
-      </div>
       <div class="itin-container" style ="height:75%; overflowy:scroll;">
         <% if @itineraries.length == 0 %>
-        <div class='text-center'>
-          <h4>You don't have itineraries yet. Create one!</h4>
-          <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'yellow-button' %>
-        </div>
+          <% if @user == current_user %>
+          <div class='text-center'>
+            <h4>You don't have itineraries yet. Create one!</h4>
+          </div>
+          <% else %>
+            <h3 class='stampbook-name'><i class="fas fa-frown sad-face"></i> <br> <span class="bold-text">No itineraries yet</span></h3>
+          <% end %>
         <% else %>
           <% @itineraries.order(updated_at: :desc).each do |itinerary| %>
             <% if itinerary.public_status || @user == current_user %>
-              <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
-                <div class="row g-0">
-                  <div class="col-4">
-                    <%= cl_image_tag itinerary.first_location_photo, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
+              <div class="card-product mb-3">
+                <%= cl_image_tag itinerary.first_location_photo, crop: :fill, class:'' %>
+                <div class="card-product-infos">
+                  <div class='destroy-container'>
+                    <%= link_to '<i class="fas fa-minus-circle destroy-btn"></i>'.html_safe, itinerary_path(itinerary), method: :delete,:data => { :confirm => 'Do you want to delete this itinerary?' } %>
                   </div>
-                  <div class="col-8 d-flex align-items-center justify-content-around">
-                    <div class='destroy-container'>
-                      <%= link_to '<i class="fas fa-minus-circle destroy-btn"></i>'.html_safe, itinerary_path(itinerary), method: :delete,:data => { :confirm => 'Do you want to delete this itinerary?' } %>
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
-                    </div>
-                    <div class='activation-button mr-2'>
-                      <% if itinerary.active_itinerary %>
-                        <button class="itinerary-card-btn active-itinerary" id="itinerary-btn">Active</button>
-                      <% else %>
-                        <%= button_to "Set Active", itinerary_activate_path(itinerary), class:"itinerary-card-btn inactive-itinerary", remote: true %>
-                      <% end %>
-                    </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
+                  </div>
+                  <div class='activation-button'>
+                    <% if itinerary.active_itinerary %>
+                      <button class="itinerary-card-btn active-itinerary" id="itinerary-btn">Active</button>
+                    <% else %>
+                      <%= button_to "Set Active", itinerary_activate_path(itinerary), class:"itinerary-card-btn inactive-itinerary", remote: true %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -67,12 +73,9 @@
           <% end %>
         <% end %>
       </div>
-      <h4 class='mb-3'>
-        <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(@user), class:'text-secondary itinerary-link' %>
-      </h4>
     </div>
 
-    <div class="col-sm-12 col-md-6 mt-3 map-container">
+    <div class="col-sm-12 col-md-6 map-container">
        <div id="itinerary-map"
           class = "map"
           data-markers="<%= @itinerary_markers.to_json %>"
@@ -80,75 +83,10 @@
       </div>
     </div>
   </div>
+  <% if @user == current_user %>
+    <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@user), class:'back-btn mb-3' %>
+  <% else %>
+    <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@user.first_name}'s profile".html_safe, user_path(@user), class:'back-btn mb-3' %>
+  <% end %>
 </div>
-<% else %>
-<div class="stamps-box">
-  <div class='d-flex justify-content-between w-100 mt-5'>
-    <div class="stampbook-owner ml-3">
-      <%= cl_image_tag @user.photo.key, height: 50, width: 50, crop: :fill, :class => "user-photo"  %>
-      <% if @user == current_user %>
-        <h4 class="stampbook-owner-text">You are viewing <strong>your</strong> itineraries</h4>
-      <% else %>
-        <h4 class="stampbook-owner-text">You are viewing <br> <strong><%= @user.first_name %></strong>'s itineraries</h4>
-      <% end %>
-    </div>
 
-    <div class="stamps-title mr-3">
-      <% if @user == current_user %>
-      <h1 class="stampbook-name" style ="font-size: 36px;">You have <%= pluralize(current_user.itineraries.count, 'itinerary')%> </h1>
-      <% else %>
-        <% if @itineraries.length == 0 %>
-          <span></span>
-        <% else %>
-          <h1 class="stampbook-name" style ="font-size: 36px;"><%= @user.first_name  %> has <%= pluralize(@user.itineraries.count, 'itinerary')%> </h1>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class="container itinerary-show row">
-    <div class="col-sm-12 col-md-6">
-      <div class='text-center'>
-        <h1 class='text-info main-title'><%= @user.first_name %>'s Itineraries</h1>
-      </div>
-      <% if @itineraries.length == 0 %>
-      <div class='text-center'>
-        <h4><%= @user.first_name %> doesn't have any itineraries yet</h4>
-      </div>
-      <% else %>
-        <% @itineraries.order(updated_at: :desc).each do |itinerary| %>
-          <div class="card mb-3 itinerary-card" style="max-width: 520px; max-height: 110px;">
-            <div class="row g-0">
-              <div class="col-4">
-                <%= cl_image_tag itinerary.first_location_photo, height: 105, width: 90, crop: :fill, class:'itinerary-img' %>
-              </div>
-              <div class="col-8 d-flex align-items-center justify-content-around">
-                <div class="card-body">
-                  <h5 class="card-title"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h5>
-                </div>
-                <div class='activation-button mr-2'>
-                  <% if itinerary.active_itinerary %>
-                    <button class="itinerary-card-btn active-itinerary" id="itinerary-btn">Active</button>
-                  <% else %>
-                    <%= button_to "Set Active", itinerary_activate_path(itinerary), class:"itinerary-card-btn inactive-itinerary", remote: true %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <h4 class='mb-3'>
-          <%= link_to 'Go back to your profile <i class="fas fa-chevron-circle-left"></i>'.html_safe, user_path(@user), class:'text-secondary itinerary-link' %>
-        </h4>
-      <% end %>
-    </div>
-
-    <div class="col-sm-12 col-md-6 mt-3 map-container">
-      <div id="itinerary-map"
-          class = "map"
-          data-markers="<%= @itinerary_markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>
