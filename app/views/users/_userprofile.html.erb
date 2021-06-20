@@ -27,7 +27,7 @@
     <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);"><i class="fas fa-eye"></i> See all stamps</div>
   <% end %>
   <div class="menus">
-    <div class="friend-menu">
+    <div class="friend-menu" style="z-index:4;">
       <div id = "user-menu-friends" class ="friends-button menu">
         <i class="fas fa-users"></i>
       </div>
@@ -39,7 +39,7 @@
         <%= render 'friends', user: user %>
       </div>
     </div>
-    <div class="user-menu">
+    <div class="user-menu" style="z-index:5;">
     <% if @query %>
       <div id = "user-menu-button" class ="menu-button" style="display:none;">
     <% else %>
