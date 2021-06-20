@@ -22,21 +22,18 @@
   vertical-align: center;
   width: 6.67rem;
   height: 5rem;
-  background-color: $pale-yellow;
-  color: $mustard;
-  border: 1px solid $mustard;
+  background-color: rgba(black, 0.1);
+  color: rgba(black, 0.3);
   margin-right: 0.3rem;
   margin-bottom: 0.4rem;
   &:hover{
-    background-color: $bright-yellow;
-    border: 1px solid $bright-yellow;
-    color: $white;
+    transition: 0.4s ease-in-out;
+    transform: scale(1.07);
   }
 }
 
 .tag-selector:checked + label {
   background-color: $bright-yellow;
-  border: 1px solid $bright-yellow;
   color: $white;
 }
 
@@ -54,7 +51,7 @@
   display: inline-block;
   font-size: 1rem;
   border-radius: 1rem;
-  padding: 2rem 2rem;  
+  padding: 2rem 2rem;
   background-color: rgba($bright-yellow, 0.4);
   color: $black;
   border: 1px solid $bright-yellow;

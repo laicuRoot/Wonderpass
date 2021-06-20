@@ -12,8 +12,8 @@
       <p class="card-text">Number of stars earned</p>
       <h3><i class="fas fa-star bronze-star mr-1"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star mr-1"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star mr-1"></i><%= @num_gold_stars %></h3>
       <p>Traveller since</p>
-       <h3><%= user.create_date %></h3>
-      <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(user), class: "yellow-button" %>
+      <h3><%= user.create_date %></h3>
+      <%= link_to '<i class="fas fa-book"></i> See your stampbooks'.html_safe, user_stampbooks_path(user), class: "yellow-button" %>
     </div>
     <div id= "hide-profile" class="round-yellow-button view-profile"><i class="fas fa-arrow-left"></i></div>
   </div>
@@ -27,7 +27,7 @@
     <div class="toggle-all btn yellow-button-toggle" style="z-index: 5; cursor:pointer; color: rgba(0, 0, 0, 0.5);"><i class="fas fa-eye"></i> See all stamps</div>
   <% end %>
   <div class="menus">
-    <div class="friend-menu">
+    <div class="friend-menu" style="z-index:4;">
       <div id = "user-menu-friends" class ="friends-button menu">
         <i class="fas fa-users"></i>
       </div>
@@ -39,7 +39,7 @@
         <%= render 'friends', user: user %>
       </div>
     </div>
-    <div class="user-menu">
+    <div class="user-menu" style="z-index:5;">
     <% if @query %>
       <div id = "user-menu-button" class ="menu-button" style="display:none;">
     <% else %>
@@ -73,9 +73,9 @@
                 <% if user == current_user %>
                   <div class="leaderboard-current-user"><strong><i class="fas fa-user"></i> You</strong></div>
                 <% elsif current_user.all_confirmed_invites.include? user %>
-                  <div class="leaderboard-friends"> <i class="fas fa-user-friends"></i> <%= user.first_name %> </div>
+                  <div class="leaderboard-friends"> <i class="fas fa-user-friends"></i> <%= link_to user.first_name, user_path(user.id) %> </div>
                 <% else %>
-                  <div class="leaderbaord-other-users"> <%= user.username %> </div>
+                  <div class="leaderbaord-other-users"> <%= link_to user.username, user_path(user.id) %> </div>
                 <% end %>
               </div>
               <div class="user-ranking-results">

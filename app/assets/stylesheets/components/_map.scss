@@ -59,7 +59,7 @@
 }
 
 .hidden-direction{
-  transform: translateX(-235px);
+  transform: translateX(-268px);
 }
 
 .route-box{
@@ -98,4 +98,11 @@
   background-size: contain;
   height: 30px;
   width: 30px;
+}
+
+.mapboxgl-ctrl-bottom-left {
+  display: none;
+}
+.mapboxgl-ctrl-bottom-right {
+  display: none;
 }
