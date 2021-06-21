@@ -2,7 +2,7 @@
   padding: 20px 20px;
   background-color: $white;
   border-radius: 20px;
-  width: 60vw;
+  max-width: 60vw;
 }
 
 .stampbook-picture {
@@ -13,7 +13,7 @@
 
 .card-transition{
   height: 450px;
-  margin: 20px;
+  // margin: 20px;
   transition: transform 250ms;
   &:hover{
     transform: scale(1.05);
@@ -39,4 +39,5 @@
 
 .slick-slide {
   margin: 5px !important;
+  width: 544px;
 }
