@@ -6,9 +6,9 @@
         <%= f.input :itinerary_name %>
         <%= f.input :destination, id: "destination-input" %>
         <%= f.input :public_status, collection: [['Yes', true], ['No', false]]  %>
-        <%= f.submit 'next', class: "main-yellow-button small-yellow-button", style: "margin-bottom:0;" %>
+        <%= f.submit 'Next', class: "main-yellow-button small-yellow-button", style: "margin-bottom:0;" %>
       <% end %>
     </div>
     <%= link_to 'Return to profile', user_path(@user), class: "small-yellow-button back-btn  transparent left", style: "width:180px;" %>
-  </div>
+    </div>
 </div>
