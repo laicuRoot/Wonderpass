@@ -5,19 +5,17 @@ class UsersController < ApplicationController
     @stamp_count = @user.collected_stamps.size
     @user_active_itinerary = Itinerary.get_active(@user)
     @ranking_number = 1
-    get_achievements
-    get_invitations
-    get_search
-    get_stamps
-    get_locations
-    get_active_markers
-    get_all_markers
+    find_achievements
+    find_invitations
+    find_search
+    find_stamps
+    find_locations
+    find_active_markers
+    find_all_markers
   end
 
   def edit
-    if (@user != current_user)
-      redirect_to edit_user_path(current_user)
-    end
+    redirect_to edit_user_path(current_user) unless @user == current_user
   end
 
   def update
@@ -29,10 +27,11 @@ class UsersController < ApplicationController
 
   private
 
-  def get_search
+  def find_search
     @query = params[:query]
     if @query.present?
       @users = User.search_by_username_and_fullname(params[:query])
+                   .reject { |user| user.username == current_user.username || user.username == 'wonderpass_admin' }
     end
     respond_to do |format|
       format.html
@@ -40,7 +39,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_achievements
+  def find_achievements
     @all_achievements = User.sort_by_achievements
     @badges = Badge.all
     @num_bronze_stars = @user.get_bronze
@@ -48,7 +47,7 @@ class UsersController < ApplicationController
     @num_gold_stars = @user.get_gold
   end
 
-  def get_invitations
+  def find_invitations
     @invitation = Invitation.new
     @friends_received = Invitation.all.where(user_id: current_user, confirmed: true)
     @friends_sent = Invitation.all.where(friend_id: current_user, confirmed: true)
@@ -61,19 +60,19 @@ class UsersController < ApplicationController
     @all_received = @received + @friends_received
   end
 
-  def get_stamps
+  def find_stamps
     @user_stamps = @user.stamps
     @stamps = @user_active_itinerary.map(&:stamps).flatten
     @active_stamps = Stamp.all.where(id: @stamps)
     @all_stamps = Stamp.all.where(id: @user_stamps)
   end
 
-  def get_locations
+  def find_locations
     @locations = Location.where(id: @stamps.map(&:location_id))
     @all_locations = Location.where(id: @user.stamps.map(&:location_id))
   end
 
-  def get_active_markers
+  def find_active_markers
     @markers = @locations.geocoded.map do |location|
       {
         lat: location.latitude,
@@ -86,7 +85,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def get_all_markers
+  def find_all_markers
     @second_markers = @all_locations.geocoded.map do |location|
       {
         lat: location.latitude,

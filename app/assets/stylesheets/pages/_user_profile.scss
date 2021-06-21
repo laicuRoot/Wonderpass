@@ -241,9 +241,11 @@
   display:flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  background-color:rgba(255, 255,255, 0.3);
   max-height: 200px;
   min-height:0;
   overflow-y: auto;
+  border-radius: 10px;
   li{
     display: inline-block;
     background-color: $white;
@@ -298,9 +300,10 @@
 }
 
 .name{
+  width: 50%;
+  overflow:hidden;
   color: #cfaf2f;
   font-size: 18px;
-  letter-spacing: 3;
   text-shadow: 0 0 1px#cfaf2f;
   transition: 0.2s;
   &:hover{
