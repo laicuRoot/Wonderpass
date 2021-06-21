@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def get_achievements
-    @all_achievements = User.sort_by_achievements
+    @all_achievements = User.all.sort_by{|e| [-e.collected_stamps.size, -e.get_gold, -e.get_silver, -e.get_bronze, -e.username]}
     @badges = Badge.all
     @num_bronze_stars = @user.get_bronze
     @num_silver_stars = @user.get_silver
