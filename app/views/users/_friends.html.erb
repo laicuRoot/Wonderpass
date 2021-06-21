@@ -14,18 +14,17 @@
     <% end %>
     <ul id='search-results'>
       <% if @query %>
-        <% if @users.nil? %>
-        <li style ="margin: 0 auto; color: rgba(0,0,0,0.4); background-color:transparent;">No found</li>
+        <% if @users.nil? || @users.empty? %>
+        <li style ="margin: 20px auto; color: rgba(0,0,0,0.4); background-color: transparent;">No users found</li>
         <% else %>
           <% @users.each do |user| %>
-            <% unless user == current_user %>
               <li class='p-2 d-flex align-items-center justify-content-between'>
                 <% if user.photo.attached? %>
                   <%= cl_image_tag user.photo.key, height: 50, width: 50, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %>
                 <% else %>
                   <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
                 <% end %>
-                <% if current_user.all_confirmed_invites.include? user %>
+                <% if current_user.friends.include? user %>
                   <%= link_to user.first_name, user_path(user.id), class: "name" %>
                 <% else %>
                   <%= link_to user.username, user_path(user.id), class: "name" %>
@@ -40,7 +39,6 @@
                   <% end %>
                 <% end %>
               </li>
-            <% end %>
           <% end %>
         <% end %>
       <% end %>
@@ -70,11 +68,7 @@
               <% else %>
                 <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
               <% end %>
-              <% if current_user.all_confirmed_invites.include? user %>
-                  <%= link_to friend.first_name, user_path(friend.id), class: "name" %>
-                <% else %>
-                  <%= link_to friend.username, user_path(friend.id), class: "name" %>
-                <% end %>
+              <%= link_to friend.first_name, user_path(friend.id), class: "name" %>
               <%= link_to user_invitation_path(current_user, invitation), method: :delete, data: { confirm: "Would you like to remove #{friend.first_name} from your friend list?"}, class: "mr-3 delete-btn" do %>
                 <i class="fas fa-user-alt-slash"></i>
               <% end %>
@@ -98,11 +92,7 @@
             <% else %>
               <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
             <% end %>
-            <% if current_user.all_confirmed_invites.include? user %>
-              <%= link_to pending_user.first_name, user_path(pending_user.id), class: "name ml-3" %>
-            <% else %>
-              <%= link_to pending_user.username, user_path(pending_user.id), class: "name ml-3" %>
-            <% end %>
+            <%= link_to pending_user.username, user_path(pending_user.id), class: "name ml-3" %>           
             <div class="accept">
               <%= link_to user_invitation_path(pending_user, invitation), method: :patch, remote: true, class:'confirmed-btn' do %>
                 <i class="fas fa-user-check"></i>
@@ -129,11 +119,7 @@
             <% else %>
               <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 50, height: 50, crop: :fill, class: "friends-avatar mr-2" %>
             <% end %>
-            <% if current_user.all_confirmed_invites.include? user %>
-              <%= link_to pending_user.first_name, user_path(pending_user.id), class: "name" %>
-            <% else %>
-              <%= link_to pending_user.username, user_path(pending_user.id), class: "name" %>
-            <% end %>
+            <%= link_to pending_user.username, user_path(pending_user.id), class: "name" %>
             <%= link_to user_invitation_path(current_user, invitation), remote: true, method: :delete, remote: true, data: { confirm: "Would you like to cancel this invitation?"}, class: "mr-3 delete-btn" do %>
               <i class="fas fa-user-alt-slash"></i>
             <% end %>

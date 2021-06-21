@@ -82,17 +82,18 @@
 }
 
 .itinerary-title {
-  text-shadow: 0 0 16px rgba(0,0,0, 0.1);
-  color: $yellow;
+  text-shadow: 0 0 1px rgba(0,0,0, 0.3);
+  color: $bright-yellow;
   text-decoration: none;
   &:hover{
     text-decoration: none;
-    color: $yellow; ;
+    color: $black;
+    transform: scale(1.1);
   }
 }
 
 .active-itinerary {
-  background-color: $yellow;
+  background-color: $bright-yellow;
 }
 
 .itinerary-link{

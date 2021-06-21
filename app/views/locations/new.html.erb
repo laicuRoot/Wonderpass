@@ -9,9 +9,10 @@
                           input_html: { class: 'd-none' },
                           label_html: { class: 'upload-btn' },
                           label: '<i class="fas fa-camera"></i> Upload a location picture'.html_safe  %>
-      <%= f.submit 'Create Location'%>
+      <div class="d-flex justify-content-between pt-3">
+      <%= f.submit 'Create Location', class: 'main-yellow-button small-yellow-button'%>
     <% end %>
-
-    <%= link_to "Finish",  stampbook_stamps_path(@stampbook) %>
+    <%= link_to "Finish",  stampbook_stamps_path(@stampbook), class:'main-yellow-button small-yellow-button' %>
+      </div>
   </div>
 </div>

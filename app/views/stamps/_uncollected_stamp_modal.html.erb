@@ -3,20 +3,22 @@
     <div class="modal-content">
       <div class="stamp-div d-flex">
         <div class="row col-6 p-0 m-0">
-          <div class="modal-header text-center">
-              <h1 class="modal-title"><%= stamp.location.location_name%></h1>
-          </div>
-          <div class="modal-body pt-0 mt-0">
-            <p><%= stamp.location.location_description %></p>
+          <div class="stamp-background pb-0 mb-0" style = "width: 300px;, height: 400px;">
             <% if stamp.stampbook.user == current_user %>
-            <%= link_to 'Collect Stamp', edit_stampbook_stamp_path(stamp.stampbook, stamp), class: "yellow-button" %>
+            <%= link_to 'Collect Stamp', edit_stampbook_stamp_path(stamp.stampbook, stamp), class: "collect-stamp" %>
             <% else %>
             <span></span>
             <% end %>
           </div>
+          <div class="modal-header text-center py-0 my-0">
+              <h1 class="modal-title"><%= stamp.location.location_name%></h1>
+          </div>
+          <div class="modal-body pt-0 mt-0">
+            <p><%= stamp.location.location_description %></p>
+          </div>
         </div>
         <div class="row col-6 p-0 m-0">
-          <%= cl_image_tag(stamp.location.location_photos.first.key, class: "location-pic", width: 200, height: 200, crop: :fill)%>
+          <%= cl_image_tag(stamp.location.location_photos.first.key, class: "location-pic")%>
         </div>
       </div>
     </div>

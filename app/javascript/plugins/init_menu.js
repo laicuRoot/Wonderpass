@@ -36,7 +36,7 @@ const toggleFriendMenu = (allButtons) => {
     })
     currentRemoveButton.addEventListener("click", () =>{
       currentMenu.style.display = "none";
-      allButtons.forEach(element=>{ addStyle(element)});
+      allButtons.forEach(element=>{ addStyle(element)});    
     })
   }
 }
