@@ -207,8 +207,7 @@
 }
 
 .confirmed-btn {
-  background-color: $white;
-  color: $bright-yellow;
+  color: #cfaf2f;
   text-shadow: 0 0 2px rgba($black, 0.6);
   font-size: 18px;
   transition: 250ms;
@@ -219,8 +218,8 @@
 }
 
 .delete-btn{
-  color: $white;
-  text-shadow: -2px 0 $bright-yellow, 0 2px $bright-yellow, 2px 0 $bright-yellow, 0 -2px $bright-yellow;
+  color: #fdeb9b;
+  text-shadow: -2px 0 #e0c453, 0 2px #e0c453, 2px 0 #e0c453, 0 -2px #e0c453;
   font-size: 16px;
   transition: 250ms;
   margin-right: 10px;
@@ -232,6 +231,7 @@
 }
 
 .back-btn {
+  flex-grow: 0;
   color: $white;
   background-color: #4A4A4A;;
   padding: 8px 24px;

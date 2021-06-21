@@ -18,7 +18,7 @@
       <p><%= @stampbook.stampbook_description %></p>
     </div>
   </div>
-  <div class="stamps-header mt-5">
+  <div class="stamps-header">
     <% if @stampbook.user == current_user %>
       <h2 class="number-stamps-collected-sml">You collected <span class="number-stamps-collected-big"><%= @collected %></span>/<%= @total%> <%="stamp".pluralize(@collected)%></h2>
       <div class="badge-container d-flex align-items-center">
@@ -95,8 +95,13 @@
       <% end %>
   </div>
   <div>
-    <%= link_to("Go to #{@stampbook.user.first_name}'s profile", user_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
-    <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'btn btn-sm small-yellow-button mb-2', style: "position: relative; bottom: 80px;") %>
+    <% if @user == current_user %>
+    <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
+     <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
+    <% else %>
+      <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@stampbook.user.first_name}'s profile".html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
+      <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
+    <% end %>
   </div>
 </div>
 

@@ -215,7 +215,6 @@
 
   a{
     text-decoration: none;
-    color: #cfaf2f;
   }
 
   #friends-menu-exit{
@@ -299,14 +298,14 @@
 }
 
 .name{
-  color: $bright-yellow;
-  font-size: 16px;
+  color: #cfaf2f;
+  font-size: 18px;
   letter-spacing: 3;
   text-shadow: 0 0 1px#cfaf2f;
   transition: 0.2s;
   &:hover{
     color: black;
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 
