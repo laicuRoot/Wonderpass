@@ -25,8 +25,8 @@
         <input class="toggle" type="checkbox" value="1" name="add_completed" id="add_completed">
         <label for="add_completed"></label>
       </div>
-      <%= link_to 'back', itinerary_path(@itinerary), method: :delete, class: "btn small-yellow-button left" %>
-      <%= submit_tag "next", class: "btn small-yellow-button" %>
+      <%= link_to 'back', itinerary_path(@itinerary), method: :delete, class: "small-yellow-button back-btn  transparent left" %>
+      <%= submit_tag "next", class: "main-yellow-button small-yellow-button", style: "margin-bottom:0;" %>
     <% end %>
   </div>
 </div>
