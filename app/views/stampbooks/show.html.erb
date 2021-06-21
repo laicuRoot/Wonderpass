@@ -30,7 +30,11 @@
   </div>
   <div class="row text-center mt-5">
     <div class="col-sm-12">
-      <%= link_to("Go back to your profile", user_path(current_user) , class:'btn btn-info') %>
+      <% if @user == current_user %>
+        <%= link_to("Go back to your profile", user_path(current_user) , class:'btn btn-info') %>
+      <% else %>
+        <%= link_to("Go back to #{user.first_name}'s profile", user_path(@user) , class:'btn btn-info') %>
+      <% end %>
     </div>
   </div>
 </div>
