@@ -23,11 +23,13 @@
       <% end %>
     </div>
   </div>
-  <div class="container itinerary-show">
+  <div class="container itinerary-show pl-3">
       <div id="map2"
           class = "map"
           style="width: 100%;
-          height: 100%; position:relative;"
+                 height: 100%; 
+                 position:relative;
+                 border-radius: 0 20px 20px 0;"
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
         <div class="direction-box d-flex">

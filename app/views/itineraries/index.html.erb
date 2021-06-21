@@ -82,6 +82,7 @@
     <div class="col-sm-12 col-md-6 map-container">
        <div id="itinerary-map"
           class = "map"
+          style ="height:100%; border-radius: 0 20px 20px 0;"
           data-markers="<%= @itinerary_markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
