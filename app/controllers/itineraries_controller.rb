@@ -11,7 +11,7 @@ class ItinerariesController < ApplicationController
     @all_int_stamps = @itineraries.map(&:stamps).flatten
     # @stamps = @itineraries.map{ |itinerary| itinerary.stamps }.flatten
     @locations = Location.where(id: @stamps.map(&:location_id))
-    @itinerary_markers = @locations.geocoded.map do |location|
+    @itinerary_markers = @locations.geocoded.sort_by(&:latitude).map do |location|
       {
         lat: location.latitude,
         lng: location.longitude,
@@ -28,7 +28,7 @@ class ItinerariesController < ApplicationController
     @total = @itinerary.itinerary_items.count
     @stamps = @itinerary.stamps
     @locations = Location.where(id: @stamps.map(&:location_id))
-    @markers = @locations.geocoded.map do |stamp|
+    @markers = @locations.geocoded.sort_by(&:latitude).map do |stamp|
       {
         lat: stamp.latitude,
         lng: stamp.longitude,
