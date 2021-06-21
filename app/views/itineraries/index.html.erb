@@ -56,8 +56,8 @@
                 <div class="card-product-infos">
                   <div class="card-body">
                     <h2 class="card-title mt-3"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h2>
-                    <p class ="pl-2 mb-0" style="font-size:12px;">Visiting <strong> <%= itinerary.itinerary_items.count %></strong> locations</p>
-                    <p class ="pl-2" style="font-size:12px;">in <strong> <%= itinerary.destination.split(',').first %></strong></p>
+                    <p class ="pl-2 mb-0" style="font-size:14px;opacity:0.45;">Visiting <strong> <%= itinerary.itinerary_items.count %></strong> locations</p>
+                    <p class ="pl-2" style="font-size:14px;opacity:0.45;">in <strong> <%= itinerary.destination.split(',').first %></strong></p>
                   </div>
                   <div class='activation-button'>
                     <% if itinerary.active_itinerary %>
