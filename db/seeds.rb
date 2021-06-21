@@ -30,6 +30,11 @@ stamp_url = {
 
 puts 'Cleaning DB'
 User.destroy_all
+puts 'Destroyed all users'
+if User.find_by(username: 'admin').nil?
+	puts 'admin deleted'
+end
+Stamp.destroy_all
 Location.destroy_all
 Achievement.destroy_all
 Badge.destroy_all
@@ -41,12 +46,12 @@ admin_account = User.new(
   password: 'password',
   first_name: 'Admiral',
   last_name: 'Minter',
-  username: 'admin'
-  )
+  username: 'wonderpass_admin'
+)
 
 admin_pic_url = 'https://randomuser.me/api/portraits/women/8.jpg'
 admin_pic_file = URI.open(admin_pic_url)
-admin_account.photo.attach(io: admin_pic_file, filename: 'admin_pic.png', content_type: 'image/png')
+admin_account.photo.attach(io: admin_pic_file, filename: "admin-pic-#{admin_account.first_name}-#{admin_account.created_at}.png", content_type: 'image/png')
 admin_account.save!
 puts 'Admin has been created'
 
