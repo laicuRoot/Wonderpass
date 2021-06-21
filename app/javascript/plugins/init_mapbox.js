@@ -83,6 +83,14 @@ const myLocation = (map) => {
 //   console.log('vibes');
 // })
 
+const generateRoutePath = (map, markers, transportProfile, lastItemIndex, start) => {
+  addMarkers(map, markers);
+  fitMapToMarkers(map, markers);
+  map.on('load', function() {
+    mapRoute(map, markers, transportProfile, lastItemIndex, start);
+  });
+}
+
 const initMapbox = () => {
   let mapElement = document.querySelector('.map');
   let cont = getMapElements();
@@ -94,23 +102,22 @@ const initMapbox = () => {
         container: cont,
         style: 'mapbox://styles/rubixthecubix/ckpa6hfqu6ejy18oj9bz9d98a',
       });
+      let transportProfile = "walking";
+      const start = [markers[0].lng, markers[0].lat];
+      const lastItemIndex = markers.length - 1
       if (cont == "user-map"){
         if(markers.length == 0 ){
           markers = JSON.parse(mapElement.dataset.allMarkers);
           addMarkers(map, markers);
           fitMapToMarkers(map, markers);
         } else {
-          let transportProfile = "walking";
-          const start = [markers[0].lng, markers[0].lat];
-          const lastItemIndex = markers.length - 1;
-          addMarkers(map, markers);
-          fitMapToMarkers(map, markers);
-          map.on('load', function() {
-            mapRoute(map, markers, transportProfile, lastItemIndex, start);
-          });
+          generateRoutePath(map, markers, transportProfile, lastItemIndex, start);
           toggleMarkers(map, mapElement,transportProfile, lastItemIndex, start); // keep this in if if we revert back
         }
-      } else {
+      } else if (cont == 'itinerary-map'){
+        generateRoutePath(map, markers, transportProfile, lastItemIndex, start);
+      }
+      else {
         addMarkers(map, markers);
         fitMapToMarkers(map, markers);
       }
