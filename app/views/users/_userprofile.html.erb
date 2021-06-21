@@ -66,21 +66,20 @@
         <div id = "user-menu-exit-leaderboard" class ="menu-button-leaderboard"><i class="fas fa-times"></i></div>
         <h2>Leaderboard</h2>
         <div class="leaderboard-list">
-          <% @all_achievements.each do |user| %>
+          <% @all_achievements.each_with_index do |user, index| %>
             <div class="leaderboard-one-user">
-              <div class="ranking-number"><%= @ranking_number %></div>
-                <% if user == current_user %>
-                  <div class="leaderboard-current-user d-flex flex-grow-1"><strong><i class="fas fa-user"></i> You</strong></div>
-                  <div class="leaderboard-current-user"> <strong><i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></strong></div>
-                <% elsif user.friends.include? current_user %>
-                  <div class="leaderboard-friends d-flex flex-grow-1"> <i class="fas fa-user-friends mr-2"></i><%= link_to user.first_name, user_path(user.id)%> </div>
-                  <div class="leaderboard-friends"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
-                <% else %>
-                  <div class="leaderbaord-other-users d-flex flex-grow-1"> <%= link_to user.username, user_path(user.id) %> </div>
-                  <div class="leaderbaord-other-users"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
-                <% end %>
-              </div>
-            <% @ranking_number += 1 %>
+              <div class="ranking-number"><%= index + 1 %></div>
+              <% if user == current_user %>
+                <div class="leaderboard-current-user d-flex flex-grow-1"><strong><i class="fas fa-user"></i> You</strong></div>
+                <div class="leaderboard-current-user"> <strong><i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></strong></div>
+              <% elsif user.friends.include? current_user %>
+                <div class="leaderboard-friends d-flex flex-grow-1"> <i class="fas fa-user-friends mr-2"></i><%= link_to user.first_name, user_path(user.id)%> </div>
+                <div class="leaderboard-friends"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
+              <% else %>
+                <div class="leaderbaord-other-users d-flex flex-grow-1"> <%= link_to user.username, user_path(user.id) %> </div>
+                <div class="leaderbaord-other-users"> <i class="fas fa-stamp"></i> <%= user.collected_stamps.size %> <i class="fas fa-star gold-star"></i> <%= user.get_gold %> <i class="fas fa-star silver-star"></i> <%= user.get_silver %> <i class="fas fa-star bronze-star"></i> <%= user.get_bronze %></div>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
