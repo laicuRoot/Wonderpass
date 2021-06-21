@@ -48,6 +48,9 @@
   a{
     text-decoration: none;
     color: rgba(0,0,0,0.5);
+    &:hover{
+      transform: scale(1.1);
+    }
   }
 
   #user-menu-exit{
@@ -59,7 +62,7 @@
   }
   .leaderboard-list {
     max-height: 350px;
-    overflow: scroll;
+    overflow-y: auto;
   }
 }
 
@@ -71,7 +74,6 @@
 
 .leaderboard-one-user {
   display: flex;
-  align-items: baseline;
   flex-grow: 1;
 }
 

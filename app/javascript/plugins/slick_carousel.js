@@ -2,11 +2,20 @@ import "slick-carousel";
 
 const initSlick = () => {
   if($('.scroller')){
-    $('.scroller').slick({
-      slidesToShow: 2,
-      infinite: true
-    });
-  }
+    let slideCount = $('.card').length;
+    console.log(slideCount);
+    if(slideCount <= 1 ){
+      $('.scroller').slick({
+        slidesToShow: 1,
+        infinite: true
+      })
+    } else {
+      $('.scroller').slick({
+        slidesToShow: 2,
+        infinite: true,
+      })
+    }
+  };
 
   if($('.form-categories')){
     $('.form-categories').slick({

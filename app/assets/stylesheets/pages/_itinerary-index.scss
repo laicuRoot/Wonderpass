@@ -7,6 +7,10 @@
   margin-top: 30px;
   margin-bottom: 30px;
   border-radius: 20px;
+    
+  .card-body {
+    padding: 0px;
+  }
 }
 
 .card-product {
@@ -44,10 +48,6 @@
   width: 100%;
   padding: 16px;
   align-items: center;
-}
-
-.card-body {
-  padding: 0px !important;
 }
 
 .itinerary-card {
