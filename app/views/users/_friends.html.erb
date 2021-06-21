@@ -14,11 +14,10 @@
     <% end %>
     <ul id='search-results'>
       <% if @query %>
-        <% if @users.nil? %>
-        <li style ="margin: 0 auto; color: rgba(0,0,0,0.4); background-color:transparent;">No found</li>
+        <% if @users.nil? || @users.empty? %>
+        <li style ="margin: 20px auto; color: rgba(0,0,0,0.4); background-color: transparent;">No users found</li>
         <% else %>
           <% @users.each do |user| %>
-            <% unless user == current_user %>
               <li class='p-2 d-flex align-items-center justify-content-between'>
                 <% if user.photo.attached? %>
                   <%= cl_image_tag user.photo.key, height: 50, width: 50, crop: :fill, class: "friends-avatar mr-2", alt: "Card image cap" %>
@@ -40,7 +39,6 @@
                   <% end %>
                 <% end %>
               </li>
-            <% end %>
           <% end %>
         <% end %>
       <% end %>

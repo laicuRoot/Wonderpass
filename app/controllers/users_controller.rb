@@ -15,9 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if (@user != current_user)
-      redirect_to edit_user_path(current_user)
-    end
+    redirect_to edit_user_path(current_user) unless @user == current_user
   end
 
   def update
@@ -33,6 +31,7 @@ class UsersController < ApplicationController
     @query = params[:query]
     if @query.present?
       @users = User.search_by_username_and_fullname(params[:query])
+                   .reject { |user| user.username == current_user.username || user.username == 'wonderpass_admin' }
     end
     respond_to do |format|
       format.html
