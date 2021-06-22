@@ -24,7 +24,7 @@
 }
 
 .stamps-box {
-  display: flex;  
+  display: flex;
   flex-direction: column;
   align-items: center;
   background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('https://res.cloudinary.com/laicuroot/image/upload/v1623347607/stampbook_background_qv4nx8.png');
@@ -33,6 +33,7 @@
   background-attachment: fixed;
   height: 100vh;
   width:100vw;
+  overflow-x: hidden;
 }
 
 .index-stamps-box {
@@ -173,8 +174,8 @@
 }
 
 .page-number {
-  position:absolute; 
-  bottom: 0; 
+  position:absolute;
+  bottom: 0;
   right: 45%;
   display: flex;
   justify-content: center;
@@ -183,8 +184,8 @@
 }
 
 .final-page{
-  color: rgba(0,0,0, 0.4); 
-  position: absolute; 
+  color: rgba(0,0,0, 0.4);
+  position: absolute;
   top:45%;
   right: 20%;
 }
