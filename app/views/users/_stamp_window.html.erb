@@ -19,7 +19,7 @@
           <% end %>
         </p>
     </div>
-    <% else %>
+  <% else %>
 
     <div class="stamp-location-photo-div">
       <% if stamp.stamp_status %>
@@ -32,12 +32,10 @@
     <strong><h3 class="stamp-location-name"><%= stamp.location.location_name %></h3></strong>
 
     <div class="stamp-window-footer">
+      <%if stamp.stamp_status %>
         <p class ="yellow-button">
-          <%if stamp.stamp_status %>
-            Stamp collected on <%= stamp.update_date %>
-          <% else %>
-            <%= link_to "See stamp", stampbook_stamp_path(stamp.stampbook, stamp) %>
-          <% end %>
+          Stamp collected on <%= stamp.update_date %>
         </p>
+      <% end %>
     </div>
 <% end %>
