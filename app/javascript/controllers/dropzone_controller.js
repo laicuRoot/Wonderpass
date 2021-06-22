@@ -31,13 +31,13 @@ export default class extends Controller {
     this.dropZone.on("addedfile", file => {
       setTimeout(() => {
         file.accepted && createDirectUploadController(this, file).start();
-        let submitBtn = document.querySelector('.btn')
-        submitBtn.disabled = false
       }, 500);
     });
 
     this.dropZone.on("removedfile", file => {
       file.controller && removeElement(file.controller.hiddenInput);
+      let submitBtn = document.querySelector('.btn')
+      submitBtn.disabled = true
     });
 
     this.dropZone.on("canceled", file => {
@@ -87,6 +87,8 @@ class DirectUploadController {
       } else {
         this.hiddenInput.value = attributes.signed_id;
         this.emitDropzoneSuccess();
+        let submitBtn = document.querySelector('.btn')
+        submitBtn.disabled = false
       }
     });
   }
