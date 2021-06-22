@@ -4,8 +4,8 @@
     <div class="modal-content">
       <div class="stamp-div d-flex">
         <div class="row col-6 p-0 m-0">
-          <div class="stamp-background" style = "width: 300px;, height: 350px;">
-            <img src="<%= asset_path("#{stamp.location.category}.png") %>" alt="" style="width: 320px">
+          <div class="stamp-background" style = "width: 300px;">
+            <%= cl_image_tag(stamp.location.stamp_photos.first.key, height: 210, width:210, crop: :fill)%>
           </div>
           <div class="modal-header text-center">
               <h1 class="modal-title"><%= stamp.location.location_name %></h1>
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="row col-6 p-0 m-0">
-        <%= cl_image_tag(stamp.location.location_photos.first.key, class: "location-pic")%>
+          <%= cl_image_tag(stamp.location.location_photos.first.key, class: "location-pic")%>
         </div>
       </div>
     </div>

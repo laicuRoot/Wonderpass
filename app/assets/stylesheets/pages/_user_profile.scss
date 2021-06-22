@@ -190,7 +190,7 @@
 .friends-menu-popup{
   position:relative;
   display: none;
-  max-height: 450px;
+  max-height: 483px;
   width: 580px;
   background-color: $bright-yellow;
   color: $white;
@@ -244,10 +244,11 @@
   max-height: 200px;
   min-height:0;
   overflow-y: auto;
+  border-radius: 10px;
   li{
     display: inline-block;
-    background-color: $white;
-    width: 270px;
+    background-color:rgba(255, 255,255, 0.3);
+    width: 260px;
     margin-bottom: 5px;
     margin-right: 10px;
     border-radius: 10px;
@@ -298,9 +299,10 @@
 }
 
 .name{
+  width: 50%;
+  overflow:hidden;
   color: #cfaf2f;
   font-size: 18px;
-  letter-spacing: 3;
   text-shadow: 0 0 1px#cfaf2f;
   transition: 0.2s;
   &:hover{

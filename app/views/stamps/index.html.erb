@@ -1,4 +1,4 @@
-<div class="stamps-box">
+<div class="index-stamps-box">
   <div class='d-flex justify-content-between w-100 mt-5'>
     <div class="stampbook-owner ml-3">
        <% if @stampbook.user.photo.attached? %>
@@ -58,6 +58,8 @@
       <div class="grey-button"><i class='fas fa-copy'></i> Can't clone your own stampbook</div>
     <% elsif current_user.stampbooks.exists?(stampbook_name: @stampbook.stampbook_name)%>
       <div class="grey-button mt-3"><i class='fas fa-copy'></i> Can't clone. You already have this stampbook</div>
+    <% elsif @stampbook.status == false %>
+      <div class="grey-button mt-3"><i class='fas fa-copy'></i> This stampbook is not clonable.</div>
     <% else %>
       <div class="collect-stamp-link mt-3">
         <%= link_to "<i class='fas fa-copy'></i>Clone the stampbook".html_safe, clone_stampbook_path(@stampbook), method: :post, data: { confirm: "Would you like to clone #{@stampbook.stampbook_name}?"} %>
@@ -72,13 +74,13 @@
             <% stamps.each do |stamp| %>
               <button type="button" class="stamp-background" data-toggle="modal" data-target=".stamp-<%= stamp.id %>">
                 <% if stamp.stamp_status %>
-                  <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 200, width: 200, crop: :fill %>              
+                  <%= cl_image_tag stamp.location.stamp_photos.first.key, height: 200, width: 200, crop: :fill %>
                 <% else %>
                   <h3>#<span class="stamp-number-height"><%= @index %></span></h3>
-                  <h4><%= stamp.location.location_name %></h4>                
+                  <h4><%= stamp.location.location_name %></h4>
                 <% end %>
                 <% @index += 1 %>
-              </button>  
+              </button>
             <% end %>
         </div>
         <div class="page-number">
@@ -96,11 +98,11 @@
   </div>
   <div>
     <% if @user == current_user %>
-    <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
-     <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
-    <% else %>
-      <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@stampbook.user.first_name}'s profile".html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
       <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
+      <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
+    <% else %>
+      <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
+      <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@stampbook.user.first_name}'s profile".html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
     <% end %>
   </div>
 </div>

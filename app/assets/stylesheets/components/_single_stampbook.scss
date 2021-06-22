@@ -24,13 +24,26 @@
 }
 
 .stamps-box {
-  display: flex;  
+  display: flex;
   flex-direction: column;
   align-items: center;
   background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('https://res.cloudinary.com/laicuroot/image/upload/v1623347607/stampbook_background_qv4nx8.png');
   background-size: cover;
   position: fixed;
   background-attachment: fixed;
+  height: 100vh;
+  width:100vw;
+  overflow-x: hidden;
+}
+
+.index-stamps-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('https://res.cloudinary.com/laicuroot/image/upload/v1623347607/stampbook_background_qv4nx8.png');
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
   height: 100vh;
   width:100vw;
 }
@@ -129,22 +142,23 @@
     font-size: 20px;
     white-space: nowrap;
   }
-  &:hover{
-    transform:scale(115%);
-    cursor: pointer;
-    border-color: $bright-yellow;
-    background-color: rgba($bright-yellow, 0.3);
-    // .stamp-view-icon{
-    //   color: rgba($bright-yellow,0.7);
-    //   font-size: 5rem;
-    //   top:3%;
-    //   right: 5%;
-    //   background-color: rgba(white, 0.4);
-    //   border-radius: 50%;
-    //   padding: 10px 40px;
-    //   z-index:0;
-    // }
-  }
+}
+
+.hover:hover{
+  transform:scale(105%);
+  cursor: pointer;
+  border-color: $bright-yellow;
+  background-color: rgba($bright-yellow, 0.3);
+  // .stamp-view-icon{
+  //   color: rgba($bright-yellow,0.7);
+  //   font-size: 5rem;
+  //   top:3%;
+  //   right: 5%;
+  //   background-color: rgba(white, 0.4);
+  //   border-radius: 50%;
+  //   padding: 10px 40px;
+  //   z-index:0;
+  // }
 }
 
 #book {
@@ -161,8 +175,8 @@
 }
 
 .page-number {
-  position:absolute; 
-  bottom: 0; 
+  position:absolute;
+  bottom: 0;
   right: 45%;
   display: flex;
   justify-content: center;
@@ -171,8 +185,8 @@
 }
 
 .final-page{
-  color: rgba(0,0,0, 0.4); 
-  position: absolute; 
+  color: rgba(0,0,0, 0.4);
+  position: absolute;
   top:45%;
   right: 20%;
 }
@@ -246,3 +260,34 @@
   91.67% { transform: translate(-50px, 50px) rotate(300deg); }
   100% { transform: translate(0, 0) rotate(360deg); }
 }
+
+
+@media(min-width: 1440px){
+  .index-stamps-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('https://res.cloudinary.com/laicuroot/image/upload/v1623347607/stampbook_background_qv4nx8.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-attachment: fixed;
+    width:100vw;
+    height: 100%;
+  }
+}
+
+@media(min-width: 1441px){
+  .index-stamps-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background-image:linear-gradient(to bottom, rgba(#0f000c, 0.8), rgba(#030000, 0.6), rgba(#030000, 0.4)), url('https://res.cloudinary.com/laicuroot/image/upload/v1623347607/stampbook_background_qv4nx8.png');
+    background-size: cover;
+    background-attachment: fixed;
+    width:100vw;
+    height: 100vh;
+  }
+}
+

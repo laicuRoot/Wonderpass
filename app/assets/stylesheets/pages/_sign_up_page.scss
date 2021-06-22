@@ -1,7 +1,7 @@
 .sign-up-background-image {
   height: 100vh;
   min-height: 200px;
-  background: url('https://res.cloudinary.com/laicuroot/image/upload/v1623347593/WP_Homepage_6_ecwzwj.png') no-repeat center center;
+  background: url('https://res.cloudinary.com/laicuroot/image/upload/v1624386787/7f7104120224073.60ae31c540238_a4f5pm.jpg') no-repeat center center;
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,8 @@
     display: flex;
     font-weight: 600;
     color: $bright-yellow;
-    text-shadow: 0px 0px 15px rgba(0,0,0,0.5)
+    text-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+    text-align: center;
   }
 }
 
@@ -19,16 +20,17 @@
   position: absolute;
   top: 10%;
     a {
-    background-color: lightgrey;
+    background-color: rgba(220,220,220, 0.6);
     color: white;
     border-radius: 40px;
-    padding: 10px 25px;
+    padding: 10px 50px !important;
+    font-size: 16px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
     &:hover{
       text-decoration: none;
       color: white;
       transition: all .2s ease-in-out;
-      transform: scale(1.04);
+      transform: scale(1.01);
     }
   }
 }
@@ -42,6 +44,9 @@
     color: white;
     margin: 0px;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .form-control {
     border-radius: 30px;

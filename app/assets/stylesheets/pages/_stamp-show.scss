@@ -3,6 +3,7 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  border: none;
 }
 
 .modal-content {
@@ -14,11 +15,16 @@
   margin-right: auto;
   left: 0;
   right: 0;
+  border: none;
 }
 
 .modal-title {
   text-align: center;
   color: black;
+}
+
+.modal-body {
+  padding-bottom: 0px;
 }
 
 .collect-stamp {

@@ -36,7 +36,7 @@
           <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
         <% end %>
         <div class="card-body">
-          <% if current_user.all_confirmed_invites.include? @user %>
+          <% if current_user.friends.include? @user %>
             <h1 class="card-title"><%= @user.first_name %></h1>
           <% else %>
             <h1 class="card-title users-not-your-friend" id="username-not-your-friend-shadow"><%= @user.username %></h1>
@@ -46,10 +46,9 @@
           <p class="card-text">Number of stars earned</p>
 
           <h3><i class="fas fa-star bronze-star mr-1"></i><%= @num_bronze_stars %>  <i class="fas fa-star silver-star mr-1"></i><%= @num_silver_stars %>  <i class="fas fa-star gold-star mr-1"></i><%= @num_gold_stars %></h3>
-
           <p>Traveller since</p>
           <h3 id="traveller-since-not-current-user"><%= @user.create_date %></h3>
-          <% if current_user.all_confirmed_invites.include? @user %>
+          <% if current_user.friends.include? @user %>
             <%= link_to '<i class="fas fa-book"></i> See stampbooks'.html_safe, user_stampbooks_path(@user), class: "yellow-button" %>
           <% else %>
             <div class= "grey-button-other-user-stampbook-blocked"><p><i class="fas fa-lock"></i> You need to be <%= @user.username %>'s friend to see their stampbooks</p></div>
@@ -63,7 +62,7 @@
            <div id = "user-menu-exit" class ="menu-button"><i class="fas fa-times"></i></div>
            <h2>Actions</h2>
            <ul>
-              <% if current_user.all_confirmed_invites.include? @user %>
+              <% if current_user.friends.include? @user %>
                <li><%= link_to "<i class='fas fa-book'></i> See #{@user.first_name}'s stampbooks".html_safe, user_stampbooks_path(@user) %></li>
                <li><%= link_to "<i class='fas fa-map-marked-alt'></i> See #{@user.first_name}'s saved itineraries".html_safe , user_itineraries_path(@user) %></li>
               <% end %>

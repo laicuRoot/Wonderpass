@@ -1,6 +1,6 @@
 <% if current_user == @stampbook.user %>
-<div class="background-box">
-  <div class="container bg-white main_container">
+<div class="stamps-box">
+  <div class="container bg-white main_container mt-5">
     <div class="row d-flex text-center">
       <% if @stamp.stamp_status == false %>
         <%= render 'form' %>
@@ -20,6 +20,9 @@
       </div>
       <% end %>
     </div>
+  </div>
+  <div class='mb-3 mt-3'>
+    <%= link_to '<i class="fas fa-chevron-circle-left"></i> Go back'.html_safe, :back , class:'back-btn' %>
   </div>
 </div>
 <% else %>

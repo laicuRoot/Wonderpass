@@ -24,7 +24,7 @@
   </div>
   <% if @user == current_user %>
     <div class='d-flex justify-content-center'>
-      <%= link_to("Create a stampbook", new_stampbook_path, class:'main-yellow-button') %>
+      <%= link_to('<i class="fas fa-book-medical"></i> Create a stampbook'.html_safe, new_stampbook_path, class:'main-yellow-button') %>
     </div>
   <% end %>
   <div class="card-container">
@@ -42,7 +42,7 @@
                 <%= cl_image_tag "http://res.cloudinary.com/laicuroot/image/upload/v1624288187/fqozqvibhzcxyhko4iud.jpg", crop: :fill, class:'img-fluid stampbook-picture', style: "border-radius: 20px 20px 0 0"  %>
               <% else %>
                 <%= cl_image_tag stampbook.stamps.sample.location.location_photos.first.key, crop: :fill, class:'img-fluid stampbook-picture', style: "border-radius: 20px 20px 0 0"  %>
-              <% end %>            
+              <% end %>
               <div class="card-body d-flex flex-column" style ="height:170px;">
                 <% if stampbook.stamps.empty? %>
                   <h5 class="card-title card-title-font  pt-3"> <%= link_to stampbook.stampbook_name,  new_stampbook_location_path(stampbook) %></h5>
@@ -66,13 +66,13 @@
       </div>
     </div>
   </div>
-  <% if current_user %>
+  <% if @user == current_user %>
   <div class="mt-3 mb-3">
     <%= link_to("<i class='fas fa-chevron-circle-left mr-1'></i>Go back to your profile".html_safe, user_path(current_user), class:'back-btn') %>
   </div>
   <% else %>
   <div class="mt-3 mb-3">
-    <%= link_to("<i class='fas fa-chevron-circle-left mr-1'></i>Go back to #{@user.first_name}'s profile".html_safe, user_path(@user) , class:'yellow-button') %>
+    <%= link_to("<i class='fas fa-chevron-circle-left mr-1'></i>Go back to #{@user.first_name}'s profile".html_safe, user_path(@user) , class:'back-btn') %>
   </div>
   <% end %>
 </div>

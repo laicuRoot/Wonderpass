@@ -6,7 +6,8 @@
         <%= form.input :stampbook_name, :required => true %>
         <%= form.input :stampbook_description, :required => true %>
         <%= form.association :locations, as: :select, multiple: true, include_blank: false, collection: Location.order('location_name ASC'), label_method: :location_name, :required => true, label: "Existing Locations" %>
-        <%= form.input :status, label:'Allow other users to clone your stampbook' %>
+        <%= form.label "Can't find a location you want to add? You can add new locations on the next page.", class:"new-stampbook-grey-label"  %>
+        <%= form.input :status, label:'Allow your friends to clone your stampbook'%>
         <div class="d-flex justify-content-end">
           <%= form.submit  value:"Next", label:"Next", class:"small-yellow-button"%>
         </div>
