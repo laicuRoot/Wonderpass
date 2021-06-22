@@ -129,22 +129,23 @@
     font-size: 20px;
     white-space: nowrap;
   }
-  &:hover{
-    transform:scale(115%);
-    cursor: pointer;
-    border-color: $bright-yellow;
-    background-color: rgba($bright-yellow, 0.3);
-    // .stamp-view-icon{
-    //   color: rgba($bright-yellow,0.7);
-    //   font-size: 5rem;
-    //   top:3%;
-    //   right: 5%;
-    //   background-color: rgba(white, 0.4);
-    //   border-radius: 50%;
-    //   padding: 10px 40px;
-    //   z-index:0;
-    // }
-  }
+}
+
+.hover:hover{
+  transform:scale(105%);
+  cursor: pointer;
+  border-color: $bright-yellow;
+  background-color: rgba($bright-yellow, 0.3);
+  // .stamp-view-icon{
+  //   color: rgba($bright-yellow,0.7);
+  //   font-size: 5rem;
+  //   top:3%;
+  //   right: 5%;
+  //   background-color: rgba(white, 0.4);
+  //   border-radius: 50%;
+  //   padding: 10px 40px;
+  //   z-index:0;
+  // }
 }
 
 #book {
