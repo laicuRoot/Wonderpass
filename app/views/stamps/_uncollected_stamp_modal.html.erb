@@ -2,8 +2,8 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="stamp-div d-flex">
-        <div class="row col-6 p-0 m-0">
-          <div class="stamp-background pb-0 mb-0 hover" style = "width: 300px;, height: 400px;">
+        <div class="row col-6 p-0 m-0 d-flex flex-column ">
+          <div class="stamp-background pb-0 mb-0 hover" style = "width: 300px;">
             <% if stamp.stampbook.user == current_user %>
               <%= link_to 'Collect Stamp', edit_stampbook_stamp_path(stamp.stampbook, stamp), class: "collect-stamp" %>
             <% else %>
@@ -13,7 +13,7 @@
           <div class="modal-header text-center py-0 my-0">
               <h1 class="modal-title"><%= stamp.location.location_name%></h1>
           </div>
-          <div class="modal-body pt-0 mt-0">
+          <div class="modal-body pt-2 mt-0">
             <p><%= stamp.location.location_description %></p>
           </div>
         </div>

@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="stamp-div d-flex">
-        <div class="row col-6 p-0 m-0">
+        <div class="row col-6 p-0 m-0 d-flex flex-column">
           <div class="stamp-background hover" style = "width: 300px;">
             <%= cl_image_tag(stamp.location.stamp_photos.first.key, height: 210, width:210, crop: :fill)%>
           </div>
