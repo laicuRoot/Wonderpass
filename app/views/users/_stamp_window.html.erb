@@ -19,9 +19,9 @@
           <% end %>
         </p>
     </div>
-    <% else %>
+  <% else %>
 
-    <div class="stamp-location-photo-div">
+    <div class="stamp-location-photo-div mb-0">
       <% if stamp.stamp_status %>
         <%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo", crop: :fill%>
       <% else %>
@@ -29,15 +29,13 @@
       <% end %>
     </div>
 
-    <strong><h3 class="stamp-location-name"><%= stamp.location.location_name %></h3></strong>
+    <strong><h3 class="stamp-location-name m-2 mb-3"><%= stamp.location.location_name %></h3></strong>
 
     <div class="stamp-window-footer">
-        <p class ="yellow-button">
-          <%if stamp.stamp_status %>
-            Stamp collected on <%= stamp.update_date %>
-          <% else %>
-            <%= link_to "See stamp", stampbook_stamp_path(stamp.stampbook, stamp) %>
-          <% end %>
+      <%if stamp.stamp_status %>
+        <p class ="main-yellow-button">
+          Stamp collected on <%= stamp.update_date %>
         </p>
+      <% end %>
     </div>
 <% end %>

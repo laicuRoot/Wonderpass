@@ -22,7 +22,7 @@ const createDirections = (data) =>{
   data.legs.forEach((leg) => {
     journeyCount += 1;
     routeInfo.insertAdjacentHTML("beforeend", `<div class = 'route-header' style: "display:flex;"><p style="font-weight:bold; width:90%; display:inline-block;">Leg ${journeyCount} - from ${leg.summary.replace(',', ' to ')}</p>
-                                                <span style="font-size:20px;"><i class="fas fa-caret-down"></i></span>
+                                                <span style="font-size:20px;cursor:pointer;"><i class="fas fa-caret-down"></i></span>
                                               </div>`);
     routeInfo.insertAdjacentHTML("beforeend", "<div class = 'route-toggle hidden-route'></div>");
     leg.steps.forEach((step) => {
