@@ -1,13 +1,14 @@
 <% if @user == current_user %>
-  <strong><h2 class="stamp-location-name pb-1"><%= stamp.location.location_name %></h2></strong>
 
-    <div class="stamp-location-photo-div pb-2">
+    <div class="stamp-location-photo-div">
   		<% if stamp.stamp_status %>
-  			<%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo"%>
+  			<%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo", crop: :fill%>
   		<% else %>
-  			<%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo"%>
+  			<%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo", crop: :fill%>
   		<% end %>
   	</div>
+
+    <strong><h2 class="stamp-location-name"><%= stamp.location.location_name %></h2></strong>
 
     <div class="stamp-window-footer">
         <p class ="yellow-button">
@@ -19,15 +20,16 @@
         </p>
     </div>
     <% else %>
-    <strong><h3 class="stamp-location-name py-2"><%= stamp.location.location_name %></h3></strong>
 
-    <div class="stamp-location-photo-div pb-2">
+    <div class="stamp-location-photo-div">
       <% if stamp.stamp_status %>
-        <%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo"%>
+        <%= cl_image_tag stamp.location.stamp_photos.first.key, class:"stamp-location-photo", crop: :fill%>
       <% else %>
-        <%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo"%>
+        <%= cl_image_tag stamp.location.location_photos.first.key, class:"stamp-location-photo", crop: :fill%>
       <% end %>
     </div>
+
+    <strong><h3 class="stamp-location-name"><%= stamp.location.location_name %></h3></strong>
 
     <div class="stamp-window-footer">
         <p class ="yellow-button">

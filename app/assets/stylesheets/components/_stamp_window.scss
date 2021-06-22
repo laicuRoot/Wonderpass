@@ -13,11 +13,9 @@
 .stamp-location-name {
   font-size: 180%;
   text-align: center;
-  position: absolute;
-  top: 106px;
   color: $bright-yellow;
   font-weight: 800;
-  text-shadow: 0px 0px 10px rgb(0,0,0);
+  margin-top: 5px;
 }
 
 .stamp-location-photo-div {
@@ -28,6 +26,26 @@
     // object-fit: contain !important;
     border-radius: 15px 15px 0px 0px;
     padding: 3px;
-    margin-bottom: 20px;
+    object-fit: cover;
+  }
+}
+
+.stamp-window-footer {
+  .yellow-button {
+    padding: 8px 10px;
+    margin: 10px;
+    color: $mustard;
+    &:hover {
+      transition: all .2s ease-in-out;
+      transform: scale(1.04);
+    }
+    a {
+      color: $mustard;
+    }
+    a:hover {
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+    }
   }
 }
