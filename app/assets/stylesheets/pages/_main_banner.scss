@@ -101,7 +101,7 @@
 }
 
 .general-info-homepage-title {
-  font-weight: 600;
+  font-weight: 700;
   color: $bright-yellow;
   margin-bottom: 50px;
   margin-top: 20px;
@@ -126,11 +126,10 @@
   justify-content: center;
   width: 400px;
   flex-direction: column;
-  padding: 40px;
+  padding: 20px 40px;
   text-align: center;
   flex-grow: 1;
   p {
-    overflow: hidden;
     height: 50px;
   }
 }
