@@ -36,8 +36,6 @@ export default class extends Controller {
 
     this.dropZone.on("removedfile", file => {
       file.controller && removeElement(file.controller.hiddenInput);
-      let submitBtn = document.querySelector('.btn')
-      submitBtn.disabled = true
     });
 
     this.dropZone.on("canceled", file => {
