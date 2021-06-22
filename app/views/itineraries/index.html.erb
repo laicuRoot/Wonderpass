@@ -38,8 +38,8 @@
     <% end %>
   </div>
   <div class="container itinerary-show row">
-    <div class="col-sm-12 col-md-6">
-      <div class="itin-container" style ="height:75%; overflowy:scroll;">
+    <div class="col-sm-12 col-md-6" style="height:100%;">
+      <div class="itin-container" style ="height:100%; overflow-y:auto; padding:15px; margin:0;">
         <% if @itineraries.length == 0 %>
           <% if @user == current_user %>
           <div class='text-center error-no-itinerary'>

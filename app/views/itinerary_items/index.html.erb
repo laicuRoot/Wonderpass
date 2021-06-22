@@ -9,7 +9,7 @@
 			<p>No stamps found :( Please search again</p>
 		</div>
 		<% else %>
-			<div class="card-swipe d-flex flex-wrap" style= "width:700px; padding-left:40px; padding-bottom: 30px;">
+			<div class="card-swipe d-flex flex-wrap mb-" style= "width:700px; padding-left:40px; padding-bottom: 30px;">
 				<%# <div class ="stamp-select-card-deck" data-controller = "itinerary-items-update"> %>
 					<% @locations.each do |location| %>
 						<% if  @stamps.find_by(location: location.id) %>
@@ -33,9 +33,9 @@
 				<%# </div> %>
 			</div>
 		<% end %>
-		<%= link_to "Back", filter_itinerary_path(@itinerary), class: "small-yellow-button back-btn  transparent left" %>
+		<%= link_to "Back", filter_itinerary_path(@itinerary), class: "small-yellow-button back-btn  transparent left mt-1", style:"bottom:35px;"%>
     <% if @itinerary.itinerary_items.size > 1 %>
-      <%= link_to "Finish", itinerary_path(@itinerary), class: "main-yellow-button small-yellow-button", style: "margin-bottom:0;" %>
+      <%= link_to "Finish", itinerary_path(@itinerary), class: "main-yellow-button small-yellow-button mt-1", style: "margin-bottom:0; bottom:35px;" %>
 	   <% end %>
   </div>
 </div>
