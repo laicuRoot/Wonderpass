@@ -36,7 +36,7 @@
           <%= cl_image_tag "https://res.cloudinary.com/laicuroot/image/upload/v1624036100/g9taazczlaxq12idd1sp.jpg", width: 350, height: 290, crop: :fill, class: "card-img-top", alt: "Card image cap" %>
         <% end %>
         <div class="card-body">
-          <% if current_user.all_confirmed_invites.include? @user %>
+          <% if current_user.friends.include? @user %>
             <h1 class="card-title"><%= @user.first_name %></h1>
           <% else %>
             <h1 class="card-title users-not-your-friend" id="username-not-your-friend-shadow"><%= @user.username %></h1>
