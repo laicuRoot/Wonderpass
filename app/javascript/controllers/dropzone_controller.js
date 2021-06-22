@@ -13,8 +13,8 @@ export default class extends Controller {
   static targets = ["input"];
 
   connect() {
-    let submitBtn = document.querySelector('.btn')
-    submitBtn.disabled = true
+    // let submitBtn = document.querySelector('.btn');
+    // submitBtn.disabled = true;
     this.dropZone = createDropZone(this);
     this.hideFileInput();
     this.bindEvents();
@@ -25,6 +25,8 @@ export default class extends Controller {
   hideFileInput() {
     this.inputTarget.disabled = true;
     this.inputTarget.style.display = "none";
+    let submitBtn = document.querySelector('.main-yellow-button');
+    submitBtn.disabled = true;
   }
 
   bindEvents() {
@@ -36,8 +38,6 @@ export default class extends Controller {
 
     this.dropZone.on("removedfile", file => {
       file.controller && removeElement(file.controller.hiddenInput);
-      let submitBtn = document.querySelector('.btn')
-      submitBtn.disabled = true
     });
 
     this.dropZone.on("canceled", file => {
@@ -87,8 +87,6 @@ class DirectUploadController {
       } else {
         this.hiddenInput.value = attributes.signed_id;
         this.emitDropzoneSuccess();
-        let submitBtn = document.querySelector('.btn')
-        submitBtn.disabled = false
       }
     });
   }
@@ -137,6 +135,8 @@ class DirectUploadController {
     this.file.status = Dropzone.SUCCESS;
     this.source.dropZone.emit("success", this.file);
     this.source.dropZone.emit("complete", this.file);
+    let submitBtn = document.querySelector('.main-yellow-button');
+    submitBtn.disabled = false;
   }
 }
 
