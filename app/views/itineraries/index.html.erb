@@ -42,7 +42,8 @@
       <div class="itin-container" style ="height:75%; overflowy:scroll;">
         <% if @itineraries.length == 0 %>
           <% if @user == current_user %>
-          <div class='text-center'>
+          <div class='text-center error-no-itinerary'>
+            <h4 class="sad-face"><i class="fas fa-frown"></i></h4>
             <h4>You don't have itineraries yet. Create one!</h4>
           </div>
           <% else %>
