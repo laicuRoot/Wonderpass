@@ -24,12 +24,15 @@ const initSlick = () => {
   }
 
   if($('.card-swipe')){
-    $('.card-swipe').slick({
-      slidesToShow: 1,
-      rows: 3,
-      slidesPerRow: 3,
-      infinite: true
-    });
+    let itineraryCards = document.querySelectorAll(".itinerary-item-body");
+    if (itineraryCards.length > 9){
+      $('.card-swipe').slick({
+        slidesToShow: 1,
+        rows: 3,
+        slidesPerRow: 3,
+        infinite: true
+      });
+    }
   }
 }
 
