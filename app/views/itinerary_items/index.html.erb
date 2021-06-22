@@ -1,6 +1,9 @@
 <div class="background-box">
   <div class="form-container itinerary-item-container" data-itinerary-items-update-target = "itinerary" data-itinerary_items_update-id = "#{<%= @itinerary.id %>}">
-		<h2>Select your stamps</h2> 
+		<h2>Select your stamps</h2>
+    <% if @itinerary.itinerary_items.size < 2 %>
+      <p>You need to select at least two stamps to create an itinerary. Please go back and expand your search query.</p>
+    <% end %>
 		<% if @locations.empty? %>
 		<div style ="height: 80%; display:flex; justify-content:center; align-items:center;">
 			<p>No stamps found :( Please search again</p>
@@ -25,12 +28,14 @@
 									<% end %>
 								<% end %>
 							</div>
-						<% end %>  
+						<% end %>
 					<% end %>
 				<%# </div> %>
 			</div>
 		<% end %>
 		<%= link_to "Back", filter_itinerary_path(@itinerary), class: "small-yellow-button back-btn  transparent left" %>
-		<%= link_to "Finish", itinerary_path(@itinerary), class: "main-yellow-button small-yellow-button", style: "margin-bottom:0;" %>
-	</div>
+    <% if @itinerary.itinerary_items.size > 1 %>
+      <%= link_to "Finish", itinerary_path(@itinerary), class: "main-yellow-button small-yellow-button", style: "margin-bottom:0;" %>
+	   <% end %>
+  </div>
 </div>
