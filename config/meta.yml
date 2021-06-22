@@ -1,0 +1,5 @@
+meta_product_name: "WonderPass"
+meta_title: "WonderPass - Travel the world and collect memories"
+meta_description: "Discover, plan and collect stamps from historical, cultural and natural landmarks from across the globe"
+meta_image: "WP Homepage 6.png" # should exist in `app/assets/images/`
+twitter_account: "@PassWonder"   # required for Twitter Cards
