@@ -1,6 +1,9 @@
 <div class="background-box">
   <div class="container card-container">
-    <h1>Add new locations</h1>
+    <h1 class="mb-0">Add new locations</h1>
+    <% if @stampbook.stamps.empty? %>
+      <%= link_to "You can not create a stampbook without locations. Please add a location",  stampbook_stamps_path(@stampbook), class:"pt-0 pb-2 text-danger", style: "pointer-events: none; background-color: $white; color: $red;" %>
+    <% end %>
     <%= simple_form_for([@stampbook, @location]) do |f| %>
       <%= f.input :location_name %>
       <%= f.input :location_description %>
@@ -12,7 +15,10 @@
       <div class="d-flex justify-content-between pt-3">
       <%= f.submit 'Create Location', class: 'main-yellow-button small-yellow-button'%>
     <% end %>
-    <%= link_to "Finish",  stampbook_stamps_path(@stampbook), class:'main-yellow-button small-yellow-button' %>
+    <% if @stampbook.stamps.empty? %>
+    <% else %>
+      <%= link_to "Finish",  stampbook_stamps_path(@stampbook), class:'main-yellow-button small-yellow-button' %>
+    <% end %>
       </div>
   </div>
 </div>
