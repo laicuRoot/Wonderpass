@@ -75,6 +75,7 @@
 .leaderboard-one-user {
   display: flex;
   flex-grow: 1;
+  align-items: center;
 }
 
 .user-ranking-results {
@@ -93,6 +94,7 @@
   border-radius: 15px;
   margin: 5px 4px;
   padding: 2px 11px;
+  align-items: center;
 }
 
 .leaderbaord-other-users {
