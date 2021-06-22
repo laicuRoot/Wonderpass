@@ -93,7 +93,8 @@
 
 
 .general-info-homepage {
-  padding: 10vh 20vh;
+  margin: 20px auto;
+  width: 830px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -123,7 +124,7 @@
 .general-info-homepage-cards-text {
   display: flex;
   justify-content: center;
-  flex-grow: 1;
+  width: 400px;
   flex-direction: column;
   padding: 40px;
   text-align: center;
