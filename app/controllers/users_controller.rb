@@ -54,8 +54,8 @@ class UsersController < ApplicationController
     @friends = @friends_sent + @friends_received
     @received = Invitation.where(friend_id: current_user, confirmed: false)
     @sent = Invitation.where(user_id: current_user, confirmed: false)
-    @user_invitation = Invitation.where(user_id: current_user, friend_id: @user )
-    @friend_invitation = Invitation.where(friend_id: current_user, user_id: @user)
+    @user_invitation = Invitation.where(user_id: current_user, friend_id: @user)
+    @friend_invitation = Invitation.all.where(friend_id: current_user.id).where(user_id: @user.id)
     @all_sent = @sent + @received + @friends_sent
     @all_received = @received + @friends_received
   end

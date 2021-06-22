@@ -9,7 +9,7 @@
 			<p>No stamps found :( Please search again</p>
 		</div>
 		<% else %>
-			<div class="card-swipe d-flex flex-wrap" style= "width:700px; padding: 20px; padding-left:40px; padding-bottom: 30px;">
+			<div class="card-swipe d-flex flex-wrap" style= "width:700px; padding-left:40px; padding-bottom: 30px;">
 				<%# <div class ="stamp-select-card-deck" data-controller = "itinerary-items-update"> %>
 					<% @locations.each do |location| %>
 						<% if  @stamps.find_by(location: location.id) %>

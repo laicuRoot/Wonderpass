@@ -105,7 +105,8 @@ const initMapbox = () => {
       let transportProfile = "walking";
       const lastItemIndex = markers.length - 1
       if (cont == "user-map"){
-        if(markers.length == 0 ){
+        const nonUser = document.querySelector(".users-not-your-friend");
+        if(markers.length == 0 || nonUser ){
           markers = JSON.parse(mapElement.dataset.allMarkers);
           addMarkers(map, markers);
           fitMapToMarkers(map, markers);
@@ -119,7 +120,6 @@ const initMapbox = () => {
         generateRoutePath(map, markers, transportProfile, lastItemIndex, start);
       }
       else {
-        const start = [markers[0].lng, markers[0].lat];
         addMarkers(map, markers);
         fitMapToMarkers(map, markers);
       }
