@@ -24,7 +24,7 @@
   </div>
   <% if @user == current_user %>
     <div class='d-flex justify-content-center'>
-      <%= link_to("Create a stampbook", new_stampbook_path, class:'main-yellow-button') %>
+      <%= link_to('<i class="fas fa-book-medical"></i> Create a stampbook'.html_safe, new_stampbook_path, class:'main-yellow-button') %>
     </div>
   <% end %>
   <div class="card-container">
