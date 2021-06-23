@@ -337,12 +337,16 @@
   background-color: $bright-yellow;
   border-radius: 15px;
   padding: 8px 14px;
-  color: white !important;
+  color: white;
   text-shadow: 0 0 8px rgba($black, 0.3);
   position: fixed;
   bottom: 8%;
   right: 200px;
   border-style: solid;
+  cursor: pointer;
+  &:hover{
+    color: $black;
+  }
 }
 
 .grey-button-other-user-stampbook-blocked {

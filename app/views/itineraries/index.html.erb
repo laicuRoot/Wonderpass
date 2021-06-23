@@ -53,7 +53,7 @@
           <% @itineraries.order(updated_at: :desc).each do |itinerary| %>
             <% if itinerary.public_status || @user == current_user %>
               <div class="card-product mb-3">
-                <%= cl_image_tag itinerary.first_location_photo, crop: :fill, class:'' %>
+                <%= cl_image_tag itinerary.first_location_photo, crop: :fill, style: "width:120px; height:120px;" %>
                 <div class="card-product-infos">
                   <div class="card-body">
                     <h2 class="card-title mt-3"><%= link_to itinerary.itinerary_name, itinerary_path(itinerary), class:'itinerary-title'  %></h2>
