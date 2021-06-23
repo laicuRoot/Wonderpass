@@ -28,15 +28,16 @@
   font-weight: 600;
   font-size: 1rem;
   border-radius: 20px;
-
   z-index: 1;
   vertical-align:top;
-
   position: fixed;
   bottom: 8%;
   right: 150px;
-
   padding: 8px 12px;
+  cursor: pointer;
+  &:hover{
+    color: $black;
+  }
   p {
     margin: 0px;
   }
