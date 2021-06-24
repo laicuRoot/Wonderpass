@@ -13,11 +13,11 @@
                           label_html: { class: 'upload-btn' },
                           label: '<i class="fas fa-camera"></i> Upload a location picture'.html_safe  %>
       <div class="d-flex justify-content-between pt-3">
-      <%= f.submit 'Create Location', class: 'main-yellow-button small-yellow-button'%>
-    <% end %>
-    <% if @stampbook.stamps.empty? %>
-    <% else %>
-      <%= link_to "Finish",  stampbook_stamps_path(@stampbook), class:'main-yellow-button small-yellow-button' %>
+      <% if @stampbook.stamps.empty? %>
+      <% else %>
+        <%= link_to "Finish",  stampbook_stamps_path(@stampbook), class:'main-yellow-button small-yellow-button back-btn left' %>
+      <% end %>
+      <%= f.submit 'Create Location', class: 'main-yellow-button small-yellow-button' %>
     <% end %>
       </div>
   </div>
