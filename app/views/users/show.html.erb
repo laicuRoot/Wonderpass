@@ -23,7 +23,7 @@
             <% if @user_invitation.present? && @user_invitation.first.confirmed == false %>
               <p class= "add-user" style="color: #FFDE55;"><i class="fas fa-user-clock"></i></p>
             <% elsif  @friend_invitation.present? && @friend_invitation.first.confirmed == false %>
-              <%= link_to user_invitation_path(@user, @friend_invitation), method: :patch do %>
+              <%= link_to user_invitation_path(@user, @friend_invitation.first), method: :patch do %>
                 <p class= "add-user" style="color: #FFDE55;"><i class="fas fa-user-check"></i></p>
               <% end %>
             <% else %>
