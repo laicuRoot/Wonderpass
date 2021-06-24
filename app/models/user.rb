@@ -79,7 +79,7 @@ class User < ApplicationRecord
   end
 
   def generate_stamps
-    places = Location.all
+    places = Location.all.order(:created_at)
     places[0..39].each do |place|
       @stamp = Stamp.new(
         location: place,

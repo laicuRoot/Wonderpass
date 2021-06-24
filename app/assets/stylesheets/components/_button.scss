@@ -17,6 +17,7 @@
   color: $white;
   border-radius: 15px;
   transition: transform 250ms;
+  cursor: pointer;
   &:hover{
     color: white;
     text-decoration: none;
@@ -250,6 +251,12 @@
   }
 }
 
+.upload-btn{
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+
 .transparent{
-  opacity:0.2;
+  opacity: 0.2;
 }

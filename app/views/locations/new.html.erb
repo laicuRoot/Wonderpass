@@ -10,8 +10,8 @@
       <%= f.input :category, collection: %w[Culinary Cultural Historical Natural Sports] %>
       <%= f.input :location_photos,
                           input_html: { class: 'd-none' },
-                          label_html: { class: 'upload-btn' },
-                          label: '<i class="fas fa-camera"></i> Upload a location picture'.html_safe  %>
+                          label_html: { class: 'back-btn upload-btn' },
+                          label: '<i class="fas fa-camera"></i> Upload a location picture'.html_safe %>
       <div class="d-flex justify-content-between pt-3">
       <% if @stampbook.stamps.empty? %>
       <% else %>
