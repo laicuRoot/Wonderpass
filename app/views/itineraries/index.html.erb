@@ -32,7 +32,7 @@
   </div>
   <div class='text-center'>
     <% if @user == current_user %>
-      <%= link_to "Create Itinerary", new_user_itinerary_path(@user), class:'main-yellow-button' %>
+      <%= link_to '<i class="fas fa-route"></i> Create Itinerary'.html_safe, new_user_itinerary_path(@user), class:'main-yellow-button' %>
     <% else %>
       <span></span>
     <% end %>
@@ -92,9 +92,9 @@
     </div>
   </div>
   <% if @user == current_user %>
-    <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@user), class:'back-btn mb-3' %>
+    <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@user), class:'back-btn mb-5' %>
   <% else %>
-    <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@user.first_name}'s profile".html_safe, user_path(@user), class:'back-btn mb-3' %>
+    <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@user.first_name}'s profile".html_safe, user_path(@user), class:'back-btn mb-5' %>
   <% end %>
 </div>
 

@@ -2,11 +2,11 @@
   <div class="form-container itinerary-item-container" data-itinerary-items-update-target = "itinerary" data-itinerary_items_update-id = "#{<%= @itinerary.id %>}">
 		<h2>Select your stamps</h2>
     <% if @itinerary.itinerary_items.size < 2 %>
-      <p>You need to select at least two stamps to create an itinerary. Please go back and expand your search query.</p>
+      <p class="grey-text">You need to select at least two stamps to create an itinerary. Please go back and expand your search query if you are unable to see more than one stamp.</p>
     <% end %>
 		<% if @locations.empty? %>
 		<div style ="height: 80%; display:flex; justify-content:center; align-items:center;">
-			<p>No stamps found :( Please search again</p>
+			<p class="grey-text margin-40px"><i class="fas fa-frown sad-face"></i> <br> No stamps found. Please search again.</p>
 		</div>
 		<% else %>
 			<div class="card-swipe d-flex flex-wrap mb-" style= "width:700px; padding-left:40px; padding-bottom: 30px;">

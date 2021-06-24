@@ -5,7 +5,6 @@
       <h2> You have <%= pluralize(@user_stampbooks.count, 'stampbook')%></h2>
       <div class='d-flex justify-content-center'>
         <%= link_to('<i class="fas fa-book-medical"></i> Create a stampbook'.html_safe, new_user_stampbook_path , class:'btn btn-info mr-1 rounded') %>
-        <%= link_to("+ Find a public stampbook to add to your library", new_stampbook_path , class:'btn btn-info ml-1') %>
       </div>
     </div>
   </div>

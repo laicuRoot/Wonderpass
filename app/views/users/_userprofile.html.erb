@@ -51,10 +51,10 @@
         <div id = "user-menu-exit" class ="menu-button"><i class="fas fa-times"></i></div>
         <h2>Actions</h2>
         <ul>
-          <li><%= link_to "Create Itinerary", new_user_itinerary_path(user) %></li>
-          <li><%= link_to "See Saved Itineraries", user_itineraries_path(user) %></li>
-          <li><%= link_to "Edit Profile", edit_user_path(user)%></li>
-          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to '<i class="fas fa-map-marked-alt"></i> Create Itinerary'.html_safe, new_user_itinerary_path(user) %></li>
+          <li><%= link_to '<i class="fas fa-route"></i> See Saved Itineraries'.html_safe, user_itineraries_path(user) %></li>
+          <li><%= link_to '<i class="fas fa-user-edit"></i> Edit Profile'.html_safe, edit_user_path(user)%></li>
+          <li><%= link_to '<i class="fas fa-sign-out-alt"></i> Sign out'.html_safe, destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>
     </div>

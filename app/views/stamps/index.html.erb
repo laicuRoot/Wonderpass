@@ -1,5 +1,5 @@
 <div class="index-stamps-box">
-  <div class='d-flex justify-content-between w-100 mt-5'>
+  <div class='d-flex justify-content-between w-100 mt-5 mb-5'>
     <div class="stampbook-owner ml-3">
        <% if @stampbook.user.photo.attached? %>
         <%= cl_image_tag @stampbook.user.photo.key , width: 50, height: 50, crop: :fill, class: "user-photo" %>
@@ -30,7 +30,7 @@
         <% end %>
         <% unless @badge_total.zero? %>
           <% @badge_total.times do %>
-            <div class="badge-style mr-3" style="font-size: 1rem; color: white;">
+            <div class="badge-style mr-3" style="font-size: 1rem; color: grey; opacity: 0.8;">
               <i class="fas fa-star"></i>
               <span class="badge-tooltiptext not-collected-tooltip">Collect more stamps to unlock this star!</span>
              </div>
@@ -41,7 +41,7 @@
         <% if @percent.floor.zero? %>
           <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
         <% else %>
-          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
+          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
         <% end %>
       </div>
     <% else %>
@@ -50,7 +50,7 @@
         <% if @percent.floor.zero? %>
           <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
         <% else %>
-          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"><%= @percent %>%</div>
+          <div class="progress-bar" role="progressbar" style="width: <%= @percent %>%;" aria-valuenow= "<%= @percent %>" aria-valuemin="0" aria-valuemax="100"></div>
         <% end %>
       </div>
     <% end %>
@@ -98,10 +98,10 @@
   </div>
   <div>
     <% if @user == current_user %>
-      <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
+      <%= link_to("<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@stampbook.user.first_name}'s stampbook collection".html_safe, user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
       <%= link_to '<i class="fas fa-chevron-circle-left mr-1"></i>Go back to your profile'.html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
     <% else %>
-      <%= link_to("Go back to #{@stampbook.user.first_name}'s stampbook collection", user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
+      <%= link_to("<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@stampbook.user.first_name}'s stampbook collection".html_safe, user_stampbooks_path(@stampbook.user) , class:'back-btn mb-3', style: "position: relative; bottom: 80px;") %>
       <%= link_to "<i class='fas fa-chevron-circle-left mr-1'></i> Go back to #{@stampbook.user.first_name}'s profile".html_safe, user_path(@stampbook.user), class:'back-btn mb-3', style: "position: relative; bottom: 80px;" %>
     <% end %>
   </div>
