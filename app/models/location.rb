@@ -12,8 +12,6 @@ class Location < ApplicationRecord
   validates :location_description, length: { maximum: 1000, too_long: "%{count} characters is the maximum allowed" }
   validates :category, inclusion: { in: %w(Natural Historical Cultural Culinary Sports) }
   after_validation :geocode, if: :will_save_change_to_location_name?
-  # after_create :geocode, if: :will_save_change_to_location_name?
-  # after_create :add_stamp_photo
   has_many_attached :location_photos
   has_many_attached :stamp_photos
 

@@ -5,7 +5,7 @@ class ItineraryItemsController < ApplicationController
   def index
     @itinerary_item = ItineraryItem.new
     @locations = Location.near(@itinerary.destination, @distance).where(category: @categories)
-    @stamps = @completed? @itinerary.all_stamps : @itinerary.all_uncollected_stamps
+    @stamps = @completed ? @itinerary.all_stamps : @itinerary.all_uncollected_stamps
     @locations.where(stamps: @stamps)
   end
 
