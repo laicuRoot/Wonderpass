@@ -1,13 +1,11 @@
 require "rails_helper"
 
 RSpec.describe CreateStampbook::StampbookCreator, type: :model do
-
   subject { described_class.new(params: stampbook_params, user: user, location_ids: [location.id]).call }
 
   let(:stampbook_params) { { stampbook_name: 'Test1', stampbook_description: 'Test1', status: false } }
   let(:user) { FactoryBot.create(:user) }
   let(:location) { FactoryBot.create(:location, user_id: user.id) }
-
 
   context "When all the params are correct" do
 
@@ -20,9 +18,5 @@ RSpec.describe CreateStampbook::StampbookCreator, type: :model do
       expect(subject.status).to eq(false)
     end
   end
-
-
-
-
 
 end
