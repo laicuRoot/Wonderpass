@@ -1,9 +1,6 @@
 module CreateStampbook
   class StampbookCreator < ApplicationService
 
-    include Rails.application.routes.url_helpers
-
-
     def initialize(params:, user:, location_ids:)
       @params = params
       @user = user
@@ -23,12 +20,13 @@ module CreateStampbook
       stampbook = Stampbook.new(params)
       stampbook.user = user
       stampbook_save?(stampbook)
+      stampbook
     end
 
     def stampbook_save?(stampbook)
       if stampbook.save
         location_ids.each do |location_id|
-          Stamp.create(location_id: location_id, stampbook_id: stampbook.id, stamp_status: false)
+          CreateStamp::StampCreator.call(location_id: location_id, stampbook_id: stampbook.id)
         end
       end
     end

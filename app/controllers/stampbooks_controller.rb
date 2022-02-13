@@ -14,42 +14,30 @@ class StampbooksController < ApplicationController
 
   def create
     stampbook = CreateStampbook::StampbookCreator.call(params: stampbook_params, user: current_user, location_ids: location_ids)
-    redirect_to new_location_url
-  rescue ValidationError
-    render :new
+    redirect_to new_stampbook_location_path(stampbook)
+  rescue ActiveRecord::RecordInvalid
+    redirect_to new_stampbook_path
   end
 
   def clone
-    @stampbook = Stampbook.find(params[:id])
-    @newbook = @stampbook.dup
-    @newbook.user = current_user
-    if @newbook.save
-      Stampbook.create_stamps(@stampbook, @newbook)
-      redirect_to stampbook_stamps_path(@newbook);
-      flash[:notice] = "Stampbook #{@newbook.stampbook_name} has been cloned"
-    end
+    CreateStampbook::StampbookDuplicator.call(stampbook_id: params[:id], user: current_user)
+    user = current_user
+    redirect_to user_stampbooks_path(user);
+
   end
 
   def destroy
-    @stampbook = Stampbook.find(params[:id])
-    @user = @stampbook.user
-    @stampbook.destroy
+    stampbook = find_stampbook_by_id(params[:id])
+    user = stampbook.user
+    stampbook.destroy
 
-    redirect_to user_stampbooks_path(@user)
+    redirect_to user_stampbooks_path(user)
   end
 
   private
 
-  def new_location_url
-    new_stampbook_location_path(find_stampbook(stampbook_name))
-  end
-
-  def find_stampbook(stampbook_name)
-    Stampbook.all.find_by(stampbook_name: stampbook_name)
-  end
-
-  def find_user
-    @user = User.find(user_id)
+  def find_stampbook_by_id(stampbook_id)
+    Stampbook.find(stampbook_id)
   end
 
   def stampbook_name
@@ -62,6 +50,10 @@ class StampbooksController < ApplicationController
 
   def user_id
     params[:user_id]
+  end
+
+  def find_user
+    @user = User.find(user_id)
   end
 
   def stampbook_params
