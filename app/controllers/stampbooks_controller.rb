@@ -1,56 +1,59 @@
 class StampbooksController < ApplicationController
   before_action :find_user, only: :index
-  
+
   def index
     @user_stampbooks = Stampbook.where(user_id: @user.id)
-    # @stampbooks = Stampbook.where(status: true)
   end
 
-  def show;
-  end
+  def show; end
 
   def new
     @stampbook = Stampbook.new
-    @locations = Location.all
+    @locations = Location.order(:created_at).includes(:location_name).limit(10)
   end
 
   def create
-    @stampbook = Stampbook.new(stampbook_params)
-    @stampbook.user = current_user
-    @location_ids = params[:stampbook][:location_ids]
-    if @stampbook.save
-      @location_ids.each do |location_id|
-        Stamp.create(location_id: location_id, stampbook_id: @stampbook.id, stamp_status: false)
-      end
-      redirect_to new_stampbook_location_path(@stampbook)
-    else
-      render :new
-    end
+    stampbook = CreateStampbook::StampbookCreator.call(params: stampbook_params, user: current_user, location_ids: location_ids)
+    redirect_to new_stampbook_location_path(stampbook)
+  rescue ActiveRecord::RecordInvalid
+    redirect_to new_stampbook_path
   end
 
   def clone
-    @stampbook = Stampbook.find(params[:id])
-    @newbook = @stampbook.dup
-    @newbook.user = current_user
-    if @newbook.save
-      Stampbook.create_stamps(@stampbook, @newbook)
-      redirect_to stampbook_stamps_path(@newbook);
-      flash[:notice] = "Stampbook #{@newbook.stampbook_name} has been cloned"
-    end
+    CreateStampbook::StampbookDuplicator.call(stampbook_id: params[:id], user: current_user)
+    user = current_user
+    redirect_to user_stampbooks_path(user);
+
   end
 
   def destroy
-    @stampbook = Stampbook.find(params[:id])
-    @user = @stampbook.user
-    @stampbook.destroy
+    stampbook = find_stampbook_by_id(params[:id])
+    user = stampbook.user
+    stampbook.destroy
 
-    redirect_to user_stampbooks_path(@user)
+    redirect_to user_stampbooks_path(user)
   end
 
   private
 
+  def find_stampbook_by_id(stampbook_id)
+    Stampbook.find(stampbook_id)
+  end
+
+  def stampbook_name
+    params[:stampbook][:stampbook_name]
+  end
+
+  def location_ids
+    params[:stampbook][:location_ids]
+  end
+
+  def user_id
+    params[:user_id]
+  end
+
   def find_user
-    @user = User.find(params[:user_id])
+    @user = User.find(user_id)
   end
 
   def stampbook_params
